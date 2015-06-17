@@ -6,19 +6,17 @@
         "http://sensors.geonovum.nl/sos/api/v1/": "geonovum"
     },
     "defaultProvider": {
-        "serviceID": "srv_6d9ccea8d609ecb74d4a512922bb7cee",
-        "apiUrl": "http://sosrest.irceline.be/api/v1/"
+        "serviceID": "1",
+        "apiUrl": "http://geo.irceline.be/sos/api/v1/"
     },
     "chartOptions":{
         "yaxis":{
             "tickDecimals" : 2
         }
     },
-	 
     "clusterStations": false,
     "generalizeData": true,
-	"enableGeoSearch": true,
-	"saveStatus": true,
+    "saveStatus": true,
     "saveStatusPossible": true,
     "concentrationMarker": true,
     "pagesize": 30,
