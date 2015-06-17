@@ -8587,6 +8587,21 @@ var Map = {
                     zoomLevel: 13
                 }).addTo(this.map);
             }
+			/*
+			  var pm10_current24 = L.tileLayer.wms("http://wms.irceline.be", {
+                layers: 'rio:pm10_actueel24', 
+                transparent: true,
+                format: 'image/png', 
+                cql_filter: timestring,
+                opacity: 0.7, 
+                visibility: true, 
+                   units: 'm'
+                }).addTo(this.map);
+			*/
+			
+			
+			
+			
             this.map.fitBounds([
             [-80, -170],
             [80, 170]]);
@@ -8613,6 +8628,8 @@ var Map = {
         if (this.stationMarkers) {
             this.map.removeLayer(this.stationMarkers);
         }
+		
+		var boundingbox = []
         if (results.length > 0) {
             var firstElemCoord = results[0].geometry.coordinates;
             var topmost = firstElemCoord[1];
@@ -8622,6 +8639,7 @@ var Map = {
             this.stationMarkers = clustering ? new L.MarkerClusterGroup() : new L.LayerGroup();
             that = this;
             $.each(results, $.proxy(function(n, elem) {
+				
                 var geom = elem.geometry.coordinates;
                 if (!isNaN(geom[0]) || !isNaN(geom[1])) {
                     if (geom[0] > rightmost) {
@@ -8644,12 +8662,24 @@ var Map = {
                 }
             }, this));
             this.map.addLayer(this.stationMarkers);
-            this.map.fitBounds([
+			boundingbox = [
                 [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]]);
+                [parseFloat(topmost), parseFloat(rightmost)]];
+            /*this.map.fitBounds([
+                [parseFloat(bottommost), parseFloat(leftmost)],
+                [parseFloat(topmost), parseFloat(rightmost)]]);*/
         }
+		 changeWMS(this.selectedPhenomenon,timestring,timestring_day, boundingbox );
+		
+		
+		
+		
+		
+		
+		
     },
     createColoredMarkers: function(results) {
+		var boundingbox = []
         if (this.stationMarkers) {
             this.map.removeLayer(this.stationMarkers);
         }
@@ -8663,6 +8693,8 @@ var Map = {
             that = this;
             $.each(results, $.proxy(function(n, elem) {
                 var geom = elem.getCoordinates();
+				//console.log('elemento')
+				//console.log(elem)
                 if (!isNaN(geom[0]) || !isNaN(geom[1])) {
                     if (geom[0] > rightmost) {
                         rightmost = geom[0];
@@ -8703,10 +8735,19 @@ var Map = {
                 }
             }, this));
             this.map.addLayer(this.stationMarkers);
-            this.map.fitBounds([
+          boundingbox = [
                 [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]]);
+                [parseFloat(topmost), parseFloat(rightmost)]];
+            /*this.map.fitBounds([
+                [parseFloat(bottommost), parseFloat(leftmost)],
+                [parseFloat(topmost), parseFloat(rightmost)]]);*/
         }
+		 changeWMS(this.selectedPhenomenon,timestring,timestring_day, boundingbox );
+		
+		
+		
+		
+		
     },
     getMatchingInterval: function(elem) {
         var matchedInterval = null;
