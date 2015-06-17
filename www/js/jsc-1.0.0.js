@@ -6514,7 +6514,7 @@ function TimeSeries(tsId, meta, apiUrl) {
     this.getStyle = function() {
         return style;
     };
-    
+
     this.setStyle = function(newStyle) {
         style = newStyle;
     };
@@ -6522,19 +6522,19 @@ function TimeSeries(tsId, meta, apiUrl) {
     this.isHidden = function() {
         return hidden;
     };
-    
+
     this.setHidden = function(bool) {
         hidden = bool;
-    };  
-    
+    };
+
     this.isSelected = function() {
         return selected;
     };
-    
+
     this.setSelected = function(bool) {
         selected = bool;
     };
-    
+
     this.isSynced = function() {
         return synced;
     };
@@ -6666,7 +6666,7 @@ function TimeSeries(tsId, meta, apiUrl) {
         synced = true;
         this.complete(this.context);
     };
-    
+
     this.fetchedDataError = function(data, bla) {
         synced = true;
         this.complete(this.context);
@@ -6677,7 +6677,7 @@ function TimeSeries(tsId, meta, apiUrl) {
             timeBuffer = moment.duration(data[1][0] - data[0][0]);
         }
     };
-    
+
     this.clone = function() {
         var clone = new TimeSeries(tsId, meta, apiUrl);
         clone.setStyle(this.getStyle().clone());
@@ -6758,10 +6758,10 @@ function TimeseriesStyle(chartType, width, color, intervalString, lineType) {
     this.width = width || Settings.commonLineWidth;
     this.color = color || "#000000";
     this.lineType = lineType || "solid";
-    
+
     this.zeroScaled = Settings.defaultZeroScale;
     this.groupedAxis = Settings.defaultGroupedAxis;
-    
+
     createInterval = function (interval) {
         switch (interval) {
             case "byHour":
@@ -6814,7 +6814,7 @@ function TimeseriesStyle(chartType, width, color, intervalString, lineType) {
     this.getWidth = function () {
         return this.width;
     };
-    
+
     this.isZeroScaled = function() {
         return this.zeroScaled;
     };
@@ -6822,15 +6822,15 @@ function TimeseriesStyle(chartType, width, color, intervalString, lineType) {
     this.setZeroScaled = function(bool) {
         this.zeroScaled = bool;
     };
-    
+
     this.isGroupedAxis = function(){
         return this.groupedAxis;
     };
-    
+
     this.setGroupedAxis = function(bool) {
         this.groupedAxis = bool;
     };
-    
+
     this.toJSON = function(){
         return {
             width: this.width,
@@ -6842,7 +6842,7 @@ function TimeseriesStyle(chartType, width, color, intervalString, lineType) {
             interval: this.interval
         };
     };
-    
+
     this.setIntervalByHours = function (inter) {
         this.interval = inter;
     };
@@ -8587,21 +8587,8 @@ var Map = {
                     zoomLevel: 13
                 }).addTo(this.map);
             }
-			/*
-			  var pm10_current24 = L.tileLayer.wms("http://wms.irceline.be", {
-                layers: 'rio:pm10_actueel24', 
-                transparent: true,
-                format: 'image/png', 
-                cql_filter: timestring,
-                opacity: 0.7, 
-                visibility: true, 
-                   units: 'm'
-                }).addTo(this.map);
-			*/
-			
-			
-			
-			
+
+
             this.map.fitBounds([
             [-80, -170],
             [80, 170]]);
@@ -8628,7 +8615,7 @@ var Map = {
         if (this.stationMarkers) {
             this.map.removeLayer(this.stationMarkers);
         }
-		
+
 		var boundingbox = []
         if (results.length > 0) {
             var firstElemCoord = results[0].geometry.coordinates;
@@ -8639,7 +8626,7 @@ var Map = {
             this.stationMarkers = clustering ? new L.MarkerClusterGroup() : new L.LayerGroup();
             that = this;
             $.each(results, $.proxy(function(n, elem) {
-				
+
                 var geom = elem.geometry.coordinates;
                 if (!isNaN(geom[0]) || !isNaN(geom[1])) {
                     if (geom[0] > rightmost) {
@@ -8669,14 +8656,7 @@ var Map = {
                 [parseFloat(bottommost), parseFloat(leftmost)],
                 [parseFloat(topmost), parseFloat(rightmost)]]);*/
         }
-		 changeWMS(this.selectedPhenomenon,timestring,timestring_day, boundingbox );
-		
-		
-		
-		
-		
-		
-		
+		 changeWMS(this.selectedPhenomenon,timestring,timestring_day, boundingbox );	
     },
     createColoredMarkers: function(results) {
 		var boundingbox = []
@@ -8743,11 +8723,11 @@ var Map = {
                 [parseFloat(topmost), parseFloat(rightmost)]]);*/
         }
 		 changeWMS(this.selectedPhenomenon,timestring,timestring_day, boundingbox );
-		
-		
-		
-		
-		
+
+
+
+
+
     },
     getMatchingInterval: function(elem) {
         var matchedInterval = null;
@@ -10866,7 +10846,7 @@ var FavoriteController = {
                 this.importJson(json);
             }, this));
         }
-    }   
+    }
 };/*
  * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
  * Software GmbH

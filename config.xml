@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="eu.eenvplus.sosviewer" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>SOS viewer</name>
+    <name>Air Quality Belgium</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Realtime air quality information - Belgium
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="peeters@irceline.be" href="http://www.irceline.be">
+      Belgian Interregional Environment Agency (IRCEL - CELINE)
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <icon src="images/irceline.png" />
 </widget>
