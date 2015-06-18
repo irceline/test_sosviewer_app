@@ -71,7 +71,7 @@ if (phenomenonId == 5){
           "daily mean (yesterday) PM10": this.pm10_daily_mean
         };
         this.myControlLayer = L.control.layers(this.baseLayers, null, {
-          position: 'topleft',
+          position: 'bottomright',
           collapsed: true
         }).addTo(Map.map);
 }

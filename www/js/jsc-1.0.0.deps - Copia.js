@@ -9804,7 +9804,7 @@ var sameSchemeRegEx = new RegExp('^'+location.protocol, 'i');
 
 // ajaxTransport exists in jQuery 1.5+
 $.ajaxTransport('* text html xml json', function(options, userOptions, jqXHR) {
-  
+
   // Only continue if the request is: asynchronous, uses GET or POST method, has HTTP or HTTPS protocol, and has the same scheme as the calling page
   if (!options.crossDomain || !options.async || !getOrPostRegEx.test(options.type) || !httpRegEx.test(options.url) || !sameSchemeRegEx.test(options.url)) {
     return;
@@ -12388,9 +12388,9 @@ Licensed under the MIT license.
                 radius = series.points.radius,
                 symbol = series.points.symbol;
 
-            // If the user sets the line width to 0, we change it to a very 
+            // If the user sets the line width to 0, we change it to a very
             // small value. A line width of 0 seems to force the default of 1.
-            // Doing the conditional here allows the shadow setting to still be 
+            // Doing the conditional here allows the shadow setting to still be
             // optional even with a lineWidth of 0.
 
             if( lw == 0 )
@@ -13189,7 +13189,7 @@ API.txt for details.
 			return makeUtcWrapper(new Date(ts));
 		}
 	}
-	
+
 	// map of app. size of time units in milliseconds
 
 	var timeUnitSize = {
@@ -13207,9 +13207,9 @@ API.txt for details.
 
 	var baseSpec = [
 		[1, "second"], [2, "second"], [5, "second"], [10, "second"],
-		[30, "second"], 
+		[30, "second"],
 		[1, "minute"], [2, "minute"], [5, "minute"], [10, "minute"],
-		[30, "minute"], 
+		[30, "minute"],
 		[1, "hour"], [2, "hour"], [4, "hour"],
 		[8, "hour"], [12, "hour"],
 		[1, "day"], [2, "day"], [3, "day"],
@@ -13602,7 +13602,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
             onZoomClick(e, delta < 0);
             return false;
         }
-        
+
         var prevCursor = 'default', prevPageX = 0, prevPageY = 0,
             panTimeout = null;
 
@@ -13620,7 +13620,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
             prevPageX = coordHolder.pageX;
             prevPageY = coordHolder.pageY;
         }
-        
+
         function onDrag(e) {
             var frameRate = plot.getOptions().pan.frameRate;
             if (panTimeout || !frameRate)
@@ -13632,7 +13632,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                            top: prevPageY - coordHolder.pageY });
                 prevPageX = coordHolder.pageX;
                 prevPageY = coordHolder.pageY;
-                                                    
+
                 panTimeout = null;
             }, 1 / frameRate * 1000);
         }
@@ -13642,16 +13642,16 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                 clearTimeout(panTimeout);
                 panTimeout = null;
             }
-            
+
             var coordHolder = options.pan.touch ? e.originalEvent.changedTouches[0] : e;
             plot.getPlaceholder().css('cursor', prevCursor);
             plot.pan({ left: prevPageX - coordHolder.pageX,
                        top: prevPageY - coordHolder.pageY });
             plot.getPlaceholder().trigger("plotpanEnd", [ plot ]);
         }
-        
+
         var eventHolder;
-        
+
         function bindEvents(plot, evtHolder) {
             eventHolder = evtHolder;
             var o = plot.getOptions();
@@ -13678,7 +13678,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                 });
             }
         }
-        
+
         plot.unbindPanZoomEvents = function (args) {
             eventHolder.unbind("mousewheel", onMouseWheel);
             eventHolder.unbind("dragstart", onDragStart);
@@ -13692,25 +13692,25 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
         plot.zoomOut = function (args) {
             if (!args)
                 args = {};
-            
+
             if (!args.amount)
                 args.amount = plot.getOptions().zoom.amount;
 
             args.amount = 1 / args.amount;
             plot.zoom(args);
         };
-        
+
         plot.zoom = function (args) {
             if (!args)
                 args = {};
-            
+
             var c = args.center,
                 amount = args.amount || plot.getOptions().zoom.amount,
                 w = plot.width(), h = plot.height();
 
             if (!c)
                 c = { left: w / 2, top: h / 2 };
-                
+
             var xf = c.left / w,
                 yf = c.top / h,
                 minmax = {
@@ -13733,7 +13733,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 
                 if (zr === false) // no zooming on this axis
                     return;
-                    
+
                 min = axis.c2p(min);
                 max = axis.c2p(max);
                 if (min > max) {
@@ -13758,14 +13758,14 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                     ((zr[0] != null && range < zr[0] && amount >1) ||
                      (zr[1] != null && range > zr[1] && amount <1)))
                     return;
-            
+
                 opts.min = min;
                 opts.max = max;
             });
-            
+
             plot.setupGrid();
             plot.draw();
-            
+
             if (!args.preventEvent)
                 plot.getPlaceholder().trigger("plotzoom", [ plot, args ]);
         };
@@ -13791,7 +13791,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                 var pr = opts.panRange;
                 if (pr === false) // no panning on this axis
                     return;
-                
+
                 if (pr) {
                     // check whether we hit the wall
                     if (pr[0] != null && pr[0] > min) {
@@ -13799,21 +13799,21 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
                         min += d;
                         max += d;
                     }
-                    
+
                     if (pr[1] != null && pr[1] < max) {
                         d = pr[1] - max;
                         min += d;
                         max += d;
                     }
                 }
-                
+
                 opts.min = min;
                 opts.max = max;
             });
-            
+
             plot.setupGrid();
             plot.draw();
-            
+
             if (!args.preventEvent)
                 plot.getPlaceholder().trigger("plotpan", [ plot, args ]);
         };
@@ -13830,11 +13830,11 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
             if (panTimeout)
                 clearTimeout(panTimeout);
         }
-        
+
         plot.hooks.bindEvents.push(bindEvents);
         plot.hooks.shutdown.push(shutdown);
     }
-    
+
     $.plot.plugins.push({
         init: init,
         options: options,
@@ -13854,12 +13854,12 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
  */
 
 (function($){
- 	
+
 	/**
 	* Set it up as an object under the jQuery namespace
 	*/
 	$.gritter = {};
-	
+
 	/**
 	* Set up global options that the user can over-ride
 	*/
@@ -13870,7 +13870,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 		fade_out_speed: 1000, // how fast the notices fade out
 		time: 6000 // hang on the screen for...
 	}
-	
+
 	/**
 	* Add a gritter notification to the screen
 	* @see Gritter#add();
@@ -13880,16 +13880,16 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 		try {
 			return Gritter.add(params || {});
 		} catch(e) {
-		
+
 			var err = 'Gritter Error: ' + e;
-			(typeof(console) != 'undefined' && console.error) ? 
-				console.error(err, params) : 
+			(typeof(console) != 'undefined' && console.error) ?
+				console.error(err, params) :
 				alert(err);
-				
+
 		}
-		
+
 	}
-	
+
 	/**
 	* Remove a gritter notification from the screen
 	* @see Gritter#removeSpecific();
@@ -13897,7 +13897,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 	$.gritter.remove = function(id, params){
 		Gritter.removeSpecific(id, params || {});
 	}
-	
+
 	/**
 	* Remove all notifications
 	* @see Gritter#stop();
@@ -13905,19 +13905,19 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 	$.gritter.removeAll = function(params){
 		Gritter.stop(params || {});
 	}
-	
+
 	/**
 	* Big fat Gritter object
 	* @constructor (not really since its object literal)
 	*/
 	var Gritter = {
-		
+
 		// Public - options to over-ride with $.gritter.options in "add"
 		position: '',
 		fade_in_speed: '',
 		fade_out_speed: '',
 		time: '',
-		
+
 		// Private - no touchy the private parts
 		_custom_timer: 0,
 		_item_count: 0,
@@ -13926,7 +13926,7 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 		_tpl_title: '<span class="gritter-title">[[title]]</span>',
 		_tpl_item: '<div id="gritter-item-[[number]]" class="gritter-item-wrapper [[item_class]]" style="display:none" role="alert"><div class="gritter-top"></div><div class="gritter-item">[[close]][[image]]<div class="[[class_name]]">[[title]]<p>[[text]]</p></div><div style="clear:both"></div></div><div class="gritter-bottom"></div></div>',
 		_tpl_wrap: '<div id="gritter-notice-wrapper"></div>',
-		
+
 		/**
 		* Add a gritter notification to the screen
 		* @param {Object} params The object that contains all the options for drawing the notification
@@ -13940,16 +13940,16 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 
 			// We might have some issues if we don't have a title or text!
 			if(params.text === null){
-				throw 'You must supply "text" parameter.'; 
+				throw 'You must supply "text" parameter.';
 			}
-			
+
 			// Check the options and set them once
 			if(!this._is_setup){
 				this._runSetup();
 			}
-			
+
 			// Basics
-			var title = params.title, 
+			var title = params.title,
 				text = params.text,
 				image = params.image || '',
 				sticky = params.sticky || false,
@@ -13958,11 +13958,11 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 				time_alive = params.time || '';
 
 			this._verifyWrapper();
-			
+
 			this._item_count++;
-			var number = this._item_count, 
+			var number = this._item_count,
 				tmp = this._tpl_item;
-			
+
 			// Assign callbacks
 			$(['before_open', 'after_open', 'before_close', 'after_close']).each(function(i, val){
 				Gritter['_' + val + '_' + number] = ($.isFunction(params[val])) ? params[val] : function(){}
@@ -13970,22 +13970,22 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 
 			// Reset
 			this._custom_timer = 0;
-			
+
 			// A custom fade time set
 			if(time_alive){
 				this._custom_timer = time_alive;
 			}
-			
+
 			var image_str = (image != '') ? '<img src="' + image + '" class="gritter-image" />' : '',
 				class_name = (image != '') ? 'gritter-with-image' : 'gritter-without-image';
-			
+
 			// String replacements on the template
 			if(title){
 				title = this._str_replace('[[title]]',title,this._tpl_title);
 			}else{
 				title = '';
 			}
-			
+
 			tmp = this._str_replace(
 				['[[title]]', '[[text]]', '[[close]]', '[[image]]', '[[number]]', '[[class_name]]', '[[item_class]]'],
 				[title, text, this._tpl_close, image_str, this._item_count, class_name, item_class], tmp
@@ -13997,21 +13997,21 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 			}
 
 			$('#gritter-notice-wrapper').addClass(position).append(tmp);
-			
+
 			var item = $('#gritter-item-' + this._item_count);
-			
+
 			item.fadeIn(this.fade_in_speed, function(){
 				Gritter['_after_open_' + number]($(this));
 			});
-			
+
 			if(!sticky){
 				this._setFadeTimer(item, number);
 			}
-			
+
 			// Bind the hover/unhover states
 			$(item).bind('mouseenter mouseleave', function(event){
 				if(event.type == 'mouseenter'){
-					if(!sticky){ 
+					if(!sticky){
 						Gritter._restoreItemIfFading($(this), number);
 					}
 				}
@@ -14022,17 +14022,17 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 				}
 				Gritter._hoverState($(this), event.type);
 			});
-			
+
 			// Clicking (X) makes the perdy thing close
 			$(item).find('.gritter-close').click(function(){
 				Gritter.removeSpecific(number, {}, null, true);
 				return false;
 			});
-			
+
 			return number;
-		
+
 		},
-		
+
 		/**
 		* If we don't have any more gritter notifications, get rid of the wrapper using this check
 		* @private
@@ -14041,18 +14041,18 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 		* @param {Boolean} manual_close Did we close the gritter dialog with the (X) button
 		*/
 		_countRemoveWrapper: function(unique_id, e, manual_close){
-			
+
 			// Remove it then run the callback function
 			e.remove();
 			this['_after_close_' + unique_id](e, manual_close);
-			
+
 			// Check if the wrapper is empty, if it is.. remove the wrapper
 			if($('.gritter-item-wrapper').length == 0){
 				$('#gritter-notice-wrapper').remove();
 			}
-		
+
 		},
-		
+
 		/**
 		* Fade out an element after it's been on the screen for x amount of time
 		* @private
@@ -14069,15 +14069,15 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 				manual_close = unbind_events;
 
 			this['_before_close_' + unique_id](e, manual_close);
-			
+
 			// If this is true, then we are coming from clicking the (X)
 			if(unbind_events){
 				e.unbind('mouseenter mouseleave');
 			}
-			
+
 			// Fade it out or remove it
 			if(fade){
-			
+
 				e.animate({
 					opacity: 0
 				}, fade_out_speed, function(){
@@ -14085,45 +14085,45 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 						Gritter._countRemoveWrapper(unique_id, e, manual_close);
 					})
 				})
-				
+
 			}
 			else {
-				
+
 				this._countRemoveWrapper(unique_id, e);
-				
+
 			}
-						
+
 		},
-		
+
 		/**
-		* Perform actions based on the type of bind (mouseenter, mouseleave) 
+		* Perform actions based on the type of bind (mouseenter, mouseleave)
 		* @private
 		* @param {Object} e The jQuery element
 		* @param {String} type The type of action we're performing: mouseenter or mouseleave
 		*/
 		_hoverState: function(e, type){
-			
+
 			// Change the border styles and add the (X) close button when you hover
 			if(type == 'mouseenter'){
-				
+
 				e.addClass('hover');
-				
+
 				// Show close button
 				e.find('.gritter-close').show();
-						
+
 			}
 			// Remove the border styles and hide (X) close button when you mouse out
 			else {
-				
+
 				e.removeClass('hover');
-				
+
 				// Hide close button
 				e.find('.gritter-close').hide();
-				
+
 			}
-			
+
 		},
-		
+
 		/**
 		* Remove a specific notification based on an ID
 		* @param {Integer} unique_id The ID used to delete a specific notification
@@ -14132,17 +14132,17 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 		* @param {Boolean} unbind_events If we clicked on the (X) we set this to true to unbind mouseenter/mouseleave
 		*/
 		removeSpecific: function(unique_id, params, e, unbind_events){
-			
+
 			if(!e){
 				var e = $('#gritter-item-' + unique_id);
 			}
 
-			// We set the fourth param to let the _fade function know to 
+			// We set the fourth param to let the _fade function know to
 			// unbind the "mouseleave" event.  Once you click (X) there's no going back!
 			this._fade(e, unique_id, params || {}, unbind_events);
-			
+
 		},
-		
+
 		/**
 		* If the item is fading out and we hover over it, restore it!
 		* @private
@@ -14150,25 +14150,25 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 		* @param {Integer} unique_id The ID of the element
 		*/
 		_restoreItemIfFading: function(e, unique_id){
-			
+
 			clearTimeout(this['_int_id_' + unique_id]);
 			e.stop().css({ opacity: '', height: '' });
-			
+
 		},
-		
+
 		/**
 		* Setup the global options - only once
 		* @private
 		*/
 		_runSetup: function(){
-		
+
 			for(opt in $.gritter.options){
 				this[opt] = $.gritter.options[opt];
 			}
 			this._is_setup = 1;
-			
+
 		},
-		
+
 		/**
 		* Set the notification to fade out after a certain amount of time
 		* @private
@@ -14176,104 +14176,104 @@ Licensed under the MIT License ~ http://threedubmedia.googlecode.com/files/MIT-L
 		* @param {Integer} unique_id The ID of the element
 		*/
 		_setFadeTimer: function(e, unique_id){
-			
+
 			var timer_str = (this._custom_timer) ? this._custom_timer : this.time;
-			this['_int_id_' + unique_id] = setTimeout(function(){ 
+			this['_int_id_' + unique_id] = setTimeout(function(){
 				Gritter._fade(e, unique_id);
 			}, timer_str);
-		
+
 		},
-		
+
 		/**
 		* Bring everything to a halt
 		* @param {Object} params A list of callback functions to pass when all notifications are removed
-		*/  
+		*/
 		stop: function(params){
-			
+
 			// callbacks (if passed)
 			var before_close = ($.isFunction(params.before_close)) ? params.before_close : function(){};
 			var after_close = ($.isFunction(params.after_close)) ? params.after_close : function(){};
-			
+
 			var wrap = $('#gritter-notice-wrapper');
 			before_close(wrap);
 			wrap.fadeOut(function(){
 				$(this).remove();
 				after_close();
 			});
-		
+
 		},
-		
+
 		/**
 		* An extremely handy PHP function ported to JS, works well for templating
 		* @private
 		* @param {String/Array} search A list of things to search for
 		* @param {String/Array} replace A list of things to replace the searches with
 		* @return {String} sa The output
-		*/  
+		*/
 		_str_replace: function(search, replace, subject, count){
-		
+
 			var i = 0, j = 0, temp = '', repl = '', sl = 0, fl = 0,
 				f = [].concat(search),
 				r = [].concat(replace),
 				s = subject,
 				ra = r instanceof Array, sa = s instanceof Array;
 			s = [].concat(s);
-			
+
 			if(count){
 				this.window[count] = 0;
 			}
-		
+
 			for(i = 0, sl = s.length; i < sl; i++){
-				
+
 				if(s[i] === ''){
 					continue;
 				}
-				
+
 				for (j = 0, fl = f.length; j < fl; j++){
-					
+
 					temp = s[i] + '';
 					repl = ra ? (r[j] !== undefined ? r[j] : '') : r[0];
 					s[i] = (temp).split(f[j]).join(repl);
-					
+
 					if(count && s[i] !== temp){
 						this.window[count] += (temp.length-s[i].length) / f[j].length;
 					}
-					
+
 				}
 			}
-			
+
 			return sa ? s : s[0];
-			
+
 		},
-		
+
 		/**
 		* A check to make sure we have something to wrap our notices with
 		* @private
-		*/  
+		*/
 		_verifyWrapper: function(){
-		  
+
 			if($('#gritter-notice-wrapper').length == 0){
 				$('body').append(this._tpl_wrap);
 			}
-		
+
 		}
-		
+
 	}
-	
+
 })(jQuery);
 /**
  * Create a local storage parameter
  *
  == What makes it TOTAL Storage? ==
- 
+
  * The browser doesn't support local storage it will fall-back to cookies! (Using the
    wonderful $.cookie plugin).
  * Send it strings, numbers even complex object arrays! TotalStorage does not care.
-   Your efforts to defeat it will prove futile. 
+   Your efforts to defeat it will prove futile.
  * Simple as shit. jStorage and some other very well-written plugins provide a bevy of
    options for expiration, security and so forth. Frequently this is more power than you
    need and vulnerable to confusion if you're just want it to work (JWITW)
-   
+
  * @desc Set the value of a key to a string
  * @example $.totalStorage('the_key', 'the_value');
  * @desc Set the value of a key to a number
@@ -18022,7 +18022,7 @@ L.Marker = L.Class.extend({
 			if (options.title) {
 				icon.title = options.title;
 			}
-			
+
 			if (options.alt) {
 				icon.alt = options.alt;
 			}
@@ -22564,7 +22564,7 @@ L.Control.Attribution = L.Control.extend({
 				this.addAttribution(map._layers[i].getAttribution());
 			}
 		}
-		
+
 		map
 		    .on('layeradd', this._onLayerAdd, this)
 		    .on('layerremove', this._onLayerRemove, this);
@@ -25457,7 +25457,7 @@ L.MarkerCluster.include(!L.DomUtil.TRANSITION ? {
 			if (m.setOpacity) {
 				m.setZIndexOffset(1000000); //Make these appear on top of EVERYTHING
 				m.setOpacity(0);
-			
+
 				fg.addLayer(m);
 
 				m._setPos(thisLayerPos);
@@ -25481,7 +25481,7 @@ L.MarkerCluster.include(!L.DomUtil.TRANSITION ? {
 			//Move marker to new position
 			m._preSpiderfyLatlng = m._latlng;
 			m.setLatLng(newPos);
-			
+
 			if (m.setOpacity) {
 				m.setOpacity(1);
 			}
@@ -25958,13 +25958,13 @@ L.GeoSearch.Provider.OpenStreetMap = L.Class.extend({
             return [];
 
         var results = [];
-        for (var i = 0; i < data.length; i++) 
+        for (var i = 0; i < data.length; i++)
             results.push(new L.GeoSearch.Result(
-                data[i].lon, 
-                data[i].lat, 
+                data[i].lon,
+                data[i].lat,
                 data[i].display_name
             ));
-        
+
         return results;
     }
 });
@@ -27240,7 +27240,7 @@ L.GeoSearch.Provider.OpenStreetMap = L.Class.extend({
 
 /*
  * Improvement by CuGBabyBeaR @ 2013-09-12
- * 
+ *
  * Make it work in bootstrap v3
  */
 
@@ -27669,11 +27669,11 @@ L.GeoSearch.Provider.OpenStreetMap = L.Class.extend({
 				offset = this.element.offset();
 				left = offset.left;
 			}
-			
+
 			if(left+220 > document.body.clientWidth){
             			left = document.body.clientWidth-220;
           		}
-			
+
 			if (this.pickerPosition == 'top-left' || this.pickerPosition == 'top-right') {
 				top = offset.top - this.picker.outerHeight();
 			} else {
@@ -32392,7 +32392,7 @@ var Mustache = function() {
         makeGlobal();
     }
 }).call(this);
-/*! qr-js v1.1.2 | (c) 2014 Alasdair Mercer | MIT License 
+/*! qr-js v1.1.2 | (c) 2014 Alasdair Mercer | MIT License
 jsqrencode | (c) 2010 tz@execpc.com | GPL v3 License
 */
 !function(a){"use strict";function b(){return T?new r:a.document.createElement("canvas")}function c(){return T?new x:a.document.createElement("img")}function d(b,c,d){var e=c.mime||B;a.location.href=b.toDataURL(e).replace(e,C),"function"==typeof d&&d()}function e(a){return"string"==typeof a&&(a={value:a}),a||{}}function f(a){function b(b){a[b]=function(){throw new Error(b+" requires HTML5 canvas element support")}}var c,d=["canvas","image","save","saveSync","toDataURL"];for(c=0;c<d.length;c++)b(d[c])}function g(a,b,c){function d(){w.write(e,f,0,f.length,0,function(a){w.close(e),c(a)})}if("string"!=typeof b.path)return c(new TypeError("Invalid path type: "+typeof b.path));var e,f;a.toBuffer(function(a,b){return a?c(a):(f=b,void(e&&d()))}),w.open(b.path,"w",N,function(a,b){return a?c(a):(e=b,void(f&&d()))})}function h(a,b){if("string"!=typeof b.path)throw new TypeError("Invalid path type: "+typeof b.path);var c=a.toBuffer(),d=w.openSync(b.path,"w",N);try{w.writeSync(d,c,0,c.length,0)}finally{w.closeSync(d)}}function i(a,b){var c;a>b&&(c=a,a=b,b=c),c=b,c*=b,c+=b,c>>=1,c+=a,S[c]=1}function j(a,b){var c;for(R[a+z*b]=1,c=-2;2>c;c++)R[a+c+z*(b-2)]=1,R[a-2+z*(b+c+1)]=1,R[a+2+z*(b+c)]=1,R[a+c+1+z*(b+2)]=1;for(c=0;2>c;c++)i(a-1,b+c),i(a+1,b-c),i(a-c,b-1),i(a+c,b+1)}function k(a){for(;a>=255;)a-=255,a=(a>>8)+(255&a);return a}function l(a,b,c,d){var e,f,g;for(f=0;d>f;f++)W[c+f]=0;for(f=0;b>f;f++){if(e=H[W[a+f]^W[c]],255!==e)for(g=1;d>g;g++)W[c+g-1]=W[c+g]^G[k(e+U[d-g])];else for(g=c;c+d>g;g++)W[g]=W[g+1];W[c+d-1]=255===e?0:G[k(e+U[0])]}}function m(a,b){var c;return a>b&&(c=a,a=b,b=c),c=b,c+=b*b,c>>=1,c+=a,1===S[c]}function n(a){var b,c,d,e;switch(a){case 0:for(c=0;z>c;c++)for(b=0;z>b;b++)b+c&1||m(b,c)||(R[b+c*z]^=1);break;case 1:for(c=0;z>c;c++)for(b=0;z>b;b++)1&c||m(b,c)||(R[b+c*z]^=1);break;case 2:for(c=0;z>c;c++)for(d=0,b=0;z>b;b++,d++)3===d&&(d=0),d||m(b,c)||(R[b+c*z]^=1);break;case 3:for(e=0,c=0;z>c;c++,e++)for(3===e&&(e=0),d=e,b=0;z>b;b++,d++)3===d&&(d=0),d||m(b,c)||(R[b+c*z]^=1);break;case 4:for(c=0;z>c;c++)for(d=0,e=c>>1&1,b=0;z>b;b++,d++)3===d&&(d=0,e=!e),e||m(b,c)||(R[b+c*z]^=1);break;case 5:for(e=0,c=0;z>c;c++,e++)for(3===e&&(e=0),d=0,b=0;z>b;b++,d++)3===d&&(d=0),(b&c&1)+!(!d|!e)||m(b,c)||(R[b+c*z]^=1);break;case 6:for(e=0,c=0;z>c;c++,e++)for(3===e&&(e=0),d=0,b=0;z>b;b++,d++)3===d&&(d=0),(b&c&1)+(d&&d===e)&1||m(b,c)||(R[b+c*z]^=1);break;case 7:for(e=0,c=0;z>c;c++,e++)for(3===e&&(e=0),d=0,b=0;z>b;b++,d++)3===d&&(d=0),(d&&d===e)+(b+c&1)&1||m(b,c)||(R[b+c*z]^=1)}}function o(a){var b,c=0;for(b=0;a>=b;b++)O[b]>=5&&(c+=I+O[b]-5);for(b=3;a-1>b;b+=2)O[b-2]===O[b+2]&&O[b+2]===O[b-1]&&O[b-1]===O[b+1]&&3*O[b-1]===O[b]&&(0===O[b-3]||b+3>a||3*O[b-3]>=4*O[b]||3*O[b+3]>=4*O[b])&&(c+=K);return c}function p(){var a,b,c,d,e,f,g,h,i;for(c=e=f=0,i=0;z-1>i;i++)for(h=0;z-1>h;h++)(R[h+z*i]&&R[h+1+z*i]&&R[h+z*(i+1)]&&R[h+1+z*(i+1)]||!(R[h+z*i]||R[h+1+z*i]||R[h+z*(i+1)]||R[h+1+z*(i+1)]))&&(c+=J);for(i=0;z>i;i++){for(O[0]=0,g=a=h=0;z>h;h++)(b=R[h+z*i])===a?O[g]++:O[++g]=1,a=b,e+=a?1:-1;c+=o(g)}for(0>e&&(e=-e),d=e,d+=d<<2,d<<=1;d>z*z;)d-=z*z,f++;for(c+=f*L,h=0;z>h;h++){for(O[0]=0,g=a=i=0;z>i;i++)(b=R[h+z*i])===a?O[g]++:O[++g]=1,a=b;c+=o(g)}return c}function q(a){var b,c,d,e,f,g,h,o;f=a.length,y=0;do if(y++,d=4*(Q-1)+16*(y-1),u=D[d++],v=D[d++],s=D[d++],t=D[d],d=s*(u+v)+v-3+(9>=y),d>=f)break;while(40>y);for(z=17+4*y,g=s+(s+t)*(u+v)+v,f=0;g>f;f++)P[f]=0;for(W=a.slice(0),f=0;z*z>f;f++)R[f]=0;for(f=0;(z*(z+1)+1)/2>f;f++)S[f]=0;for(f=0;3>f;f++){for(d=o=0,1===f&&(d=z-7),2===f&&(o=z-7),R[o+3+z*(d+3)]=1,h=0;6>h;h++)R[o+h+z*d]=1,R[o+z*(d+h+1)]=1,R[o+6+z*(d+h)]=1,R[o+h+1+z*(d+6)]=1;for(h=1;5>h;h++)i(o+h,d+1),i(o+1,d+h+1),i(o+5,d+h),i(o+h+1,d+5);for(h=2;4>h;h++)R[o+h+z*(d+2)]=1,R[o+2+z*(d+h+1)]=1,R[o+4+z*(d+h)]=1,R[o+h+1+z*(d+4)]=1}if(y>1)for(f=A[y],o=z-7;;){for(h=z-7;h>f-3&&(j(h,o),!(f>h));)h-=f;if(f+9>=o)break;o-=f,j(6,o),j(o,6)}for(R[8+z*(z-8)]=1,o=0;7>o;o++)i(7,o),i(z-8,o),i(7,o+z-7);for(h=0;8>h;h++)i(h,7),i(h+z-8,7),i(h,z-8);for(h=0;9>h;h++)i(h,8);for(h=0;8>h;h++)i(h+z-8,8),i(8,h);for(o=0;7>o;o++)i(8,o+z-7);for(h=0;z-14>h;h++)1&h?(i(8+h,6),i(6,8+h)):(R[8+h+6*z]=1,R[6+z*(8+h)]=1);if(y>6)for(f=M[y-7],d=17,h=0;6>h;h++)for(o=0;3>o;o++,d--)1&(d>11?y>>d-12:f>>d)?(R[5-h+z*(2-o+z-11)]=1,R[2-o+z-11+z*(5-h)]=1):(i(5-h,2-o+z-11),i(2-o+z-11,5-h));for(o=0;z>o;o++)for(h=0;o>=h;h++)R[h+z*o]&&i(h,o);for(g=W.length,b=0;g>b;b++)P[b]=W.charCodeAt(b);if(W=P.slice(0),h=s*(u+v)+v,g>=h-2&&(g=h-2,y>9&&g--),b=g,y>9){for(W[b+2]=0,W[b+3]=0;b--;)f=W[b],W[b+3]|=255&f<<4,W[b+2]=f>>4;W[2]|=255&g<<4,W[1]=g>>4,W[0]=64|g>>12}else{for(W[b+1]=0,W[b+2]=0;b--;)f=W[b],W[b+2]|=255&f<<4,W[b+1]=f>>4;W[1]|=255&g<<4,W[0]=64|g>>4}for(b=g+3-(10>y);h>b;)W[b++]=236,W[b++]=17;for(U[0]=1,b=0;t>b;b++){for(U[b+1]=1,c=b;c>0;c--)U[c]=U[c]?U[c-1]^G[k(H[U[c]]+b)]:U[c-1];U[0]=G[k(H[U[0]]+b)]}for(b=0;t>=b;b++)U[b]=H[U[b]];for(d=h,o=0,b=0;u>b;b++)l(o,s,d,t),o+=s,d+=t;for(b=0;v>b;b++)l(o,s+1,d,t),o+=s+1,d+=t;for(o=0,b=0;s>b;b++){for(c=0;u>c;c++)P[o++]=W[b+c*s];for(c=0;v>c;c++)P[o++]=W[u*s+b+c*(s+1)]}for(c=0;v>c;c++)P[o++]=W[u*s+b+c*(s+1)];for(b=0;t>b;b++)for(c=0;u+v>c;c++)P[o++]=W[h+b+c*t];for(W=P,h=o=z-1,d=g=1,e=(s+t)*(u+v)+v,b=0;e>b;b++)for(f=W[b],c=0;8>c;c++,f<<=1){128&f&&(R[h+z*o]=1);do g?h--:(h++,d?0!==o?o--:(h-=2,d=!d,6===h&&(h--,o=9)):o!==z-1?o++:(h-=2,d=!d,6===h&&(h--,o-=8))),g=!g;while(m(h,o))}for(W=R.slice(0),f=0,o=3e4,d=0;8>d&&(n(d),h=p(),o>h&&(o=h,f=d),7!==f);d++)R=W.slice(0);for(f!==d&&n(f),o=F[f+(Q-1<<3)],d=0;8>d;d++,o>>=1)1&o&&(R[z-1-d+8*z]=1,6>d?R[8+z*d]=1:R[8+z*(d+1)]=1);for(d=0;7>d;d++,o>>=1)1&o&&(R[8+z*(z-7+d)]=1,d?R[6-d+8*z]=1:R[7+8*z]=1);return R}var r,s,t,u,v,w,x,y,z,A=[0,11,15,19,23,27,31,16,18,20,22,24,26,28,20,22,24,24,26,28,28,22,24,24,26,26,28,28,24,24,26,26,26,28,28,24,26,26,26,28,28],B="image/png",C="image/octet-stream",D=[1,0,19,7,1,0,16,10,1,0,13,13,1,0,9,17,1,0,34,10,1,0,28,16,1,0,22,22,1,0,16,28,1,0,55,15,1,0,44,26,2,0,17,18,2,0,13,22,1,0,80,20,2,0,32,18,2,0,24,26,4,0,9,16,1,0,108,26,2,0,43,24,2,2,15,18,2,2,11,22,2,0,68,18,4,0,27,16,4,0,19,24,4,0,15,28,2,0,78,20,4,0,31,18,2,4,14,18,4,1,13,26,2,0,97,24,2,2,38,22,4,2,18,22,4,2,14,26,2,0,116,30,3,2,36,22,4,4,16,20,4,4,12,24,2,2,68,18,4,1,43,26,6,2,19,24,6,2,15,28,4,0,81,20,1,4,50,30,4,4,22,28,3,8,12,24,2,2,92,24,6,2,36,22,4,6,20,26,7,4,14,28,4,0,107,26,8,1,37,22,8,4,20,24,12,4,11,22,3,1,115,30,4,5,40,24,11,5,16,20,11,5,12,24,5,1,87,22,5,5,41,24,5,7,24,30,11,7,12,24,5,1,98,24,7,3,45,28,15,2,19,24,3,13,15,30,1,5,107,28,10,1,46,28,1,15,22,28,2,17,14,28,5,1,120,30,9,4,43,26,17,1,22,28,2,19,14,28,3,4,113,28,3,11,44,26,17,4,21,26,9,16,13,26,3,5,107,28,3,13,41,26,15,5,24,30,15,10,15,28,4,4,116,28,17,0,42,26,17,6,22,28,19,6,16,30,2,7,111,28,17,0,46,28,7,16,24,30,34,0,13,24,4,5,121,30,4,14,47,28,11,14,24,30,16,14,15,30,6,4,117,30,6,14,45,28,11,16,24,30,30,2,16,30,8,4,106,26,8,13,47,28,7,22,24,30,22,13,15,30,10,2,114,28,19,4,46,28,28,6,22,28,33,4,16,30,8,4,122,30,22,3,45,28,8,26,23,30,12,28,15,30,3,10,117,30,3,23,45,28,4,31,24,30,11,31,15,30,7,7,116,30,21,7,45,28,1,37,23,30,19,26,15,30,5,10,115,30,19,10,47,28,15,25,24,30,23,25,15,30,13,3,115,30,2,29,46,28,42,1,24,30,23,28,15,30,17,0,115,30,10,23,46,28,10,35,24,30,19,35,15,30,17,1,115,30,14,21,46,28,29,19,24,30,11,46,15,30,13,6,115,30,14,23,46,28,44,7,24,30,59,1,16,30,12,7,121,30,12,26,47,28,39,14,24,30,22,41,15,30,6,14,121,30,6,34,47,28,46,10,24,30,2,64,15,30,17,4,122,30,29,14,46,28,49,10,24,30,24,46,15,30,4,18,122,30,13,32,46,28,48,14,24,30,42,32,15,30,20,4,117,30,40,7,47,28,43,22,24,30,10,67,15,30,19,6,118,30,18,31,47,28,34,34,24,30,20,61,15,30],E={L:1,M:2,Q:3,H:4},F=[30660,29427,32170,30877,26159,25368,27713,26998,21522,20773,24188,23371,17913,16590,20375,19104,13663,12392,16177,14854,9396,8579,11994,11245,5769,5054,7399,6608,1890,597,3340,2107],G=[1,2,4,8,16,32,64,128,29,58,116,232,205,135,19,38,76,152,45,90,180,117,234,201,143,3,6,12,24,48,96,192,157,39,78,156,37,74,148,53,106,212,181,119,238,193,159,35,70,140,5,10,20,40,80,160,93,186,105,210,185,111,222,161,95,190,97,194,153,47,94,188,101,202,137,15,30,60,120,240,253,231,211,187,107,214,177,127,254,225,223,163,91,182,113,226,217,175,67,134,17,34,68,136,13,26,52,104,208,189,103,206,129,31,62,124,248,237,199,147,59,118,236,197,151,51,102,204,133,23,46,92,184,109,218,169,79,158,33,66,132,21,42,84,168,77,154,41,82,164,85,170,73,146,57,114,228,213,183,115,230,209,191,99,198,145,63,126,252,229,215,179,123,246,241,255,227,219,171,75,150,49,98,196,149,55,110,220,165,87,174,65,130,25,50,100,200,141,7,14,28,56,112,224,221,167,83,166,81,162,89,178,121,242,249,239,195,155,43,86,172,69,138,9,18,36,72,144,61,122,244,245,247,243,251,235,203,139,11,22,44,88,176,125,250,233,207,131,27,54,108,216,173,71,142,0],H=[255,0,1,25,2,50,26,198,3,223,51,238,27,104,199,75,4,100,224,14,52,141,239,129,28,193,105,248,200,8,76,113,5,138,101,47,225,36,15,33,53,147,142,218,240,18,130,69,29,181,194,125,106,39,249,185,201,154,9,120,77,228,114,166,6,191,139,98,102,221,48,253,226,152,37,179,16,145,34,136,54,208,148,206,143,150,219,189,241,210,19,92,131,56,70,64,30,66,182,163,195,72,126,110,107,58,40,84,250,133,186,61,202,94,155,159,10,21,121,43,78,212,229,172,115,243,167,87,7,112,192,247,140,128,99,13,103,74,222,237,49,197,254,24,227,165,153,119,38,184,180,124,17,68,146,217,35,32,137,46,55,63,209,91,149,188,207,205,144,135,151,178,220,252,190,97,242,86,211,171,20,42,93,158,132,60,57,83,71,109,65,162,31,45,67,216,183,123,164,118,196,23,73,236,127,12,111,246,108,161,59,82,41,157,85,170,251,96,134,177,187,204,62,90,203,89,95,176,156,169,160,81,11,245,22,235,122,117,44,215,79,174,213,233,230,231,173,232,116,214,244,234,168,80,88,175],I=3,J=3,K=40,L=10,M=[3220,1468,2713,1235,3062,1890,2119,1549,2344,2936,1117,2583,1330,2470,1667,2249,2028,3780,481,4011,142,3098,831,3445,592,2517,1776,2234,1951,2827,1070,2660,1345,3177],N=parseInt("0666",8),O=[],P=[],Q=1,R=[],S=[],T=!1,U=[],V=a.qr,W=[],X={VERSION:"1.1.2",canvas:function(a){a=e(a);var c=a.size>=1&&a.size<=10?a.size:4;c*=25;var d=a.canvas||b(),f=d.getContext("2d");f.canvas.width=c,f.canvas.height=c,f.fillStyle=a.background||"#fff",f.fillRect(0,0,c,c),Q=E[a.level&&a.level.toUpperCase()||"L"];var g=q(a.value||"");f.lineWidth=1;var h=c;h/=z,h=Math.floor(h),f.clearRect(0,0,c,c),f.fillStyle=a.background||"#fff",f.fillRect(0,0,h*(z+8),h*(z+8)),f.fillStyle=a.foreground||"#000";var i,j;for(i=0;z>i;i++)for(j=0;z>j;j++)g[j*z+i]&&f.fillRect(h*i,h*j,h,h);return d},image:function(a){a=e(a);var b=this.canvas(a),d=a.image||c();return d.src=b.toDataURL(a.mime||B),d.height=b.height,d.width=b.width,d},save:function(a,b,c){function f(a){h||(h=!0,c(a))}switch(a=e(a),typeof b){case"function":c=b,b=null;break;case"string":a.path=b}if("function"!=typeof c)throw new TypeError("Invalid callback type: "+typeof c);var h=!1,i=this.canvas(a);T?g(i,a,f):d(i,a,f)},saveSync:function(a,b){a=e(a),"string"==typeof b&&(a.path=b);var c=this.canvas(a);T?h(c,a):d(c,a)},toDataURL:function(a){return a=e(a),this.canvas(a).toDataURL(a.mime||B)},noConflict:function(){return a.qr=V,this}};"undefined"!=typeof exports?(T=!0,"undefined"!=typeof module&&module.exports&&(exports=module.exports=X),exports.qr=X,r=require("canvas"),x=r.Image,w=require("fs")):"function"==typeof define&&define.amd?define(function(){return X}):(a.HTMLCanvasElement||f(X),a.qr=X)}(this);
