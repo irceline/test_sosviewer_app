@@ -1,806 +1,10881 @@
-(function(h,l){function m(a){var b=a.length,c=k.type(a);return k.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||"function"!==c&&(0===b||"number"===typeof b&&0<b&&b-1 in a)}function g(a){var b=sa[a]={};k.each(a.match(U)||[],function(a,c){b[c]=!0});return b}function c(a,b,c,d){if(k.acceptData(a)){var f=k.expando,e=a.nodeType,g=e?k.cache:a,r=e?a[f]:a[f]&&f;if(r&&g[r]&&(d||g[r].data)||c!==l||"string"!==typeof b){r||(r=e?a[f]=aa.pop()||k.guid++:f);g[r]||(g[r]=e?{}:{toJSON:k.noop});if("object"===typeof b||
-"function"===typeof b)d?g[r]=k.extend(g[r],b):g[r].data=k.extend(g[r].data,b);a=g[r];d||(a.data||(a.data={}),a=a.data);c!==l&&(a[k.camelCase(b)]=c);"string"===typeof b?(c=a[b],null==c&&(c=a[k.camelCase(b)])):c=a;return c}}}function e(a,c,d){if(k.acceptData(a)){var f,e,g=a.nodeType,r=g?k.cache:a,n=g?a[k.expando]:k.expando;if(r[n]){if(c&&(f=d?r[n]:r[n].data)){k.isArray(c)?c=c.concat(k.map(c,k.camelCase)):c in f?c=[c]:(c=k.camelCase(c),c=c in f?[c]:c.split(" "));for(e=c.length;e--;)delete f[c[e]];if(d?
-!b(f):!k.isEmptyObject(f))return}if(!d&&(delete r[n].data,!b(r[n])))return;g?k.cleanData([a],!0):k.support.deleteExpando||r!=r.window?delete r[n]:r[n]=null}}}function a(a,b,c){if(c===l&&1===a.nodeType)if(c="data-"+b.replace(bb,"-$1").toLowerCase(),c=a.getAttribute(c),"string"===typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:Ha.test(c)?k.parseJSON(c):c}catch(d){}k.data(a,b,c)}else c=l;return c}function b(a){for(var b in a)if(("data"!==b||!k.isEmptyObject(a[b]))&&"toJSON"!==
-b)return!1;return!0}function d(){return!0}function f(){return!1}function n(){try{return K.activeElement}catch(a){}}function p(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}function y(a,b,c){if(k.isFunction(b))return k.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return k.grep(a,function(a){return a===b!==c});if("string"===typeof b){if(mb.test(b))return k.filter(b,a,c);b=k.filter(b,a)}return k.grep(a,function(a){return 0<=k.inArray(a,b)!==c})}function t(a){var b=nb.split("|");
-a=a.createDocumentFragment();if(a.createElement)for(;b.length;)a.createElement(b.pop());return a}function z(a,b){return k.nodeName(a,"table")&&k.nodeName(1===b.nodeType?b:b.firstChild,"tr")?a.getElementsByTagName("tbody")[0]||a.appendChild(a.ownerDocument.createElement("tbody")):a}function H(a){a.type=(null!==k.find.attr(a,"type"))+"/"+a.type;return a}function D(a){var b=ob.exec(a.type);b?a.type=b[1]:a.removeAttribute("type");return a}function A(a,b){for(var c,d=0;null!=(c=a[d]);d++)k._data(c,"globalEval",
-!b||k._data(b[d],"globalEval"))}function x(a,b){if(1===b.nodeType&&k.hasData(a)){var c,d,f;d=k._data(a);var e=k._data(b,d),g=d.events;if(g)for(c in delete e.handle,e.events={},g)for(d=0,f=g[c].length;d<f;d++)k.event.add(b,c,g[c][d]);e.data&&(e.data=k.extend({},e.data))}}function F(a,b){var c,d,f=0,e=typeof a.getElementsByTagName!==s?a.getElementsByTagName(b||"*"):typeof a.querySelectorAll!==s?a.querySelectorAll(b||"*"):l;if(!e)for(e=[],c=a.childNodes||a;null!=(d=c[f]);f++)!b||k.nodeName(d,b)?e.push(d):
-k.merge(e,F(d,b));return b===l||b&&k.nodeName(a,b)?k.merge([a],e):e}function P(a){Ya.test(a.type)&&(a.defaultChecked=a.checked)}function v(a,b){if(b in a)return b;for(var c=b.charAt(0).toUpperCase()+b.slice(1),d=b,k=Lb.length;k--;)if(b=Lb[k]+c,b in a)return b;return d}function la(a,b){a=b||a;return"none"===k.css(a,"display")||!k.contains(a.ownerDocument,a)}function ka(a,b){for(var c,d,f,e=[],g=0,r=a.length;g<r;g++)d=a[g],d.style&&(e[g]=k._data(d,"olddisplay"),c=d.style.display,b?(e[g]||"none"!==c||
-(d.style.display=""),""===d.style.display&&la(d)&&(e[g]=k._data(d,"olddisplay",Ca(d.nodeName)))):e[g]||(f=la(d),(c&&"none"!==c||!f)&&k._data(d,"olddisplay",f?c:k.css(d,"display"))));for(g=0;g<r;g++)d=a[g],!d.style||b&&"none"!==d.style.display&&""!==d.style.display||(d.style.display=b?e[g]||"":"none");return a}function V(a,b,c){return(a=Wb.exec(b))?Math.max(0,a[1]-(c||0))+(a[2]||"px"):b}function ja(a,b,c,d,f){b=c===(d?"border":"content")?4:"width"===b?1:0;for(var e=0;4>b;b+=2)"margin"===c&&(e+=k.css(a,
-c+Ua[b],!0,f)),d?("content"===c&&(e-=k.css(a,"padding"+Ua[b],!0,f)),"margin"!==c&&(e-=k.css(a,"border"+Ua[b]+"Width",!0,f))):(e+=k.css(a,"padding"+Ua[b],!0,f),"padding"!==c&&(e+=k.css(a,"border"+Ua[b]+"Width",!0,f)));return e}function Na(a,b,c){var d=!0,f="width"===b?a.offsetWidth:a.offsetHeight,e=I(a),g=k.support.boxSizing&&"border-box"===k.css(a,"boxSizing",!1,e);if(0>=f||null==f){f=N(a,b,e);if(0>f||null==f)f=a.style[b];if(pb.test(f))return f;d=g&&(k.support.boxSizingReliable||f===a.style[b]);f=
-parseFloat(f)||0}return f+ja(a,b,c||(g?"border":"content"),d,e)+"px"}function Ca(a){var b=K,c=Mb[a];c||(c=xa(a,b),"none"!==c&&c||(C=(C||k("\x3ciframe frameborder\x3d'0' width\x3d'0' height\x3d'0'/\x3e").css("cssText","display:block !important")).appendTo(b.documentElement),b=(C[0].contentWindow||C[0].contentDocument).document,b.write("\x3c!doctype html\x3e\x3chtml\x3e\x3cbody\x3e"),b.close(),c=xa(a,b),C.detach()),Mb[a]=c);return c}function xa(a,b){var c=k(b.createElement(a)).appendTo(b.body),d=k.css(c[0],
-"display");c.remove();return d}function qa(a,b,c,d){var f;if(k.isArray(b))k.each(b,function(b,k){c||Xb.test(a)?d(a,k):qa(a+"["+("object"===typeof k?b:"")+"]",k,c,d)});else if(c||"object"!==k.type(b))d(a,b);else for(f in b)qa(a+"["+f+"]",b[f],c,d)}function Oa(a){return function(b,c){"string"!==typeof b&&(c=b,b="*");var d,f=0,e=b.toLowerCase().match(U)||[];if(k.isFunction(c))for(;d=e[f++];)"+"===d[0]?(d=d.slice(1)||"*",(a[d]=a[d]||[]).unshift(c)):(a[d]=a[d]||[]).push(c)}}function Da(a,b,c,d){function f(r){var n;
-e[r]=!0;k.each(a[r]||[],function(a,E){var k=E(b,c,d);if("string"===typeof k&&!g&&!e[k])return b.dataTypes.unshift(k),f(k),!1;if(g)return!(n=k)});return n}var e={},g=a===xb;return f(b.dataTypes[0])||!e["*"]&&f("*")}function Ia(a,b){var c,d,f=k.ajaxSettings.flatOptions||{};for(d in b)b[d]!==l&&((f[d]?a:c||(c={}))[d]=b[d]);c&&k.extend(!0,a,c);return a}function Ea(){try{return new h.XMLHttpRequest}catch(a){}}function Fa(){setTimeout(function(){Za=l});return Za=k.now()}function ta(a,b,c){for(var d,k=(cb[b]||
-[]).concat(cb["*"]),f=0,e=k.length;f<e;f++)if(d=k[f].call(c,b,a))return d}function Z(a,b,c){var d,f=0,e=qb.length,g=k.Deferred().always(function(){delete r.elem}),r=function(){if(d)return!1;for(var b=Za||Fa(),b=Math.max(0,n.startTime+n.duration-b),c=1-(b/n.duration||0),k=0,f=n.tweens.length;k<f;k++)n.tweens[k].run(c);g.notifyWith(a,[n,c,b]);if(1>c&&f)return b;g.resolveWith(a,[n]);return!1},n=g.promise({elem:a,props:k.extend({},b),opts:k.extend(!0,{specialEasing:{}},c),originalProperties:b,originalOptions:c,
-startTime:Za||Fa(),duration:c.duration,tweens:[],createTween:function(b,c){var d=k.Tween(a,n.opts,b,c,n.opts.specialEasing[b]||n.opts.easing);n.tweens.push(d);return d},stop:function(b){var c=0,k=b?n.tweens.length:0;if(d)return this;for(d=!0;c<k;c++)n.tweens[c].run(1);b?g.resolveWith(a,[n,b]):g.rejectWith(a,[n,b]);return this}});c=n.props;for(ma(c,n.opts.specialEasing);f<e;f++)if(b=qb[f].call(n,a,c,n.opts))return b;k.map(c,ta,n);k.isFunction(n.opts.start)&&n.opts.start.call(a,n);k.fx.timer(k.extend(r,
-{elem:a,anim:n,queue:n.opts.queue}));return n.progress(n.opts.progress).done(n.opts.done,n.opts.complete).fail(n.opts.fail).always(n.opts.always)}function ma(a,b){var c,d,f,e,g;for(c in a)if(d=k.camelCase(c),f=b[d],e=a[c],k.isArray(e)&&(f=e[1],e=a[c]=e[0]),c!==d&&(a[d]=e,delete a[c]),(g=k.cssHooks[d])&&"expand"in g)for(c in e=g.expand(e),delete a[d],e)c in a||(a[c]=e[c],b[c]=f);else b[d]=f}function $(a,b,c,d,k){return new $.prototype.init(a,b,c,d,k)}function J(a,b){var c,d={height:a},k=0;for(b=b?
-1:0;4>k;k+=2-b)c=Ua[k],d["margin"+c]=d["padding"+c]=a;b&&(d.opacity=d.width=a);return d}function Ja(a){return k.isWindow(a)?a:9===a.nodeType?a.defaultView||a.parentWindow:!1}var na,O,s=typeof l,M=h.location,K=h.document,R=K.documentElement,u=h.jQuery,W=h.$,ca={},aa=[],w=aa.concat,ga=aa.push,da=aa.slice,G=aa.indexOf,Y=ca.toString,B=ca.hasOwnProperty,q="1.10.2".trim,k=function(a,b){return new k.fn.init(a,b,O)},oa=/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,U=/\S+/g,T=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,
-Q=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,ba=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,ea=/^[\],:{}\s]*$/,X=/(?:^|:|,)(?:\s*\[)+/g,fa=/\\(?:["\\\/bfnrt]|u[\da-fA-F]{4})/g,ra=/"[^"\\\r\n]*"|true|false|null|-?(?:\d+\.|)\d+(?:[eE][+-]?\d+|)/g,ia=/^-ms-/,ua=/-([\da-z])/gi,ya=function(a,b){return b.toUpperCase()},ha=function(a){if(K.addEventListener||"load"===a.type||"complete"===K.readyState)Va(),k.ready()},Va=function(){K.addEventListener?(K.removeEventListener("DOMContentLoaded",ha,!1),h.removeEventListener("load",
-ha,!1)):(K.detachEvent("onreadystatechange",ha),h.detachEvent("onload",ha))};k.fn=k.prototype={jquery:"1.10.2",constructor:k,init:function(a,b,c){var d;if(!a)return this;if("string"===typeof a){d="\x3c"===a.charAt(0)&&"\x3e"===a.charAt(a.length-1)&&3<=a.length?[null,a,null]:Q.exec(a);if(!d||!d[1]&&b)return!b||b.jquery?(b||c).find(a):this.constructor(b).find(a);if(d[1]){if(b=b instanceof k?b[0]:b,k.merge(this,k.parseHTML(d[1],b&&b.nodeType?b.ownerDocument||b:K,!0)),ba.test(d[1])&&k.isPlainObject(b))for(d in b)if(k.isFunction(this[d]))this[d](b[d]);
-else this.attr(d,b[d])}else{if((b=K.getElementById(d[2]))&&b.parentNode){if(b.id!==d[2])return c.find(a);this.length=1;this[0]=b}this.context=K;this.selector=a}return this}if(a.nodeType)return this.context=this[0]=a,this.length=1,this;if(k.isFunction(a))return c.ready(a);a.selector!==l&&(this.selector=a.selector,this.context=a.context);return k.makeArray(a,this)},selector:"",length:0,toArray:function(){return da.call(this)},get:function(a){return null==a?this.toArray():0>a?this[this.length+a]:this[a]},
-pushStack:function(a){a=k.merge(this.constructor(),a);a.prevObject=this;a.context=this.context;return a},each:function(a,b){return k.each(this,a,b)},ready:function(a){k.ready.promise().done(a);return this},slice:function(){return this.pushStack(da.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length;a=+a+(0>a?b:0);return this.pushStack(0<=a&&a<b?[this[a]]:[])},map:function(a){return this.pushStack(k.map(this,function(b,c){return a.call(b,
-c,b)}))},end:function(){return this.prevObject||this.constructor(null)},push:ga,sort:[].sort,splice:[].splice};k.fn.init.prototype=k.fn;k.extend=k.fn.extend=function(){var a,b,c,d,f,e=arguments[0]||{},g=1,r=arguments.length,n=!1;"boolean"===typeof e&&(n=e,e=arguments[1]||{},g=2);"object"===typeof e||k.isFunction(e)||(e={});r===g&&(e=this,--g);for(;g<r;g++)if(null!=(f=arguments[g]))for(d in f)a=e[d],c=f[d],e!==c&&(n&&c&&(k.isPlainObject(c)||(b=k.isArray(c)))?(b?(b=!1,a=a&&k.isArray(a)?a:[]):a=a&&k.isPlainObject(a)?
-a:{},e[d]=k.extend(n,a,c)):c!==l&&(e[d]=c));return e};k.extend({expando:"jQuery"+("1.10.2"+Math.random()).replace(/\D/g,""),noConflict:function(a){h.$===k&&(h.$=W);a&&h.jQuery===k&&(h.jQuery=u);return k},isReady:!1,readyWait:1,holdReady:function(a){a?k.readyWait++:k.ready(!0)},ready:function(a){if(!0===a?!--k.readyWait:!k.isReady){if(!K.body)return setTimeout(k.ready);k.isReady=!0;!0!==a&&0<--k.readyWait||(na.resolveWith(K,[k]),k.fn.trigger&&k(K).trigger("ready").off("ready"))}},isFunction:function(a){return"function"===
-k.type(a)},isArray:Array.isArray||function(a){return"array"===k.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!isNaN(parseFloat(a))&&isFinite(a)},type:function(a){return null==a?String(a):"object"===typeof a||"function"===typeof a?ca[Y.call(a)]||"object":typeof a},isPlainObject:function(a){var b;if(!a||"object"!==k.type(a)||a.nodeType||k.isWindow(a))return!1;try{if(a.constructor&&!B.call(a,"constructor")&&!B.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.support.ownLast)for(b in a)return B.call(a,
-b);for(b in a);return b===l||B.call(a,b)},isEmptyObject:function(a){for(var b in a)return!1;return!0},error:function(a){throw Error(a);},parseHTML:function(a,b,c){if(!a||"string"!==typeof a)return null;"boolean"===typeof b&&(c=b,b=!1);b=b||K;var d=ba.exec(a);c=!c&&[];if(d)return[b.createElement(d[1])];d=k.buildFragment([a],b,c);c&&k(c).remove();return k.merge([],d.childNodes)},parseJSON:function(a){if(h.JSON&&h.JSON.parse)return h.JSON.parse(a);if(null===a)return a;if("string"===typeof a&&(a=k.trim(a))&&
-ea.test(a.replace(fa,"@").replace(ra,"]").replace(X,"")))return(new Function("return "+a))();k.error("Invalid JSON: "+a)},parseXML:function(a){var b,c;if(!a||"string"!==typeof a)return null;try{h.DOMParser?(c=new DOMParser,b=c.parseFromString(a,"text/xml")):(b=new ActiveXObject("Microsoft.XMLDOM"),b.async="false",b.loadXML(a))}catch(d){b=l}b&&b.documentElement&&!b.getElementsByTagName("parsererror").length||k.error("Invalid XML: "+a);return b},noop:function(){},globalEval:function(a){a&&k.trim(a)&&
-(h.execScript||function(a){h.eval.call(h,a)})(a)},camelCase:function(a){return a.replace(ia,"ms-").replace(ua,ya)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,k=0,f=a.length;d=m(a);if(c)if(d)for(;k<f&&(d=b.apply(a[k],c),!1!==d);k++);else for(k in a){if(d=b.apply(a[k],c),!1===d)break}else if(d)for(;k<f&&(d=b.call(a[k],k,a[k]),!1!==d);k++);else for(k in a)if(d=b.call(a[k],k,a[k]),!1===d)break;return a},trim:q&&!q.call("﻿ ")?function(a){return null==
-a?"":q.call(a)}:function(a){return null==a?"":(a+"").replace(T,"")},makeArray:function(a,b){var c=b||[];null!=a&&(m(Object(a))?k.merge(c,"string"===typeof a?[a]:a):ga.call(c,a));return c},inArray:function(a,b,c){var d;if(b){if(G)return G.call(b,a,c);d=b.length;for(c=c?0>c?Math.max(0,d+c):c:0;c<d;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=b.length,d=a.length,k=0;if("number"===typeof c)for(;k<c;k++)a[d++]=b[k];else for(;b[k]!==l;)a[d++]=b[k++];a.length=d;return a},grep:function(a,
-b,c){var d,k=[],f=0,e=a.length;for(c=!!c;f<e;f++)d=!!b(a[f],f),c!==d&&k.push(a[f]);return k},map:function(a,b,c){var d,k=0,f=a.length,e=[];if(m(a))for(;k<f;k++)d=b(a[k],k,c),null!=d&&(e[e.length]=d);else for(k in a)d=b(a[k],k,c),null!=d&&(e[e.length]=d);return w.apply([],e)},guid:1,proxy:function(a,b){var c,d;"string"===typeof b&&(d=a[b],b=a,a=d);if(!k.isFunction(a))return l;c=da.call(arguments,2);d=function(){return a.apply(b||this,c.concat(da.call(arguments)))};d.guid=a.guid=a.guid||k.guid++;return d},
-access:function(a,b,c,d,f,e,g){var r=0,n=a.length,h=null==c;if("object"===k.type(c))for(r in f=!0,c)k.access(a,b,r,c[r],!0,e,g);else if(d!==l&&(f=!0,k.isFunction(d)||(g=!0),h&&(g?(b.call(a,d),b=null):(h=b,b=function(a,b,c){return h.call(k(a),c)})),b))for(;r<n;r++)b(a[r],c,g?d:d.call(a[r],r,b(a[r],c)));return f?a:h?b.call(a):n?b(a[0],c):e},now:function(){return(new Date).getTime()},swap:function(a,b,c,d){var k,f={};for(k in b)f[k]=a.style[k],a.style[k]=b[k];c=c.apply(a,d||[]);for(k in b)a.style[k]=
-f[k];return c}});k.ready.promise=function(a){if(!na)if(na=k.Deferred(),"complete"===K.readyState)setTimeout(k.ready);else if(K.addEventListener)K.addEventListener("DOMContentLoaded",ha,!1),h.addEventListener("load",ha,!1);else{K.attachEvent("onreadystatechange",ha);h.attachEvent("onload",ha);var b=!1;try{b=null==h.frameElement&&K.documentElement}catch(c){}b&&b.doScroll&&function Ma(){if(!k.isReady){try{b.doScroll("left")}catch(a){return setTimeout(Ma,50)}Va();k.ready()}}()}return na.promise(a)};k.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),
-function(a,b){ca["[object "+b+"]"]=b.toLowerCase()});O=k(K);(function(a,b){function c(a,b,d,k){var f,E,e,g,r;(b?b.ownerDocument||b:va)!==X&&ba(b);b=b||X;d=d||[];if(!a||"string"!==typeof a)return d;if(1!==(g=b.nodeType)&&9!==g)return[];if(D&&!k){if(f=la.exec(a))if(e=f[1])if(9===g)if((E=b.getElementById(e))&&E.parentNode){if(E.id===e)return d.push(E),d}else return d;else{if(b.ownerDocument&&(E=b.ownerDocument.getElementById(e))&&ra(b,E)&&E.id===e)return d.push(E),d}else{if(f[2])return sa.apply(d,b.getElementsByTagName(a)),
-d;if((e=f[3])&&Q.getElementsByClassName&&b.getElementsByClassName)return sa.apply(d,b.getElementsByClassName(e)),d}if(Q.qsa&&(!w||!w.test(a))){E=f=x;e=b;r=9===g&&a;if(1===g&&"object"!==b.nodeName.toLowerCase()){g=p(a);(f=b.getAttribute("id"))?E=f.replace(Gb,"\\$\x26"):b.setAttribute("id",E);E="[id\x3d'"+E+"'] ";for(e=g.length;e--;)g[e]=E+I(g[e]);e=O.test(a)&&b.parentNode||b;r=g.join(",")}if(r)try{return sa.apply(d,e.querySelectorAll(r)),d}catch(n){}finally{f||b.removeAttribute("id")}}}var S;a:{a=
-a.replace(K,"$1");E=p(a);if(!k&&1===E.length){f=E[0]=E[0].slice(0);if(2<f.length&&"ID"===(S=f[0]).type&&Q.getById&&9===b.nodeType&&D&&N.relative[f[1].type]){b=(N.find.ID(S.matches[0].replace(Ga,$),b)||[])[0];if(!b){S=d;break a}a=a.slice(f.shift().value.length)}for(g=Aa.needsContext.test(a)?0:f.length;g--;){S=f[g];if(N.relative[e=S.type])break;if(e=N.find[e])if(k=e(S.matches[0].replace(Ga,$),O.test(f[0].type)&&b.parentNode||b)){f.splice(g,1);a=k.length&&I(f);if(!a){sa.apply(d,k);S=d;break a}break}}}fa(a,
-E)(k,b,!D,d,O.test(a));S=d}return S}function d(){function a(c,d){b.push(c+=" ")>N.cacheLength&&delete a[b.shift()];return a[c]=d}var b=[];return a}function f(a){a[x]=!0;return a}function e(a){var b=X.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b)}}function g(a,b){for(var c=a.split("|"),d=a.length;d--;)N.attrHandle[c[d]]=b}function r(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||ca)-(~a.sourceIndex||ca);if(d)return d;
-if(c)for(;c=c.nextSibling;)if(c===b)return-1;return a?1:-1}function n(a){return function(b){return"input"===b.nodeName.toLowerCase()&&b.type===a}}function h(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function C(a){return f(function(b){b=+b;return f(function(c,d){for(var k,f=a([],c.length,b),E=f.length;E--;)c[k=f[E]]&&(c[k]=!(d[k]=c[k]))})})}function l(){}function p(a,b){var d,k,f,E,e,g,r;if(e=B[a+" "])return b?0:e.slice(0);e=a;g=[];for(r=N.preFilter;e;){if(!d||
-(k=Va.exec(e)))k&&(e=e.slice(k[0].length)||e),g.push(f=[]);d=!1;if(k=Y.exec(e))d=k.shift(),f.push({value:d,type:k[0].replace(K," ")}),e=e.slice(d.length);for(E in N.filter)!(k=Aa[E].exec(e))||r[E]&&!(k=r[E](k))||(d=k.shift(),f.push({value:d,type:E,matches:k}),e=e.slice(d.length));if(!d)break}return b?e.length:e?c.error(a):B(a,g).slice(0)}function I(a){for(var b=0,c=a.length,d="";b<c;b++)d+=a[b].value;return d}function U(a,b,c){var d=b.dir,k=c&&"parentNode"===d,f=aa++;return b.first?function(b,c,f){for(;b=
-b[d];)if(1===b.nodeType||k)return a(b,c,f)}:function(b,c,E){var e,g,r,n=ia+" "+f;if(E)for(;b=b[d];){if((1===b.nodeType||k)&&a(b,c,E))return!0}else for(;b=b[d];)if(1===b.nodeType||k)if(r=b[x]||(b[x]={}),(g=r[d])&&g[0]===n){if(!0===(e=g[1])||e===T)return!0===e}else if(g=r[d]=[n],g[1]=a(b,c,E)||T,!0===g[1])return!0}}function m(a){return 1<a.length?function(b,c,d){for(var k=a.length;k--;)if(!a[k](b,c,d))return!1;return!0}:a[0]}function y(a,b,c,d,k){for(var f,E=[],e=0,g=a.length,r=null!=b;e<g;e++)if(f=
-a[e])if(!c||c(f,d,k))E.push(f),r&&b.push(e);return E}function t(a,b,d,k,E,e){k&&!k[x]&&(k=t(k));E&&!E[x]&&(E=t(E,e));return f(function(f,e,g,r){var n,S,h=[],C=[],wa=e.length,l;if(!(l=f)){l=b||"*";for(var p=g.nodeType?[g]:g,Ma=[],Xa=0,I=p.length;Xa<I;Xa++)c(l,p[Xa],Ma);l=Ma}l=!a||!f&&b?l:y(l,h,a,g,r);p=d?E||(f?a:wa||k)?[]:e:l;d&&d(l,p,g,r);if(k)for(n=y(p,C),k(n,[],g,r),g=n.length;g--;)if(S=n[g])p[C[g]]=!(l[C[g]]=S);if(f){if(E||a){if(E){n=[];for(g=p.length;g--;)(S=p[g])&&n.push(l[g]=S);E(null,p=[],
-n,r)}for(g=p.length;g--;)(S=p[g])&&-1<(n=E?ha.call(f,S):h[g])&&(f[n]=!(e[n]=S))}}else p=y(p===e?p.splice(wa,p.length):p),E?E(null,e,p,r):sa.apply(e,p)})}function oa(a){var b,c,d,k=a.length,f=N.relative[a[0].type];c=f||N.relative[" "];for(var E=f?1:0,e=U(function(a){return a===b},c,!0),g=U(function(a){return-1<ha.call(b,a)},c,!0),r=[function(a,c,d){return!f&&(d||c!==A)||((b=c).nodeType?e(a,c,d):g(a,c,d))}];E<k;E++)if(c=N.relative[a[E].type])r=[U(m(r),c)];else{c=N.filter[a[E].type].apply(null,a[E].matches);
-if(c[x]){for(d=++E;d<k&&!N.relative[a[d].type];d++);return t(1<E&&m(r),1<E&&I(a.slice(0,E-1).concat({value:" "===a[E-2].type?"*":""})).replace(K,"$1"),c,E<d&&oa(a.slice(E,d)),d<k&&oa(a=a.slice(d)),d<k&&I(a))}r.push(c)}return m(r)}function u(a,b){var d=0,k=0<b.length,E=0<a.length,e=function(f,e,g,r,n){var S,h,C=[],wa=0,l="0",p=f&&[],Ma=null!=n,Xa=A,I=f||E&&N.find.TAG("*",n&&e.parentNode||e),U=ia+=null==Xa?1:Math.random()||0.1;Ma&&(A=e!==X&&e,T=d);for(;null!=(n=I[l]);l++){if(E&&n){for(S=0;h=a[S++];)if(h(n,
-e,g)){r.push(n);break}Ma&&(ia=U,T=++d)}k&&((n=!h&&n)&&wa--,f&&p.push(n))}wa+=l;if(k&&l!==wa){for(S=0;h=b[S++];)h(p,C,e,g);if(f){if(0<wa)for(;l--;)p[l]||C[l]||(C[l]=G.call(r));C=y(C)}sa.apply(r,C);Ma&&!f&&0<C.length&&1<wa+b.length&&c.uniqueSort(r)}Ma&&(ia=U,A=Xa);return p};return k?f(e):e}var q,Q,T,N,z,ea,fa,A,R,ba,X,v,D,w,W,s,ra,x="sizzle"+-new Date,va=a.document,ia=0,aa=0,H=d(),B=d(),F=d(),Ha=!1,ua=function(a,b){a===b&&(Ha=!0);return 0},P=typeof b,ca=-2147483648,ga={}.hasOwnProperty,La=[],G=La.pop,
-bb=La.push,sa=La.push,ya=La.slice,ha=La.indexOf||function(a){for(var b=0,c=this.length;b<c;b++)if(this[b]===a)return b;return-1},za="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+".replace("w","w#"),J="\\[[\\x20\\t\\r\\n\\f]*((?:\\\\.|[\\w-]|[^\\x00-\\xa0])+)[\\x20\\t\\r\\n\\f]*(?:([*^$|!~]?\x3d)[\\x20\\t\\r\\n\\f]*(?:(['\"])((?:\\\\.|[^\\\\])*?)\\3|("+za+")|)|)[\\x20\\t\\r\\n\\f]*\\]",M=":((?:\\\\.|[\\w-]|[^\\x00-\\xa0])+)(?:\\(((['\"])((?:\\\\.|[^\\\\])*?)\\3|((?:\\\\.|[^\\\\()[\\]]|"+J.replace(3,8)+")*)|.*)\\)|)",
-K=RegExp("^[\\x20\\t\\r\\n\\f]+|((?:^|[^\\\\])(?:\\\\.)*)[\\x20\\t\\r\\n\\f]+$","g"),Va=/^[\x20\t\r\n\f]*,[\x20\t\r\n\f]*/,Y=/^[\x20\t\r\n\f]*([>+~]|[\x20\t\r\n\f])[\x20\t\r\n\f]*/,O=/[\x20\t\r\n\f]*[+~]/,da=RegExp("\x3d[\\x20\\t\\r\\n\\f]*([^\\]'\"]*)[\\x20\\t\\r\\n\\f]*\\]","g"),V=RegExp(M),Fb=RegExp("^"+za+"$"),Aa={ID:/^#((?:\\.|[\w-]|[^\x00-\xa0])+)/,CLASS:/^\.((?:\\.|[\w-]|[^\x00-\xa0])+)/,TAG:RegExp("^("+"(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+".replace("w","w*")+")"),ATTR:RegExp("^"+J),PSEUDO:RegExp("^"+
-M),CHILD:RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\([\\x20\\t\\r\\n\\f]*(even|odd|(([+-]|)(\\d*)n|)[\\x20\\t\\r\\n\\f]*(?:([+-]|)[\\x20\\t\\r\\n\\f]*(\\d+)|))[\\x20\\t\\r\\n\\f]*\\)|)","i"),bool:RegExp("^(?:checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped)$","i"),needsContext:RegExp("^[\\x20\\t\\r\\n\\f]*[\x3e+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\([\\x20\\t\\r\\n\\f]*((?:-\\d)?\\d*)[\\x20\\t\\r\\n\\f]*\\)|)(?\x3d[^-]|$)",
-"i")},ja=/^[^{]+\{\s*\[native \w/,la=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,Z=/^(?:input|select|textarea|button)$/i,Ra=/^h\d$/i,Gb=/'|\\/g,Ga=RegExp("\\\\([\\da-f]{1,6}[\\x20\\t\\r\\n\\f]?|([\\x20\\t\\r\\n\\f])|.)","ig"),$=function(a,b,c){a="0x"+b-65536;return a!==a||c?b:0>a?String.fromCharCode(a+65536):String.fromCharCode(a>>10|55296,a&1023|56320)};try{sa.apply(La=ya.call(va.childNodes),va.childNodes),La[va.childNodes.length].nodeType}catch(ka){sa={apply:La.length?function(a,b){bb.apply(a,ya.call(b))}:
-function(a,b){for(var c=a.length,d=0;a[c++]=b[d++];);a.length=c-1}}}ea=c.isXML=function(a){return(a=a&&(a.ownerDocument||a).documentElement)?"HTML"!==a.nodeName:!1};Q=c.support={};ba=c.setDocument=function(a){var b=a?a.ownerDocument||a:va;a=b.defaultView;if(b===X||9!==b.nodeType||!b.documentElement)return X;X=b;v=b.documentElement;D=!ea(b);a&&a.attachEvent&&a!==a.top&&a.attachEvent("onbeforeunload",function(){ba()});Q.attributes=e(function(a){a.className="i";return!a.getAttribute("className")});Q.getElementsByTagName=
-e(function(a){a.appendChild(b.createComment(""));return!a.getElementsByTagName("*").length});Q.getElementsByClassName=e(function(a){a.innerHTML="\x3cdiv class\x3d'a'\x3e\x3c/div\x3e\x3cdiv class\x3d'a i'\x3e\x3c/div\x3e";a.firstChild.className="i";return 2===a.getElementsByClassName("i").length});Q.getById=e(function(a){v.appendChild(a).id=x;return!b.getElementsByName||!b.getElementsByName(x).length});Q.getById?(N.find.ID=function(a,b){if(typeof b.getElementById!==P&&D){var c=b.getElementById(a);
-return c&&c.parentNode?[c]:[]}},N.filter.ID=function(a){var b=a.replace(Ga,$);return function(a){return a.getAttribute("id")===b}}):(delete N.find.ID,N.filter.ID=function(a){var b=a.replace(Ga,$);return function(a){return(a=typeof a.getAttributeNode!==P&&a.getAttributeNode("id"))&&a.value===b}});N.find.TAG=Q.getElementsByTagName?function(a,b){if(typeof b.getElementsByTagName!==P)return b.getElementsByTagName(a)}:function(a,b){var c,d=[],k=0,f=b.getElementsByTagName(a);if("*"===a){for(;c=f[k++];)1===
-c.nodeType&&d.push(c);return d}return f};N.find.CLASS=Q.getElementsByClassName&&function(a,b){if(typeof b.getElementsByClassName!==P&&D)return b.getElementsByClassName(a)};W=[];w=[];if(Q.qsa=ja.test(b.querySelectorAll))e(function(a){a.innerHTML="\x3cselect\x3e\x3coption selected\x3d''\x3e\x3c/option\x3e\x3c/select\x3e";a.querySelectorAll("[selected]").length||w.push("\\[[\\x20\\t\\r\\n\\f]*(?:value|checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped)");
-a.querySelectorAll(":checked").length||w.push(":checked")}),e(function(a){var c=b.createElement("input");c.setAttribute("type","hidden");a.appendChild(c).setAttribute("t","");a.querySelectorAll("[t^\x3d'']").length&&w.push("[*^$]\x3d[\\x20\\t\\r\\n\\f]*(?:''|\"\")");a.querySelectorAll(":enabled").length||w.push(":enabled",":disabled");a.querySelectorAll("*,:x");w.push(",.*:")});(Q.matchesSelector=ja.test(s=v.webkitMatchesSelector||v.mozMatchesSelector||v.oMatchesSelector||v.msMatchesSelector))&&e(function(a){Q.disconnectedMatch=
-s.call(a,"div");s.call(a,"[s!\x3d'']:x");W.push("!\x3d",M)});w=w.length&&RegExp(w.join("|"));W=W.length&&RegExp(W.join("|"));ra=ja.test(v.contains)||v.compareDocumentPosition?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!!(d&&1===d.nodeType&&(c.contains?c.contains(d):a.compareDocumentPosition&&a.compareDocumentPosition(d)&16))}:function(a,b){if(b)for(;b=b.parentNode;)if(b===a)return!0;return!1};ua=v.compareDocumentPosition?function(a,c){if(a===c)return Ha=
-!0,0;var d=c.compareDocumentPosition&&a.compareDocumentPosition&&a.compareDocumentPosition(c);return d?d&1||!Q.sortDetached&&c.compareDocumentPosition(a)===d?a===b||ra(va,a)?-1:c===b||ra(va,c)?1:R?ha.call(R,a)-ha.call(R,c):0:d&4?-1:1:a.compareDocumentPosition?-1:1}:function(a,c){var d,k=0;d=a.parentNode;var f=c.parentNode,E=[a],e=[c];if(a===c)return Ha=!0,0;if(!d||!f)return a===b?-1:c===b?1:d?-1:f?1:R?ha.call(R,a)-ha.call(R,c):0;if(d===f)return r(a,c);for(d=a;d=d.parentNode;)E.unshift(d);for(d=c;d=
-d.parentNode;)e.unshift(d);for(;E[k]===e[k];)k++;return k?r(E[k],e[k]):E[k]===va?-1:e[k]===va?1:0};return b};c.matches=function(a,b){return c(a,null,null,b)};c.matchesSelector=function(a,b){(a.ownerDocument||a)!==X&&ba(a);b=b.replace(da,"\x3d'$1']");if(Q.matchesSelector&&D&&!(W&&W.test(b)||w&&w.test(b)))try{var d=s.call(a,b);if(d||Q.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(k){}return 0<c(b,X,null,[a]).length};c.contains=function(a,b){(a.ownerDocument||a)!==X&&ba(a);return ra(a,
-b)};c.attr=function(a,c){(a.ownerDocument||a)!==X&&ba(a);var d=N.attrHandle[c.toLowerCase()],d=d&&ga.call(N.attrHandle,c.toLowerCase())?d(a,c,!D):b;return d===b?Q.attributes||!D?a.getAttribute(c):(d=a.getAttributeNode(c))&&d.specified?d.value:null:d};c.error=function(a){throw Error("Syntax error, unrecognized expression: "+a);};c.uniqueSort=function(a){var b,c=[],d=0,k=0;Ha=!Q.detectDuplicates;R=!Q.sortStable&&a.slice(0);a.sort(ua);if(Ha){for(;b=a[k++];)b===a[k]&&(d=c.push(k));for(;d--;)a.splice(c[d],
-1)}return a};z=c.getText=function(a){var b,c="",d=0;b=a.nodeType;if(!b)for(;b=a[d];d++)c+=z(b);else if(1===b||9===b||11===b){if("string"===typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=z(a)}else if(3===b||4===b)return a.nodeValue;return c};N=c.selectors={cacheLength:50,createPseudo:f,match:Aa,attrHandle:{},find:{},relative:{"\x3e":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){a[1]=
-a[1].replace(Ga,$);a[3]=(a[4]||a[5]||"").replace(Ga,$);"~\x3d"===a[2]&&(a[3]=" "+a[3]+" ");return a.slice(0,4)},CHILD:function(a){a[1]=a[1].toLowerCase();"nth"===a[1].slice(0,3)?(a[3]||c.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&c.error(a[0]);return a},PSEUDO:function(a){var c,d=!a[5]&&a[2];if(Aa.CHILD.test(a[0]))return null;a[3]&&a[4]!==b?a[2]=a[4]:d&&V.test(d)&&(c=p(d,!0))&&(c=d.indexOf(")",d.length-c)-d.length)&&(a[0]=a[0].slice(0,
-c),a[2]=d.slice(0,c));return a.slice(0,3)}},filter:{TAG:function(a){var b=a.replace(Ga,$).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=H[a+" "];return b||(b=RegExp("(^|[\\x20\\t\\r\\n\\f])"+a+"([\\x20\\t\\r\\n\\f]|$)"))&&H(a,function(a){return b.test("string"===typeof a.className&&a.className||typeof a.getAttribute!==P&&a.getAttribute("class")||"")})},ATTR:function(a,b,d){return function(k){k=c.attr(k,a);if(null==
-k)return"!\x3d"===b;if(!b)return!0;k+="";return"\x3d"===b?k===d:"!\x3d"===b?k!==d:"^\x3d"===b?d&&0===k.indexOf(d):"*\x3d"===b?d&&-1<k.indexOf(d):"$\x3d"===b?d&&k.slice(-d.length)===d:"~\x3d"===b?-1<(" "+k+" ").indexOf(d):"|\x3d"===b?k===d||k.slice(0,d.length+1)===d+"-":!1}},CHILD:function(a,b,c,d,k){var f="nth"!==a.slice(0,3),E="last"!==a.slice(-4),e="of-type"===b;return 1===d&&0===k?function(a){return!!a.parentNode}:function(b,c,g){var r,n,S,Qa,h;c=f!==E?"nextSibling":"previousSibling";var C=b.parentNode,
-wa=e&&b.nodeName.toLowerCase();g=!g&&!e;if(C){if(f){for(;c;){for(n=b;n=n[c];)if(e?n.nodeName.toLowerCase()===wa:1===n.nodeType)return!1;h=c="only"===a&&!h&&"nextSibling"}return!0}h=[E?C.firstChild:C.lastChild];if(E&&g)for(g=C[x]||(C[x]={}),r=g[a]||[],Qa=r[0]===ia&&r[1],S=r[0]===ia&&r[2],n=Qa&&C.childNodes[Qa];n=++Qa&&n&&n[c]||(S=Qa=0)||h.pop();){if(1===n.nodeType&&++S&&n===b){g[a]=[ia,Qa,S];break}}else if(g&&(r=(b[x]||(b[x]={}))[a])&&r[0]===ia)S=r[1];else for(;(n=++Qa&&n&&n[c]||(S=Qa=0)||h.pop())&&
-((e?n.nodeName.toLowerCase()!==wa:1!==n.nodeType)||!++S||(g&&((n[x]||(n[x]={}))[a]=[ia,S]),n!==b)););S-=k;return S===d||0===S%d&&0<=S/d}}},PSEUDO:function(a,b){var d,k=N.pseudos[a]||N.setFilters[a.toLowerCase()]||c.error("unsupported pseudo: "+a);return k[x]?k(b):1<k.length?(d=[a,a,"",b],N.setFilters.hasOwnProperty(a.toLowerCase())?f(function(a,c){for(var d,f=k(a,b),E=f.length;E--;)d=ha.call(a,f[E]),a[d]=!(c[d]=f[E])}):function(a){return k(a,0,d)}):k}},pseudos:{not:f(function(a){var b=[],c=[],d=fa(a.replace(K,
-"$1"));return d[x]?f(function(a,b,c,k){k=d(a,null,k,[]);for(var f=a.length;f--;)if(c=k[f])a[f]=!(b[f]=c)}):function(a,k,f){b[0]=a;d(b,null,f,c);return!c.pop()}}),has:f(function(a){return function(b){return 0<c(a,b).length}}),contains:f(function(a){return function(b){return-1<(b.textContent||b.innerText||z(b)).indexOf(a)}}),lang:f(function(a){Fb.test(a||"")||c.error("unsupported lang: "+a);a=a.replace(Ga,$).toLowerCase();return function(b){var c;do if(c=D?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=
-c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===v},focus:function(a){return a===X.activeElement&&(!X.hasFocus||X.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return!1===a.disabled},disabled:function(a){return!0===a.disabled},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&
-!!a.selected},selected:function(a){a.parentNode&&a.parentNode.selectedIndex;return!0===a.selected},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if("@"<a.nodeName||3===a.nodeType||4===a.nodeType)return!1;return!0},parent:function(a){return!N.pseudos.empty(a)},header:function(a){return Ra.test(a.nodeName)},input:function(a){return Z.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===
-a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||b.toLowerCase()===a.type)},first:C(function(){return[0]}),last:C(function(a,b){return[b-1]}),eq:C(function(a,b,c){return[0>c?c+b:c]}),even:C(function(a,b){for(var c=0;c<b;c+=2)a.push(c);return a}),odd:C(function(a,b){for(var c=1;c<b;c+=2)a.push(c);return a}),lt:C(function(a,b,c){for(b=0>c?c+b:c;0<=--b;)a.push(b);return a}),gt:C(function(a,b,c){for(c=0>c?c+b:c;++c<b;)a.push(c);return a})}};N.pseudos.nth=N.pseudos.eq;for(q in{radio:!0,
-checkbox:!0,file:!0,password:!0,image:!0})N.pseudos[q]=n(q);for(q in{submit:!0,reset:!0})N.pseudos[q]=h(q);l.prototype=N.filters=N.pseudos;N.setFilters=new l;fa=c.compile=function(a,b){var c,d=[],k=[],f=F[a+" "];if(!f){b||(b=p(a));for(c=b.length;c--;)f=oa(b[c]),f[x]?d.push(f):k.push(f);f=F(a,u(k,d))}return f};Q.sortStable=x.split("").sort(ua).join("")===x;Q.detectDuplicates=Ha;ba();Q.sortDetached=e(function(a){return a.compareDocumentPosition(X.createElement("div"))&1});e(function(a){a.innerHTML=
-"\x3ca href\x3d'#'\x3e\x3c/a\x3e";return"#"===a.firstChild.getAttribute("href")})||g("type|href|height|width",function(a,b,c){if(!c)return a.getAttribute(b,"type"===b.toLowerCase()?1:2)});Q.attributes&&e(function(a){a.innerHTML="\x3cinput/\x3e";a.firstChild.setAttribute("value","");return""===a.firstChild.getAttribute("value")})||g("value",function(a,b,c){if(!c&&"input"===a.nodeName.toLowerCase())return a.defaultValue});e(function(a){return null==a.getAttribute("disabled")})||g("checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",
-function(a,b,c){var d;if(!c)return(d=a.getAttributeNode(b))&&d.specified?d.value:!0===a[b]?b.toLowerCase():null});k.find=c;k.expr=c.selectors;k.expr[":"]=k.expr.pseudos;k.unique=c.uniqueSort;k.text=c.getText;k.isXMLDoc=c.isXML;k.contains=c.contains})(h);var sa={};k.Callbacks=function(a){a="string"===typeof a?sa[a]||g(a):k.extend({},a);var b,c,d,f,e,r,n=[],h=!a.once&&[],C=function(k){c=a.memory&&k;d=!0;e=r||0;r=0;f=n.length;for(b=!0;n&&e<f;e++)if(!1===n[e].apply(k[0],k[1])&&a.stopOnFalse){c=!1;break}b=
-!1;n&&(h?h.length&&C(h.shift()):c?n=[]:p.disable())},p={add:function(){if(n){var d=n.length;(function Yb(b){k.each(b,function(b,c){var d=k.type(c);"function"===d?a.unique&&p.has(c)||n.push(c):c&&c.length&&"string"!==d&&Yb(c)})})(arguments);b?f=n.length:c&&(r=d,C(c))}return this},remove:function(){n&&k.each(arguments,function(a,c){for(var d;-1<(d=k.inArray(c,n,d));)n.splice(d,1),b&&(d<=f&&f--,d<=e&&e--)});return this},has:function(a){return a?-1<k.inArray(a,n):!(!n||!n.length)},empty:function(){n=
-[];f=0;return this},disable:function(){n=h=c=l;return this},disabled:function(){return!n},lock:function(){h=l;c||p.disable();return this},locked:function(){return!h},fireWith:function(a,c){!n||d&&!h||(c=c||[],c=[a,c.slice?c.slice():c],b?h.push(c):C(c));return this},fire:function(){p.fireWith(this,arguments);return this},fired:function(){return!!d}};return p};k.extend({Deferred:function(a){var b=[["resolve","done",k.Callbacks("once memory"),"resolved"],["reject","fail",k.Callbacks("once memory"),"rejected"],
-["notify","progress",k.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){f.done(arguments).fail(arguments);return this},then:function(){var a=arguments;return k.Deferred(function(c){k.each(b,function(b,E){var e=E[0],g=k.isFunction(a[b])&&a[b];f[E[1]](function(){var a=g&&g.apply(this,arguments);if(a&&k.isFunction(a.promise))a.promise().done(c.resolve).fail(c.reject).progress(c.notify);else c[e+"With"](this===d?c.promise():this,g?[a]:arguments)})});a=null}).promise()},
-promise:function(a){return null!=a?k.extend(a,d):d}},f={};d.pipe=d.then;k.each(b,function(a,k){var E=k[2],e=k[3];d[k[1]]=E.add;e&&E.add(function(){c=e},b[a^1][2].disable,b[2][2].lock);f[k[0]]=function(){f[k[0]+"With"](this===f?d:this,arguments);return this};f[k[0]+"With"]=E.fireWith});d.promise(f);a&&a.call(f,f);return f},when:function(a){var b=0,c=da.call(arguments),d=c.length,f=1!==d||a&&k.isFunction(a.promise)?d:0,e=1===f?a:k.Deferred(),g=function(a,b,c){return function(d){b[a]=this;c[a]=1<arguments.length?
-da.call(arguments):d;c===r?e.notifyWith(b,c):--f||e.resolveWith(b,c)}},r,n,h;if(1<d)for(r=Array(d),n=Array(d),h=Array(d);b<d;b++)c[b]&&k.isFunction(c[b].promise)?c[b].promise().done(g(b,h,c)).fail(e.reject).progress(g(b,n,r)):--f;f||e.resolveWith(h,c);return e.promise()}});k.support=function(a){var b,c,d,f,e,g,r=K.createElement("div");r.setAttribute("className","t");r.innerHTML="  \x3clink/\x3e\x3ctable\x3e\x3c/table\x3e\x3ca href\x3d'/a'\x3ea\x3c/a\x3e\x3cinput type\x3d'checkbox'/\x3e";b=r.getElementsByTagName("*")||
-[];c=r.getElementsByTagName("a")[0];if(!c||!c.style||!b.length)return a;d=K.createElement("select");f=d.appendChild(K.createElement("option"));b=r.getElementsByTagName("input")[0];c.style.cssText="top:1px;float:left;opacity:.5";a.getSetAttribute="t"!==r.className;a.leadingWhitespace=3===r.firstChild.nodeType;a.tbody=!r.getElementsByTagName("tbody").length;a.htmlSerialize=!!r.getElementsByTagName("link").length;a.style=/top/.test(c.getAttribute("style"));a.hrefNormalized="/a"===c.getAttribute("href");
-a.opacity=/^0.5/.test(c.style.opacity);a.cssFloat=!!c.style.cssFloat;a.checkOn=!!b.value;a.optSelected=f.selected;a.enctype=!!K.createElement("form").enctype;a.html5Clone="\x3c:nav\x3e\x3c/:nav\x3e"!==K.createElement("nav").cloneNode(!0).outerHTML;a.inlineBlockNeedsLayout=!1;a.shrinkWrapBlocks=!1;a.pixelPosition=!1;a.deleteExpando=!0;a.noCloneEvent=!0;a.reliableMarginRight=!0;a.boxSizingReliable=!0;b.checked=!0;a.noCloneChecked=b.cloneNode(!0).checked;d.disabled=!0;a.optDisabled=!f.disabled;try{delete r.test}catch(n){a.deleteExpando=
-!1}b=K.createElement("input");b.setAttribute("value","");a.input=""===b.getAttribute("value");b.value="t";b.setAttribute("type","radio");a.radioValue="t"===b.value;b.setAttribute("checked","t");b.setAttribute("name","t");c=K.createDocumentFragment();c.appendChild(b);a.appendChecked=b.checked;a.checkClone=c.cloneNode(!0).cloneNode(!0).lastChild.checked;r.attachEvent&&(r.attachEvent("onclick",function(){a.noCloneEvent=!1}),r.cloneNode(!0).click());for(g in{submit:!0,change:!0,focusin:!0})r.setAttribute(c=
-"on"+g,"t"),a[g+"Bubbles"]=c in h||!1===r.attributes[c].expando;r.style.backgroundClip="content-box";r.cloneNode(!0).style.backgroundClip="";a.clearCloneStyle="content-box"===r.style.backgroundClip;for(g in k(a))break;a.ownLast="0"!==g;k(function(){var b,c,d=K.getElementsByTagName("body")[0];d&&(b=K.createElement("div"),b.style.cssText="border:0;width:0;height:0;position:absolute;top:0;left:-9999px;margin-top:1px",d.appendChild(b).appendChild(r),r.innerHTML="\x3ctable\x3e\x3ctr\x3e\x3ctd\x3e\x3c/td\x3e\x3ctd\x3et\x3c/td\x3e\x3c/tr\x3e\x3c/table\x3e",
-c=r.getElementsByTagName("td"),c[0].style.cssText="padding:0;margin:0;border:0;display:none",e=0===c[0].offsetHeight,c[0].style.display="",c[1].style.display="none",a.reliableHiddenOffsets=e&&0===c[0].offsetHeight,r.innerHTML="",r.style.cssText="box-sizing:border-box;-moz-box-sizing:border-box;-webkit-box-sizing:border-box;padding:1px;border:1px;display:block;width:4px;margin-top:1%;position:absolute;top:1%;",k.swap(d,null!=d.style.zoom?{zoom:1}:{},function(){a.boxSizing=4===r.offsetWidth}),h.getComputedStyle&&
-(a.pixelPosition="1%"!==(h.getComputedStyle(r,null)||{}).top,a.boxSizingReliable="4px"===(h.getComputedStyle(r,null)||{width:"4px"}).width,c=r.appendChild(K.createElement("div")),c.style.cssText=r.style.cssText="padding:0;margin:0;border:0;display:block;box-sizing:content-box;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;",c.style.marginRight=c.style.width="0",r.style.width="1px",a.reliableMarginRight=!parseFloat((h.getComputedStyle(c,null)||{}).marginRight)),typeof r.style.zoom!==s&&
-(r.innerHTML="",r.style.cssText="padding:0;margin:0;border:0;display:block;box-sizing:content-box;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;width:1px;padding:1px;display:inline;zoom:1",a.inlineBlockNeedsLayout=3===r.offsetWidth,r.style.display="block",r.innerHTML="\x3cdiv\x3e\x3c/div\x3e",r.firstChild.style.width="5px",a.shrinkWrapBlocks=3!==r.offsetWidth,a.inlineBlockNeedsLayout&&(d.style.zoom=1)),d.removeChild(b),b=r=c=c=null)});b=d=c=f=c=b=null;return a}({});var Ha=/(?:\{[\s\S]*\}|\[[\s\S]*\])$/,
-bb=/([A-Z])/g;k.extend({cache:{},noData:{applet:!0,embed:!0,object:"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"},hasData:function(a){a=a.nodeType?k.cache[a[k.expando]]:a[k.expando];return!!a&&!b(a)},data:function(a,b,d){return c(a,b,d)},removeData:function(a,b){return e(a,b)},_data:function(a,b,d){return c(a,b,d,!0)},_removeData:function(a,b){return e(a,b,!0)},acceptData:function(a){if(a.nodeType&&1!==a.nodeType&&9!==a.nodeType)return!1;var b=a.nodeName&&k.noData[a.nodeName.toLowerCase()];return!b||
-!0!==b&&a.getAttribute("classid")===b}});k.fn.extend({data:function(b,c){var d,f,e=null,g=0,r=this[0];if(b===l){if(this.length&&(e=k.data(r),1===r.nodeType&&!k._data(r,"parsedAttrs"))){for(d=r.attributes;g<d.length;g++)f=d[g].name,0===f.indexOf("data-")&&(f=k.camelCase(f.slice(5)),a(r,f,e[f]));k._data(r,"parsedAttrs",!0)}return e}return"object"===typeof b?this.each(function(){k.data(this,b)}):1<arguments.length?this.each(function(){k.data(this,b,c)}):r?a(r,b,k.data(r,b)):null},removeData:function(a){return this.each(function(){k.removeData(this,
-a)})}});k.extend({queue:function(a,b,c){var d;if(a)return b=(b||"fx")+"queue",d=k._data(a,b),c&&(!d||k.isArray(c)?d=k._data(a,b,k.makeArray(c)):d.push(c)),d||[]},dequeue:function(a,b){b=b||"fx";var c=k.queue(a,b),d=c.length,f=c.shift(),e=k._queueHooks(a,b),g=function(){k.dequeue(a,b)};"inprogress"===f&&(f=c.shift(),d--);f&&("fx"===b&&c.unshift("inprogress"),delete e.stop,f.call(a,g,e));!d&&e&&e.empty.fire()},_queueHooks:function(a,b){var c=b+"queueHooks";return k._data(a,c)||k._data(a,c,{empty:k.Callbacks("once memory").add(function(){k._removeData(a,
-b+"queue");k._removeData(a,c)})})}});k.fn.extend({queue:function(a,b){var c=2;"string"!==typeof a&&(b=a,a="fx",c--);return arguments.length<c?k.queue(this[0],a):b===l?this:this.each(function(){var c=k.queue(this,a,b);k._queueHooks(this,a);"fx"===a&&"inprogress"!==c[0]&&k.dequeue(this,a)})},dequeue:function(a){return this.each(function(){k.dequeue(this,a)})},delay:function(a,b){a=k.fx?k.fx.speeds[a]||a:a;return this.queue(b||"fx",function(b,c){var d=setTimeout(b,a);c.stop=function(){clearTimeout(d)}})},
-clearQueue:function(a){return this.queue(a||"fx",[])},promise:function(a,b){var c,d=1,f=k.Deferred(),e=this,g=this.length,r=function(){--d||f.resolveWith(e,[e])};"string"!==typeof a&&(b=a,a=l);for(a=a||"fx";g--;)(c=k._data(e[g],a+"queueHooks"))&&c.empty&&(d++,c.empty.add(r));r();return f.promise(b)}});var za,Aa,Ra=/[\t\r\n\f]/g,yb=/\r/g,zb=/^(?:input|select|textarea|button|object)$/i,Ab=/^(?:a|area)$/i,db=/^(?:checked|selected)$/i,Pa=k.support.getSetAttribute,Sa=k.support.input;k.fn.extend({attr:function(a,
-b){return k.access(this,k.attr,a,b,1<arguments.length)},removeAttr:function(a){return this.each(function(){k.removeAttr(this,a)})},prop:function(a,b){return k.access(this,k.prop,a,b,1<arguments.length)},removeProp:function(a){a=k.propFix[a]||a;return this.each(function(){try{this[a]=l,delete this[a]}catch(b){}})},addClass:function(a){var b,c,d,f,e,g=0,r=this.length;b="string"===typeof a&&a;if(k.isFunction(a))return this.each(function(b){k(this).addClass(a.call(this,b,this.className))});if(b)for(b=
-(a||"").match(U)||[];g<r;g++)if(c=this[g],d=1===c.nodeType&&(c.className?(" "+c.className+" ").replace(Ra," "):" ")){for(e=0;f=b[e++];)0>d.indexOf(" "+f+" ")&&(d+=f+" ");c.className=k.trim(d)}return this},removeClass:function(a){var b,c,d,f,e,g=0,r=this.length;b=0===arguments.length||"string"===typeof a&&a;if(k.isFunction(a))return this.each(function(b){k(this).removeClass(a.call(this,b,this.className))});if(b)for(b=(a||"").match(U)||[];g<r;g++)if(c=this[g],d=1===c.nodeType&&(c.className?(" "+c.className+
-" ").replace(Ra," "):"")){for(e=0;f=b[e++];)for(;0<=d.indexOf(" "+f+" ");)d=d.replace(" "+f+" "," ");c.className=a?k.trim(d):""}return this},toggleClass:function(a,b){var c=typeof a;return"boolean"===typeof b&&"string"===c?b?this.addClass(a):this.removeClass(a):k.isFunction(a)?this.each(function(c){k(this).toggleClass(a.call(this,c,this.className,b),b)}):this.each(function(){if("string"===c)for(var b,d=0,f=k(this),e=a.match(U)||[];b=e[d++];)f.hasClass(b)?f.removeClass(b):f.addClass(b);else if(c===
-s||"boolean"===c)this.className&&k._data(this,"__className__",this.className),this.className=this.className||!1===a?"":k._data(this,"__className__")||""})},hasClass:function(a){a=" "+a+" ";for(var b=0,c=this.length;b<c;b++)if(1===this[b].nodeType&&0<=(" "+this[b].className+" ").replace(Ra," ").indexOf(a))return!0;return!1},val:function(a){var b,c,d,f=this[0];if(arguments.length)return d=k.isFunction(a),this.each(function(b){1===this.nodeType&&(b=d?a.call(this,b,k(this).val()):a,null==b?b="":"number"===
-typeof b?b+="":k.isArray(b)&&(b=k.map(b,function(a){return null==a?"":a+""})),c=k.valHooks[this.type]||k.valHooks[this.nodeName.toLowerCase()],c&&"set"in c&&c.set(this,b,"value")!==l||(this.value=b))});if(f){if((c=k.valHooks[f.type]||k.valHooks[f.nodeName.toLowerCase()])&&"get"in c&&(b=c.get(f,"value"))!==l)return b;b=f.value;return"string"===typeof b?b.replace(yb,""):null==b?"":b}}});k.extend({valHooks:{option:{get:function(a){var b=k.find.attr(a,"value");return null!=b?b:a.text}},select:{get:function(a){for(var b,
-c=a.options,d=a.selectedIndex,f=(a="select-one"===a.type||0>d)?null:[],e=a?d+1:c.length,g=0>d?e:a?d:0;g<e;g++)if(b=c[g],!(!b.selected&&g!==d||(k.support.optDisabled?b.disabled:null!==b.getAttribute("disabled"))||b.parentNode.disabled&&k.nodeName(b.parentNode,"optgroup"))){b=k(b).val();if(a)return b;f.push(b)}return f},set:function(a,b){for(var c,d,f=a.options,e=k.makeArray(b),g=f.length;g--;)if(d=f[g],d.selected=0<=k.inArray(k(d).val(),e))c=!0;c||(a.selectedIndex=-1);return e}}},attr:function(a,b,
-c){var d,f,e=a.nodeType;if(a&&3!==e&&8!==e&&2!==e){if(typeof a.getAttribute===s)return k.prop(a,b,c);1===e&&k.isXMLDoc(a)||(b=b.toLowerCase(),d=k.attrHooks[b]||(k.expr.match.bool.test(b)?Aa:za));if(c!==l)if(null===c)k.removeAttr(a,b);else{if(d&&"set"in d&&(f=d.set(a,c,b))!==l)return f;a.setAttribute(b,c+"");return c}else{if(d&&"get"in d&&null!==(f=d.get(a,b)))return f;f=k.find.attr(a,b);return null==f?l:f}}},removeAttr:function(a,b){var c,d,f=0,e=b&&b.match(U);if(e&&1===a.nodeType)for(;c=e[f++];)d=
-k.propFix[c]||c,k.expr.match.bool.test(c)?Sa&&Pa||!db.test(c)?a[d]=!1:a[k.camelCase("default-"+c)]=a[d]=!1:k.attr(a,c,""),a.removeAttribute(Pa?c:d)},attrHooks:{type:{set:function(a,b){if(!k.support.radioValue&&"radio"===b&&k.nodeName(a,"input")){var c=a.value;a.setAttribute("type",b);c&&(a.value=c);return b}}}},propFix:{"for":"htmlFor","class":"className"},prop:function(a,b,c){var d,f,e;e=a.nodeType;if(a&&3!==e&&8!==e&&2!==e){if(e=1!==e||!k.isXMLDoc(a))b=k.propFix[b]||b,f=k.propHooks[b];return c!==
-l?f&&"set"in f&&(d=f.set(a,c,b))!==l?d:a[b]=c:f&&"get"in f&&null!==(d=f.get(a,b))?d:a[b]}},propHooks:{tabIndex:{get:function(a){var b=k.find.attr(a,"tabindex");return b?parseInt(b,10):zb.test(a.nodeName)||Ab.test(a.nodeName)&&a.href?0:-1}}}});Aa={set:function(a,b,c){!1===b?k.removeAttr(a,c):Sa&&Pa||!db.test(c)?a.setAttribute(!Pa&&k.propFix[c]||c,c):a[k.camelCase("default-"+c)]=a[c]=!0;return c}};k.each(k.expr.match.bool.source.match(/\w+/g),function(a,b){var c=k.expr.attrHandle[b]||k.find.attr;k.expr.attrHandle[b]=
-Sa&&Pa||!db.test(b)?function(a,b,d){var f=k.expr.attrHandle[b];a=d?l:(k.expr.attrHandle[b]=l)!=c(a,b,d)?b.toLowerCase():null;k.expr.attrHandle[b]=f;return a}:function(a,b,c){return c?l:a[k.camelCase("default-"+b)]?b.toLowerCase():null}});Sa&&Pa||(k.attrHooks.value={set:function(a,b,c){if(k.nodeName(a,"input"))a.defaultValue=b;else return za&&za.set(a,b,c)}});Pa||(za={set:function(a,b,c){var d=a.getAttributeNode(c);d||a.setAttributeNode(d=a.ownerDocument.createAttribute(c));d.value=b+="";return"value"===
-c||b===a.getAttribute(c)?b:l}},k.expr.attrHandle.id=k.expr.attrHandle.name=k.expr.attrHandle.coords=function(a,b,c){var d;return c?l:(d=a.getAttributeNode(b))&&""!==d.value?d.value:null},k.valHooks.button={get:function(a,b){var c=a.getAttributeNode(b);return c&&c.specified?c.value:l},set:za.set},k.attrHooks.contenteditable={set:function(a,b,c){za.set(a,""===b?!1:b,c)}},k.each(["width","height"],function(a,b){k.attrHooks[b]={set:function(a,c){if(""===c)return a.setAttribute(b,"auto"),c}}}));k.support.hrefNormalized||
-k.each(["href","src"],function(a,b){k.propHooks[b]={get:function(a){return a.getAttribute(b,4)}}});k.support.style||(k.attrHooks.style={get:function(a){return a.style.cssText||l},set:function(a,b){return a.style.cssText=b+""}});k.support.optSelected||(k.propHooks.selected={get:function(a){if(a=a.parentNode)a.selectedIndex,a.parentNode&&a.parentNode.selectedIndex;return null}});k.each("tabIndex readOnly maxLength cellSpacing cellPadding rowSpan colSpan useMap frameBorder contentEditable".split(" "),
-function(){k.propFix[this.toLowerCase()]=this});k.support.enctype||(k.propFix.enctype="encoding");k.each(["radio","checkbox"],function(){k.valHooks[this]={set:function(a,b){if(k.isArray(b))return a.checked=0<=k.inArray(k(a).val(),b)}};k.support.checkOn||(k.valHooks[this].get=function(a){return null===a.getAttribute("value")?"on":a.value})});var eb=/^(?:input|select|textarea)$/i,Bb=/^key/,Cb=/^(?:mouse|contextmenu)|click/,fb=/^(?:focusinfocus|focusoutblur)$/,gb=/^([^.]*)(?:\.(.+)|)$/;k.event={global:{},
-add:function(a,b,c,d,f){var e,g,r,n,h,C,p,I,m;if(r=k._data(a)){c.handler&&(n=c,c=n.handler,f=n.selector);c.guid||(c.guid=k.guid++);(g=r.events)||(g=r.events={});(h=r.handle)||(h=r.handle=function(a){return typeof k===s||a&&k.event.triggered===a.type?l:k.event.dispatch.apply(h.elem,arguments)},h.elem=a);b=(b||"").match(U)||[""];for(r=b.length;r--;)e=gb.exec(b[r])||[],I=C=e[1],m=(e[2]||"").split(".").sort(),I&&(e=k.event.special[I]||{},I=(f?e.delegateType:e.bindType)||I,e=k.event.special[I]||{},C=k.extend({type:I,
-origType:C,data:d,handler:c,guid:c.guid,selector:f,needsContext:f&&k.expr.match.needsContext.test(f),namespace:m.join(".")},n),(p=g[I])||(p=g[I]=[],p.delegateCount=0,e.setup&&!1!==e.setup.call(a,d,m,h)||(a.addEventListener?a.addEventListener(I,h,!1):a.attachEvent&&a.attachEvent("on"+I,h))),e.add&&(e.add.call(a,C),C.handler.guid||(C.handler.guid=c.guid)),f?p.splice(p.delegateCount++,0,C):p.push(C),k.event.global[I]=!0);a=null}},remove:function(a,b,c,d,f){var e,g,r,n,h,C,l,p,I,m,y,t=k.hasData(a)&&k._data(a);
-if(t&&(C=t.events)){b=(b||"").match(U)||[""];for(h=b.length;h--;)if(r=gb.exec(b[h])||[],I=y=r[1],m=(r[2]||"").split(".").sort(),I){l=k.event.special[I]||{};I=(d?l.delegateType:l.bindType)||I;p=C[I]||[];r=r[2]&&RegExp("(^|\\.)"+m.join("\\.(?:.*\\.|)")+"(\\.|$)");for(n=e=p.length;e--;)g=p[e],!f&&y!==g.origType||c&&c.guid!==g.guid||r&&!r.test(g.namespace)||d&&!(d===g.selector||"**"===d&&g.selector)||(p.splice(e,1),g.selector&&p.delegateCount--,l.remove&&l.remove.call(a,g));n&&!p.length&&(l.teardown&&
-!1!==l.teardown.call(a,m,t.handle)||k.removeEvent(a,I,t.handle),delete C[I])}else for(I in C)k.event.remove(a,I+b[h],c,d,!0);k.isEmptyObject(C)&&(delete t.handle,k._removeData(a,"events"))}},trigger:function(a,b,c,d){var f,e,g,r,n,C,p=[c||K],I=B.call(a,"type")?a.type:a;n=B.call(a,"namespace")?a.namespace.split("."):[];g=f=c=c||K;if(3!==c.nodeType&&8!==c.nodeType&&!fb.test(I+k.event.triggered)&&(0<=I.indexOf(".")&&(n=I.split("."),I=n.shift(),n.sort()),e=0>I.indexOf(":")&&"on"+I,a=a[k.expando]?a:new k.Event(I,
-"object"===typeof a&&a),a.isTrigger=d?2:3,a.namespace=n.join("."),a.namespace_re=a.namespace?RegExp("(^|\\.)"+n.join("\\.(?:.*\\.|)")+"(\\.|$)"):null,a.result=l,a.target||(a.target=c),b=null==b?[a]:k.makeArray(b,[a]),n=k.event.special[I]||{},d||!n.trigger||!1!==n.trigger.apply(c,b))){if(!d&&!n.noBubble&&!k.isWindow(c)){r=n.delegateType||I;fb.test(r+I)||(g=g.parentNode);for(;g;g=g.parentNode)p.push(g),f=g;f===(c.ownerDocument||K)&&p.push(f.defaultView||f.parentWindow||h)}for(C=0;(g=p[C++])&&!a.isPropagationStopped();)a.type=
-1<C?r:n.bindType||I,(f=(k._data(g,"events")||{})[a.type]&&k._data(g,"handle"))&&f.apply(g,b),(f=e&&g[e])&&k.acceptData(g)&&f.apply&&!1===f.apply(g,b)&&a.preventDefault();a.type=I;if(!(d||a.isDefaultPrevented()||n._default&&!1!==n._default.apply(p.pop(),b))&&k.acceptData(c)&&e&&c[I]&&!k.isWindow(c)){(f=c[e])&&(c[e]=null);k.event.triggered=I;try{c[I]()}catch(m){}k.event.triggered=l;f&&(c[e]=f)}return a.result}},dispatch:function(a){a=k.event.fix(a);var b,c,d,f,e=[],g=da.call(arguments);b=(k._data(this,
-"events")||{})[a.type]||[];var r=k.event.special[a.type]||{};g[0]=a;a.delegateTarget=this;if(!r.preDispatch||!1!==r.preDispatch.call(this,a)){e=k.event.handlers.call(this,a,b);for(b=0;(d=e[b++])&&!a.isPropagationStopped();)for(a.currentTarget=d.elem,f=0;(c=d.handlers[f++])&&!a.isImmediatePropagationStopped();)if(!a.namespace_re||a.namespace_re.test(c.namespace))a.handleObj=c,a.data=c.data,c=((k.event.special[c.origType]||{}).handle||c.handler).apply(d.elem,g),c!==l&&!1===(a.result=c)&&(a.preventDefault(),
-a.stopPropagation());r.postDispatch&&r.postDispatch.call(this,a);return a.result}},handlers:function(a,b){var c,d,f,e,g=[],r=b.delegateCount,n=a.target;if(r&&n.nodeType&&(!a.button||"click"!==a.type))for(;n!=this;n=n.parentNode||this)if(1===n.nodeType&&(!0!==n.disabled||"click"!==a.type)){f=[];for(e=0;e<r;e++)d=b[e],c=d.selector+" ",f[c]===l&&(f[c]=d.needsContext?0<=k(c,this).index(n):k.find(c,this,null,[n]).length),f[c]&&f.push(d);f.length&&g.push({elem:n,handlers:f})}r<b.length&&g.push({elem:this,
-handlers:b.slice(r)});return g},fix:function(a){if(a[k.expando])return a;var b,c,d;b=a.type;var f=a,e=this.fixHooks[b];e||(this.fixHooks[b]=e=Cb.test(b)?this.mouseHooks:Bb.test(b)?this.keyHooks:{});d=e.props?this.props.concat(e.props):this.props;a=new k.Event(f);for(b=d.length;b--;)c=d[b],a[c]=f[c];a.target||(a.target=f.srcElement||K);3===a.target.nodeType&&(a.target=a.target.parentNode);a.metaKey=!!a.metaKey;return e.filter?e.filter(a,f):a},props:"altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
-fixHooks:{},keyHooks:{props:["char","charCode","key","keyCode"],filter:function(a,b){null==a.which&&(a.which=null!=b.charCode?b.charCode:b.keyCode);return a}},mouseHooks:{props:"button buttons clientX clientY fromElement offsetX offsetY pageX pageY screenX screenY toElement".split(" "),filter:function(a,b){var c,d,k=b.button,f=b.fromElement;null==a.pageX&&null!=b.clientX&&(c=a.target.ownerDocument||K,d=c.documentElement,c=c.body,a.pageX=b.clientX+(d&&d.scrollLeft||c&&c.scrollLeft||0)-(d&&d.clientLeft||
-c&&c.clientLeft||0),a.pageY=b.clientY+(d&&d.scrollTop||c&&c.scrollTop||0)-(d&&d.clientTop||c&&c.clientTop||0));!a.relatedTarget&&f&&(a.relatedTarget=f===a.target?b.toElement:f);a.which||k===l||(a.which=k&1?1:k&2?3:k&4?2:0);return a}},special:{load:{noBubble:!0},focus:{trigger:function(){if(this!==n()&&this.focus)try{return this.focus(),!1}catch(a){}},delegateType:"focusin"},blur:{trigger:function(){if(this===n()&&this.blur)return this.blur(),!1},delegateType:"focusout"},click:{trigger:function(){if(k.nodeName(this,
-"input")&&"checkbox"===this.type&&this.click)return this.click(),!1},_default:function(a){return k.nodeName(a.target,"a")}},beforeunload:{postDispatch:function(a){a.result!==l&&(a.originalEvent.returnValue=a.result)}}},simulate:function(a,b,c,d){a=k.extend(new k.Event,c,{type:a,isSimulated:!0,originalEvent:{}});d?k.event.trigger(a,null,b):k.event.dispatch.call(b,a);a.isDefaultPrevented()&&c.preventDefault()}};k.removeEvent=K.removeEventListener?function(a,b,c){a.removeEventListener&&a.removeEventListener(b,
-c,!1)}:function(a,b,c){b="on"+b;a.detachEvent&&(typeof a[b]===s&&(a[b]=null),a.detachEvent(b,c))};k.Event=function(a,b){if(!(this instanceof k.Event))return new k.Event(a,b);a&&a.type?(this.originalEvent=a,this.type=a.type,this.isDefaultPrevented=a.defaultPrevented||!1===a.returnValue||a.getPreventDefault&&a.getPreventDefault()?d:f):this.type=a;b&&k.extend(this,b);this.timeStamp=a&&a.timeStamp||k.now();this[k.expando]=!0};k.Event.prototype={isDefaultPrevented:f,isPropagationStopped:f,isImmediatePropagationStopped:f,
-preventDefault:function(){var a=this.originalEvent;this.isDefaultPrevented=d;a&&(a.preventDefault?a.preventDefault():a.returnValue=!1)},stopPropagation:function(){var a=this.originalEvent;this.isPropagationStopped=d;a&&(a.stopPropagation&&a.stopPropagation(),a.cancelBubble=!0)},stopImmediatePropagation:function(){this.isImmediatePropagationStopped=d;this.stopPropagation()}};k.each({mouseenter:"mouseover",mouseleave:"mouseout"},function(a,b){k.event.special[a]={delegateType:b,bindType:b,handle:function(a){var c,
-d=a.relatedTarget,f=a.handleObj;if(!d||d!==this&&!k.contains(this,d))a.type=f.origType,c=f.handler.apply(this,arguments),a.type=b;return c}}});k.support.submitBubbles||(k.event.special.submit={setup:function(){if(k.nodeName(this,"form"))return!1;k.event.add(this,"click._submit keypress._submit",function(a){a=a.target;(a=k.nodeName(a,"input")||k.nodeName(a,"button")?a.form:l)&&!k._data(a,"submitBubbles")&&(k.event.add(a,"submit._submit",function(a){a._submit_bubble=!0}),k._data(a,"submitBubbles",!0))})},
-postDispatch:function(a){a._submit_bubble&&(delete a._submit_bubble,this.parentNode&&!a.isTrigger&&k.event.simulate("submit",this.parentNode,a,!0))},teardown:function(){if(k.nodeName(this,"form"))return!1;k.event.remove(this,"._submit")}});k.support.changeBubbles||(k.event.special.change={setup:function(){if(eb.test(this.nodeName)){if("checkbox"===this.type||"radio"===this.type)k.event.add(this,"propertychange._change",function(a){"checked"===a.originalEvent.propertyName&&(this._just_changed=!0)}),
-k.event.add(this,"click._change",function(a){this._just_changed&&!a.isTrigger&&(this._just_changed=!1);k.event.simulate("change",this,a,!0)});return!1}k.event.add(this,"beforeactivate._change",function(a){a=a.target;eb.test(a.nodeName)&&!k._data(a,"changeBubbles")&&(k.event.add(a,"change._change",function(a){!this.parentNode||a.isSimulated||a.isTrigger||k.event.simulate("change",this.parentNode,a,!0)}),k._data(a,"changeBubbles",!0))})},handle:function(a){var b=a.target;if(this!==b||a.isSimulated||
-a.isTrigger||"radio"!==b.type&&"checkbox"!==b.type)return a.handleObj.handler.apply(this,arguments)},teardown:function(){k.event.remove(this,"._change");return!eb.test(this.nodeName)}});k.support.focusinBubbles||k.each({focus:"focusin",blur:"focusout"},function(a,b){var c=0,d=function(a){k.event.simulate(b,a.target,k.event.fix(a),!0)};k.event.special[b]={setup:function(){0===c++&&K.addEventListener(a,d,!0)},teardown:function(){0===--c&&K.removeEventListener(a,d,!0)}}});k.fn.extend({on:function(a,
-b,c,d,e){var g,r;if("object"===typeof a){"string"!==typeof b&&(c=c||b,b=l);for(g in a)this.on(g,b,c,a[g],e);return this}null==c&&null==d?(d=b,c=b=l):null==d&&("string"===typeof b?(d=c,c=l):(d=c,c=b,b=l));if(!1===d)d=f;else if(!d)return this;1===e&&(r=d,d=function(a){k().off(a);return r.apply(this,arguments)},d.guid=r.guid||(r.guid=k.guid++));return this.each(function(){k.event.add(this,a,d,c,b)})},one:function(a,b,c,d){return this.on(a,b,c,d,1)},off:function(a,b,c){var d;if(a&&a.preventDefault&&a.handleObj)return d=
-a.handleObj,k(a.delegateTarget).off(d.namespace?d.origType+"."+d.namespace:d.origType,d.selector,d.handler),this;if("object"===typeof a){for(d in a)this.off(d,b,a[d]);return this}if(!1===b||"function"===typeof b)c=b,b=l;!1===c&&(c=f);return this.each(function(){k.event.remove(this,a,c,b)})},trigger:function(a,b){return this.each(function(){k.event.trigger(a,b,this)})},triggerHandler:function(a,b){var c=this[0];if(c)return k.event.trigger(a,b,c,!0)}});var mb=/^.[^:#\[\.,]*$/,Db=/^(?:parents|prev(?:Until|All))/,
-rb=k.expr.match.needsContext,Eb={children:!0,contents:!0,next:!0,prev:!0};k.fn.extend({find:function(a){var b,c=[],d=this,f=d.length;if("string"!==typeof a)return this.pushStack(k(a).filter(function(){for(b=0;b<f;b++)if(k.contains(d[b],this))return!0}));for(b=0;b<f;b++)k.find(a,d[b],c);c=this.pushStack(1<f?k.unique(c):c);c.selector=this.selector?this.selector+" "+a:a;return c},has:function(a){var b,c=k(a,this),d=c.length;return this.filter(function(){for(b=0;b<d;b++)if(k.contains(this,c[b]))return!0})},
-not:function(a){return this.pushStack(y(this,a||[],!0))},filter:function(a){return this.pushStack(y(this,a||[],!1))},is:function(a){return!!y(this,"string"===typeof a&&rb.test(a)?k(a):a||[],!1).length},closest:function(a,b){for(var c,d=0,f=this.length,e=[],g=rb.test(a)||"string"!==typeof a?k(a,b||this.context):0;d<f;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(11>c.nodeType&&(g?-1<g.index(c):1===c.nodeType&&k.find.matchesSelector(c,a))){e.push(c);break}return this.pushStack(1<e.length?k.unique(e):
-e)},index:function(a){return a?"string"===typeof a?k.inArray(this[0],k(a)):k.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){var c="string"===typeof a?k(a,b):k.makeArray(a&&a.nodeType?[a]:a),c=k.merge(this.get(),c);return this.pushStack(k.unique(c))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});k.each({parent:function(a){return(a=a.parentNode)&&11!==a.nodeType?a:null},parents:function(a){return k.dir(a,
-"parentNode")},parentsUntil:function(a,b,c){return k.dir(a,"parentNode",c)},next:function(a){return p(a,"nextSibling")},prev:function(a){return p(a,"previousSibling")},nextAll:function(a){return k.dir(a,"nextSibling")},prevAll:function(a){return k.dir(a,"previousSibling")},nextUntil:function(a,b,c){return k.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return k.dir(a,"previousSibling",c)},siblings:function(a){return k.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return k.sibling(a.firstChild)},
-contents:function(a){return k.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:k.merge([],a.childNodes)}},function(a,b){k.fn[a]=function(c,d){var f=k.map(this,b,c);"Until"!==a.slice(-5)&&(d=c);d&&"string"===typeof d&&(f=k.filter(d,f));1<this.length&&(Eb[a]||(f=k.unique(f)),Db.test(a)&&(f=f.reverse()));return this.pushStack(f)}});k.extend({filter:function(a,b,c){var d=b[0];c&&(a=":not("+a+")");return 1===b.length&&1===d.nodeType?k.find.matchesSelector(d,a)?[d]:[]:k.find.matches(a,k.grep(b,
-function(a){return 1===a.nodeType}))},dir:function(a,b,c){var d=[];for(a=a[b];a&&9!==a.nodeType&&(c===l||1!==a.nodeType||!k(a).is(c));)1===a.nodeType&&d.push(a),a=a[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}});var nb="abbr|article|aside|audio|bdi|canvas|data|datalist|details|figcaption|figure|footer|header|hgroup|mark|meter|nav|output|progress|section|summary|time|video",hb=/ jQuery\d+="(?:null|\d+)"/g,$a=RegExp("\x3c(?:"+nb+")[\\s/\x3e]",
-"i"),ib=/^\s+/,jb=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/gi,sb=/<([\w:]+)/,tb=/<tbody/i,kb=/<|&#?\w+;/,Ka=/<(?:script|style|link)/i,Ya=/^(?:checkbox|radio)$/i,ub=/checked\s*(?:[^=]|=\s*.checked.)/i,Ba=/^$|\/(?:java|ecma)script/i,ob=/^true\/(.*)/,vb=/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g,pa={option:[1,"\x3cselect multiple\x3d'multiple'\x3e","\x3c/select\x3e"],legend:[1,"\x3cfieldset\x3e","\x3c/fieldset\x3e"],area:[1,"\x3cmap\x3e","\x3c/map\x3e"],param:[1,"\x3cobject\x3e",
-"\x3c/object\x3e"],thead:[1,"\x3ctable\x3e","\x3c/table\x3e"],tr:[2,"\x3ctable\x3e\x3ctbody\x3e","\x3c/tbody\x3e\x3c/table\x3e"],col:[2,"\x3ctable\x3e\x3ctbody\x3e\x3c/tbody\x3e\x3ccolgroup\x3e","\x3c/colgroup\x3e\x3c/table\x3e"],td:[3,"\x3ctable\x3e\x3ctbody\x3e\x3ctr\x3e","\x3c/tr\x3e\x3c/tbody\x3e\x3c/table\x3e"],_default:k.support.htmlSerialize?[0,"",""]:[1,"X\x3cdiv\x3e","\x3c/div\x3e"]},r=t(K).appendChild(K.createElement("div"));pa.optgroup=pa.option;pa.tbody=pa.tfoot=pa.colgroup=pa.caption=
-pa.thead;pa.th=pa.td;k.fn.extend({text:function(a){return k.access(this,function(a){return a===l?k.text(this):this.empty().append((this[0]&&this[0].ownerDocument||K).createTextNode(a))},null,a,arguments.length)},append:function(){return this.domManip(arguments,function(a){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||z(this,a).appendChild(a)})},prepend:function(){return this.domManip(arguments,function(a){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var b=z(this,a);b.insertBefore(a,
-b.firstChild)}})},before:function(){return this.domManip(arguments,function(a){this.parentNode&&this.parentNode.insertBefore(a,this)})},after:function(){return this.domManip(arguments,function(a){this.parentNode&&this.parentNode.insertBefore(a,this.nextSibling)})},remove:function(a,b){for(var c,d=a?k.filter(a,this):this,f=0;null!=(c=d[f]);f++)b||1!==c.nodeType||k.cleanData(F(c)),c.parentNode&&(b&&k.contains(c.ownerDocument,c)&&A(F(c,"script")),c.parentNode.removeChild(c));return this},empty:function(){for(var a,
-b=0;null!=(a=this[b]);b++){for(1===a.nodeType&&k.cleanData(F(a,!1));a.firstChild;)a.removeChild(a.firstChild);a.options&&k.nodeName(a,"select")&&(a.options.length=0)}return this},clone:function(a,b){a=null==a?!1:a;b=null==b?a:b;return this.map(function(){return k.clone(this,a,b)})},html:function(a){return k.access(this,function(a){var b=this[0]||{},c=0,d=this.length;if(a===l)return 1===b.nodeType?b.innerHTML.replace(hb,""):l;if("string"===typeof a&&!(Ka.test(a)||!k.support.htmlSerialize&&$a.test(a)||
-!k.support.leadingWhitespace&&ib.test(a)||pa[(sb.exec(a)||["",""])[1].toLowerCase()])){a=a.replace(jb,"\x3c$1\x3e\x3c/$2\x3e");try{for(;c<d;c++)b=this[c]||{},1===b.nodeType&&(k.cleanData(F(b,!1)),b.innerHTML=a);b=0}catch(f){}}b&&this.empty().append(a)},null,a,arguments.length)},replaceWith:function(){var a=k.map(this,function(a){return[a.nextSibling,a.parentNode]}),b=0;this.domManip(arguments,function(c){var d=a[b++],f=a[b++];f&&(d&&d.parentNode!==f&&(d=this.nextSibling),k(this).remove(),f.insertBefore(c,
-d))},!0);return b?this:this.remove()},detach:function(a){return this.remove(a,!0)},domManip:function(a,b,c){a=w.apply([],a);var d,f,e,g,r=0,n=this.length,h=this,C=n-1,l=a[0],p=k.isFunction(l);if(p||!(1>=n||"string"!==typeof l||k.support.checkClone)&&ub.test(l))return this.each(function(d){var k=h.eq(d);p&&(a[0]=l.call(this,d,k.html()));k.domManip(a,b,c)});if(n&&(g=k.buildFragment(a,this[0].ownerDocument,!1,!c&&this),d=g.firstChild,1===g.childNodes.length&&(g=d),d)){e=k.map(F(g,"script"),H);for(f=
-e.length;r<n;r++)d=g,r!==C&&(d=k.clone(d,!0,!0),f&&k.merge(e,F(d,"script"))),b.call(this[r],d,r);if(f)for(g=e[e.length-1].ownerDocument,k.map(e,D),r=0;r<f;r++)d=e[r],Ba.test(d.type||"")&&!k._data(d,"globalEval")&&k.contains(g,d)&&(d.src?k._evalUrl(d.src):k.globalEval((d.text||d.textContent||d.innerHTML||"").replace(vb,"")));g=d=null}return this}});k.each({appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after",replaceAll:"replaceWith"},function(a,b){k.fn[a]=function(a){for(var c=
-0,d=[],f=k(a),e=f.length-1;c<=e;c++)a=c===e?this:this.clone(!0),k(f[c])[b](a),ga.apply(d,a.get());return this.pushStack(d)}});k.extend({clone:function(a,b,c){var d,f,e,g,n,h=k.contains(a.ownerDocument,a);k.support.html5Clone||k.isXMLDoc(a)||!$a.test("\x3c"+a.nodeName+"\x3e")?e=a.cloneNode(!0):(r.innerHTML=a.outerHTML,r.removeChild(e=r.firstChild));if(!(k.support.noCloneEvent&&k.support.noCloneChecked||1!==a.nodeType&&11!==a.nodeType||k.isXMLDoc(a)))for(d=F(e),n=F(a),g=0;null!=(f=n[g]);++g)if(d[g]){var C=
-d[g],l=void 0,p=void 0,I=void 0;if(1===C.nodeType){l=C.nodeName.toLowerCase();if(!k.support.noCloneEvent&&C[k.expando]){I=k._data(C);for(p in I.events)k.removeEvent(C,p,I.handle);C.removeAttribute(k.expando)}if("script"===l&&C.text!==f.text)H(C).text=f.text,D(C);else if("object"===l)C.parentNode&&(C.outerHTML=f.outerHTML),k.support.html5Clone&&f.innerHTML&&!k.trim(C.innerHTML)&&(C.innerHTML=f.innerHTML);else if("input"===l&&Ya.test(f.type))C.defaultChecked=C.checked=f.checked,C.value!==f.value&&(C.value=
-f.value);else if("option"===l)C.defaultSelected=C.selected=f.defaultSelected;else if("input"===l||"textarea"===l)C.defaultValue=f.defaultValue}}if(b)if(c)for(n=n||F(a),d=d||F(e),g=0;null!=(f=n[g]);g++)x(f,d[g]);else x(a,e);d=F(e,"script");0<d.length&&A(d,!h&&F(a,"script"));return e},buildFragment:function(a,b,c,d){for(var f,e,g,r,n,h,C=a.length,l=t(b),p=[],I=0;I<C;I++)if((e=a[I])||0===e)if("object"===k.type(e))k.merge(p,e.nodeType?[e]:e);else if(kb.test(e)){g=g||l.appendChild(b.createElement("div"));
-r=(sb.exec(e)||["",""])[1].toLowerCase();h=pa[r]||pa._default;g.innerHTML=h[1]+e.replace(jb,"\x3c$1\x3e\x3c/$2\x3e")+h[2];for(f=h[0];f--;)g=g.lastChild;!k.support.leadingWhitespace&&ib.test(e)&&p.push(b.createTextNode(ib.exec(e)[0]));if(!k.support.tbody)for(f=(e="table"!==r||tb.test(e)?"\x3ctable\x3e"!==h[1]||tb.test(e)?0:g:g.firstChild)&&e.childNodes.length;f--;)k.nodeName(n=e.childNodes[f],"tbody")&&!n.childNodes.length&&e.removeChild(n);k.merge(p,g.childNodes);for(g.textContent="";g.firstChild;)g.removeChild(g.firstChild);
-g=l.lastChild}else p.push(b.createTextNode(e));g&&l.removeChild(g);k.support.appendChecked||k.grep(F(p,"input"),P);for(I=0;e=p[I++];)if(!d||-1===k.inArray(e,d))if(a=k.contains(e.ownerDocument,e),g=F(l.appendChild(e),"script"),a&&A(g),c)for(f=0;e=g[f++];)Ba.test(e.type||"")&&c.push(e);return l},cleanData:function(a,b){for(var c,d,f,e,g=0,r=k.expando,n=k.cache,h=k.support.deleteExpando,C=k.event.special;null!=(c=a[g]);g++)if(b||k.acceptData(c))if(e=(f=c[r])&&n[f]){if(e.events)for(d in e.events)C[d]?
-k.event.remove(c,d):k.removeEvent(c,d,e.handle);n[f]&&(delete n[f],h?delete c[r]:typeof c.removeAttribute!==s?c.removeAttribute(r):c[r]=null,aa.push(f))}},_evalUrl:function(a){return k.ajax({url:a,type:"GET",dataType:"script",async:!1,global:!1,"throws":!0})}});k.fn.extend({wrapAll:function(a){if(k.isFunction(a))return this.each(function(b){k(this).wrapAll(a.call(this,b))});if(this[0]){var b=k(a,this[0].ownerDocument).eq(0).clone(!0);this[0].parentNode&&b.insertBefore(this[0]);b.map(function(){for(var a=
-this;a.firstChild&&1===a.firstChild.nodeType;)a=a.firstChild;return a}).append(this)}return this},wrapInner:function(a){return k.isFunction(a)?this.each(function(b){k(this).wrapInner(a.call(this,b))}):this.each(function(){var b=k(this),c=b.contents();c.length?c.wrapAll(a):b.append(a)})},wrap:function(a){var b=k.isFunction(a);return this.each(function(c){k(this).wrapAll(b?a.call(this,c):a)})},unwrap:function(){return this.parent().each(function(){k.nodeName(this,"body")||k(this).replaceWith(this.childNodes)}).end()}});
-var C,I,N,va=/alpha\([^)]*\)/i,La=/opacity\s*=\s*([^)]*)/,Fb=/^(top|right|bottom|left)$/,Gb=/^(none|table(?!-c[ea]).+)/,Ga=/^margin/,Wb=RegExp("^("+oa+")(.*)$","i"),pb=RegExp("^("+oa+")(?!px)[a-z%]+$","i"),Zb=RegExp("^([+-])\x3d("+oa+")","i"),Mb={BODY:"block"},$b={position:"absolute",visibility:"hidden",display:"block"},Nb={letterSpacing:0,fontWeight:400},Ua=["Top","Right","Bottom","Left"],Lb=["Webkit","O","Moz","ms"];k.fn.extend({css:function(a,b){return k.access(this,function(a,b,c){var d,f={},
-e=0;if(k.isArray(b)){d=I(a);for(c=b.length;e<c;e++)f[b[e]]=k.css(a,b[e],!1,d);return f}return c!==l?k.style(a,b,c):k.css(a,b)},a,b,1<arguments.length)},show:function(){return ka(this,!0)},hide:function(){return ka(this)},toggle:function(a){return"boolean"===typeof a?a?this.show():this.hide():this.each(function(){la(this)?k(this).show():k(this).hide()})}});k.extend({cssHooks:{opacity:{get:function(a,b){if(b){var c=N(a,"opacity");return""===c?"1":c}}}},cssNumber:{columnCount:!0,fillOpacity:!0,fontWeight:!0,
-lineHeight:!0,opacity:!0,order:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},cssProps:{"float":k.support.cssFloat?"cssFloat":"styleFloat"},style:function(a,b,c,d){if(a&&3!==a.nodeType&&8!==a.nodeType&&a.style){var f,e,g,r=k.camelCase(b),n=a.style;b=k.cssProps[r]||(k.cssProps[r]=v(n,r));g=k.cssHooks[b]||k.cssHooks[r];if(c!==l){if(e=typeof c,"string"===e&&(f=Zb.exec(c))&&(c=(f[1]+1)*f[2]+parseFloat(k.css(a,b)),e="number"),!(null==c||"number"===e&&isNaN(c)||("number"!==e||k.cssNumber[r]||(c+="px"),k.support.clearCloneStyle||
-""!==c||0!==b.indexOf("background")||(n[b]="inherit"),g&&"set"in g&&(c=g.set(a,c,d))===l)))try{n[b]=c}catch(h){}}else return g&&"get"in g&&(f=g.get(a,!1,d))!==l?f:n[b]}},css:function(a,b,c,d){var f,e;e=k.camelCase(b);b=k.cssProps[e]||(k.cssProps[e]=v(a.style,e));(e=k.cssHooks[b]||k.cssHooks[e])&&"get"in e&&(f=e.get(a,!0,c));f===l&&(f=N(a,b,d));"normal"===f&&b in Nb&&(f=Nb[b]);return""===c||c?(a=parseFloat(f),!0===c||k.isNumeric(a)?a||0:f):f}});h.getComputedStyle?(I=function(a){return h.getComputedStyle(a,
-null)},N=function(a,b,c){var d,f=(c=c||I(a))?c.getPropertyValue(b)||c[b]:l,e=a.style;c&&(""!==f||k.contains(a.ownerDocument,a)||(f=k.style(a,b)),pb.test(f)&&Ga.test(b)&&(a=e.width,b=e.minWidth,d=e.maxWidth,e.minWidth=e.maxWidth=e.width=f,f=c.width,e.width=a,e.minWidth=b,e.maxWidth=d));return f}):K.documentElement.currentStyle&&(I=function(a){return a.currentStyle},N=function(a,b,c){var d,f,k=(c=c||I(a))?c[b]:l,e=a.style;null==k&&e&&e[b]&&(k=e[b]);if(pb.test(k)&&!Fb.test(b)){c=e.left;if(f=(d=a.runtimeStyle)&&
-d.left)d.left=a.currentStyle.left;e.left="fontSize"===b?"1em":k;k=e.pixelLeft+"px";e.left=c;f&&(d.left=f)}return""===k?"auto":k});k.each(["height","width"],function(a,b){k.cssHooks[b]={get:function(a,c,d){if(c)return 0===a.offsetWidth&&Gb.test(k.css(a,"display"))?k.swap(a,$b,function(){return Na(a,b,d)}):Na(a,b,d)},set:function(a,c,d){var f=d&&I(a);return V(a,c,d?ja(a,b,d,k.support.boxSizing&&"border-box"===k.css(a,"boxSizing",!1,f),f):0)}}});k.support.opacity||(k.cssHooks.opacity={get:function(a,
-b){return La.test((b&&a.currentStyle?a.currentStyle.filter:a.style.filter)||"")?0.01*parseFloat(RegExp.$1)+"":b?"1":""},set:function(a,b){var c=a.style,d=a.currentStyle,f=k.isNumeric(b)?"alpha(opacity\x3d"+100*b+")":"",e=d&&d.filter||c.filter||"";c.zoom=1;if((1<=b||""===b)&&""===k.trim(e.replace(va,""))&&c.removeAttribute&&(c.removeAttribute("filter"),""===b||d&&!d.filter))return;c.filter=va.test(e)?e.replace(va,f):e+" "+f}});k(function(){k.support.reliableMarginRight||(k.cssHooks.marginRight={get:function(a,
-b){if(b)return k.swap(a,{display:"inline-block"},N,[a,"marginRight"])}});!k.support.pixelPosition&&k.fn.position&&k.each(["top","left"],function(a,b){k.cssHooks[b]={get:function(a,c){if(c)return c=N(a,b),pb.test(c)?k(a).position()[b]+"px":c}}})});k.expr&&k.expr.filters&&(k.expr.filters.hidden=function(a){return 0>=a.offsetWidth&&0>=a.offsetHeight||!k.support.reliableHiddenOffsets&&"none"===(a.style&&a.style.display||k.css(a,"display"))},k.expr.filters.visible=function(a){return!k.expr.filters.hidden(a)});
-k.each({margin:"",padding:"",border:"Width"},function(a,b){k.cssHooks[a+b]={expand:function(c){var d=0,f={};for(c="string"===typeof c?c.split(" "):[c];4>d;d++)f[a+Ua[d]+b]=c[d]||c[d-2]||c[0];return f}};Ga.test(a)||(k.cssHooks[a+b].set=V)});var ac=/%20/g,Xb=/\[\]$/,Ob=/\r?\n/g,bc=/^(?:submit|button|image|reset|file)$/i,cc=/^(?:input|select|textarea|keygen)/i;k.fn.extend({serialize:function(){return k.param(this.serializeArray())},serializeArray:function(){return this.map(function(){var a=k.prop(this,
-"elements");return a?k.makeArray(a):this}).filter(function(){var a=this.type;return this.name&&!k(this).is(":disabled")&&cc.test(this.nodeName)&&!bc.test(a)&&(this.checked||!Ya.test(a))}).map(function(a,b){var c=k(this).val();return null==c?null:k.isArray(c)?k.map(c,function(a){return{name:b.name,value:a.replace(Ob,"\r\n")}}):{name:b.name,value:c.replace(Ob,"\r\n")}}).get()}});k.param=function(a,b){var c,d=[],f=function(a,b){b=k.isFunction(b)?b():null==b?"":b;d[d.length]=encodeURIComponent(a)+"\x3d"+
-encodeURIComponent(b)};b===l&&(b=k.ajaxSettings&&k.ajaxSettings.traditional);if(k.isArray(a)||a.jquery&&!k.isPlainObject(a))k.each(a,function(){f(this.name,this.value)});else for(c in a)qa(c,a[c],b,f);return d.join("\x26").replace(ac,"+")};k.each("blur focus focusin focusout load resize scroll unload click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup error contextmenu".split(" "),function(a,b){k.fn[b]=function(a,c){return 0<
-arguments.length?this.on(b,null,a,c):this.trigger(b)}});k.fn.extend({hover:function(a,b){return this.mouseenter(a).mouseleave(b||a)},bind:function(a,b,c){return this.on(a,null,b,c)},unbind:function(a,b){return this.off(a,null,b)},delegate:function(a,b,c,d){return this.on(b,a,c,d)},undelegate:function(a,b,c){return 1===arguments.length?this.off(a,"**"):this.off(b,a||"**",c)}});var Wa,Ta,Hb=k.now(),Ib=/\?/,dc=/#.*$/,Pb=/([?&])_=[^&]*/,ec=/^(.*?):[ \t]*([^\r\n]*)\r?$/mg,fc=/^(?:GET|HEAD)$/,gc=/^\/\//,
-Qb=/^([\w.+-]+:)(?:\/\/([^\/?#:]*)(?::(\d+)|)|)/,Rb=k.fn.load,Sb={},xb={},Tb="*/".concat("*");try{Ta=M.href}catch(kc){Ta=K.createElement("a"),Ta.href="",Ta=Ta.href}Wa=Qb.exec(Ta.toLowerCase())||[];k.fn.load=function(a,b,c){if("string"!==typeof a&&Rb)return Rb.apply(this,arguments);var d,f,e,g=this,r=a.indexOf(" ");0<=r&&(d=a.slice(r,a.length),a=a.slice(0,r));k.isFunction(b)?(c=b,b=l):b&&"object"===typeof b&&(e="POST");0<g.length&&k.ajax({url:a,type:e,dataType:"html",data:b}).done(function(a){f=arguments;
-g.html(d?k("\x3cdiv\x3e").append(k.parseHTML(a)).find(d):a)}).complete(c&&function(a,b){g.each(c,f||[a.responseText,b,a])});return this};k.each("ajaxStart ajaxStop ajaxComplete ajaxError ajaxSuccess ajaxSend".split(" "),function(a,b){k.fn[b]=function(a){return this.on(b,a)}});k.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:Ta,type:"GET",isLocal:/^(?:about|app|app-storage|.+-extension|file|res|widget):$/.test(Wa[1]),global:!0,processData:!0,async:!0,contentType:"application/x-www-form-urlencoded; charset\x3dUTF-8",
-accepts:{"*":Tb,text:"text/plain",html:"text/html",xml:"application/xml, text/xml",json:"application/json, text/javascript"},contents:{xml:/xml/,html:/html/,json:/json/},responseFields:{xml:"responseXML",text:"responseText",json:"responseJSON"},converters:{"* text":String,"text html":!0,"text json":k.parseJSON,"text xml":k.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(a,b){return b?Ia(Ia(a,k.ajaxSettings),b):Ia(k.ajaxSettings,a)},ajaxPrefilter:Oa(Sb),ajaxTransport:Oa(xb),ajax:function(a,
-b){function c(a,b,d,f){var C,E,U,u;u=b;if(2!==Q){Q=2;r&&clearTimeout(r);h=l;g=f||"";T.readyState=0<a?4:0;f=200<=a&&300>a||304===a;if(d){U=p;for(var N=T,q,z,ea,A,R=U.contents,X=U.dataTypes;"*"===X[0];)X.shift(),z===l&&(z=U.mimeType||N.getResponseHeader("Content-Type"));if(z)for(A in R)if(R[A]&&R[A].test(z)){X.unshift(A);break}if(X[0]in d)ea=X[0];else{for(A in d){if(!X[0]||U.converters[A+" "+X[0]]){ea=A;break}q||(q=A)}ea=ea||q}ea?(ea!==X[0]&&X.unshift(ea),U=d[ea]):U=void 0}a:{d=p;q=U;z=T;ea=f;var fa,
-S,ba,N={},R=d.dataTypes.slice();if(R[1])for(S in d.converters)N[S.toLowerCase()]=d.converters[S];for(A=R.shift();A;)if(d.responseFields[A]&&(z[d.responseFields[A]]=q),!ba&&ea&&d.dataFilter&&(q=d.dataFilter(q,d.dataType)),ba=A,A=R.shift())if("*"===A)A=ba;else if("*"!==ba&&ba!==A){S=N[ba+" "+A]||N["* "+A];if(!S)for(fa in N)if(U=fa.split(" "),U[1]===A&&(S=N[ba+" "+U[0]]||N["* "+U[0]])){!0===S?S=N[fa]:!0!==N[fa]&&(A=U[0],R.unshift(U[1]));break}if(!0!==S)if(S&&d["throws"])q=S(q);else try{q=S(q)}catch(v){U=
-{state:"parsererror",error:S?v:"No conversion from "+ba+" to "+A};break a}}U={state:"success",data:q}}if(f)p.ifModified&&((u=T.getResponseHeader("Last-Modified"))&&(k.lastModified[e]=u),(u=T.getResponseHeader("etag"))&&(k.etag[e]=u)),204===a||"HEAD"===p.type?u="nocontent":304===a?u="notmodified":(u=U.state,C=U.data,E=U.error,f=!E);else if(E=u,a||!u)u="error",0>a&&(a=0);T.status=a;T.statusText=(b||u)+"";f?y.resolveWith(I,[C,u,T]):y.rejectWith(I,[T,u,E]);T.statusCode(oa);oa=l;n&&m.trigger(f?"ajaxSuccess":
-"ajaxError",[T,p,f?C:E]);t.fireWith(I,[T,u]);n&&(m.trigger("ajaxComplete",[T,p]),--k.active||k.event.trigger("ajaxStop"))}}"object"===typeof a&&(b=a,a=l);b=b||{};var d,f,e,g,r,n,h,C,p=k.ajaxSetup({},b),I=p.context||p,m=p.context&&(I.nodeType||I.jquery)?k(I):k.event,y=k.Deferred(),t=k.Callbacks("once memory"),oa=p.statusCode||{},u={},N={},Q=0,q="canceled",T={readyState:0,getResponseHeader:function(a){var b;if(2===Q){if(!C)for(C={};b=ec.exec(g);)C[b[1].toLowerCase()]=b[2];b=C[a.toLowerCase()]}return null==
-b?null:b},getAllResponseHeaders:function(){return 2===Q?g:null},setRequestHeader:function(a,b){var c=a.toLowerCase();Q||(a=N[c]=N[c]||a,u[a]=b);return this},overrideMimeType:function(a){Q||(p.mimeType=a);return this},statusCode:function(a){var b;if(a)if(2>Q)for(b in a)oa[b]=[oa[b],a[b]];else T.always(a[T.status]);return this},abort:function(a){a=a||q;h&&h.abort(a);c(0,a);return this}};y.promise(T).complete=t.add;T.success=T.done;T.error=T.fail;p.url=((a||p.url||Ta)+"").replace(dc,"").replace(gc,Wa[1]+
-"//");p.type=b.method||b.type||p.method||p.type;p.dataTypes=k.trim(p.dataType||"*").toLowerCase().match(U)||[""];null==p.crossDomain&&(d=Qb.exec(p.url.toLowerCase()),p.crossDomain=!(!d||d[1]===Wa[1]&&d[2]===Wa[2]&&(d[3]||("http:"===d[1]?"80":"443"))===(Wa[3]||("http:"===Wa[1]?"80":"443"))));p.data&&p.processData&&"string"!==typeof p.data&&(p.data=k.param(p.data,p.traditional));Da(Sb,p,b,T);if(2===Q)return T;(n=p.global)&&0===k.active++&&k.event.trigger("ajaxStart");p.type=p.type.toUpperCase();p.hasContent=
-!fc.test(p.type);e=p.url;p.hasContent||(p.data&&(e=p.url+=(Ib.test(e)?"\x26":"?")+p.data,delete p.data),!1===p.cache&&(p.url=Pb.test(e)?e.replace(Pb,"$1_\x3d"+Hb++):e+(Ib.test(e)?"\x26":"?")+"_\x3d"+Hb++));p.ifModified&&(k.lastModified[e]&&T.setRequestHeader("If-Modified-Since",k.lastModified[e]),k.etag[e]&&T.setRequestHeader("If-None-Match",k.etag[e]));(p.data&&p.hasContent&&!1!==p.contentType||b.contentType)&&T.setRequestHeader("Content-Type",p.contentType);T.setRequestHeader("Accept",p.dataTypes[0]&&
-p.accepts[p.dataTypes[0]]?p.accepts[p.dataTypes[0]]+("*"!==p.dataTypes[0]?", "+Tb+"; q\x3d0.01":""):p.accepts["*"]);for(f in p.headers)T.setRequestHeader(f,p.headers[f]);if(p.beforeSend&&(!1===p.beforeSend.call(I,T,p)||2===Q))return T.abort();q="abort";for(f in{success:1,error:1,complete:1})T[f](p[f]);if(h=Da(xb,p,b,T)){T.readyState=1;n&&m.trigger("ajaxSend",[T,p]);p.async&&0<p.timeout&&(r=setTimeout(function(){T.abort("timeout")},p.timeout));try{Q=1,h.send(u,c)}catch(z){if(2>Q)c(-1,z);else throw z;
-}}else c(-1,"No Transport");return T},getJSON:function(a,b,c){return k.get(a,b,c,"json")},getScript:function(a,b){return k.get(a,l,b,"script")}});k.each(["get","post"],function(a,b){k[b]=function(a,c,d,f){k.isFunction(c)&&(f=f||d,d=c,c=l);return k.ajax({url:a,type:b,dataType:f,data:c,success:d})}});k.ajaxSetup({accepts:{script:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},contents:{script:/(?:java|ecma)script/},converters:{"text script":function(a){k.globalEval(a);
-return a}}});k.ajaxPrefilter("script",function(a){a.cache===l&&(a.cache=!1);a.crossDomain&&(a.type="GET",a.global=!1)});k.ajaxTransport("script",function(a){if(a.crossDomain){var b,c=K.head||k("head")[0]||K.documentElement;return{send:function(d,f){b=K.createElement("script");b.async=!0;a.scriptCharset&&(b.charset=a.scriptCharset);b.src=a.url;b.onload=b.onreadystatechange=function(a,c){if(c||!b.readyState||/loaded|complete/.test(b.readyState))b.onload=b.onreadystatechange=null,b.parentNode&&b.parentNode.removeChild(b),
-b=null,c||f(200,"success")};c.insertBefore(b,c.firstChild)},abort:function(){if(b)b.onload(l,!0)}}}});var Ub=[],Jb=/(=)\?(?=&|$)|\?\?/;k.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var a=Ub.pop()||k.expando+"_"+Hb++;this[a]=!0;return a}});k.ajaxPrefilter("json jsonp",function(a,b,c){var d,f,e,g=!1!==a.jsonp&&(Jb.test(a.url)?"url":"string"===typeof a.data&&!(a.contentType||"").indexOf("application/x-www-form-urlencoded")&&Jb.test(a.data)&&"data");if(g||"jsonp"===a.dataTypes[0])return d=a.jsonpCallback=
-k.isFunction(a.jsonpCallback)?a.jsonpCallback():a.jsonpCallback,g?a[g]=a[g].replace(Jb,"$1"+d):!1!==a.jsonp&&(a.url+=(Ib.test(a.url)?"\x26":"?")+a.jsonp+"\x3d"+d),a.converters["script json"]=function(){e||k.error(d+" was not called");return e[0]},a.dataTypes[0]="json",f=h[d],h[d]=function(){e=arguments},c.always(function(){h[d]=f;a[d]&&(a.jsonpCallback=b.jsonpCallback,Ub.push(d));e&&k.isFunction(f)&&f(e[0]);e=f=l}),"script"});var ab,lb,hc=0,Kb=h.ActiveXObject&&function(){for(var a in ab)ab[a](l,!0)};
-k.ajaxSettings.xhr=h.ActiveXObject?function(){var a;if(!(a=!this.isLocal&&Ea()))a:{try{a=new h.ActiveXObject("Microsoft.XMLHTTP");break a}catch(b){}a=void 0}return a}:Ea;lb=k.ajaxSettings.xhr();k.support.cors=!!lb&&"withCredentials"in lb;(lb=k.support.ajax=!!lb)&&k.ajaxTransport(function(a){if(!a.crossDomain||k.support.cors){var b;return{send:function(c,d){var f,e,g=a.xhr();a.username?g.open(a.type,a.url,a.async,a.username,a.password):g.open(a.type,a.url,a.async);if(a.xhrFields)for(e in a.xhrFields)g[e]=
-a.xhrFields[e];a.mimeType&&g.overrideMimeType&&g.overrideMimeType(a.mimeType);a.crossDomain||c["X-Requested-With"]||(c["X-Requested-With"]="XMLHttpRequest");try{for(e in c)g.setRequestHeader(e,c[e])}catch(r){}g.send(a.hasContent&&a.data||null);b=function(c,e){var r,n,h,C;try{if(b&&(e||4===g.readyState))if(b=l,f&&(g.onreadystatechange=k.noop,Kb&&delete ab[f]),e)4!==g.readyState&&g.abort();else{C={};r=g.status;n=g.getAllResponseHeaders();"string"===typeof g.responseText&&(C.text=g.responseText);try{h=
-g.statusText}catch(p){h=""}r||!a.isLocal||a.crossDomain?1223===r&&(r=204):r=C.text?200:404}}catch(I){e||d(-1,I)}C&&d(r,h,C,n)};a.async?4===g.readyState?setTimeout(b):(f=++hc,Kb&&(ab||(ab={},k(h).unload(Kb)),ab[f]=b),g.onreadystatechange=b):b()},abort:function(){b&&b(l,!0)}}}});var Za,wb,ic=/^(?:toggle|show|hide)$/,Vb=RegExp("^(?:([+-])\x3d|)("+oa+")([a-z%]*)$","i"),jc=/queueHooks$/,qb=[function(a,b,c){var d,f,e,g,r,n=this,h={},C=a.style,p=a.nodeType&&la(a),l=k._data(a,"fxshow");c.queue||(g=k._queueHooks(a,
-"fx"),null==g.unqueued&&(g.unqueued=0,r=g.empty.fire,g.empty.fire=function(){g.unqueued||r()}),g.unqueued++,n.always(function(){n.always(function(){g.unqueued--;k.queue(a,"fx").length||g.empty.fire()})}));1===a.nodeType&&("height"in b||"width"in b)&&(c.overflow=[C.overflow,C.overflowX,C.overflowY],"inline"===k.css(a,"display")&&"none"===k.css(a,"float")&&(k.support.inlineBlockNeedsLayout&&"inline"!==Ca(a.nodeName)?C.zoom=1:C.display="inline-block"));c.overflow&&(C.overflow="hidden",k.support.shrinkWrapBlocks||
-n.always(function(){C.overflow=c.overflow[0];C.overflowX=c.overflow[1];C.overflowY=c.overflow[2]}));for(d in b)f=b[d],ic.exec(f)&&(delete b[d],e=e||"toggle"===f,f!==(p?"hide":"show")&&(h[d]=l&&l[d]||k.style(a,d)));if(!k.isEmptyObject(h))for(d in l?"hidden"in l&&(p=l.hidden):l=k._data(a,"fxshow",{}),e&&(l.hidden=!p),p?k(a).show():n.done(function(){k(a).hide()}),n.done(function(){var b;k._removeData(a,"fxshow");for(b in h)k.style(a,b,h[b])}),h)b=ta(p?l[d]:0,d,n),d in l||(l[d]=b.start,p&&(b.end=b.start,
-b.start="width"===d||"height"===d?1:0))}],cb={"*":[function(a,b){var c=this.createTween(a,b),d=c.cur(),f=Vb.exec(b),e=f&&f[3]||(k.cssNumber[a]?"":"px"),g=(k.cssNumber[a]||"px"!==e&&+d)&&Vb.exec(k.css(c.elem,a)),r=1,n=20;if(g&&g[3]!==e){e=e||g[3];f=f||[];g=+d||1;do r=r||".5",g/=r,k.style(c.elem,a,g+e);while(r!==(r=c.cur()/d)&&1!==r&&--n)}f&&(g=c.start=+g||+d||0,c.unit=e,c.end=f[1]?g+(f[1]+1)*f[2]:+f[2]);return c}]};k.Animation=k.extend(Z,{tweener:function(a,b){k.isFunction(a)?(b=a,a=["*"]):a=a.split(" ");
-for(var c,d=0,f=a.length;d<f;d++)c=a[d],cb[c]=cb[c]||[],cb[c].unshift(b)},prefilter:function(a,b){b?qb.unshift(a):qb.push(a)}});k.Tween=$;$.prototype={constructor:$,init:function(a,b,c,d,f,e){this.elem=a;this.prop=c;this.easing=f||"swing";this.options=b;this.start=this.now=this.cur();this.end=d;this.unit=e||(k.cssNumber[c]?"":"px")},cur:function(){var a=$.propHooks[this.prop];return a&&a.get?a.get(this):$.propHooks._default.get(this)},run:function(a){var b,c=$.propHooks[this.prop];this.pos=this.options.duration?
-b=k.easing[this.easing](a,this.options.duration*a,0,1,this.options.duration):b=a;this.now=(this.end-this.start)*b+this.start;this.options.step&&this.options.step.call(this.elem,this.now,this);c&&c.set?c.set(this):$.propHooks._default.set(this);return this}};$.prototype.init.prototype=$.prototype;$.propHooks={_default:{get:function(a){return null==a.elem[a.prop]||a.elem.style&&null!=a.elem.style[a.prop]?(a=k.css(a.elem,a.prop,""))&&"auto"!==a?a:0:a.elem[a.prop]},set:function(a){if(k.fx.step[a.prop])k.fx.step[a.prop](a);
-else a.elem.style&&(null!=a.elem.style[k.cssProps[a.prop]]||k.cssHooks[a.prop])?k.style(a.elem,a.prop,a.now+a.unit):a.elem[a.prop]=a.now}}};$.propHooks.scrollTop=$.propHooks.scrollLeft={set:function(a){a.elem.nodeType&&a.elem.parentNode&&(a.elem[a.prop]=a.now)}};k.each(["toggle","show","hide"],function(a,b){var c=k.fn[b];k.fn[b]=function(a,d,f){return null==a||"boolean"===typeof a?c.apply(this,arguments):this.animate(J(b,!0),a,d,f)}});k.fn.extend({fadeTo:function(a,b,c,d){return this.filter(la).css("opacity",
-0).show().end().animate({opacity:b},a,c,d)},animate:function(a,b,c,d){var f=k.isEmptyObject(a),e=k.speed(b,c,d);b=function(){var b=Z(this,k.extend({},a),e);(f||k._data(this,"finish"))&&b.stop(!0)};b.finish=b;return f||!1===e.queue?this.each(b):this.queue(e.queue,b)},stop:function(a,b,c){var d=function(a){var b=a.stop;delete a.stop;b(c)};"string"!==typeof a&&(c=b,b=a,a=l);b&&!1!==a&&this.queue(a||"fx",[]);return this.each(function(){var b=!0,f=null!=a&&a+"queueHooks",e=k.timers,g=k._data(this);if(f)g[f]&&
-g[f].stop&&d(g[f]);else for(f in g)g[f]&&g[f].stop&&jc.test(f)&&d(g[f]);for(f=e.length;f--;)e[f].elem!==this||null!=a&&e[f].queue!==a||(e[f].anim.stop(c),b=!1,e.splice(f,1));!b&&c||k.dequeue(this,a)})},finish:function(a){!1!==a&&(a=a||"fx");return this.each(function(){var b,c=k._data(this),d=c[a+"queue"];b=c[a+"queueHooks"];var f=k.timers,e=d?d.length:0;c.finish=!0;k.queue(this,a,[]);b&&b.stop&&b.stop.call(this,!0);for(b=f.length;b--;)f[b].elem===this&&f[b].queue===a&&(f[b].anim.stop(!0),f.splice(b,
-1));for(b=0;b<e;b++)d[b]&&d[b].finish&&d[b].finish.call(this);delete c.finish})}});k.each({slideDown:J("show"),slideUp:J("hide"),slideToggle:J("toggle"),fadeIn:{opacity:"show"},fadeOut:{opacity:"hide"},fadeToggle:{opacity:"toggle"}},function(a,b){k.fn[a]=function(a,c,d){return this.animate(b,a,c,d)}});k.speed=function(a,b,c){var d=a&&"object"===typeof a?k.extend({},a):{complete:c||!c&&b||k.isFunction(a)&&a,duration:a,easing:c&&b||b&&!k.isFunction(b)&&b};d.duration=k.fx.off?0:"number"===typeof d.duration?
-d.duration:d.duration in k.fx.speeds?k.fx.speeds[d.duration]:k.fx.speeds._default;if(null==d.queue||!0===d.queue)d.queue="fx";d.old=d.complete;d.complete=function(){k.isFunction(d.old)&&d.old.call(this);d.queue&&k.dequeue(this,d.queue)};return d};k.easing={linear:function(a){return a},swing:function(a){return 0.5-Math.cos(a*Math.PI)/2}};k.timers=[];k.fx=$.prototype.init;k.fx.tick=function(){var a,b=k.timers,c=0;for(Za=k.now();c<b.length;c++)a=b[c],a()||b[c]!==a||b.splice(c--,1);b.length||k.fx.stop();
-Za=l};k.fx.timer=function(a){a()&&k.timers.push(a)&&k.fx.start()};k.fx.interval=13;k.fx.start=function(){wb||(wb=setInterval(k.fx.tick,k.fx.interval))};k.fx.stop=function(){clearInterval(wb);wb=null};k.fx.speeds={slow:600,fast:200,_default:400};k.fx.step={};k.expr&&k.expr.filters&&(k.expr.filters.animated=function(a){return k.grep(k.timers,function(b){return a===b.elem}).length});k.fn.offset=function(a){if(arguments.length)return a===l?this:this.each(function(b){k.offset.setOffset(this,a,b)});var b,
-c,d={top:0,left:0},f=(c=this[0])&&c.ownerDocument;if(f){b=f.documentElement;if(!k.contains(b,c))return d;typeof c.getBoundingClientRect!==s&&(d=c.getBoundingClientRect());c=Ja(f);return{top:d.top+(c.pageYOffset||b.scrollTop)-(b.clientTop||0),left:d.left+(c.pageXOffset||b.scrollLeft)-(b.clientLeft||0)}}};k.offset={setOffset:function(a,b,c){var d=k.css(a,"position");"static"===d&&(a.style.position="relative");var f=k(a),e=f.offset(),g=k.css(a,"top"),r=k.css(a,"left"),n={},h={};("absolute"===d||"fixed"===
-d)&&-1<k.inArray("auto",[g,r])?(h=f.position(),d=h.top,r=h.left):(d=parseFloat(g)||0,r=parseFloat(r)||0);k.isFunction(b)&&(b=b.call(a,c,e));null!=b.top&&(n.top=b.top-e.top+d);null!=b.left&&(n.left=b.left-e.left+r);"using"in b?b.using.call(a,n):f.css(n)}};k.fn.extend({position:function(){if(this[0]){var a,b,c={top:0,left:0},d=this[0];"fixed"===k.css(d,"position")?b=d.getBoundingClientRect():(a=this.offsetParent(),b=this.offset(),k.nodeName(a[0],"html")||(c=a.offset()),c.top+=k.css(a[0],"borderTopWidth",
-!0),c.left+=k.css(a[0],"borderLeftWidth",!0));return{top:b.top-c.top-k.css(d,"marginTop",!0),left:b.left-c.left-k.css(d,"marginLeft",!0)}}},offsetParent:function(){return this.map(function(){for(var a=this.offsetParent||R;a&&!k.nodeName(a,"html")&&"static"===k.css(a,"position");)a=a.offsetParent;return a||R})}});k.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(a,b){var c=/Y/.test(b);k.fn[a]=function(d){return k.access(this,function(a,d,f){var e=Ja(a);if(f===l)return e?b in e?e[b]:
-e.document.documentElement[d]:a[d];e?e.scrollTo(c?k(e).scrollLeft():f,c?f:k(e).scrollTop()):a[d]=f},a,d,arguments.length,null)}});k.each({Height:"height",Width:"width"},function(a,b){k.each({padding:"inner"+a,content:b,"":"outer"+a},function(c,d){k.fn[d]=function(d,f){var e=arguments.length&&(c||"boolean"!==typeof d),g=c||(!0===d||!0===f?"margin":"border");return k.access(this,function(b,c,d){return k.isWindow(b)?b.document.documentElement["client"+a]:9===b.nodeType?(c=b.documentElement,Math.max(b.body["scroll"+
-a],c["scroll"+a],b.body["offset"+a],c["offset"+a],c["client"+a])):d===l?k.css(b,c,g):k.style(b,c,d,g)},b,e?d:l,e,null)}})});k.fn.size=function(){return this.length};k.fn.andSelf=k.fn.addBack;"object"===typeof module&&module&&"object"===typeof module.exports?module.exports=k:(h.jQuery=h.$=k,"function"===typeof define&&define.amd&&define("jquery",[],function(){return k}))})(window);
-(function(h){"function"===typeof define&&define.amd?define(["jquery"],h):"object"===typeof exports?module.exports=h(require("jquery")):h(jQuery)})(function(h){if(!h.support.cors&&h.ajaxTransport&&window.XDomainRequest){var l=/^https?:\/\//i,m=/^get|post$/i,g=RegExp("^"+location.protocol,"i");h.ajaxTransport("* text html xml json",function(c,e,a){if(c.crossDomain&&c.async&&m.test(c.type)&&l.test(c.url)&&g.test(c.url)){var b=null;return{send:function(a,f){var g="",p=(e.dataType||"").toLowerCase();b=
-new XDomainRequest;/^\d+$/.test(e.timeout)&&(b.timeout=e.timeout);b.ontimeout=function(){f(500,"timeout")};b.onload=function(){var a="Content-Length: "+b.responseText.length+"\r\nContent-Type: "+b.contentType,c=200,d="success",e={text:b.responseText};try{if("html"===p||/text\/html/i.test(b.contentType))e.html=b.responseText;else if("json"===p||"text"!==p&&/\/json/i.test(b.contentType))try{e.json=h.parseJSON(b.responseText)}catch(g){c=500,d="parseerror"}else if("xml"===p||"text"!==p&&/\/xml/i.test(b.contentType)){var n=
-new ActiveXObject("Microsoft.XMLDOM");n.async=!1;try{n.loadXML(b.responseText)}catch(l){n=void 0}if(!n||!n.documentElement||n.getElementsByTagName("parsererror").length)throw"Invalid XML: "+b.responseText;e.xml=n}}catch(m){throw m;}finally{f(c,d,e,a)}};b.onprogress=function(){};b.onerror=function(){f(500,"error",{text:b.responseText})};e.data&&(g="string"===h.type(e.data)?e.data:h.param(e.data));b.open(c.type,c.url);b.send(g)},abort:function(){b&&b.abort()}}}})}});
-(function(h){h.color={};h.color.make=function(l,g,c,e){var a={};a.r=l||0;a.g=g||0;a.b=c||0;a.a=null!=e?e:1;a.add=function(b,c){for(var f=0;f<b.length;++f)a[b.charAt(f)]+=c;return a.normalize()};a.scale=function(b,c){for(var f=0;f<b.length;++f)a[b.charAt(f)]*=c;return a.normalize()};a.toString=function(){return 1<=a.a?"rgb("+[a.r,a.g,a.b].join()+")":"rgba("+[a.r,a.g,a.b,a.a].join()+")"};a.normalize=function(){function b(a,b,c){return b<a?a:b>c?c:b}a.r=b(0,parseInt(a.r),255);a.g=b(0,parseInt(a.g),255);
-a.b=b(0,parseInt(a.b),255);a.a=b(0,a.a,1);return a};a.clone=function(){return h.color.make(a.r,a.b,a.g,a.a)};return a.normalize()};h.color.extract=function(l,g){var c;do{c=l.css(g).toLowerCase();if(""!=c&&"transparent"!=c)break;l=l.parent()}while(l.length&&!h.nodeName(l.get(0),"body"));"rgba(0, 0, 0, 0)"==c&&(c="transparent");return h.color.parse(c)};h.color.parse=function(m){var g,c=h.color.make;if(g=/rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(m))return c(parseInt(g[1],
-10),parseInt(g[2],10),parseInt(g[3],10));if(g=/rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(m))return c(parseInt(g[1],10),parseInt(g[2],10),parseInt(g[3],10),parseFloat(g[4]));if(g=/rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(m))return c(2.55*parseFloat(g[1]),2.55*parseFloat(g[2]),2.55*parseFloat(g[3]));if(g=/rgba\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(m))return c(2.55*
-parseFloat(g[1]),2.55*parseFloat(g[2]),2.55*parseFloat(g[3]),parseFloat(g[4]));if(g=/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(m))return c(parseInt(g[1],16),parseInt(g[2],16),parseInt(g[3],16));if(g=/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(m))return c(parseInt(g[1]+g[1],16),parseInt(g[2]+g[2],16),parseInt(g[3]+g[3],16));m=h.trim(m).toLowerCase();if("transparent"==m)return c(255,255,255,0);g=l[m]||[0,0,0];return c(g[0],g[1],g[2])};var l={aqua:[0,255,255],azure:[240,255,255],beige:[245,
-245,220],black:[0,0,0],blue:[0,0,255],brown:[165,42,42],cyan:[0,255,255],darkblue:[0,0,139],darkcyan:[0,139,139],darkgrey:[169,169,169],darkgreen:[0,100,0],darkkhaki:[189,183,107],darkmagenta:[139,0,139],darkolivegreen:[85,107,47],darkorange:[255,140,0],darkorchid:[153,50,204],darkred:[139,0,0],darksalmon:[233,150,122],darkviolet:[148,0,211],fuchsia:[255,0,255],gold:[255,215,0],green:[0,128,0],indigo:[75,0,130],khaki:[240,230,140],lightblue:[173,216,230],lightcyan:[224,255,255],lightgreen:[144,238,
-144],lightgrey:[211,211,211],lightpink:[255,182,193],lightyellow:[255,255,224],lime:[0,255,0],magenta:[255,0,255],maroon:[128,0,0],navy:[0,0,128],olive:[128,128,0],orange:[255,165,0],pink:[255,192,203],purple:[128,0,128],violet:[128,0,128],red:[255,0,0],silver:[192,192,192],white:[255,255,255],yellow:[255,255,0]}})(jQuery);
-(function(h){function l(c,e){var a=e.children("."+c)[0];if(null==a&&(a=document.createElement("canvas"),a.className=c,h(a).css({direction:"ltr",position:"absolute",left:0,top:0}).appendTo(e),!a.getContext))if(window.G_vmlCanvasManager)a=window.G_vmlCanvasManager.initElement(a);else throw Error("Canvas is not available. If you're using IE with a fall-back such as Excanvas, then there's either a mistake in your conditional include, or the page has no DOCTYPE and is rendering in Quirks Mode.");this.element=
-a;a=this.context=a.getContext("2d");this.pixelRatio=(window.devicePixelRatio||1)/(a.webkitBackingStorePixelRatio||a.mozBackingStorePixelRatio||a.msBackingStorePixelRatio||a.oBackingStorePixelRatio||a.backingStorePixelRatio||1);this.resize(e.width(),e.height());this.textContainer=null;this.text={};this._textCache={}}function m(c,e,a,b){function d(a,b){b=[Y].concat(b);for(var c=0;c<a.length;++c)a[c].apply(this,b)}function f(a){for(var b=[],c=0;c<a.length;++c){var d=h.extend(!0,{},s.series);null!=a[c].data?
-(d.data=a[c].data,delete a[c].data,h.extend(!0,d,a[c]),a[c].data=d.data):d.data=a[c];b.push(d)}O=b;c=O.length;b=-1;for(a=0;a<O.length;++a)d=O[a].color,null!=d&&(c--,"number"==typeof d&&d>b&&(b=d));c<=b&&(c=b+1);var b=[],f=s.colors,e=f.length,p=0;for(a=0;a<c;a++)d=h.color.parse(f[a%e]||"#666"),0==a%e&&a&&(p=0<=p?0.5>p?-p-0.2:0:-p),b[a]=d.scale("rgb",1+p);for(a=c=0;a<O.length;++a){d=O[a];null==d.color?(d.color=b[c].toString(),++c):"number"==typeof d.color&&(d.color=b[d.color].toString());if(null==d.lines.show){var l,
-f=!0;for(l in d)if(d[l]&&d[l].show){f=!1;break}f&&(d.lines.show=!0)}null==d.lines.zero&&(d.lines.zero=!!d.lines.fill);d.xaxis=t(ca,g(d,"x"));d.yaxis=t(aa,g(d,"y"))}z()}function g(a,b){var c=a[b+"axis"];"object"==typeof c&&(c=c.n);"number"!=typeof c&&(c=1);return c}function p(){return h.grep(ca.concat(aa),function(a){return a})}function m(a){var b={},c,d;for(c=0;c<ca.length;++c)(d=ca[c])&&d.used&&(b["x"+d.n]=d.c2p(a.left));for(c=0;c<aa.length;++c)(d=aa[c])&&d.used&&(b["y"+d.n]=d.c2p(a.top));void 0!==
-b.x1&&(b.x=b.x1);void 0!==b.y1&&(b.y=b.y1);return b}function t(a,b){a[b-1]||(a[b-1]={n:b,direction:a==ca?"x":"y",options:h.extend(!0,{},a==ca?s.xaxis:s.yaxis)});return a[b-1]}function z(){function a(b,c,d){c<b.datamin&&c!=-f&&(b.datamin=c);d>b.datamax&&d!=f&&(b.datamax=d)}var b=Number.POSITIVE_INFINITY,c=Number.NEGATIVE_INFINITY,f=Number.MAX_VALUE,e,g,n,l,m,t,y,u,q,z,A,R;h.each(p(),function(a,d){d.datamin=b;d.datamax=c;d.used=!1});for(e=0;e<O.length;++e)m=O[e],m.datapoints={points:[]},d(G.processRawData,
-[m,m.data,m.datapoints]);for(e=0;e<O.length;++e){m=O[e];A=m.data;R=m.datapoints.format;if(!R){R=[];R.push({x:!0,number:!0,required:!0});R.push({y:!0,number:!0,required:!0});if(m.bars.show||m.lines.show&&m.lines.fill)R.push({y:!0,number:!0,required:!1,defaultValue:0,autoscale:!!(m.bars.show&&m.bars.zero||m.lines.show&&m.lines.zero)}),m.bars.horizontal&&(delete R[R.length-1].y,R[R.length-1].x=!0);m.datapoints.format=R}if(null==m.datapoints.pointsize){m.datapoints.pointsize=R.length;y=m.datapoints.pointsize;
-t=m.datapoints.points;var v=m.lines.show&&m.lines.steps;m.xaxis.used=m.yaxis.used=!0;for(g=n=0;g<A.length;++g,n+=y){z=A[g];var D=null==z;if(!D)for(l=0;l<y;++l){u=z[l];if(q=R[l])q.number&&null!=u&&(u=+u,isNaN(u)?u=null:Infinity==u?u=f:-Infinity==u&&(u=-f)),null==u&&(q.required&&(D=!0),null!=q.defaultValue&&(u=q.defaultValue));t[n+l]=u}if(D)for(l=0;l<y;++l)u=t[n+l],null!=u&&(q=R[l],!1!==q.autoscale&&(q.x&&a(m.xaxis,u,u),q.y&&a(m.yaxis,u,u))),t[n+l]=null;else if(v&&0<n&&null!=t[n-y]&&t[n-y]!=t[n]&&t[n-
-y+1]!=t[n+1]){for(l=0;l<y;++l)t[n+y+l]=t[n+l];t[n+1]=t[n-y+1];n+=y}}}}for(e=0;e<O.length;++e)m=O[e],d(G.processDatapoints,[m,m.datapoints]);for(e=0;e<O.length;++e){m=O[e];t=m.datapoints.points;y=m.datapoints.pointsize;R=m.datapoints.format;z=n=b;v=A=c;for(g=0;g<t.length;g+=y)if(null!=t[g])for(l=0;l<y;++l)u=t[g+l],(q=R[l])&&!1!==q.autoscale&&u!=f&&u!=-f&&(q.x&&(u<n&&(n=u),u>A&&(A=u)),q.y&&(u<z&&(z=u),u>v&&(v=u)));if(m.bars.show){switch(m.bars.align){case "left":g=0;break;case "right":g=-m.bars.barWidth;
-break;default:g=-m.bars.barWidth/2}m.bars.horizontal?(z+=g,v+=g+m.bars.barWidth):(n+=g,A+=g+m.bars.barWidth)}a(m.xaxis,n,A);a(m.yaxis,z,v)}h.each(p(),function(a,d){d.datamin==b&&(d.datamin=null);d.datamax==c&&(d.datamax=null)})}function H(){q&&clearTimeout(q);R.unbind("mousemove",Da);R.unbind("mouseleave",Ia);R.unbind("click",Ea);d(G.shutdown,[R])}function D(a){function b(a){return a}var c,d,f=a.options.transform||b,e=a.options.inverseTransform;"x"==a.direction?(c=a.scale=ga/Math.abs(f(a.max)-f(a.min)),
-d=Math.min(f(a.max),f(a.min))):(c=a.scale=da/Math.abs(f(a.max)-f(a.min)),c=-c,d=Math.max(f(a.max),f(a.min)));a.p2c=f==b?function(a){return(a-d)*c}:function(a){return(f(a)-d)*c};a.c2p=e?function(a){return e(d+a/c)}:function(a){return d+a/c}}function A(a){var b=a.labelWidth,c=a.labelHeight,d=a.options.position,f="x"===a.direction,e=a.options.tickLength,g=s.grid.axisMargin,n=s.grid.labelMargin,p=!0,l=!0,m=!0,u=!1;h.each(f?ca:aa,function(b,c){c&&c.reserveSpace&&(c===a?u=!0:c.options.position===d&&(u?
-l=!1:p=!1),u||(m=!1))});l&&(g=0);null==e&&(e=m?"full":5);isNaN(+e)||(n+=+e);f?(c+=n,"bottom"==d?(w.bottom+=c+g,a.box={top:M.height-w.bottom,height:c}):(a.box={top:w.top+g,height:c},w.top+=c+g)):(b+=n,"left"==d?(a.box={left:w.left+g,width:b},w.left+=b+g):(w.right+=b+g,a.box={left:M.width-w.right,width:b}));a.position=d;a.tickLength=e;a.box.padding=n;a.innermost=p}function x(){var a=s.grid.minBorderMargin,b;if(null==a)for(b=a=0;b<O.length;++b)a=Math.max(a,2*(O[b].points.radius+O[b].points.lineWidth/
-2));var c=a,d=a,f=a,e=a;h.each(p(),function(a,b){if(b.reserveSpace&&b.ticks&&b.ticks.length){var k=b.ticks[b.ticks.length-1];"x"===b.direction?(c=Math.max(c,b.labelWidth/2),k.v<=b.max&&(d=Math.max(d,b.labelWidth/2))):(e=Math.max(e,b.labelHeight/2),k.v<=b.max&&(f=Math.max(f,b.labelHeight/2)))}});w.left=Math.ceil(Math.max(c,w.left));w.right=Math.ceil(Math.max(d,w.right));w.top=Math.ceil(Math.max(f,w.top));w.bottom=Math.ceil(Math.max(e,w.bottom))}function F(){var a,b=p(),c=s.grid.show;for(a in w){var f=
-s.grid.margin||0;w[a]="number"==typeof f?f:f[a]||0}d(G.processOffset,[w]);for(a in w)w[a]="object"==typeof s.grid.borderWidth?w[a]+(c?s.grid.borderWidth[a]:0):w[a]+(c?s.grid.borderWidth:0);h.each(b,function(a,b){b.show=b.options.show;null==b.show&&(b.show=b.used);b.reserveSpace=b.show||b.options.reserveSpace;var c=b.options,d=+(null!=c.min?c.min:b.datamin),f=+(null!=c.max?c.max:b.datamax),e=f-d;if(0==e){if(e=0==f?1:0.01,null==c.min&&(d-=e),null==c.max||null!=c.min)f+=e}else{var k=c.autoscaleMargin;
-null!=k&&(null==c.min&&(d-=e*k,0>d&&null!=b.datamin&&0<=b.datamin&&(d=0)),null==c.max&&(f+=e*k,0<f&&null!=b.datamax&&0>=b.datamax&&(f=0)))}b.min=d;b.max=f});if(c){f=h.grep(b,function(a){return a.reserveSpace});h.each(f,function(a,b){P(b);var c=b.options.ticks,d=[];null==c||"number"==typeof c&&0<c?d=b.tickGenerator(b):c&&(d=h.isFunction(c)?c(b):c);var f;b.ticks=[];for(c=0;c<d.length;++c){var e=null,k=d[c];"object"==typeof k?(f=+k[0],1<k.length&&(e=k[1])):f=+k;null==e&&(e=b.tickFormatter(f,b));isNaN(f)||
-b.ticks.push({v:f,label:e})}d=b.ticks;b.options.autoscaleMargin&&0<d.length&&(null==b.options.min&&(b.min=Math.min(b.min,d[0].v)),null==b.options.max&&1<d.length&&(b.max=Math.max(b.max,d[d.length-1].v)));d=b.options;c=b.ticks||[];f=d.labelWidth||0;for(var e=d.additionalWidth||0,k=d.labelHeight||0,g=f||("x"==b.direction?Math.floor(M.width/(c.length||1)):null),n="flot-"+b.direction+"-axis flot-"+b.direction+b.n+"-axis "+(b.direction+"Axis "+b.direction+b.n+"Axis"),p=d.font||"flot-tick-label tickLabel",
-l=0;l<c.length;++l){var m=c[l];m.label&&(m=M.getTextInfo(n,m.label,p,null,g),f=Math.max(f,m.width+("y"==b.direction?e:0)),k=Math.max(k,m.height))}b.labelWidth=d.labelWidth||f;b.labelHeight=d.labelHeight||k});for(a=f.length-1;0<=a;--a)A(f[a]);x();h.each(f,function(a,b){"x"==b.direction?(b.box.left=w.left-b.labelWidth/2,b.box.width=M.width-w.left-w.right+b.labelWidth):(b.box.top=w.top-b.labelHeight/2,b.box.height=M.height-w.bottom-w.top+b.labelHeight)})}ga=M.width-w.left-w.right;da=M.height-w.bottom-
-w.top;h.each(b,function(a,b){D(b)});c&&V();Oa()}function P(a){var b=a.options,c;c="number"==typeof b.ticks&&0<b.ticks?b.ticks:0.3*Math.sqrt("x"==a.direction?M.width:M.height);c=(a.max-a.min)/c;var d=-Math.floor(Math.log(c)/Math.LN10),f=b.tickDecimals;null!=f&&d>f&&(d=f);var e=Math.pow(10,-d),g=c/e,n;1.5>g?n=1:3>g?(n=2,2.25<g&&(null==f||d+1<=f)&&(n=2.5,++d)):n=7.5>g?5:10;n*=e;null!=b.minTickSize&&n<b.minTickSize&&(n=b.minTickSize);a.delta=c;a.tickDecimals=Math.max(0,null!=f?f:d);a.tickSize=b.tickSize||
-n;if("time"==b.mode&&!a.tickGenerator)throw Error("Time mode requires the flot.time plugin.");a.tickGenerator||(a.tickGenerator=function(a){var b=[],c=a.tickSize*Math.floor(a.min/a.tickSize),d=0,f=Number.NaN,e;do e=f,f=c+d*a.tickSize,b.push(f),++d;while(f<a.max&&f!=e);return b},a.tickFormatter=function(a,b){var c=b.tickDecimals?Math.pow(10,b.tickDecimals):1,d=""+Math.round(a*c)/c;if(null!=b.tickDecimals){var f=d.indexOf("."),f=-1==f?0:d.length-f-1;if(f<b.tickDecimals)return(f?d:d+".")+(""+c).substr(1,
-b.tickDecimals-f)}return d});h.isFunction(b.tickFormatter)&&(a.tickFormatter=function(a,c){return""+b.tickFormatter(a,c)});if(null!=b.alignTicksWithAxis){var p=("x"==a.direction?ca:aa)[b.alignTicksWithAxis-1];p&&p.used&&p!=a&&(c=a.tickGenerator(a),0<c.length&&(null==b.min&&(a.min=Math.min(a.min,c[0])),null==b.max&&1<c.length&&(a.max=Math.max(a.max,c[c.length-1]))),a.tickGenerator=function(a){var b=[],c,d;for(d=0;d<p.ticks.length;++d)c=(p.ticks[d].v-p.min)/(p.max-p.min),c=a.min+c*(a.max-a.min),b.push(c);
-return b},a.mode||null!=b.tickDecimals||(c=Math.max(0,-Math.floor(Math.log(a.delta)/Math.LN10)+1),d=a.tickGenerator(a),1<d.length&&/\..*0$/.test((d[1]-d[0]).toFixed(c))||(a.tickDecimals=c)))}}function v(){M.clear();d(G.drawBackground,[u]);var a=s.grid;a.show&&a.backgroundColor&&(u.save(),u.translate(w.left,w.top),u.fillStyle=na(s.grid.backgroundColor,da,0,"rgba(255, 255, 255, 0)"),u.fillRect(0,0,ga,da),u.restore());a.show&&!a.aboveData&&ka();for(var b=0;b<O.length;++b){d(G.drawSeries,[u,O[b]]);var c=
-O[b];c.lines.show&&ja(c);c.bars.show&&xa(c);c.points.show&&Na(c)}d(G.draw,[u]);a.show&&a.aboveData&&ka();M.render();ta()}function la(a,b){for(var c,d,f,e,g=p(),n=0;n<g.length;++n)if(c=g[n],c.direction==b&&(e=b+c.n+"axis",a[e]||1!=c.n||(e=b+"axis"),a[e])){d=a[e].from;f=a[e].to;break}a[e]||(c="x"==b?ca[0]:aa[0],d=a[b+"1"],f=a[b+"2"]);null!=d&&null!=f&&d>f&&(e=d,d=f,f=e);return{from:d,to:f,axis:c}}function ka(){var a,b,c;u.save();u.translate(w.left,w.top);if(c=s.grid.markings)for(h.isFunction(c)&&(b=
-Y.getAxes(),b.xmin=b.xaxis.min,b.xmax=b.xaxis.max,b.ymin=b.yaxis.min,b.ymax=b.yaxis.max,c=c(b)),a=0;a<c.length;++a){b=c[a];var d=la(b,"x"),f=la(b,"y");null==d.from&&(d.from=d.axis.min);null==d.to&&(d.to=d.axis.max);null==f.from&&(f.from=f.axis.min);null==f.to&&(f.to=f.axis.max);d.to<d.axis.min||d.from>d.axis.max||f.to<f.axis.min||f.from>f.axis.max||(d.from=Math.max(d.from,d.axis.min),d.to=Math.min(d.to,d.axis.max),f.from=Math.max(f.from,f.axis.min),f.to=Math.min(f.to,f.axis.max),d.from==d.to&&f.from==
-f.to)||(d.from=d.axis.p2c(d.from),d.to=d.axis.p2c(d.to),f.from=f.axis.p2c(f.from),f.to=f.axis.p2c(f.to),d.from==d.to||f.from==f.to?(u.beginPath(),u.strokeStyle=b.color||s.grid.markingsColor,u.lineWidth=b.lineWidth||s.grid.markingsLineWidth,u.moveTo(d.from,f.from),u.lineTo(d.to,f.to),u.stroke()):(u.fillStyle=b.color||s.grid.markingsColor,u.fillRect(d.from,f.to,d.to-d.from,f.from-f.to)))}b=p();c=s.grid.borderWidth;for(d=0;d<b.length;++d){f=b[d];a=f.box;var e=f.tickLength,g,n,l,m;if(f.show&&0!=f.ticks.length){u.lineWidth=
-1;"x"==f.direction?(g=0,n="full"==e?"top"==f.position?0:da:a.top-w.top+("top"==f.position?a.height:0)):(n=0,g="full"==e?"left"==f.position?0:ga:a.left-w.left+("left"==f.position?a.width:0));f.innermost||(u.strokeStyle=f.options.color,u.beginPath(),l=m=0,"x"==f.direction?l=ga+1:m=da+1,1==u.lineWidth&&("x"==f.direction?n=Math.floor(n)+0.5:g=Math.floor(g)+0.5),u.moveTo(g,n),u.lineTo(g+l,n+m),u.stroke());u.strokeStyle=f.options.tickColor;u.beginPath();for(a=0;a<f.ticks.length;++a){var t=f.ticks[a].v;
-l=m=0;isNaN(t)||t<f.min||t>f.max||"full"==e&&("object"==typeof c&&0<c[f.position]||0<c)&&(t==f.min||t==f.max)||("x"==f.direction?(g=f.p2c(t),m="full"==e?-da:e,"top"==f.position&&(m=-m)):(n=f.p2c(t),l="full"==e?-ga:e,"left"==f.position&&(l=-l)),1==u.lineWidth&&("x"==f.direction?g=Math.floor(g)+0.5:n=Math.floor(n)+0.5),u.moveTo(g,n),u.lineTo(g+l,n+m))}u.stroke()}}c&&(a=s.grid.borderColor,"object"==typeof c||"object"==typeof a?("object"!==typeof c&&(c={top:c,right:c,bottom:c,left:c}),"object"!==typeof a&&
-(a={top:a,right:a,bottom:a,left:a}),0<c.top&&(u.strokeStyle=a.top,u.lineWidth=c.top,u.beginPath(),u.moveTo(0-c.left,0-c.top/2),u.lineTo(ga,0-c.top/2),u.stroke()),0<c.right&&(u.strokeStyle=a.right,u.lineWidth=c.right,u.beginPath(),u.moveTo(ga+c.right/2,0-c.top),u.lineTo(ga+c.right/2,da),u.stroke()),0<c.bottom&&(u.strokeStyle=a.bottom,u.lineWidth=c.bottom,u.beginPath(),u.moveTo(ga+c.right,da+c.bottom/2),u.lineTo(0,da+c.bottom/2),u.stroke()),0<c.left&&(u.strokeStyle=a.left,u.lineWidth=c.left,u.beginPath(),
-u.moveTo(0-c.left/2,da+c.bottom),u.lineTo(0-c.left/2,0),u.stroke())):(u.lineWidth=c,u.strokeStyle=s.grid.borderColor,u.strokeRect(-c/2,-c/2,ga+c,da+c)));u.restore()}function V(){h.each(p(),function(a,b){var c=b.box,d="flot-"+b.direction+"-axis flot-"+b.direction+b.n+"-axis "+(b.direction+"Axis "+b.direction+b.n+"Axis"),f=b.options.font||"flot-tick-label tickLabel",e,g,n,h,p;M.removeText(d);if(b.show&&0!=b.ticks.length)for(var l=0;l<b.ticks.length;++l)e=b.ticks[l],!e.label||e.v<b.min||e.v>b.max||("x"==
-b.direction?(h="center",g=w.left+b.p2c(e.v),"bottom"==b.position?n=c.top+c.padding:(n=c.top+c.height-c.padding,p="bottom")):(p="middle",n=w.top+b.p2c(e.v),"left"==b.position?(g=c.left+c.width-c.padding,h="right"):g=c.left+c.padding),M.addText(d,g,n,e.label,f,null,null,h,p))})}function ja(a){function b(a,c,d,f,e){var k=a.points;a=a.pointsize;var g=null,n=null;u.beginPath();for(var h=a;h<k.length;h+=a){var p=k[h-a],l=k[h-a+1],m=k[h],t=k[h+1];if(null!=p&&null!=m){if(l<=t&&l<e.min){if(t<e.min)continue;
-p=(e.min-l)/(t-l)*(m-p)+p;l=e.min}else if(t<=l&&t<e.min){if(l<e.min)continue;m=(e.min-l)/(t-l)*(m-p)+p;t=e.min}if(l>=t&&l>e.max){if(t>e.max)continue;p=(e.max-l)/(t-l)*(m-p)+p;l=e.max}else if(t>=l&&t>e.max){if(l>e.max)continue;m=(e.max-l)/(t-l)*(m-p)+p;t=e.max}if(p<=m&&p<f.min){if(m<f.min)continue;l=(f.min-p)/(m-p)*(t-l)+l;p=f.min}else if(m<=p&&m<f.min){if(p<f.min)continue;t=(f.min-p)/(m-p)*(t-l)+l;m=f.min}if(p>=m&&p>f.max){if(m>f.max)continue;l=(f.max-p)/(m-p)*(t-l)+l;p=f.max}else if(m>=p&&m>f.max){if(p>
-f.max)continue;t=(f.max-p)/(m-p)*(t-l)+l;m=f.max}p==g&&l==n||u.moveTo(f.p2c(p)+c,e.p2c(l)+d);g=m;n=t;u.lineTo(f.p2c(m)+c,e.p2c(t)+d)}}u.stroke()}function c(a,b,d){var f=a.points;a=a.pointsize;for(var e=Math.min(Math.max(0,d.min),d.max),k=0,g=!1,n=1,h=0,p=0;!(0<a&&k>f.length+a);){var k=k+a,l=f[k-a],m=f[k-a+n],t=f[k],y=f[k+n];if(g){if(0<a&&null!=l&&null==t){p=k;a=-a;n=2;continue}if(0>a&&k==h+a){u.fill();g=!1;a=-a;n=1;k=h=p+a;continue}}if(null!=l&&null!=t){if(l<=t&&l<b.min){if(t<b.min)continue;m=(b.min-
-l)/(t-l)*(y-m)+m;l=b.min}else if(t<=l&&t<b.min){if(l<b.min)continue;y=(b.min-l)/(t-l)*(y-m)+m;t=b.min}if(l>=t&&l>b.max){if(t>b.max)continue;m=(b.max-l)/(t-l)*(y-m)+m;l=b.max}else if(t>=l&&t>b.max){if(l>b.max)continue;y=(b.max-l)/(t-l)*(y-m)+m;t=b.max}g||(u.beginPath(),u.moveTo(b.p2c(l),d.p2c(e)),g=!0);if(m>=d.max&&y>=d.max)u.lineTo(b.p2c(l),d.p2c(d.max)),u.lineTo(b.p2c(t),d.p2c(d.max));else if(m<=d.min&&y<=d.min)u.lineTo(b.p2c(l),d.p2c(d.min)),u.lineTo(b.p2c(t),d.p2c(d.min));else{var q=l,z=t;m<=y&&
-m<d.min&&y>=d.min?(l=(d.min-m)/(y-m)*(t-l)+l,m=d.min):y<=m&&y<d.min&&m>=d.min&&(t=(d.min-m)/(y-m)*(t-l)+l,y=d.min);m>=y&&m>d.max&&y<=d.max?(l=(d.max-m)/(y-m)*(t-l)+l,m=d.max):y>=m&&y>d.max&&m<=d.max&&(t=(d.max-m)/(y-m)*(t-l)+l,y=d.max);l!=q&&u.lineTo(b.p2c(q),d.p2c(m));u.lineTo(b.p2c(l),d.p2c(m));u.lineTo(b.p2c(t),d.p2c(y));t!=z&&(u.lineTo(b.p2c(t),d.p2c(y)),u.lineTo(b.p2c(z),d.p2c(y)))}}}}u.save();u.translate(w.left,w.top);u.lineJoin="round";var d=a.lines.lineWidth,f=a.shadowSize;if(0<d&&0<f){u.lineWidth=
-f;u.strokeStyle="rgba(0,0,0,0.1)";var e=Math.PI/18;b(a.datapoints,Math.sin(e)*(d/2+f/2),Math.cos(e)*(d/2+f/2),a.xaxis,a.yaxis);u.lineWidth=f/2;b(a.datapoints,Math.sin(e)*(d/2+f/4),Math.cos(e)*(d/2+f/4),a.xaxis,a.yaxis)}u.lineWidth=d;u.strokeStyle=a.color;if(f=qa(a.lines,a.color,0,da))u.fillStyle=f,c(a.datapoints,a.xaxis,a.yaxis);0<d&&b(a.datapoints,0,0,a.xaxis,a.yaxis);u.restore()}function Na(a){function b(a,c,d,f,e,g,k,n){var h=a.points;a=a.pointsize;for(var l=0;l<h.length;l+=a){var p=h[l],m=h[l+
-1];null==p||p<g.min||p>g.max||m<k.min||m>k.max||(u.beginPath(),p=g.p2c(p),m=k.p2c(m)+f,"circle"==n?u.arc(p,m,c,0,e?Math.PI:2*Math.PI,!1):n(u,p,m,c,e),u.closePath(),d&&(u.fillStyle=d,u.fill()),u.stroke())}}u.save();u.translate(w.left,w.top);var c=a.points.lineWidth,d=a.shadowSize,f=a.points.radius,e=a.points.symbol;0==c&&(c=1E-4);0<c&&0<d&&(d/=2,u.lineWidth=d,u.strokeStyle="rgba(0,0,0,0.1)",b(a.datapoints,f,null,d+d/2,!0,a.xaxis,a.yaxis,e),u.strokeStyle="rgba(0,0,0,0.2)",b(a.datapoints,f,null,d/2,
-!0,a.xaxis,a.yaxis,e));u.lineWidth=c;u.strokeStyle=a.color;b(a.datapoints,f,qa(a.points,a.color),0,!1,a.xaxis,a.yaxis,e);u.restore()}function Ca(a,b,c,d,f,e,g,n,h,l,p){var m,t,y,u;l?(u=t=y=!0,m=!1,l=c,c=b+d,f=b+f,a<l&&(b=a,a=l,l=b,m=!0,t=!1)):(m=t=y=!0,u=!1,l=a+d,a+=f,f=c,c=b,c<f&&(b=c,c=f,f=b,u=!0,y=!1));a<g.min||l>g.max||c<n.min||f>n.max||(l<g.min&&(l=g.min,m=!1),a>g.max&&(a=g.max,t=!1),f<n.min&&(f=n.min,u=!1),c>n.max&&(c=n.max,y=!1),l=g.p2c(l),f=n.p2c(f),a=g.p2c(a),c=n.p2c(c),e&&(h.fillStyle=e(f,
-c),h.fillRect(l,c,a-l,f-c)),0<p&&(m||t||y||u)&&(h.beginPath(),h.moveTo(l,f),m?h.lineTo(l,c):h.moveTo(l,c),y?h.lineTo(a,c):h.moveTo(a,c),t?h.lineTo(a,f):h.moveTo(a,f),u?h.lineTo(l,f):h.moveTo(l,f),h.stroke()))}function xa(a){u.save();u.translate(w.left,w.top);u.lineWidth=a.bars.lineWidth;u.strokeStyle=a.color;var b;switch(a.bars.align){case "left":b=0;break;case "right":b=-a.bars.barWidth;break;default:b=-a.bars.barWidth/2}(function(b,c,d,f,e,g){var n=b.points;b=b.pointsize;for(var h=0;h<n.length;h+=
-b)null!=n[h]&&Ca(n[h],n[h+1],n[h+2],c,d,f,e,g,u,a.bars.horizontal,a.bars.lineWidth)})(a.datapoints,b,b+a.bars.barWidth,a.bars.fill?function(b,c){return qa(a.bars,a.color,b,c)}:null,a.xaxis,a.yaxis);u.restore()}function qa(a,b,c,d){var f=a.fill;if(!f)return null;if(a.fillColor)return na(a.fillColor,c,d,b);a=h.color.parse(b);a.a="number"==typeof f?f:0.4;a.normalize();return a.toString()}function Oa(){null!=s.legend.container?h(s.legend.container).html(""):c.find(".legend").remove();if(s.legend.show){for(var a=
-[],b=[],d=!1,f=s.legend.labelFormatter,e,g,n=0;n<O.length;++n)e=O[n],e.label&&(g=f?f(e.label,e):e.label)&&b.push({label:g,color:e.color});if(s.legend.sorted)if(h.isFunction(s.legend.sorted))b.sort(s.legend.sorted);else if("reverse"==s.legend.sorted)b.reverse();else{var l="descending"!=s.legend.sorted;b.sort(function(a,b){return a.label==b.label?0:a.label<b.label!=l?1:-1})}for(n=0;n<b.length;++n)f=b[n],0==n%s.legend.noColumns&&(d&&a.push("\x3c/tr\x3e"),a.push("\x3ctr\x3e"),d=!0),a.push('\x3ctd class\x3d"legendColorBox"\x3e\x3cdiv style\x3d"border:1px solid '+
-s.legend.labelBoxBorderColor+';padding:1px"\x3e\x3cdiv style\x3d"width:4px;height:0;border:5px solid '+f.color+';overflow:hidden"\x3e\x3c/div\x3e\x3c/div\x3e\x3c/td\x3e\x3ctd class\x3d"legendLabel"\x3e'+f.label+"\x3c/td\x3e");d&&a.push("\x3c/tr\x3e");0!=a.length&&(b='\x3ctable style\x3d"font-size:smaller;color:'+s.grid.color+'"\x3e'+a.join("")+"\x3c/table\x3e",null!=s.legend.container?h(s.legend.container).html(b):(a="",d=s.legend.position,n=s.legend.margin,null==n[0]&&(n=[n,n]),"n"==d.charAt(0)?
-a+="top:"+(n[1]+w.top)+"px;":"s"==d.charAt(0)&&(a+="bottom:"+(n[1]+w.bottom)+"px;"),"e"==d.charAt(1)?a+="right:"+(n[0]+w.right)+"px;":"w"==d.charAt(1)&&(a+="left:"+(n[0]+w.left)+"px;"),b=h('\x3cdiv class\x3d"legend"\x3e'+b.replace('style\x3d"','style\x3d"position:absolute;'+a+";")+"\x3c/div\x3e").appendTo(c),0!=s.legend.backgroundOpacity&&(d=s.legend.backgroundColor,null==d&&(d=(d=s.grid.backgroundColor)&&"string"==typeof d?h.color.parse(d):h.color.extract(b,"background-color"),d.a=1,d=d.toString()),
-n=b.children(),h('\x3cdiv style\x3d"position:absolute;width:'+n.width()+"px;height:"+n.height()+"px;"+a+"background-color:"+d+';"\x3e \x3c/div\x3e').prependTo(b).css("opacity",s.legend.backgroundOpacity))))}}function Da(a){s.grid.hoverable&&Fa("plothover",a,function(a){return!1!=a.hoverable})}function Ia(a){s.grid.hoverable&&Fa("plothover",a,function(a){return!1})}function Ea(a){Fa("plotclick",a,function(a){return!1!=a.clickable})}function Fa(a,b,d){var f=R.offset(),e=b.pageX-f.left-w.left,g=b.pageY-
-f.top-w.top,n=m({left:e,top:g});n.pageX=b.pageX;n.pageY=b.pageY;b=s.grid.mouseActiveRadius;var h=b*b+1,l=null,p,t,u;for(p=O.length-1;0<=p;--p)if(d(O[p])){var q=O[p],z=q.xaxis,A=q.yaxis,v=q.datapoints.points,D=z.c2p(e),W=A.c2p(g),x=b/z.scale,aa=b/A.scale;u=q.datapoints.pointsize;z.options.inverseTransform&&(x=Number.MAX_VALUE);A.options.inverseTransform&&(aa=Number.MAX_VALUE);if(q.lines.show||q.points.show)for(t=0;t<v.length;t+=u){var H=v[t],F=v[t+1];null==H||H-D>x||H-D<-x||F-W>aa||F-W<-aa||(H=Math.abs(z.p2c(H)-
-e),F=Math.abs(A.p2c(F)-g),F=H*H+F*F,F<h&&(h=F,l=[p,t/u]))}if(q.bars.show&&!l){switch(q.bars.align){case "left":z=0;break;case "right":z=-q.bars.barWidth;break;default:z=-q.bars.barWidth/2}q=z+q.bars.barWidth;for(t=0;t<v.length;t+=u)H=v[t],F=v[t+1],A=v[t+2],null!=H&&(O[p].bars.horizontal?D<=Math.max(A,H)&&D>=Math.min(A,H)&&W>=F+z&&W<=F+q:D>=H+z&&D<=H+q&&W>=Math.min(A,F)&&W<=Math.max(A,F))&&(l=[p,t/u])}}l?(p=l[0],t=l[1],u=O[p].datapoints.pointsize,d={datapoint:O[p].datapoints.points.slice(t*u,(t+1)*
-u),dataIndex:t,series:O[p],seriesIndex:p}):d=null;d&&(d.pageX=parseInt(d.series.xaxis.p2c(d.datapoint[0])+f.left+w.left,10),d.pageY=parseInt(d.series.yaxis.p2c(d.datapoint[1])+f.top+w.top,10));if(s.grid.autoHighlight){for(f=0;f<B.length;++f)e=B[f],e.auto!=a||d&&e.series==d.series&&e.point[0]==d.datapoint[0]&&e.point[1]==d.datapoint[1]||$(e.series,e.point);d&&ma(d.series,d.datapoint,a)}c.trigger(a,[n,d])}function ta(){var a=s.interaction.redrawOverlayInterval;-1==a?Z():q||(q=setTimeout(Z,a))}function Z(){q=
-null;W.save();K.clear();W.translate(w.left,w.top);var a,b;for(a=0;a<B.length;++a)if(b=B[a],b.series.bars.show)Ja(b.series,b.point);else{var c=b.series,f=b.point;b=f[0];var f=f[1],e=c.xaxis,g=c.yaxis,n="string"===typeof c.highlightColor?c.highlightColor:h.color.parse(c.color).scale("a",0.5).toString();if(!(b<e.min||b>e.max||f<g.min||f>g.max)){var l=c.points.radius+c.points.lineWidth/2;W.lineWidth=l;W.strokeStyle=n;n=1.5*l;b=e.p2c(b);f=g.p2c(f);W.beginPath();"circle"==c.points.symbol?W.arc(b,f,n,0,
-2*Math.PI,!1):c.points.symbol(W,b,f,n,!1);W.closePath();W.stroke()}}W.restore();d(G.drawOverlay,[W])}function ma(a,b,c){"number"==typeof a&&(a=O[a]);if("number"==typeof b){var d=a.datapoints.pointsize;b=a.datapoints.points.slice(d*b,d*(b+1))}d=J(a,b);-1==d?(B.push({series:a,point:b,auto:c}),ta()):c||(B[d].auto=!1)}function $(a,b){if(null==a&&null==b)B=[],ta();else{"number"==typeof a&&(a=O[a]);if("number"==typeof b){var c=a.datapoints.pointsize;b=a.datapoints.points.slice(c*b,c*(b+1))}c=J(a,b);-1!=
-c&&(B.splice(c,1),ta())}}function J(a,b){for(var c=0;c<B.length;++c){var d=B[c];if(d.series==a&&d.point[0]==b[0]&&d.point[1]==b[1])return c}return-1}function Ja(a,b){var c="string"===typeof a.highlightColor?a.highlightColor:h.color.parse(a.color).scale("a",0.5).toString(),d;switch(a.bars.align){case "left":d=0;break;case "right":d=-a.bars.barWidth;break;default:d=-a.bars.barWidth/2}W.lineWidth=a.bars.lineWidth;W.strokeStyle=c;Ca(b[0],b[1],b[2]||0,d,d+a.bars.barWidth,function(){return c},a.xaxis,a.yaxis,
-W,a.bars.horizontal,a.bars.lineWidth)}function na(a,b,c,d){if("string"==typeof a)return a;b=u.createLinearGradient(0,c,0,b);c=0;for(var f=a.colors.length;c<f;++c){var e=a.colors[c];if("string"!=typeof e){var g=h.color.parse(d);null!=e.brightness&&(g=g.scale("rgb",e.brightness));null!=e.opacity&&(g.a*=e.opacity);e=g.toString()}b.addColorStop(c/(f-1),e)}return b}var O=[],s={colors:["#edc240","#afd8f8","#cb4b4b","#4da74d","#9440ed"],legend:{show:!0,noColumns:1,labelFormatter:null,labelBoxBorderColor:"#ccc",
-container:null,position:"ne",margin:5,backgroundColor:null,backgroundOpacity:0.85,sorted:null},xaxis:{show:null,position:"bottom",mode:null,font:null,color:null,tickColor:null,transform:null,inverseTransform:null,min:null,max:null,autoscaleMargin:null,ticks:null,tickFormatter:null,labelWidth:null,labelHeight:null,reserveSpace:null,tickLength:null,alignTicksWithAxis:null,tickDecimals:null,tickSize:null,minTickSize:null},yaxis:{autoscaleMargin:0.02,position:"left"},xaxes:[],yaxes:[],series:{points:{show:!1,
-radius:3,lineWidth:2,fill:!0,fillColor:"#ffffff",symbol:"circle"},lines:{lineWidth:2,fill:!1,fillColor:null,steps:!1},bars:{show:!1,lineWidth:2,barWidth:1,fill:!0,fillColor:null,align:"left",horizontal:!1,zero:!0},shadowSize:3,highlightColor:null},grid:{show:!0,aboveData:!1,color:"#545454",backgroundColor:null,borderColor:null,tickColor:null,margin:0,labelMargin:5,axisMargin:8,borderWidth:2,minBorderMargin:null,markings:null,markingsColor:"#f4f4f4",markingsLineWidth:2,clickable:!1,hoverable:!1,autoHighlight:!0,
-mouseActiveRadius:10},interaction:{redrawOverlayInterval:1E3/60},hooks:{}},M=null,K=null,R=null,u=null,W=null,ca=[],aa=[],w={left:0,right:0,top:0,bottom:0},ga=0,da=0,G={processOptions:[],processRawData:[],processDatapoints:[],processOffset:[],drawBackground:[],drawSeries:[],draw:[],bindEvents:[],drawOverlay:[],shutdown:[]},Y=this;Y.setData=f;Y.setupGrid=F;Y.draw=v;Y.getPlaceholder=function(){return c};Y.getCanvas=function(){return M.element};Y.getPlotOffset=function(){return w};Y.width=function(){return ga};
-Y.height=function(){return da};Y.offset=function(){var a=R.offset();a.left+=w.left;a.top+=w.top;return a};Y.getData=function(){return O};Y.getAxes=function(){var a={};h.each(ca.concat(aa),function(b,c){c&&(a[c.direction+(1!=c.n?c.n:"")+"axis"]=c)});return a};Y.getXAxes=function(){return ca};Y.getYAxes=function(){return aa};Y.c2p=m;Y.p2c=function(a){var b={},c,d,f;for(c=0;c<ca.length;++c)if((d=ca[c])&&d.used&&(f="x"+d.n,null==a[f]&&1==d.n&&(f="x"),null!=a[f])){b.left=d.p2c(a[f]);break}for(c=0;c<aa.length;++c)if((d=
-aa[c])&&d.used&&(f="y"+d.n,null==a[f]&&1==d.n&&(f="y"),null!=a[f])){b.top=d.p2c(a[f]);break}return b};Y.getOptions=function(){return s};Y.highlight=ma;Y.unhighlight=$;Y.triggerRedrawOverlay=ta;Y.pointOffset=function(a){return{left:parseInt(ca[g(a,"x")-1].p2c(+a.x)+w.left,10),top:parseInt(aa[g(a,"y")-1].p2c(+a.y)+w.top,10)}};Y.shutdown=H;Y.destroy=function(){H();c.removeData("plot").empty();O=[];W=u=R=K=M=s=null;ca=[];aa=[];G=null;B=[];Y=null};Y.resize=function(){var a=c.width(),b=c.height();M.resize(a,
-b);K.resize(a,b)};Y.hooks=G;(function(){for(var a={Canvas:l},c=0;c<b.length;++c){var d=b[c];d.init(Y,a);d.options&&h.extend(!0,s,d.options)}})(Y);(function(a){h.extend(!0,s,a);a&&a.colors&&(s.colors=a.colors);null==s.xaxis.color&&(s.xaxis.color=h.color.parse(s.grid.color).scale("a",0.22).toString());null==s.yaxis.color&&(s.yaxis.color=h.color.parse(s.grid.color).scale("a",0.22).toString());null==s.xaxis.tickColor&&(s.xaxis.tickColor=s.grid.tickColor||s.xaxis.color);null==s.yaxis.tickColor&&(s.yaxis.tickColor=
-s.grid.tickColor||s.yaxis.color);null==s.grid.borderColor&&(s.grid.borderColor=s.grid.color);null==s.grid.tickColor&&(s.grid.tickColor=h.color.parse(s.grid.color).scale("a",0.22).toString());var b,f;a=(a=c.css("font-size"))?+a.replace("px",""):13;var e={style:c.css("font-style"),size:Math.round(0.8*a),variant:c.css("font-variant"),weight:c.css("font-weight"),family:c.css("font-family")};f=s.xaxes.length||1;for(a=0;a<f;++a)(b=s.xaxes[a])&&!b.tickColor&&(b.tickColor=b.color),b=h.extend(!0,{},s.xaxis,
-b),s.xaxes[a]=b,b.font&&(b.font=h.extend({},e,b.font),b.font.color||(b.font.color=b.color),b.font.lineHeight||(b.font.lineHeight=Math.round(1.15*b.font.size)));f=s.yaxes.length||1;for(a=0;a<f;++a)(b=s.yaxes[a])&&!b.tickColor&&(b.tickColor=b.color),b=h.extend(!0,{},s.yaxis,b),s.yaxes[a]=b,b.font&&(b.font=h.extend({},e,b.font),b.font.color||(b.font.color=b.color),b.font.lineHeight||(b.font.lineHeight=Math.round(1.15*b.font.size)));s.xaxis.noTicks&&null==s.xaxis.ticks&&(s.xaxis.ticks=s.xaxis.noTicks);
-s.yaxis.noTicks&&null==s.yaxis.ticks&&(s.yaxis.ticks=s.yaxis.noTicks);s.x2axis&&(s.xaxes[1]=h.extend(!0,{},s.xaxis,s.x2axis),s.xaxes[1].position="top");s.y2axis&&(s.yaxes[1]=h.extend(!0,{},s.yaxis,s.y2axis),s.yaxes[1].position="right");s.grid.coloredAreas&&(s.grid.markings=s.grid.coloredAreas);s.grid.coloredAreasColor&&(s.grid.markingsColor=s.grid.coloredAreasColor);s.lines&&h.extend(!0,s.series.lines,s.lines);s.points&&h.extend(!0,s.series.points,s.points);s.bars&&h.extend(!0,s.series.bars,s.bars);
-null!=s.shadowSize&&(s.series.shadowSize=s.shadowSize);null!=s.highlightColor&&(s.series.highlightColor=s.highlightColor);for(a=0;a<s.xaxes.length;++a)t(ca,a+1).options=s.xaxes[a];for(a=0;a<s.yaxes.length;++a)t(aa,a+1).options=s.yaxes[a];for(var g in G)s.hooks[g]&&s.hooks[g].length&&(G[g]=G[g].concat(s.hooks[g]));d(G.processOptions,[s])})(a);(function(){c.css("padding",0).children().filter(function(){return!h(this).hasClass("flot-overlay")&&!h(this).hasClass("flot-base")}).remove();"static"==c.css("position")&&
-c.css("position","relative");M=new l("flot-base",c);K=new l("flot-overlay",c);u=M.context;W=K.context;R=h(K.element).unbind();var a=c.data("plot");a&&(a.shutdown(),K.clear());c.data("plot",Y)})();f(e);F();v();s.grid.hoverable&&(R.mousemove(Da),R.bind("mouseleave",Ia));s.grid.clickable&&R.click(Ea);d(G.bindEvents,[R]);var B=[],q=null}var g=Object.prototype.hasOwnProperty;l.prototype.resize=function(c,e){if(0>=c||0>=e)throw Error("Invalid dimensions for plot, width \x3d "+c+", height \x3d "+e);var a=
-this.element,b=this.context,d=this.pixelRatio;this.width!=c&&(a.width=c*d,a.style.width=c+"px",this.width=c);this.height!=e&&(a.height=e*d,a.style.height=e+"px",this.height=e);b.restore();b.save();b.scale(d,d)};l.prototype.clear=function(){this.context.clearRect(0,0,this.width,this.height)};l.prototype.render=function(){var c=this._textCache,e;for(e in c)if(g.call(c,e)){var a=this.getTextLayer(e),b=c[e];a.hide();for(var d in b)if(g.call(b,d)){var f=b[d],n;for(n in f)if(g.call(f,n)){for(var h=f[n].positions,
-l=0,m;m=h[l];l++)m.active?m.rendered||(a.append(m.element),m.rendered=!0):(h.splice(l--,1),m.rendered&&m.element.detach());0==h.length&&delete f[n]}}a.show()}};l.prototype.getTextLayer=function(c){var e=this.text[c];null==e&&(null==this.textContainer&&(this.textContainer=h("\x3cdiv class\x3d'flot-text'\x3e\x3c/div\x3e").css({position:"absolute",top:0,left:0,bottom:0,right:0,"font-size":"smaller",color:"#545454"}).insertAfter(this.element)),e=this.text[c]=h("\x3cdiv\x3e\x3c/div\x3e").addClass(c).css({position:"absolute",
-top:0,left:0,bottom:0,right:0}).appendTo(this.textContainer));return e};l.prototype.getTextInfo=function(c,e,a,b,d){var f,g;e=""+e;b="object"===typeof a?a.style+" "+a.variant+" "+a.weight+" "+a.size+"px/"+a.lineHeight+"px "+a.family:a;f=this._textCache[c];null==f&&(f=this._textCache[c]={});g=f[b];null==g&&(g=f[b]={});f=g[e];null==f&&(c=h("\x3cdiv\x3e\x3c/div\x3e").html(e).css({position:"absolute","max-width":d,top:-9999}).appendTo(this.getTextLayer(c)),"object"===typeof a?c.css({font:b,color:a.color}):
-"string"===typeof a&&c.addClass(a),f=g[e]={width:c.outerWidth(!0),height:c.outerHeight(!0),element:c,positions:[]},c.detach());return f};l.prototype.addText=function(c,e,a,b,d,f,g,h,l){c=this.getTextInfo(c,b,d,f,g);b=c.positions;"center"==h?e-=c.width/2:"right"==h&&(e-=c.width);"middle"==l?a-=c.height/2:"bottom"==l&&(a-=c.height);for(l=0;d=b[l];l++)if(d.x==e&&d.y==a){d.active=!0;return}d={active:!0,rendered:!1,element:b.length?c.element.clone():c.element,x:e,y:a};b.push(d);d.element.css({top:Math.round(a),
-left:Math.round(e),"text-align":h})};l.prototype.removeText=function(c,e,a,b,d,f){if(null==b){if(e=this._textCache[c],null!=e)for(var n in e)if(g.call(e,n)){a=e[n];for(var h in a)if(g.call(a,h))for(c=a[h].positions,b=0;d=c[b];b++)d.active=!1}}else for(c=this.getTextInfo(c,b,d,f).positions,b=0;d=c[b];b++)d.x==e&&d.y==a&&(d.active=!1)};h.plot=function(c,e,a){return new m(h(c),e,a,h.plot.plugins)};h.plot.version="0.8.2";h.plot.plugins=[];h.fn.plot=function(c,e){return this.each(function(){h.plot(this,
-c,e)})}})(jQuery);
-(function(h){function l(a,b){return b*Math.floor(a/b)}function m(a,b,c,d){if("function"==typeof a.strftime)return a.strftime(b);var e=function(a,b){a=""+a;return 1==a.length?""+(null==b?"0":b)+a:a},g=[],h=!1,l=a.getHours(),m=12>l;null==c&&(c="Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "));null==d&&(d="Sun Mon Tue Wed Thu Fri Sat".split(" "));var x;x=12<l?l-12:0==l?12:l;for(var F=0;F<b.length;++F){var P=b.charAt(F);if(h){switch(P){case "a":P=""+d[a.getDay()];break;case "b":P=""+c[a.getMonth()];
-break;case "d":P=e(a.getDate());break;case "e":P=e(a.getDate()," ");break;case "h":case "H":P=e(l);break;case "I":P=e(x);break;case "l":P=e(x," ");break;case "m":P=e(a.getMonth()+1);break;case "M":P=e(a.getMinutes());break;case "q":P=""+(Math.floor(a.getMonth()/3)+1);break;case "S":P=e(a.getSeconds());break;case "y":P=e(a.getFullYear()%100);break;case "Y":P=""+a.getFullYear();break;case "p":P=m?"am":"pm";break;case "P":P=m?"AM":"PM";break;case "w":P=""+a.getDay()}g.push(P);h=!1}else"%"==P?h=!0:g.push(P)}return g.join("")}
-function g(a){function b(a,c,d,f){a[c]=function(){return d[f].apply(d,arguments)}}var c={date:a};void 0!=a.strftime&&b(c,"strftime",a,"strftime");b(c,"getTime",a,"getTime");b(c,"setTime",a,"setTime");for(var d="Date Day FullYear Hours Milliseconds Minutes Month Seconds".split(" "),e=0;e<d.length;e++)b(c,"get"+d[e],a,"getUTC"+d[e]),b(c,"set"+d[e],a,"setUTC"+d[e]);return c}function c(a,b){if("browser"==b.timezone)return new Date(a);if(b.timezone&&"utc"!=b.timezone&&"undefined"!=typeof timezoneJS&&"undefined"!=
-typeof timezoneJS.Date){var c=new timezoneJS.Date;c.setTimezone(b.timezone);c.setTime(a);return c}return g(new Date(a))}var e={second:1E3,minute:6E4,hour:36E5,day:864E5,month:2592E6,quarter:7776E6,year:525949.2*6E4},a=[[1,"second"],[2,"second"],[5,"second"],[10,"second"],[30,"second"],[1,"minute"],[2,"minute"],[5,"minute"],[10,"minute"],[30,"minute"],[1,"hour"],[2,"hour"],[4,"hour"],[8,"hour"],[12,"hour"],[1,"day"],[2,"day"],[3,"day"],[0.25,"month"],[0.5,"month"],[1,"month"],[2,"month"]],b=a.concat([[3,
-"month"],[6,"month"],[1,"year"]]),d=a.concat([[1,"quarter"],[2,"quarter"],[1,"year"]]);h.plot.plugins.push({init:function(a){a.hooks.processOptions.push(function(a,f){h.each(a.getAxes(),function(a,f){var g=f.options;"time"==g.mode&&(f.tickGenerator=function(a){var f=[],n=c(a.min,g),h=0,p=g.tickSize&&"quarter"===g.tickSize[1]||g.minTickSize&&"quarter"===g.minTickSize[1]?d:b;null!=g.minTickSize&&(h="number"==typeof g.tickSize?g.tickSize:g.minTickSize[0]*e[g.minTickSize[1]]);for(var m=0;m<p.length-1&&
-!(a.delta<(p[m][0]*e[p[m][1]]+p[m+1][0]*e[p[m+1][1]])/2&&p[m][0]*e[p[m][1]]>=h);++m);h=p[m][0];p=p[m][1];"year"==p&&(null!=g.minTickSize&&"year"==g.minTickSize[1]?h=Math.floor(g.minTickSize[0]):(m=Math.pow(10,Math.floor(Math.log(a.delta/e.year)/Math.LN10)),h=a.delta/e.year/m,h=(1.5>h?1:3>h?2:7.5>h?5:10)*m),1>h&&(h=1));a.tickSize=g.tickSize||[h,p];m=a.tickSize[0];p=a.tickSize[1];h=m*e[p];"second"==p?n.setSeconds(l(n.getSeconds(),m)):"minute"==p?n.setMinutes(l(n.getMinutes(),m)):"hour"==p?n.setHours(l(n.getHours(),
-m)):"month"==p?n.setMonth(l(n.getMonth(),m)):"quarter"==p?n.setMonth(3*l(n.getMonth()/3,m)):"year"==p&&n.setFullYear(l(n.getFullYear(),m));n.setMilliseconds(0);h>=e.minute&&n.setSeconds(0);h>=e.hour&&n.setMinutes(0);h>=e.day&&n.setHours(0);h>=4*e.day&&n.setDate(1);h>=2*e.month&&n.setMonth(l(n.getMonth(),3));h>=2*e.quarter&&n.setMonth(l(n.getMonth(),6));h>=e.year&&n.setMonth(0);var t=0,y=Number.NaN,ka;do if(ka=y,y=n.getTime(),f.push(y),"month"==p||"quarter"==p)if(1>m){n.setDate(1);var V=n.getTime();
-n.setMonth(n.getMonth()+("quarter"==p?3:1));var ja=n.getTime();n.setTime(y+t*e.hour+(ja-V)*m);t=n.getHours();n.setHours(0)}else n.setMonth(n.getMonth()+m*("quarter"==p?3:1));else"year"==p?n.setFullYear(n.getFullYear()+m):n.setTime(y+h);while(y<a.max&&y!=ka);return f},f.tickFormatter=function(a,b){var d=c(a,b.options);if(null!=g.timeformat)return m(d,g.timeformat,g.monthNames,g.dayNames);var f=b.options.tickSize&&"quarter"==b.options.tickSize[1]||b.options.minTickSize&&"quarter"==b.options.minTickSize[1],
-n=b.tickSize[0]*e[b.tickSize[1]],h=b.max-b.min,l=g.twelveHourClock?" %p":"",p=g.twelveHourClock?"%I":"%H";return m(d,n<e.minute?p+":%M:%S"+l:n<e.day?h<2*e.day?p+":%M"+l:"%b %d "+p+":%M"+l:n<e.month?"%b %d":f&&n<e.quarter||!f&&n<e.year?h<e.year?"%b":"%b %Y":f&&n<e.year?h<e.year?"Q%q":"Q%q %Y":"%Y",g.monthNames,g.dayNames)})})})},options:{xaxis:{timezone:null,timeformat:null,twelveHourClock:!1,monthNames:null}},name:"time",version:"1.0"});h.plot.formatDate=m})(jQuery);
-(function(h){function l(d){var f,g=this,p=d.data||{};if(p.elem)g=d.dragTarget=p.elem,d.dragProxy=b.proxy||g,d.cursorOffsetX=p.pageX-p.left,d.cursorOffsetY=p.pageY-p.top,d.offsetX=d.pageX-d.cursorOffsetX,d.offsetY=d.pageY-d.cursorOffsetY;else if(b.dragging||0<p.which&&d.which!=p.which||h(d.target).is(p.not))return;switch(d.type){case "mousedown":return h.extend(p,h(g).offset(),{elem:g,target:d.target,pageX:d.pageX,pageY:d.pageY}),e.add(document,"mousemove mouseup",l,p),c(g,!1),b.dragging=null,!1;case !b.dragging&&
-"mousemove":if(Math.pow(d.pageX-p.pageX,2)+Math.pow(d.pageY-p.pageY,2)<p.distance)break;d.target=p.target;f=m(d,"dragstart",g);!1!==f&&(b.dragging=g,b.proxy=d.dragProxy=h(f||g)[0]);case "mousemove":if(b.dragging){if(f=m(d,"drag",g),a.drop&&(a.drop.allowed=!1!==f,a.drop.handler(d)),!1!==f)break;d.type="mouseup"}case "mouseup":e.remove(document,"mousemove mouseup",l),b.dragging&&(a.drop&&a.drop.handler(d),m(d,"dragend",g)),c(g,!0),b.dragging=b.proxy=p.elem=!1}return!0}function m(a,b,c){a.type=b;b=h.event.dispatch.call(c,
-a);return!1===b?!1:b||a.result}function g(){return!1===b.dragging}function c(a,b){a&&(a.unselectable=b?"off":"on",a.onselectstart=function(){return b},a.style&&(a.style.MozUserSelect=b?"":"none"))}h.fn.drag=function(a,b,c){return b&&this.bind("dragstart",a),c&&this.bind("dragend",c),a?this.bind("drag",b?b:a):this.trigger("drag")};var e=h.event,a=e.special,b=a.drag={not:":input",distance:0,which:1,dragging:!1,setup:function(a){a=h.extend({distance:b.distance,which:b.which,not:b.not},a||{});a.distance=
-Math.pow(a.distance,2);e.add(this,"mousedown",l,a);this.attachEvent&&this.attachEvent("ondragstart",g)},teardown:function(){e.remove(this,"mousedown",l);this===b.dragging&&(b.dragging=b.proxy=!1);c(this,!0);this.detachEvent&&this.detachEvent("ondragstart",g)}};a.dragstart=a.dragend={setup:function(){},teardown:function(){}}})(jQuery);
-(function(h){function l(c){var e=c||window.event,a=[].slice.call(arguments,1),b=0,d=0,f=0;c=h.event.fix(e);c.type="mousewheel";e.wheelDelta&&(b=e.wheelDelta/120);e.detail&&(b=-e.detail/3);f=b;void 0!==e.axis&&e.axis===e.HORIZONTAL_AXIS&&(f=0,d=-1*b);void 0!==e.wheelDeltaY&&(f=e.wheelDeltaY/120);void 0!==e.wheelDeltaX&&(d=-1*e.wheelDeltaX/120);a.unshift(c,b,d,f);return(h.event.dispatch||h.event.handle).apply(this,a)}var m=["DOMMouseScroll","mousewheel"];if(h.event.fixHooks)for(var g=m.length;g;)h.event.fixHooks[m[--g]]=
-h.event.mouseHooks;h.event.special.mousewheel={setup:function(){if(this.addEventListener)for(var c=m.length;c;)this.addEventListener(m[--c],l,!1);else this.onmousewheel=l},teardown:function(){if(this.removeEventListener)for(var c=m.length;c;)this.removeEventListener(m[--c],l,!1);else this.onmousewheel=null}};h.fn.extend({mousewheel:function(c){return c?this.bind("mousewheel",c):this.trigger("mousewheel")},unmousewheel:function(c){return this.unbind("mousewheel",c)}})})(jQuery);
-(function(h){var l={xaxis:{zoomRange:null,panRange:null},zoom:{interactive:!1,trigger:"dblclick",amount:1.5},pan:{interactive:!1,cursor:"move",frameRate:20,touch:!1}};h.plot.plugins.push({init:function(m){function g(a,b){var c=m.offset();c.left=a.pageX-c.left;c.top=a.pageY-c.top;b?m.zoomOut({center:c}):m.zoom({center:c})}function c(a,b){a.preventDefault();g(a,0>b);return!1}function e(a){if("touchstart"===a.type&&1===a.originalEvent.touches.length)l.pan.touch=!0;else if(1!==a.which||a.originalEvent.touches&&
-1<a.originalEvent.touches.length)return;var b=m.getPlaceholder().css("cursor");b&&(d=b);m.getPlaceholder().css("cursor",m.getOptions().pan.cursor);a=l.pan.touch?a.originalEvent.changedTouches[0]:a;f=a.pageX;n=a.pageY}function a(a){var b=m.getOptions().pan.frameRate;!p&&b&&(p=setTimeout(function(){var b=l.pan.touch?a.originalEvent.changedTouches[0]:a;m.pan({left:f-b.pageX,top:n-b.pageY});f=b.pageX;n=b.pageY;p=null},1E3*(1/b)))}function b(a){p&&(clearTimeout(p),p=null);a=l.pan.touch?a.originalEvent.changedTouches[0]:
-a;m.getPlaceholder().css("cursor",d);m.pan({left:f-a.pageX,top:n-a.pageY});m.getPlaceholder().trigger("plotpanEnd",[m])}var d="default",f=0,n=0,p=null,y;m.unbindPanZoomEvents=function(d){y.unbind("mousewheel",c);y.unbind("dragstart",e);y.unbind("drag",a);y.unbind("dragend",b);y.unbind("touchstart");y.unbind("touchmove");y.unbind("touchend")};m.zoomOut=function(a){a||(a={});a.amount||(a.amount=m.getOptions().zoom.amount);a.amount=1/a.amount;m.zoom(a)};m.zoom=function(a){a||(a={});var b=a.center,c=
-a.amount||m.getOptions().zoom.amount,d=m.width(),f=m.height();b||(b={left:d/2,top:f/2});var e=b.left/d,g=b.top/f,n={x:{min:b.left-e*d/c,max:b.left+(1-e)*d/c},y:{min:b.top-g*f/c,max:b.top+(1-g)*f/c}};h.each(m.getAxes(),function(a,b){var d=b.options,f=n[b.direction].min,e=n[b.direction].max,g=d.zoomRange,h=d.panRange;if(!1!==g){f=b.c2p(f);e=b.c2p(e);if(f>e)var l=f,f=e,e=l;h&&(null!=h[0]&&f<h[0]&&(f=h[0]),null!=h[1]&&e>h[1]&&(e=h[1]));h=e-f;g&&(null!=g[0]&&h<g[0]&&1<c||null!=g[1]&&h>g[1]&&1>c)||(d.min=
-f,d.max=e)}});m.setupGrid();m.draw();a.preventEvent||m.getPlaceholder().trigger("plotzoom",[m,a])};m.pan=function(a){var b={x:+a.left,y:+a.top};isNaN(b.x)&&(b.x=0);isNaN(b.y)&&(b.y=0);h.each(m.getAxes(),function(a,c){var d=c.options,f,e,g=b[c.direction];f=c.c2p(c.p2c(c.min)+g);e=c.c2p(c.p2c(c.max)+g);var n=d.panRange;!1!==n&&(n&&(null!=n[0]&&n[0]>f&&(g=n[0]-f,f+=g,e+=g),null!=n[1]&&n[1]<e&&(g=n[1]-e,f+=g,e+=g)),d.min=f,d.max=e)});m.setupGrid();m.draw();a.preventEvent||m.getPlaceholder().trigger("plotpan",
-[m,a])};m.hooks.bindEvents.push(function(d,f){y=f;var n=d.getOptions();n.zoom.interactive&&(y[n.zoom.trigger](g),y.mousewheel(c));n.pan.interactive&&(y.bind("dragstart",{distance:10},e),y.bind("drag",a),y.bind("dragend",b),y.bind("touchstart",function(a){y.unbind("dragstart",e);e(a)}),y.bind("touchmove",function(b){y.unbind("drag",a);a(b)}),y.bind("touchend",function(a){y.unbind("dragend",b);b(a)}))});m.hooks.shutdown.push(function(d,f){f.unbind(d.getOptions().zoom.trigger,g);f.unbind("mousewheel",
-c);f.unbind("dragstart",e);f.unbind("drag",a);f.unbind("dragend",b);f.unbind("touchstart");f.unbind("touchmove");f.unbind("touchend");p&&clearTimeout(p)})},options:l,name:"navigate",version:"1.3"})})(jQuery);
-(function(h){h.gritter={};h.gritter.options={position:"",class_name:"",fade_in_speed:"medium",fade_out_speed:1E3,time:6E3};h.gritter.add=function(h){try{return l.add(h||{})}catch(g){var c="Gritter Error: "+g;"undefined"!=typeof console&&console.error?console.error(c,h):alert(c)}};h.gritter.remove=function(h,g){l.removeSpecific(h,g||{})};h.gritter.removeAll=function(h){l.stop(h||{})};var l={position:"",fade_in_speed:"",fade_out_speed:"",time:"",_custom_timer:0,_item_count:0,_is_setup:0,_tpl_close:'\x3ca class\x3d"gritter-close" href\x3d"#" tabindex\x3d"1"\x3eClose Notification\x3c/a\x3e',
-_tpl_title:'\x3cspan class\x3d"gritter-title"\x3e[[title]]\x3c/span\x3e',_tpl_item:'\x3cdiv id\x3d"gritter-item-[[number]]" class\x3d"gritter-item-wrapper [[item_class]]" style\x3d"display:none" role\x3d"alert"\x3e\x3cdiv class\x3d"gritter-top"\x3e\x3c/div\x3e\x3cdiv class\x3d"gritter-item"\x3e[[close]][[image]]\x3cdiv class\x3d"[[class_name]]"\x3e[[title]]\x3cp\x3e[[text]]\x3c/p\x3e\x3c/div\x3e\x3cdiv style\x3d"clear:both"\x3e\x3c/div\x3e\x3c/div\x3e\x3cdiv class\x3d"gritter-bottom"\x3e\x3c/div\x3e\x3c/div\x3e',
-_tpl_wrap:'\x3cdiv id\x3d"gritter-notice-wrapper"\x3e\x3c/div\x3e',add:function(m){"string"==typeof m&&(m={text:m});if(null===m.text)throw'You must supply "text" parameter.';this._is_setup||this._runSetup();var g=m.title,c=m.text,e=m.image||"",a=m.sticky||!1,b=m.class_name||h.gritter.options.class_name,d=h.gritter.options.position,f=m.time||"";this._verifyWrapper();this._item_count++;var n=this._item_count,p=this._tpl_item;h(["before_open","after_open","before_close","after_close"]).each(function(a,
-b){l["_"+b+"_"+n]=h.isFunction(m[b])?m[b]:function(){}});this._custom_timer=0;f&&(this._custom_timer=f);f=""!=e?'\x3cimg src\x3d"'+e+'" class\x3d"gritter-image" /\x3e':"";e=""!=e?"gritter-with-image":"gritter-without-image";g=g?this._str_replace("[[title]]",g,this._tpl_title):"";p=this._str_replace("[[title]] [[text]] [[close]] [[image]] [[number]] [[class_name]] [[item_class]]".split(" "),[g,c,this._tpl_close,f,this._item_count,e,b],p);if(!1===this["_before_open_"+n]())return!1;h("#gritter-notice-wrapper").addClass(d).append(p);
-g=h("#gritter-item-"+this._item_count);g.fadeIn(this.fade_in_speed,function(){l["_after_open_"+n](h(this))});a||this._setFadeTimer(g,n);h(g).bind("mouseenter mouseleave",function(b){"mouseenter"==b.type?a||l._restoreItemIfFading(h(this),n):a||l._setFadeTimer(h(this),n);l._hoverState(h(this),b.type)});h(g).find(".gritter-close").click(function(){l.removeSpecific(n,{},null,!0);return!1});return n},_countRemoveWrapper:function(l,g,c){g.remove();this["_after_close_"+l](g,c);0==h(".gritter-item-wrapper").length&&
-h("#gritter-notice-wrapper").remove()},_fade:function(h,g,c,e){c=c||{};var a="undefined"!=typeof c.fade?c.fade:!0;c=c.speed||this.fade_out_speed;this["_before_close_"+g](h,e);e&&h.unbind("mouseenter mouseleave");a?h.animate({opacity:0},c,function(){h.animate({height:0},300,function(){l._countRemoveWrapper(g,h,e)})}):this._countRemoveWrapper(g,h)},_hoverState:function(h,g){"mouseenter"==g?(h.addClass("hover"),h.find(".gritter-close").show()):(h.removeClass("hover"),h.find(".gritter-close").hide())},
-removeSpecific:function(l,g,c,e){c||(c=h("#gritter-item-"+l));this._fade(c,l,g||{},e)},_restoreItemIfFading:function(h,g){clearTimeout(this["_int_id_"+g]);h.stop().css({opacity:"",height:""})},_runSetup:function(){for(opt in h.gritter.options)this[opt]=h.gritter.options[opt];this._is_setup=1},_setFadeTimer:function(h,g){this["_int_id_"+g]=setTimeout(function(){l._fade(h,g)},this._custom_timer?this._custom_timer:this.time)},stop:function(l){var g=h.isFunction(l.before_close)?l.before_close:function(){},
-c=h.isFunction(l.after_close)?l.after_close:function(){};l=h("#gritter-notice-wrapper");g(l);l.fadeOut(function(){h(this).remove();c()})},_str_replace:function(h,g,c,e){var a=0,b=0,d="",f="",n=0,l=0;h=[].concat(h);g=[].concat(g);var y=g instanceof Array,t=c instanceof Array;c=[].concat(c);e&&(this.window[e]=0);a=0;for(n=c.length;a<n;a++)if(""!==c[a])for(b=0,l=h.length;b<l;b++)d=c[a]+"",f=y?void 0!==g[b]?g[b]:"":g[0],c[a]=d.split(h[b]).join(f),e&&c[a]!==d&&(this.window[e]+=(d.length-c[a].length)/h[b].length);
-return t?c:c[0]},_verifyWrapper:function(){0==h("#gritter-notice-wrapper").length&&h("body").append(this._tpl_wrap)}}})(jQuery);
-(function(h,l){var m,g;if("localStorage"in window)try{g="undefined"===typeof window.localStorage?l:window.localStorage,m="undefined"==typeof g||"undefined"==typeof window.JSON?!1:!0}catch(c){m=!1}h.totalStorage=function(c,a,b){return h.totalStorage.impl.init(c,a)};h.totalStorage.setItem=function(c,a){return h.totalStorage.impl.setItem(c,a)};h.totalStorage.getItem=function(c){return h.totalStorage.impl.getItem(c)};h.totalStorage.getAll=function(){return h.totalStorage.impl.getAll()};h.totalStorage.deleteItem=
-function(c){return h.totalStorage.impl.deleteItem(c)};h.totalStorage.impl={init:function(c,a){return"undefined"!=typeof a?this.setItem(c,a):this.getItem(c)},setItem:function(c,a){if(!m)try{return h.cookie(c,a),a}catch(b){DEBUG&&console.log("Local Storage not supported by this browser. Install the cookie plugin on your site to take advantage of the same functionality. You can get it at https://github.com/carhartl/jquery-cookie")}var d=JSON.stringify(a);g.setItem(c,d);return this.parseResult(d)},getItem:function(c){if(!m)try{return this.parseResult(h.cookie(c))}catch(a){return null}c=
-g.getItem(c);return this.parseResult(c)},deleteItem:function(c){if(!m)try{return h.cookie(c,null),!0}catch(a){return!1}g.removeItem(c);return!0},getAll:function(){var c=[];if(m)for(var a in g)a.length&&c.push({key:a,value:this.parseResult(g.getItem(a))});else try{var b=document.cookie.split(";");for(a=0;a<b.length;a++){var d=b[a].split("\x3d")[0];c.push({key:d,value:this.parseResult(h.cookie(d))})}}catch(f){return null}return c},parseResult:function(c){var a;try{a=JSON.parse(c),"undefined"==typeof a&&
-(a=c),"true"==a&&(a=!0),"false"==a&&(a=!1),parseFloat(a)==a&&"object"!=typeof a&&(a=parseFloat(a))}catch(b){a=c}return a}}})(jQuery);
-(function(h,l,m){function g(){var a=h.L;c.noConflict=function(){h.L=a;return this};h.L=c}var c={version:"1.0-dev"};"object"===typeof module&&"object"===typeof module.exports?module.exports=c:"function"===typeof define&&define.amd&&define(c);"undefined"!==typeof h&&g();c.Util={extend:function(a){var b,c,f,e;c=1;for(f=arguments.length;c<f;c++)for(b in e=arguments[c],e)a[b]=e[b];return a},create:Object.create||function(){function a(){}return function(b){a.prototype=b;return new a}}(),bind:function(a,
-b){var c=Array.prototype.slice;if(a.bind)return a.bind.apply(a,c.call(arguments,1));var f=c.call(arguments,2);return function(){return a.apply(b,f.length?f.concat(c.call(arguments)):arguments)}},stamp:function(a){a._leaflet_id=a._leaflet_id||++c.Util.lastId;return a._leaflet_id},lastId:0,throttle:function(a,b,c){var f,e,g,h;h=function(){f=!1;e&&(g.apply(c,e),e=!1)};return g=function(){f?e=arguments:(a.apply(c,arguments),setTimeout(h,b),f=!0)}},wrapNum:function(a,b,c){var f=b[1];b=b[0];var e=f-b;return a===
-f&&c?a:((a-b)%e+e)%e+b},falseFn:function(){return!1},formatNum:function(a,b){var c=Math.pow(10,b||5);return Math.round(a*c)/c},trim:function(a){return a.trim?a.trim():a.replace(/^\s+|\s+$/g,"")},splitWords:function(a){return c.Util.trim(a).split(/\s+/)},setOptions:function(a,b){a.hasOwnProperty("options")||(a.options=a.options?c.Util.create(a.options):{});for(var d in b)a.options[d]=b[d];return a.options},getParamString:function(a,b,c){var f=[],e;for(e in a)f.push(encodeURIComponent(c?e.toUpperCase():
-e)+"\x3d"+encodeURIComponent(a[e]));return(b&&-1!==b.indexOf("?")?"\x26":"?")+f.join("\x26")},template:function(a,b){return a.replace(c.Util.templateRe,function(a,c){var e=b[c];if(e===m)throw Error("No value provided for variable "+a);"function"===typeof e&&(e=e(b));return e})},templateRe:/\{ *([\w_]+) *\}/g,isArray:Array.isArray||function(a){return"[object Array]"===Object.prototype.toString.call(a)},emptyImageUrl:"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs\x3d"};(function(){function a(a){return h["webkit"+
-a]||h["moz"+a]||h["ms"+a]}function b(a){var b=+new Date,c=Math.max(0,16-(b-d));d=b+c;return h.setTimeout(a,c)}var d=0,f=h.requestAnimationFrame||a("RequestAnimationFrame")||b,e=h.cancelAnimationFrame||a("CancelAnimationFrame")||a("CancelRequestAnimationFrame")||function(a){h.clearTimeout(a)};c.Util.requestAnimFrame=function(a,d,e){if(e&&f===b)a.call(d);else return f.call(h,c.bind(a,d))};c.Util.cancelAnimFrame=function(a){a&&e.call(h,a)}})();c.extend=c.Util.extend;c.bind=c.Util.bind;c.stamp=c.Util.stamp;
-c.setOptions=c.Util.setOptions;c.Class=function(){};c.Class.extend=function(a){var b=function(){this.initialize&&this.initialize.apply(this,arguments);this.callInitHooks()},d=b.__super__=this.prototype,f=c.Util.create(d);f.constructor=b;b.prototype=f;for(var e in this)this.hasOwnProperty(e)&&"prototype"!==e&&(b[e]=this[e]);a.statics&&(c.extend(b,a.statics),delete a.statics);a.includes&&(c.Util.extend.apply(null,[f].concat(a.includes)),delete a.includes);f.options&&(a.options=c.Util.extend(c.Util.create(f.options),
-a.options));c.extend(f,a);f._initHooks=[];f.callInitHooks=function(){if(!this._initHooksCalled){d.callInitHooks&&d.callInitHooks.call(this);this._initHooksCalled=!0;for(var a=0,b=f._initHooks.length;a<b;a++)f._initHooks[a].call(this)}};return b};c.Class.include=function(a){c.extend(this.prototype,a)};c.Class.mergeOptions=function(a){c.extend(this.prototype.options,a)};c.Class.addInitHook=function(a){var b=Array.prototype.slice.call(arguments,1);this.prototype._initHooks=this.prototype._initHooks||
-[];this.prototype._initHooks.push("function"===typeof a?a:function(){this[a].apply(this,b)})};c.Evented=c.Class.extend({on:function(a,b,d){if("object"===typeof a)for(var f in a)this._on(f,a[f],b);else{a=c.Util.splitWords(a);f=0;for(var e=a.length;f<e;f++)this._on(a[f],b,d)}return this},off:function(a,b,d){if(a)if("object"===typeof a)for(var f in a)this._off(f,a[f],b);else{a=c.Util.splitWords(a);f=0;for(var e=a.length;f<e;f++)this._off(a[f],b,d)}else delete this._events;return this},_on:function(a,
-b,d){var f=this._events=this._events||{},e=d&&d!==this&&c.stamp(d);if(e){var g=a+"_idx";a+="_len";g=f[g]=f[g]||{};e=c.stamp(b)+"_"+e;g[e]||(g[e]={fn:b,ctx:d},f[a]=(f[a]||0)+1)}else f[a]=f[a]||[],f[a].push({fn:b})},_off:function(a,b,d){var f=this._events,e=a+"_idx",g=a+"_len";if(f)if(b){d=d&&d!==this&&c.stamp(d);var h;if(d)b=c.stamp(b)+"_"+d,(e=f[e])&&e[b]&&(h=e[b],delete e[b],f[g]--);else if(e=f[a])for(f=0,g=e.length;f<g;f++)if(e[f].fn===b){h=e[f];e.splice(f,1);break}h&&(h.fn=c.Util.falseFn)}else delete f[a],
-delete f[e],delete f[g]},fire:function(a,b,d){if(!this.listens(a,d))return this;b=c.Util.extend({},b,{type:a,target:this});var f=this._events;if(f){var e=f[a+"_idx"],g,h;if(f[a])for(g=f[a].slice(),a=0,f=g.length;a<f;a++)g[a].fn.call(this,b);for(h in e)e[h].fn.call(e[h].ctx,b)}d&&this._propagateEvent(b);return this},listens:function(a,b){var c=this._events;if(c&&(c[a]||c[a+"_len"]))return!0;if(b)for(var f in this._eventParents)if(this._eventParents[f].listens(a,b))return!0;return!1},once:function(a,
-b,d){if("object"===typeof a){for(var f in a)this.once(f,a[f],b);return this}var e=c.bind(function(){this.off(a,b,d).off(a,e,d)},this);return this.on(a,b,d).on(a,e,d)},addEventParent:function(a){this._eventParents=this._eventParents||{};this._eventParents[c.stamp(a)]=a;return this},removeEventParent:function(a){this._eventParents&&delete this._eventParents[c.stamp(a)];return this},_propagateEvent:function(a){for(var b in this._eventParents)this._eventParents[b].fire(a.type,c.extend({layer:a.target},
-a),!0)}});var e=c.Evented.prototype;e.addEventListener=e.on;e.removeEventListener=e.clearAllEventListeners=e.off;e.addOneTimeEventListener=e.once;e.fireEvent=e.fire;e.hasEventListeners=e.listens;c.Mixin={Events:e};(function(){var a=navigator.userAgent.toLowerCase(),b=l.documentElement,d="ActiveXObject"in h,f=-1!==a.indexOf("webkit"),e=-1!==a.indexOf("phantom"),g=-1!==a.search("android [23]"),m=-1!==a.indexOf("chrome"),t=-1!==a.indexOf("gecko")&&!f&&!h.opera&&!d,z="undefined"!==typeof orientation||
--1!==a.indexOf("mobile"),H=navigator.msPointerEnabled&&navigator.msMaxTouchPoints&&!h.PointerEvent,D=h.PointerEvent&&navigator.pointerEnabled&&navigator.maxTouchPoints||H,A=d&&"transition"in b.style,x="WebKitCSSMatrix"in h&&"m11"in new h.WebKitCSSMatrix&&!g,F="MozPerspective"in b.style,b="OTransition"in b.style,P=!h.L_NO_TOUCH&&!e&&(D||"ontouchstart"in h||h.DocumentTouch&&l instanceof h.DocumentTouch);c.Browser={ie:d,ielt9:d&&!l.addEventListener,webkit:f,gecko:t,android:-1!==a.indexOf("android"),
-android23:g,chrome:m,safari:!m&&-1!==a.indexOf("safari"),ie3d:A,webkit3d:x,gecko3d:F,opera12:b,any3d:!h.L_DISABLE_3D&&(A||x||F)&&!b&&!e,mobile:z,mobileWebkit:z&&f,mobileWebkit3d:z&&x,mobileOpera:z&&h.opera,mobileGecko:z&&t,touch:!!P,msPointer:!!H,pointer:!!D,retina:1<(h.devicePixelRatio||h.screen.deviceXDPI/h.screen.logicalXDPI)}})();c.Point=function(a,b,c){this.x=c?Math.round(a):a;this.y=c?Math.round(b):b};c.Point.prototype={clone:function(){return new c.Point(this.x,this.y)},add:function(a){return this.clone()._add(c.point(a))},
-_add:function(a){this.x+=a.x;this.y+=a.y;return this},subtract:function(a){return this.clone()._subtract(c.point(a))},_subtract:function(a){this.x-=a.x;this.y-=a.y;return this},divideBy:function(a){return this.clone()._divideBy(a)},_divideBy:function(a){this.x/=a;this.y/=a;return this},multiplyBy:function(a){return this.clone()._multiplyBy(a)},_multiplyBy:function(a){this.x*=a;this.y*=a;return this},round:function(){return this.clone()._round()},_round:function(){this.x=Math.round(this.x);this.y=
-Math.round(this.y);return this},floor:function(){return this.clone()._floor()},_floor:function(){this.x=Math.floor(this.x);this.y=Math.floor(this.y);return this},ceil:function(){return this.clone()._ceil()},_ceil:function(){this.x=Math.ceil(this.x);this.y=Math.ceil(this.y);return this},distanceTo:function(a){a=c.point(a);var b=a.x-this.x;a=a.y-this.y;return Math.sqrt(b*b+a*a)},equals:function(a){a=c.point(a);return a.x===this.x&&a.y===this.y},contains:function(a){a=c.point(a);return Math.abs(a.x)<=
-Math.abs(this.x)&&Math.abs(a.y)<=Math.abs(this.y)},toString:function(){return"Point("+c.Util.formatNum(this.x)+", "+c.Util.formatNum(this.y)+")"}};c.point=function(a,b,d){return a instanceof c.Point?a:c.Util.isArray(a)?new c.Point(a[0],a[1]):a===m||null===a?a:new c.Point(a,b,d)};c.Bounds=function(a,b){if(a)for(var c=b?[a,b]:a,f=0,e=c.length;f<e;f++)this.extend(c[f])};c.Bounds.prototype={extend:function(a){a=c.point(a);this.min||this.max?(this.min.x=Math.min(a.x,this.min.x),this.max.x=Math.max(a.x,
-this.max.x),this.min.y=Math.min(a.y,this.min.y),this.max.y=Math.max(a.y,this.max.y)):(this.min=a.clone(),this.max=a.clone());return this},getCenter:function(a){return new c.Point((this.min.x+this.max.x)/2,(this.min.y+this.max.y)/2,a)},getBottomLeft:function(){return new c.Point(this.min.x,this.max.y)},getTopRight:function(){return new c.Point(this.max.x,this.min.y)},getSize:function(){return this.max.subtract(this.min)},contains:function(a){var b;a="number"===typeof a[0]||a instanceof c.Point?c.point(a):
-c.bounds(a);a instanceof c.Bounds?(b=a.min,a=a.max):b=a;return b.x>=this.min.x&&a.x<=this.max.x&&b.y>=this.min.y&&a.y<=this.max.y},intersects:function(a){a=c.bounds(a);var b=this.min,d=this.max,f=a.min;a=a.max;var e=a.y>=b.y&&f.y<=d.y;return a.x>=b.x&&f.x<=d.x&&e},overlaps:function(a){a=c.bounds(a);var b=this.min,d=this.max,f=a.min;a=a.max;var e=a.y>b.y&&f.y<d.y;return a.x>b.x&&f.x<d.x&&e},isValid:function(){return!(!this.min||!this.max)}};c.bounds=function(a,b){return!a||a instanceof c.Bounds?a:
-new c.Bounds(a,b)};c.Transformation=function(a,b,c,f){this._a=a;this._b=b;this._c=c;this._d=f};c.Transformation.prototype={transform:function(a,b){return this._transform(a.clone(),b)},_transform:function(a,b){b=b||1;a.x=b*(this._a*a.x+this._b);a.y=b*(this._c*a.y+this._d);return a},untransform:function(a,b){b=b||1;return new c.Point((a.x/b-this._b)/this._a,(a.y/b-this._d)/this._c)}};c.DomUtil={get:function(a){return"string"===typeof a?l.getElementById(a):a},getStyle:function(a,b){var c=a.style[b]||
-a.currentStyle&&a.currentStyle[b];c&&"auto"!==c||!l.defaultView||(c=(c=l.defaultView.getComputedStyle(a,null))?c[b]:null);return"auto"===c?null:c},create:function(a,b,c){a=l.createElement(a);a.className=b;c&&c.appendChild(a);return a},remove:function(a){var b=a.parentNode;b&&b.removeChild(a)},empty:function(a){for(;a.firstChild;)a.removeChild(a.firstChild)},toFront:function(a){a.parentNode.appendChild(a)},toBack:function(a){var b=a.parentNode;b.insertBefore(a,b.firstChild)},hasClass:function(a,b){if(a.classList!==
-m)return a.classList.contains(b);var d=c.DomUtil.getClass(a);return 0<d.length&&RegExp("(^|\\s)"+b+"(\\s|$)").test(d)},addClass:function(a,b){if(a.classList!==m)for(var d=c.Util.splitWords(b),f=0,e=d.length;f<e;f++)a.classList.add(d[f]);else c.DomUtil.hasClass(a,b)||(d=c.DomUtil.getClass(a),c.DomUtil.setClass(a,(d?d+" ":"")+b))},removeClass:function(a,b){a.classList!==m?a.classList.remove(b):c.DomUtil.setClass(a,c.Util.trim((" "+c.DomUtil.getClass(a)+" ").replace(" "+b+" "," ")))},setClass:function(a,
-b){a.className.baseVal===m?a.className=b:a.className.baseVal=b},getClass:function(a){return a.className.baseVal===m?a.className:a.className.baseVal},setOpacity:function(a,b){"opacity"in a.style?a.style.opacity=b:"filter"in a.style&&c.DomUtil._setOpacityIE(a,b)},_setOpacityIE:function(a,b){var c=!1;try{c=a.filters.item("DXImageTransform.Microsoft.Alpha")}catch(f){if(1===b)return}b=Math.round(100*b);c?(c.Enabled=100!==b,c.Opacity=b):a.style.filter+=" progid:DXImageTransform.Microsoft.Alpha(opacity\x3d"+
-b+")"},testProp:function(a){for(var b=l.documentElement.style,c=0;c<a.length;c++)if(a[c]in b)return a[c];return!1},setTransform:function(a,b,d){b=b||new c.Point(0,0);a.style[c.DomUtil.TRANSFORM]="translate3d("+b.x+"px,"+b.y+"px,0)"+(d?" scale("+d+")":"")},setPosition:function(a,b){a._leaflet_pos=b;c.Browser.any3d?c.DomUtil.setTransform(a,b):(a.style.left=b.x+"px",a.style.top=b.y+"px")},getPosition:function(a){return a._leaflet_pos}};(function(){c.DomUtil.TRANSFORM=c.DomUtil.testProp(["transform",
-"WebkitTransform","OTransform","MozTransform","msTransform"]);var a=c.DomUtil.TRANSITION=c.DomUtil.testProp(["webkitTransition","transition","OTransition","MozTransition","msTransition"]);c.DomUtil.TRANSITION_END="webkitTransition"===a||"OTransition"===a?a+"End":"transitionend";if("onselectstart"in l)c.DomUtil.disableTextSelection=function(){c.DomEvent.on(h,"selectstart",c.DomEvent.preventDefault)},c.DomUtil.enableTextSelection=function(){c.DomEvent.off(h,"selectstart",c.DomEvent.preventDefault)};
-else{var b=c.DomUtil.testProp(["userSelect","WebkitUserSelect","OUserSelect","MozUserSelect","msUserSelect"]);c.DomUtil.disableTextSelection=function(){if(b){var a=l.documentElement.style;this._userSelect=a[b];a[b]="none"}};c.DomUtil.enableTextSelection=function(){b&&(l.documentElement.style[b]=this._userSelect,delete this._userSelect)}}c.DomUtil.disableImageDrag=function(){c.DomEvent.on(h,"dragstart",c.DomEvent.preventDefault)};c.DomUtil.enableImageDrag=function(){c.DomEvent.off(h,"dragstart",c.DomEvent.preventDefault)};
-c.DomUtil.preventOutline=function(a){c.DomUtil.restoreOutline();this._outlineElement=a;this._outlineStyle=a.style.outline;a.style.outline="none";c.DomEvent.on(h,"keydown",c.DomUtil.restoreOutline,this)};c.DomUtil.restoreOutline=function(){this._outlineElement&&(this._outlineElement.style.outline=this._outlineStyle,delete this._outlineElement,delete this._outlineStyle,c.DomEvent.off(h,"keydown",c.DomUtil.restoreOutline,this))}})();c.LatLng=function(a,b,c){if(isNaN(a)||isNaN(b))throw Error("Invalid LatLng object: ("+
-a+", "+b+")");this.lat=+a;this.lng=+b;c!==m&&(this.alt=+c)};c.LatLng.prototype={equals:function(a,b){if(!a)return!1;a=c.latLng(a);return Math.max(Math.abs(this.lat-a.lat),Math.abs(this.lng-a.lng))<=(b===m?1E-9:b)},toString:function(a){return"LatLng("+c.Util.formatNum(this.lat,a)+", "+c.Util.formatNum(this.lng,a)+")"},distanceTo:function(a){return c.CRS.Earth.distance(this,c.latLng(a))},wrap:function(){return c.CRS.Earth.wrapLatLng(this)},toBounds:function(a){a=180*a/40075017;var b=a/Math.cos(Math.PI/
-180*this.lat);return c.latLngBounds([this.lat-a,this.lng-b],[this.lat+a,this.lng+b])},clone:function(){return new c.LatLng(this.lat,this.lng,this.alt)}};c.latLng=function(a,b,d){return a instanceof c.LatLng?a:c.Util.isArray(a)&&"object"!==typeof a[0]?3===a.length?new c.LatLng(a[0],a[1],a[2]):2===a.length?new c.LatLng(a[0],a[1]):null:a===m||null===a?a:"object"===typeof a&&"lat"in a?new c.LatLng(a.lat,"lng"in a?a.lng:a.lon,a.alt):b===m?null:new c.LatLng(a,b,d)};c.LatLngBounds=function(a,b){if(a)for(var c=
-b?[a,b]:a,f=0,e=c.length;f<e;f++)this.extend(c[f])};c.LatLngBounds.prototype={extend:function(a){var b=this._southWest,d=this._northEast,f;if(a instanceof c.LatLng)f=a;else if(a instanceof c.LatLngBounds){if(f=a._southWest,a=a._northEast,!f||!a)return this}else return a?this.extend(c.latLng(a)||c.latLngBounds(a)):this;b||d?(b.lat=Math.min(f.lat,b.lat),b.lng=Math.min(f.lng,b.lng),d.lat=Math.max(a.lat,d.lat),d.lng=Math.max(a.lng,d.lng)):(this._southWest=new c.LatLng(f.lat,f.lng),this._northEast=new c.LatLng(a.lat,
-a.lng));return this},pad:function(a){var b=this._southWest,d=this._northEast,f=Math.abs(b.lat-d.lat)*a;a*=Math.abs(b.lng-d.lng);return new c.LatLngBounds(new c.LatLng(b.lat-f,b.lng-a),new c.LatLng(d.lat+f,d.lng+a))},getCenter:function(){return new c.LatLng((this._southWest.lat+this._northEast.lat)/2,(this._southWest.lng+this._northEast.lng)/2)},getSouthWest:function(){return this._southWest},getNorthEast:function(){return this._northEast},getNorthWest:function(){return new c.LatLng(this.getNorth(),
-this.getWest())},getSouthEast:function(){return new c.LatLng(this.getSouth(),this.getEast())},getWest:function(){return this._southWest.lng},getSouth:function(){return this._southWest.lat},getEast:function(){return this._northEast.lng},getNorth:function(){return this._northEast.lat},contains:function(a){a="number"===typeof a[0]||a instanceof c.LatLng?c.latLng(a):c.latLngBounds(a);var b=this._southWest,d=this._northEast,f;a instanceof c.LatLngBounds?(f=a.getSouthWest(),a=a.getNorthEast()):f=a;return f.lat>=
-b.lat&&a.lat<=d.lat&&f.lng>=b.lng&&a.lng<=d.lng},intersects:function(a){a=c.latLngBounds(a);var b=this._southWest,d=this._northEast,f=a.getSouthWest();a=a.getNorthEast();var e=a.lng>=b.lng&&f.lng<=d.lng;return a.lat>=b.lat&&f.lat<=d.lat&&e},overlaps:function(a){a=c.latLngBounds(a);var b=this._southWest,d=this._northEast,f=a.getSouthWest();a=a.getNorthEast();var e=a.lng>b.lng&&f.lng<d.lng;return a.lat>b.lat&&f.lat<d.lat&&e},toBBoxString:function(){return[this.getWest(),this.getSouth(),this.getEast(),
-this.getNorth()].join()},equals:function(a){if(!a)return!1;a=c.latLngBounds(a);return this._southWest.equals(a.getSouthWest())&&this._northEast.equals(a.getNorthEast())},isValid:function(){return!(!this._southWest||!this._northEast)}};c.latLngBounds=function(a,b){return!a||a instanceof c.LatLngBounds?a:new c.LatLngBounds(a,b)};c.Projection={};c.Projection.LonLat={project:function(a){return new c.Point(a.lng,a.lat)},unproject:function(a){return new c.LatLng(a.y,a.x)},bounds:c.bounds([-180,-90],[180,
-90])};c.Projection.SphericalMercator={R:6378137,project:function(a){var b=Math.PI/180,d=1-1E-15,d=Math.max(Math.min(Math.sin(a.lat*b),d),-d);return new c.Point(this.R*a.lng*b,this.R*Math.log((1+d)/(1-d))/2)},unproject:function(a){var b=180/Math.PI;return new c.LatLng((2*Math.atan(Math.exp(a.y/this.R))-Math.PI/2)*b,a.x*b/this.R)},bounds:function(){var a=6378137*Math.PI;return c.bounds([-a,-a],[a,a])}()};c.CRS={latLngToPoint:function(a,b){var c=this.projection.project(a),f=this.scale(b);return this.transformation._transform(c,
-f)},pointToLatLng:function(a,b){var c=this.scale(b),c=this.transformation.untransform(a,c);return this.projection.unproject(c)},project:function(a){return this.projection.project(a)},unproject:function(a){return this.projection.unproject(a)},scale:function(a){return 256*Math.pow(2,a)},getProjectedBounds:function(a){if(this.infinite)return null;var b=this.projection.bounds,d=this.scale(a);a=this.transformation.transform(b.min,d);b=this.transformation.transform(b.max,d);return c.bounds(a,b)},wrapLatLng:function(a){var b=
-this.wrapLng?c.Util.wrapNum(a.lng,this.wrapLng,!0):a.lng,d=this.wrapLat?c.Util.wrapNum(a.lat,this.wrapLat,!0):a.lat;return c.latLng(d,b,a.alt)}};c.CRS.Simple=c.extend({},c.CRS,{projection:c.Projection.LonLat,transformation:new c.Transformation(1,0,-1,0),scale:function(a){return Math.pow(2,a)},distance:function(a,b){var c=b.lng-a.lng,f=b.lat-a.lat;return Math.sqrt(c*c+f*f)},infinite:!0});c.CRS.Earth=c.extend({},c.CRS,{wrapLng:[-180,180],R:6378137,distance:function(a,b){var c=Math.PI/180,f=a.lat*c,
-e=b.lat*c,c=Math.sin(f)*Math.sin(e)+Math.cos(f)*Math.cos(e)*Math.cos((b.lng-a.lng)*c);return this.R*Math.acos(Math.min(c,1))}});c.CRS.EPSG3857=c.extend({},c.CRS.Earth,{code:"EPSG:3857",projection:c.Projection.SphericalMercator,transformation:function(){var a=0.5/(Math.PI*c.Projection.SphericalMercator.R);return new c.Transformation(a,0.5,-a,0.5)}()});c.CRS.EPSG900913=c.extend({},c.CRS.EPSG3857,{code:"EPSG:900913"});c.CRS.EPSG4326=c.extend({},c.CRS.Earth,{code:"EPSG:4326",projection:c.Projection.LonLat,
-transformation:new c.Transformation(1/180,1,-1/180,0.5)});c.Map=c.Evented.extend({options:{crs:c.CRS.EPSG3857,fadeAnimation:!0,trackResize:!0,markerZoomAnimation:!0,maxBoundsViscosity:0},initialize:function(a,b){b=c.setOptions(this,b);this._initContainer(a);this._initLayout();this._onResize=c.bind(this._onResize,this);this._initEvents();b.maxBounds&&this.setMaxBounds(b.maxBounds);b.zoom!==m&&(this._zoom=this._limitZoom(b.zoom));b.center&&b.zoom!==m&&this.setView(c.latLng(b.center),b.zoom,{reset:!0});
-this._handlers=[];this._layers={};this._zoomBoundLayers={};this._sizeChanged=!0;this.callInitHooks();this._addLayers(this.options.layers)},setView:function(a,b){b=b===m?this.getZoom():b;this._resetView(c.latLng(a),b);return this},setZoom:function(a,b){return this._loaded?this.setView(this.getCenter(),a,{zoom:b}):(this._zoom=a,this)},zoomIn:function(a,b){return this.setZoom(this._zoom+(a||1),b)},zoomOut:function(a,b){return this.setZoom(this._zoom-(a||1),b)},setZoomAround:function(a,b,d){var f=this.getZoomScale(b),
-e=this.getSize().divideBy(2);a=(a instanceof c.Point?a:this.latLngToContainerPoint(a)).subtract(e).multiplyBy(1-1/f);e=this.containerPointToLatLng(e.add(a));return this.setView(e,b,{zoom:d})},_getBoundsCenterZoom:function(a,b){b=b||{};a=a.getBounds?a.getBounds():c.latLngBounds(a);var d=c.point(b.paddingTopLeft||b.padding||[0,0]),f=c.point(b.paddingBottomRight||b.padding||[0,0]),e=this.getBoundsZoom(a,!1,d.add(f)),e=b.maxZoom?Math.min(b.maxZoom,e):e,d=f.subtract(d).divideBy(2),f=this.project(a.getSouthWest(),
-e),g=this.project(a.getNorthEast(),e);return{center:this.unproject(f.add(g).divideBy(2).add(d),e),zoom:e}},fitBounds:function(a,b){var c=this._getBoundsCenterZoom(a,b);return this.setView(c.center,c.zoom,b)},fitWorld:function(a){return this.fitBounds([[-90,-180],[90,180]],a)},panTo:function(a,b){return this.setView(a,this._zoom,{pan:b})},panBy:function(a){this.fire("movestart");this._rawPanBy(c.point(a));this.fire("move");return this.fire("moveend")},setMaxBounds:function(a){if(a=c.latLngBounds(a))this.options.maxBounds&&
-this.off("moveend",this._panInsideMaxBounds);else return this.off("moveend",this._panInsideMaxBounds);this.options.maxBounds=a;this._loaded&&this._panInsideMaxBounds();return this.on("moveend",this._panInsideMaxBounds)},setMinZoom:function(a){this.options.minZoom=a;return this._loaded&&this.getZoom()<this.options.minZoom?this.setZoom(a):this},setMaxZoom:function(a){this.options.maxZoom=a;return this._loaded&&this.getZoom()>this.options.maxZoom?this.setZoom(a):this},panInsideBounds:function(a,b){var d=
-this.getCenter(),f=this._limitCenter(d,this._zoom,c.latLngBounds(a));return d.equals(f)?this:this.panTo(f,b)},invalidateSize:function(a){if(!this._loaded)return this;a=c.extend({animate:!1,pan:!0},!0===a?{animate:!0}:a);var b=this.getSize();this._sizeChanged=!0;this._lastCenter=null;var d=this.getSize(),f=b.divideBy(2).round(),e=d.divideBy(2).round(),f=f.subtract(e);if(!f.x&&!f.y)return this;a.animate&&a.pan?this.panBy(f):(a.pan&&this._rawPanBy(f),this.fire("move"),a.debounceMoveend?(clearTimeout(this._sizeTimer),
-this._sizeTimer=setTimeout(c.bind(this.fire,this,"moveend"),200)):this.fire("moveend"));return this.fire("resize",{oldSize:b,newSize:d})},stop:function(){c.Util.cancelAnimFrame(this._flyToFrame);this._panAnim&&this._panAnim.stop();return this},addHandler:function(a,b){if(!b)return this;var c=this[a]=new b(this);this._handlers.push(c);this.options[a]&&c.enable();return this},remove:function(){this._initEvents(!0);try{delete this._container._leaflet}catch(a){this._container._leaflet=m}c.DomUtil.remove(this._mapPane);
-this._clearControlPos&&this._clearControlPos();this._clearHandlers();this._loaded&&this.fire("unload");for(var b in this._layers)this._layers[b].remove();return this},createPane:function(a,b){var d="leaflet-pane"+(a?" leaflet-"+a.replace("Pane","")+"-pane":""),d=c.DomUtil.create("div",d,b||this._mapPane);a&&(this._panes[a]=d);return d},getCenter:function(){this._checkIfLoaded();return this._lastCenter&&!this._moved()?this._lastCenter:this.layerPointToLatLng(this._getCenterLayerPoint())},getZoom:function(){return this._zoom},
-getBounds:function(){var a=this.getPixelBounds(),b=this.unproject(a.getBottomLeft()),a=this.unproject(a.getTopRight());return new c.LatLngBounds(b,a)},getMinZoom:function(){return this.options.minZoom===m?this._layersMinZoom||0:this.options.minZoom},getMaxZoom:function(){return this.options.maxZoom===m?this._layersMaxZoom===m?Infinity:this._layersMaxZoom:this.options.maxZoom},getBoundsZoom:function(a,b,d){a=c.latLngBounds(a);var f=this.getMinZoom()-(b?1:0),e=this.getMaxZoom(),g=this.getSize(),h=a.getNorthWest();
-a=a.getSouthEast();var l=!0;d=c.point(d||[0,0]);do f++,l=this.project(a,f).subtract(this.project(h,f)).add(d).floor(),l=b?l.x<g.x||l.y<g.y:g.contains(l);while(l&&f<=e);return l&&b?null:b?f:f-1},getSize:function(){if(!this._size||this._sizeChanged)this._size=new c.Point(this._container.clientWidth,this._container.clientHeight),this._sizeChanged=!1;return this._size.clone()},getPixelBounds:function(a,b){var d=this._getTopLeftPoint(a,b);return new c.Bounds(d,d.add(this.getSize()))},getPixelOrigin:function(){this._checkIfLoaded();
-return this._pixelOrigin},getPixelWorldBounds:function(a){return this.options.crs.getProjectedBounds(a===m?this.getZoom():a)},getPane:function(a){return"string"===typeof a?this._panes[a]:a},getPanes:function(){return this._panes},getContainer:function(){return this._container},getZoomScale:function(a,b){var c=this.options.crs;b=b===m?this._zoom:b;return c.scale(a)/c.scale(b)},getScaleZoom:function(a,b){b=b===m?this._zoom:b;return b+Math.log(a)/Math.LN2},project:function(a,b){b=b===m?this._zoom:b;
-return this.options.crs.latLngToPoint(c.latLng(a),b)},unproject:function(a,b){b=b===m?this._zoom:b;return this.options.crs.pointToLatLng(c.point(a),b)},layerPointToLatLng:function(a){a=c.point(a).add(this.getPixelOrigin());return this.unproject(a)},latLngToLayerPoint:function(a){return this.project(c.latLng(a))._round()._subtract(this.getPixelOrigin())},wrapLatLng:function(a){return this.options.crs.wrapLatLng(c.latLng(a))},distance:function(a,b){return this.options.crs.distance(c.latLng(a),c.latLng(b))},
-containerPointToLayerPoint:function(a){return c.point(a).subtract(this._getMapPanePos())},layerPointToContainerPoint:function(a){return c.point(a).add(this._getMapPanePos())},containerPointToLatLng:function(a){a=this.containerPointToLayerPoint(c.point(a));return this.layerPointToLatLng(a)},latLngToContainerPoint:function(a){return this.layerPointToContainerPoint(this.latLngToLayerPoint(c.latLng(a)))},mouseEventToContainerPoint:function(a){return c.DomEvent.getMousePosition(a,this._container)},mouseEventToLayerPoint:function(a){return this.containerPointToLayerPoint(this.mouseEventToContainerPoint(a))},
-mouseEventToLatLng:function(a){return this.layerPointToLatLng(this.mouseEventToLayerPoint(a))},_initContainer:function(a){a=this._container=c.DomUtil.get(a);if(!a)throw Error("Map container not found.");if(a._leaflet)throw Error("Map container is already initialized.");c.DomEvent.addListener(a,"scroll",this._onScroll,this);a._leaflet=!0},_initLayout:function(){var a=this._container;this._fadeAnimated=this.options.fadeAnimation&&c.Browser.any3d;c.DomUtil.addClass(a,"leaflet-container"+(c.Browser.touch?
-" leaflet-touch":"")+(c.Browser.retina?" leaflet-retina":"")+(c.Browser.ielt9?" leaflet-oldie":"")+(c.Browser.safari?" leaflet-safari":"")+(this._fadeAnimated?" leaflet-fade-anim":""));var b=c.DomUtil.getStyle(a,"position");"absolute"!==b&&"relative"!==b&&"fixed"!==b&&(a.style.position="relative");this._initPanes();this._initControlPos&&this._initControlPos()},_initPanes:function(){var a=this._panes={};this._paneRenderers={};this._mapPane=this.createPane("mapPane",this._container);c.DomUtil.setPosition(this._mapPane,
-new c.Point(0,0));this.createPane("tilePane");this.createPane("shadowPane");this.createPane("overlayPane");this.createPane("markerPane");this.createPane("popupPane");this.options.markerZoomAnimation||(c.DomUtil.addClass(a.markerPane,"leaflet-zoom-hide"),c.DomUtil.addClass(a.shadowPane,"leaflet-zoom-hide"))},_resetView:function(a,b){c.DomUtil.setPosition(this._mapPane,new c.Point(0,0));var d=!this._loaded;this._loaded=!0;b=this._limitZoom(b);var f=this._zoom!==b;this._moveStart(f)._move(a,b)._moveEnd(f);
-this.fire("viewreset");d&&this.fire("load")},_moveStart:function(a){a&&this.fire("zoomstart");return this.fire("movestart")},_move:function(a,b,c){b===m&&(b=this._zoom);var f=this._zoom!==b;this._zoom=b;this._lastCenter=a;this._pixelOrigin=this._getNewPixelOrigin(a);f&&this.fire("zoom",c);return this.fire("move",c)},_moveEnd:function(a){a&&this.fire("zoomend");return this.fire("moveend")},_rawPanBy:function(a){c.DomUtil.setPosition(this._mapPane,this._getMapPanePos().subtract(a))},_getZoomSpan:function(){return this.getMaxZoom()-
-this.getMinZoom()},_panInsideMaxBounds:function(){this.panInsideBounds(this.options.maxBounds)},_checkIfLoaded:function(){if(!this._loaded)throw Error("Set map center and zoom first.");},_initEvents:function(a){if(c.DomEvent&&(this._targets={},a=a?"off":"on",c.DomEvent[a](this._container,"click dblclick mousedown mouseup mouseover mouseout mousemove contextmenu keypress",this._handleDOMEvent,this),this.options.trackResize))c.DomEvent[a](h,"resize",this._onResize,this)},_onResize:function(){c.Util.cancelAnimFrame(this._resizeRequest);
-this._resizeRequest=c.Util.requestAnimFrame(function(){this.invalidateSize({debounceMoveend:!0})},this,!1,this._container)},_onScroll:function(){this._container.scrollTop=0;this._container.scrollLeft=0},_findEventTarget:function(a){for(;a;){var b=this._targets[c.stamp(a)];if(b)return b;if(a===this._container)break;a=a.parentNode}return null},_handleDOMEvent:function(a){if(this._loaded&&!c.DomEvent._skipped(a)){var b=this._findEventTarget(a.target||a.srcElement),d="keypress"===a.type&&13===a.keyCode?
-"click":a.type;if(b||"mouseover"!==d&&"mouseout"!==d||c.DomEvent._checkMouse(this._container,a))"mousedown"===d&&c.DomUtil.preventOutline(a.target||a.srcElement),this._fireDOMEvent(b||this,a,d)}},_fireDOMEvent:function(a,b,d){if(a.listens(d,!0)||"click"===d&&a.listens("preclick",!0))if("contextmenu"===d&&c.DomEvent.preventDefault(b),"click"!==b.type||b._simulated||!this._draggableMoved(a)){var f={originalEvent:b};"keypress"!==b.type&&(f.containerPoint=a instanceof c.Marker?this.latLngToContainerPoint(a.getLatLng()):
-this.mouseEventToContainerPoint(b),f.layerPoint=this.containerPointToLayerPoint(f.containerPoint),f.latlng=this.layerPointToLatLng(f.layerPoint));"click"===d&&a.fire("preclick",f,!0);a.fire(d,f,!0)}},_draggableMoved:function(a){a=a.options.draggable?a:this;return a.dragging&&a.dragging.moved()||this.boxZoom&&this.boxZoom.moved()},_clearHandlers:function(){for(var a=0,b=this._handlers.length;a<b;a++)this._handlers[a].disable()},whenReady:function(a,b){if(this._loaded)a.call(b||this,{target:this});
-else this.on("load",a,b);return this},_getMapPanePos:function(){return c.DomUtil.getPosition(this._mapPane)||new c.Point(0,0)},_moved:function(){var a=this._getMapPanePos();return a&&!a.equals([0,0])},_getTopLeftPoint:function(a,b){return(a&&b!==m?this._getNewPixelOrigin(a,b):this.getPixelOrigin()).subtract(this._getMapPanePos())},_getNewPixelOrigin:function(a,b){var c=this.getSize()._divideBy(2);return this.project(a,b)._subtract(c)._add(this._getMapPanePos())._round()},_latLngToNewLayerPoint:function(a,
-b,c){c=this._getNewPixelOrigin(c,b);return this.project(a,b)._subtract(c)},_getCenterLayerPoint:function(){return this.containerPointToLayerPoint(this.getSize()._divideBy(2))},_getCenterOffset:function(a){return this.latLngToLayerPoint(a).subtract(this._getCenterLayerPoint())},_limitCenter:function(a,b,d){if(!d)return a;a=this.project(a,b);var f=this.getSize().divideBy(2),f=new c.Bounds(a.subtract(f),a.add(f));d=this._getBoundsOffset(f,d,b);return this.unproject(a.add(d),b)},_limitOffset:function(a,
-b){if(!b)return a;var d=this.getPixelBounds(),d=new c.Bounds(d.min.add(a),d.max.add(a));return a.add(this._getBoundsOffset(d,b))},_getBoundsOffset:function(a,b,d){var f=this.project(b.getNorthWest(),d).subtract(a.min);b=this.project(b.getSouthEast(),d).subtract(a.max);a=this._rebound(f.x,-b.x);f=this._rebound(f.y,-b.y);return new c.Point(a,f)},_rebound:function(a,b){return 0<a+b?Math.round(a-b)/2:Math.max(0,Math.ceil(a))-Math.max(0,Math.floor(b))},_limitZoom:function(a){var b=this.getMinZoom(),d=
-this.getMaxZoom();c.Browser.any3d||(a=Math.round(a));return Math.max(b,Math.min(d,a))}});c.map=function(a,b){return new c.Map(a,b)};c.Layer=c.Evented.extend({options:{pane:"overlayPane"},addTo:function(a){a.addLayer(this);return this},remove:function(){return this.removeFrom(this._map||this._mapToAdd)},removeFrom:function(a){a&&a.removeLayer(this);return this},getPane:function(a){return this._map.getPane(a?this.options[a]||a:this.options.pane)},addInteractiveTarget:function(a){this._map._targets[c.stamp(a)]=
-this;return this},removeInteractiveTarget:function(a){delete this._map._targets[c.stamp(a)];return this},isPopupOpen:function(){return this._popup.isOpen()},_layerAdd:function(a){a=a.target;if(a.hasLayer(this)){this._map=a;this._zoomAnimated=a._zoomAnimated;this.onAdd(a);this.getAttribution&&this._map.attributionControl&&this._map.attributionControl.addAttribution(this.getAttribution());if(this.getEvents)a.on(this.getEvents(),this);this.fire("add");a.fire("layeradd",{layer:this})}}});c.Map.include({addLayer:function(a){var b=
-c.stamp(a);if(this._layers[b])return a;this._layers[b]=a;a._mapToAdd=this;a.beforeAdd&&a.beforeAdd(this);this.whenReady(a._layerAdd,a);return this},removeLayer:function(a){var b=c.stamp(a);if(!this._layers[b])return this;if(this._loaded)a.onRemove(this);a.getAttribution&&this.attributionControl&&this.attributionControl.removeAttribution(a.getAttribution());a.getEvents&&this.off(a.getEvents(),a);delete this._layers[b];this._loaded&&(this.fire("layerremove",{layer:a}),a.fire("remove"));a._map=a._mapToAdd=
-null;return this},hasLayer:function(a){return!!a&&c.stamp(a)in this._layers},eachLayer:function(a,b){for(var c in this._layers)a.call(b,this._layers[c]);return this},_addLayers:function(a){a=a?c.Util.isArray(a)?a:[a]:[];for(var b=0,d=a.length;b<d;b++)this.addLayer(a[b])},_addZoomLimit:function(a){if(isNaN(a.options.maxZoom)||!isNaN(a.options.minZoom))this._zoomBoundLayers[c.stamp(a)]=a,this._updateZoomLevels()},_removeZoomLimit:function(a){a=c.stamp(a);this._zoomBoundLayers[a]&&(delete this._zoomBoundLayers[a],
-this._updateZoomLevels())},_updateZoomLevels:function(){var a=Infinity,b=-Infinity,c=this._getZoomSpan(),f;for(f in this._zoomBoundLayers)var e=this._zoomBoundLayers[f].options,a=e.minZoom===m?a:Math.min(a,e.minZoom),b=e.maxZoom===m?b:Math.max(b,e.maxZoom);this._layersMaxZoom=-Infinity===b?m:b;this._layersMinZoom=Infinity===a?m:a;c!==this._getZoomSpan()&&this.fire("zoomlevelschange")}});c.Projection.Mercator={R:6378137,R_MINOR:6356752.314245179,bounds:c.bounds([-2.003750834279E7,-1.549657073972E7],
-[2.003750834279E7,1.876465623138E7]),project:function(a){var b=Math.PI/180,d=this.R,f=a.lat*b,e=this.R_MINOR/d,e=Math.sqrt(1-e*e),g=e*Math.sin(f),f=Math.tan(Math.PI/4-f/2)/Math.pow((1-g)/(1+g),e/2),f=-d*Math.log(Math.max(f,1E-10));return new c.Point(a.lng*b*d,f)},unproject:function(a){for(var b=180/Math.PI,d=this.R,f=this.R_MINOR/d,f=Math.sqrt(1-f*f),e=Math.exp(-a.y/d),g=Math.PI/2-2*Math.atan(e),h=0,l=0.1;15>h&&1E-7<Math.abs(l);h++)l=f*Math.sin(g),l=Math.pow((1-l)/(1+l),f/2),l=Math.PI/2-2*Math.atan(e*
-l)-g,g+=l;return new c.LatLng(g*b,a.x*b/d)}};c.CRS.EPSG3395=c.extend({},c.CRS.Earth,{code:"EPSG:3395",projection:c.Projection.Mercator,transformation:function(){var a=0.5/(Math.PI*c.Projection.Mercator.R);return new c.Transformation(a,0.5,-a,0.5)}()});c.GridLayer=c.Layer.extend({options:{pane:"tilePane",tileSize:256,opacity:1,updateWhenIdle:c.Browser.mobile,updateInterval:200,attribution:null,zIndex:null,bounds:null,minZoom:0},initialize:function(a){c.setOptions(this,a)},onAdd:function(){this._initContainer();
-this._levels={};this._tiles={};this._resetView();this._update()},beforeAdd:function(a){a._addZoomLimit(this)},onRemove:function(a){c.DomUtil.remove(this._container);a._removeZoomLimit(this);this._tileZoom=this._container=null},bringToFront:function(){this._map&&(c.DomUtil.toFront(this._container),this._setAutoZIndex(Math.max));return this},bringToBack:function(){this._map&&(c.DomUtil.toBack(this._container),this._setAutoZIndex(Math.min));return this},getAttribution:function(){return this.options.attribution},
-getContainer:function(){return this._container},setOpacity:function(a){this.options.opacity=a;this._updateOpacity();return this},setZIndex:function(a){this.options.zIndex=a;this._updateZIndex();return this},isLoading:function(){return this._loading},redraw:function(){this._map&&(this._removeAllTiles(),this._update());return this},getEvents:function(){var a={viewreset:this._resetAll,zoom:this._resetView,moveend:this._onMoveEnd};this.options.updateWhenIdle||(this._onMove||(this._onMove=c.Util.throttle(this._onMoveEnd,
-this.options.updateInterval,this)),a.move=this._onMove);this._zoomAnimated&&(a.zoomanim=this._animateZoom);return a},createTile:function(){return l.createElement("div")},_updateZIndex:function(){this._container&&this.options.zIndex!==m&&null!==this.options.zIndex&&(this._container.style.zIndex=this.options.zIndex)},_setAutoZIndex:function(a){for(var b=this.getPane().children,c=-a(-Infinity,Infinity),f=0,e=b.length,g;f<e;f++)g=b[f].style.zIndex,b[f]!==this._container&&g&&(c=a(c,+g));isFinite(c)&&(this.options.zIndex=
-c+a(-1,1),this._updateZIndex())},_updateOpacity:function(){if(this._map){var a=this.options.opacity;if(c.Browser.ielt9||this._map._fadeAnimated){var b=+new Date,d=!1,f=!1,e;for(e in this._tiles){var g=this._tiles[e];if(g.current&&g.loaded){var h=Math.min(1,(b-g.loaded)/200);1>h?(c.DomUtil.setOpacity(g.el,a*h),d=!0):(c.DomUtil.setOpacity(g.el,a),g.active&&(f=!0),g.active=!0)}}f&&this._pruneTiles();d&&(c.Util.cancelAnimFrame(this._fadeFrame),this._fadeFrame=c.Util.requestAnimFrame(this._updateOpacity,
-this))}else c.DomUtil.setOpacity(this._container,a)}},_initContainer:function(){this._container||(this._container=c.DomUtil.create("div","leaflet-layer"),this._updateZIndex(),1>this.options.opacity&&this._updateOpacity(),this.getPane().appendChild(this._container))},_updateLevels:function(){var a=this._tileZoom,b=this.options.maxZoom,d;for(d in this._levels)this._levels[d].el.children.length||d===a?this._levels[d].el.style.zIndex=b-Math.abs(a-d):(c.DomUtil.remove(this._levels[d].el),delete this._levels[d]);
-d=this._levels[a];var f=this._map;d||(d=this._levels[a]={},d.el=c.DomUtil.create("div","leaflet-tile-container leaflet-zoom-animated",this._container),d.el.style.zIndex=b,d.origin=f.project(f.unproject(f.getPixelOrigin()),a).round(),d.zoom=a,this._setZoomTransform(d,f.getCenter(),f.getZoom()),c.Util.falseFn(d.el.offsetWidth));return this._level=d},_pruneTiles:function(){var a,b;b=this._map.getZoom();if(b>this.options.maxZoom||b<this.options.minZoom)return this._removeAllTiles();for(a in this._tiles)b=
-this._tiles[a],b.retain=b.current;for(a in this._tiles)b=this._tiles[a],b.current&&!b.active&&(b=b.coords,this._retainParent(b.x,b.y,b.z,b.z-5)||this._retainChildren(b.x,b.y,b.z,b.z+2));for(a in this._tiles)this._tiles[a].retain||this._removeTile(a)},_removeAllTiles:function(){for(var a in this._tiles)this._removeTile(a)},_resetAll:function(){for(var a in this._levels)c.DomUtil.remove(this._levels[a].el),delete this._levels[a];this._removeAllTiles();this._tileZoom=null;this._resetView()},_retainParent:function(a,
-b,c,f){a=Math.floor(a/2);b=Math.floor(b/2);c-=1;var e=this._tiles[a+":"+b+":"+c];if(e&&e.active)return e.retain=!0;e&&e.loaded&&(e.retain=!0);return c>f?this._retainParent(a,b,c,f):!1},_retainChildren:function(a,b,c,f){for(var e=2*a;e<2*a+2;e++)for(var g=2*b;g<2*b+2;g++){var h=this._tiles[e+":"+g+":"+(c+1)];h&&h.active?h.retain=!0:(h&&h.loaded&&(h.retain=!0),c+1<f&&this._retainChildren(e,g,c+1,f))}},_resetView:function(a){a=a&&a.pinch;this._setView(this._map.getCenter(),this._map.getZoom(),a,a)},
-_animateZoom:function(a){this._setView(a.center,a.zoom,!0,a.noUpdate)},_setView:function(a,b,d,f){var e=Math.round(b),g=this._tileZoom!==e;!f&&g&&(this._abortLoading&&this._abortLoading(),this._tileZoom=e,this._updateLevels(),this._resetGrid(),c.Browser.mobileWebkit||this._update(a,e),d||this._pruneTiles());this._setZoomTransforms(a,b)},_setZoomTransforms:function(a,b){for(var c in this._levels)this._setZoomTransform(this._levels[c],a,b)},_setZoomTransform:function(a,b,d){var f=this._map.getZoomScale(d,
-a.zoom);b=a.origin.multiplyBy(f).subtract(this._map._getNewPixelOrigin(b,d)).round();c.Browser.any3d?c.DomUtil.setTransform(a.el,b,f):c.DomUtil.setPosition(a.el,b)},_resetGrid:function(){var a=this._map,b=a.options.crs,c=this._tileSize=this._getTileSize(),f=this._tileZoom,e=this._map.getPixelWorldBounds(this._tileZoom);e&&(this._globalTileRange=this._pxBoundsToTileRange(e));this._wrapX=b.wrapLng&&[Math.floor(a.project([0,b.wrapLng[0]],f).x/c),Math.ceil(a.project([0,b.wrapLng[1]],f).x/c)];this._wrapY=
-b.wrapLat&&[Math.floor(a.project([b.wrapLat[0],0],f).y/c),Math.ceil(a.project([b.wrapLat[1],0],f).y/c)]},_getTileSize:function(){return this.options.tileSize},_onMoveEnd:function(){this._map&&(this._update(),this._pruneTiles())},_update:function(a,b){var d=this._map;if(d){a===m&&(a=d.getCenter());b===m&&(b=d.getZoom());var f=Math.round(b);if(!(f>this.options.maxZoom||f<this.options.minZoom)){var e=this._map.getZoomScale(b,f),g=d.project(a,f).floor(),d=d.getSize().divideBy(2*e),g=new c.Bounds(g.subtract(d),
-g.add(d)),d=this._pxBoundsToTileRange(g),h=d.getCenter(),g=[],t;for(t in this._tiles)this._tiles[t].current=!1;for(e=d.min.y;e<=d.max.y;e++)for(t=d.min.x;t<=d.max.x;t++){var z=new c.Point(t,e);z.z=f;if(this._isValidTile(z)){var H=this._tiles[this._tileCoordsToKey(z)];H?H.current=!0:g.push(z)}}g.sort(function(a,b){return a.distanceTo(h)-b.distanceTo(h)});if(0!==g.length){this._loading||(this._loading=!0,this.fire("loading"));f=l.createDocumentFragment();for(t=0;t<g.length;t++)this._addTile(g[t],f);
-this._level.el.appendChild(f)}}}},_isValidTile:function(a){var b=this._map.options.crs;if(!b.infinite){var d=this._globalTileRange;if(!b.wrapLng&&(a.x<d.min.x||a.x>d.max.x)||!b.wrapLat&&(a.y<d.min.y||a.y>d.max.y))return!1}if(!this.options.bounds)return!0;a=this._tileCoordsToBounds(a);return c.latLngBounds(this.options.bounds).overlaps(a)},_keyToBounds:function(a){return this._tileCoordsToBounds(this._keyToTileCoords(a))},_tileCoordsToBounds:function(a){var b=this._map,d=this._getTileSize(),f=a.multiplyBy(d),
-d=f.add([d,d]),f=b.wrapLatLng(b.unproject(f,a.z));a=b.wrapLatLng(b.unproject(d,a.z));return new c.LatLngBounds(f,a)},_tileCoordsToKey:function(a){return a.x+":"+a.y+":"+a.z},_keyToTileCoords:function(a){a=a.split(":");var b=new c.Point(+a[0],+a[1]);b.z=+a[2];return b},_removeTile:function(a){var b=this._tiles[a];b&&(c.DomUtil.remove(b.el),delete this._tiles[a],this.fire("tileunload",{tile:b.el,coords:this._keyToTileCoords(a)}))},_initTile:function(a){c.DomUtil.addClass(a,"leaflet-tile");a.style.width=
-this._tileSize+"px";a.style.height=this._tileSize+"px";a.onselectstart=c.Util.falseFn;a.onmousemove=c.Util.falseFn;c.Browser.ielt9&&1>this.options.opacity&&c.DomUtil.setOpacity(a,this.options.opacity);c.Browser.android&&!c.Browser.android23&&(a.style.WebkitBackfaceVisibility="hidden")},_addTile:function(a,b){var d=this._getTilePos(a),f=this._tileCoordsToKey(a),e=this.createTile(this._wrapCoords(a),c.bind(this._tileReady,this,a));this._initTile(e);2>this.createTile.length&&setTimeout(c.bind(this._tileReady,
-this,a,null,e),0);c.DomUtil.setPosition(e,d);this._tiles[f]={el:e,coords:a,current:!0};b.appendChild(e);this.fire("tileloadstart",{tile:e,coords:a})},_tileReady:function(a,b,d){this._map&&(b&&this.fire("tileerror",{error:b,tile:d,coords:a}),b=this._tileCoordsToKey(a),d=this._tiles[b])&&(d.loaded=+new Date,this._map._fadeAnimated?(c.DomUtil.setOpacity(d.el,0),c.Util.cancelAnimFrame(this._fadeFrame),this._fadeFrame=c.Util.requestAnimFrame(this._updateOpacity,this)):(d.active=!0,this._pruneTiles()),
-c.DomUtil.addClass(d.el,"leaflet-tile-loaded"),this.fire("tileload",{tile:d.el,coords:a}),this._noTilesToLoad()&&(this._loading=!1,this.fire("load")))},_getTilePos:function(a){return a.multiplyBy(this._tileSize).subtract(this._level.origin)},_wrapCoords:function(a){var b=new c.Point(this._wrapX?c.Util.wrapNum(a.x,this._wrapX):a.x,this._wrapY?c.Util.wrapNum(a.y,this._wrapY):a.y);b.z=a.z;return b},_pxBoundsToTileRange:function(a){return new c.Bounds(a.min.divideBy(this._tileSize).floor(),a.max.divideBy(this._tileSize).ceil().subtract([1,
-1]))},_noTilesToLoad:function(){for(var a in this._tiles)if(!this._tiles[a].loaded)return!1;return!0}});c.gridLayer=function(a){return new c.GridLayer(a)};c.TileLayer=c.GridLayer.extend({options:{maxZoom:18,subdomains:"abc",errorTileUrl:"",zoomOffset:0,maxNativeZoom:null,tms:!1,zoomReverse:!1,detectRetina:!1,crossOrigin:!1},initialize:function(a,b){this._url=a;b=c.setOptions(this,b);b.detectRetina&&c.Browser.retina&&0<b.maxZoom&&(b.tileSize=Math.floor(b.tileSize/2),b.zoomOffset++,b.minZoom=Math.max(0,
-b.minZoom),b.maxZoom--);"string"===typeof b.subdomains&&(b.subdomains=b.subdomains.split(""));if(!c.Browser.android)this.on("tileunload",this._onTileRemove)},setUrl:function(a,b){this._url=a;b||this.redraw();return this},createTile:function(a,b){var d=l.createElement("img");d.onload=c.bind(this._tileOnLoad,this,b,d);d.onerror=c.bind(this._tileOnError,this,b,d);this.options.crossOrigin&&(d.crossOrigin="");d.alt="";d.src=this.getTileUrl(a);return d},getTileUrl:function(a){return c.Util.template(this._url,
-c.extend({r:this.options.detectRetina&&c.Browser.retina&&0<this.options.maxZoom?"@2x":"",s:this._getSubdomain(a),x:a.x,y:this.options.tms?this._globalTileRange.max.y-a.y:a.y,z:this._getZoomForUrl()},this.options))},_tileOnLoad:function(a,b){c.Browser.ielt9?setTimeout(c.bind(a,this,null,b),0):a(null,b)},_tileOnError:function(a,b,c){var f=this.options.errorTileUrl;f&&(b.src=f);a(c,b)},_getTileSize:function(){var a=this._map,b=this.options,c=this._tileZoom+b.zoomOffset,f=b.maxNativeZoom;return null!==
-f&&c>f?Math.round(b.tileSize/a.getZoomScale(f,c)):b.tileSize},_onTileRemove:function(a){a.tile.onload=null},_getZoomForUrl:function(){var a=this.options,b=this._tileZoom;a.zoomReverse&&(b=a.maxZoom-b);b+=a.zoomOffset;return a.maxNativeZoom?Math.min(b,a.maxNativeZoom):b},_getSubdomain:function(a){a=Math.abs(a.x+a.y)%this.options.subdomains.length;return this.options.subdomains[a]},_abortLoading:function(){var a,b;for(a in this._tiles)b=this._tiles[a].el,b.onload=c.Util.falseFn,b.onerror=c.Util.falseFn,
-b.complete||(b.src=c.Util.emptyImageUrl,c.DomUtil.remove(b))}});c.tileLayer=function(a,b){return new c.TileLayer(a,b)};c.TileLayer.WMS=c.TileLayer.extend({defaultWmsParams:{service:"WMS",request:"GetMap",version:"1.1.1",layers:"",styles:"",format:"image/jpeg",transparent:!1},options:{crs:null,uppercase:!1},initialize:function(a,b){this._url=a;var d=c.extend({},this.defaultWmsParams),f;for(f in b)f in this.options||(d[f]=b[f]);b=c.setOptions(this,b);d.width=d.height=b.tileSize*(b.detectRetina&&c.Browser.retina?
-2:1);this.wmsParams=d},onAdd:function(a){this._crs=this.options.crs||a.options.crs;this._wmsVersion=parseFloat(this.wmsParams.version);this.wmsParams[1.3<=this._wmsVersion?"crs":"srs"]=this._crs.code;c.TileLayer.prototype.onAdd.call(this,a)},getTileUrl:function(a){var b=this._tileCoordsToBounds(a),d=this._crs.project(b.getNorthWest()),b=this._crs.project(b.getSouthEast()),d=(1.3<=this._wmsVersion&&this._crs===c.CRS.EPSG4326?[b.y,d.x,d.y,b.x]:[d.x,b.y,b.x,d.y]).join(",");a=c.TileLayer.prototype.getTileUrl.call(this,
-a);return a+c.Util.getParamString(this.wmsParams,a,this.options.uppercase)+(this.options.uppercase?"\x26BBOX\x3d":"\x26bbox\x3d")+d},setParams:function(a,b){c.extend(this.wmsParams,a);b||this.redraw();return this}});c.tileLayer.wms=function(a,b){return new c.TileLayer.WMS(a,b)};c.ImageOverlay=c.Layer.extend({options:{opacity:1,alt:"",interactive:!1},initialize:function(a,b,d){this._url=a;this._bounds=c.latLngBounds(b);c.setOptions(this,d)},onAdd:function(){this._image||(this._initImage(),1>this.options.opacity&&
-this._updateOpacity());this.options.interactive&&(c.DomUtil.addClass(this._image,"leaflet-interactive"),this.addInteractiveTarget(this._image));this.getPane().appendChild(this._image);this._reset()},onRemove:function(){c.DomUtil.remove(this._image);this.options.interactive&&this.removeInteractiveTarget(this._image)},setOpacity:function(a){this.options.opacity=a;this._image&&this._updateOpacity();return this},setStyle:function(a){a.opacity&&this.setOpacity(a.opacity);return this},bringToFront:function(){this._map&&
-c.DomUtil.toFront(this._image);return this},bringToBack:function(){this._map&&c.DomUtil.toBack(this._image);return this},setUrl:function(a){this._url=a;this._image&&(this._image.src=a);return this},getAttribution:function(){return this.options.attribution},getEvents:function(){var a={zoom:this._reset,viewreset:this._reset};this._zoomAnimated&&(a.zoomanim=this._animateZoom);return a},getBounds:function(){return this._bounds},getElement:function(){return this._image},_initImage:function(){var a=this._image=
-c.DomUtil.create("img","leaflet-image-layer "+(this._zoomAnimated?"leaflet-zoom-animated":""));a.onselectstart=c.Util.falseFn;a.onmousemove=c.Util.falseFn;a.onload=c.bind(this.fire,this,"load");a.src=this._url;a.alt=this.options.alt},_animateZoom:function(a){var b=this._map.getZoomScale(a.zoom);a=this._map._latLngToNewLayerPoint(this._bounds.getNorthWest(),a.zoom,a.center);c.DomUtil.setTransform(this._image,a,b)},_reset:function(){var a=this._image,b=new c.Bounds(this._map.latLngToLayerPoint(this._bounds.getNorthWest()),
-this._map.latLngToLayerPoint(this._bounds.getSouthEast())),d=b.getSize();c.DomUtil.setPosition(a,b.min);a.style.width=d.x+"px";a.style.height=d.y+"px"},_updateOpacity:function(){c.DomUtil.setOpacity(this._image,this.options.opacity)}});c.imageOverlay=function(a,b,d){return new c.ImageOverlay(a,b,d)};c.Icon=c.Class.extend({initialize:function(a){c.setOptions(this,a)},createIcon:function(a){return this._createIcon("icon",a)},createShadow:function(a){return this._createIcon("shadow",a)},_createIcon:function(a,
-b){var c=this._getIconUrl(a);if(!c){if("icon"===a)throw Error("iconUrl not set in Icon options (see the docs).");return null}c=this._createImg(c,b&&"IMG"===b.tagName?b:null);this._setIconStyles(c,a);return c},_setIconStyles:function(a,b){var d=this.options,f=c.point(d[b+"Size"]),e=c.point("shadow"===b&&d.shadowAnchor||d.iconAnchor||f&&f.divideBy(2,!0));a.className="leaflet-marker-"+b+" "+(d.className||"");e&&(a.style.marginLeft=-e.x+"px",a.style.marginTop=-e.y+"px");f&&(a.style.width=f.x+"px",a.style.height=
-f.y+"px")},_createImg:function(a,b){b=b||l.createElement("img");b.src=a;return b},_getIconUrl:function(a){return c.Browser.retina&&this.options[a+"RetinaUrl"]||this.options[a+"Url"]}});c.icon=function(a){return new c.Icon(a)};c.Icon.Default=c.Icon.extend({options:{iconSize:[25,41],iconAnchor:[12,41],popupAnchor:[1,-34],shadowSize:[41,41]},_getIconUrl:function(a){var b=a+"Url";if(this.options[b])return this.options[b];b=c.Icon.Default.imagePath;if(!b)throw Error("Couldn't autodetect L.Icon.Default.imagePath, set it manually.");
-return b+"/marker-"+a+(c.Browser.retina&&"icon"===a?"-2x":"")+".png"}});c.Icon.Default.imagePath=function(){var a=l.getElementsByTagName("script"),b=/[\/^]leaflet[\-\._]?([\w\-\._]*)\.js\??/,c,f,e;c=0;for(f=a.length;c<f;c++)if(e=a[c].src,e.match(b))return a=e.split(b)[0],(a?a+"/":"")+"images"}();c.Marker=c.Layer.extend({options:{pane:"markerPane",icon:new c.Icon.Default,interactive:!0,keyboard:!0,zIndexOffset:0,opacity:1,riseOffset:250},initialize:function(a,b){c.setOptions(this,b);this._latlng=c.latLng(a)},
-onAdd:function(a){this._zoomAnimated=this._zoomAnimated&&a.options.markerZoomAnimation;this._initIcon();this.update()},onRemove:function(){this.dragging&&this.dragging.enabled()&&(this.options.draggable=!0,this.dragging.removeHooks());this._removeIcon();this._removeShadow()},getEvents:function(){var a={zoom:this.update,viewreset:this.update};this._zoomAnimated&&(a.zoomanim=this._animateZoom);return a},getLatLng:function(){return this._latlng},setLatLng:function(a){var b=this._latlng;this._latlng=
-c.latLng(a);this.update();return this.fire("move",{oldLatLng:b,latlng:this._latlng})},setZIndexOffset:function(a){this.options.zIndexOffset=a;return this.update()},setIcon:function(a){this.options.icon=a;this._map&&(this._initIcon(),this.update());this._popup&&this.bindPopup(this._popup,this._popup.options);return this},getElement:function(){return this._icon},update:function(){if(this._icon){var a=this._map.latLngToLayerPoint(this._latlng).round();this._setPos(a)}return this},_initIcon:function(){var a=
-this.options,b="leaflet-zoom-"+(this._zoomAnimated?"animated":"hide"),d=a.icon.createIcon(this._icon),f=!1;d!==this._icon&&(this._icon&&this._removeIcon(),f=!0,a.title&&(d.title=a.title),a.alt&&(d.alt=a.alt));c.DomUtil.addClass(d,b);a.keyboard&&(d.tabIndex="0");this._icon=d;this._initInteraction();if(a.riseOnHover)this.on({mouseover:this._bringToFront,mouseout:this._resetZIndex});var d=a.icon.createShadow(this._shadow),e=!1;d!==this._shadow&&(this._removeShadow(),e=!0);d&&c.DomUtil.addClass(d,b);
-this._shadow=d;1>a.opacity&&this._updateOpacity();f&&this.getPane().appendChild(this._icon);d&&e&&this.getPane("shadowPane").appendChild(this._shadow)},_removeIcon:function(){this.options.riseOnHover&&this.off({mouseover:this._bringToFront,mouseout:this._resetZIndex});c.DomUtil.remove(this._icon);this.removeInteractiveTarget(this._icon);this._icon=null},_removeShadow:function(){this._shadow&&c.DomUtil.remove(this._shadow);this._shadow=null},_setPos:function(a){c.DomUtil.setPosition(this._icon,a);
-this._shadow&&c.DomUtil.setPosition(this._shadow,a);this._zIndex=a.y+this.options.zIndexOffset;this._resetZIndex()},_updateZIndex:function(a){this._icon.style.zIndex=this._zIndex+a},_animateZoom:function(a){a=this._map._latLngToNewLayerPoint(this._latlng,a.zoom,a.center).round();this._setPos(a)},_initInteraction:function(){if(this.options.interactive&&(c.DomUtil.addClass(this._icon,"leaflet-interactive"),this.addInteractiveTarget(this._icon),c.Handler.MarkerDrag)){var a=this.options.draggable;this.dragging&&
-(a=this.dragging.enabled(),this.dragging.disable());this.dragging=new c.Handler.MarkerDrag(this);a&&this.dragging.enable()}},setOpacity:function(a){this.options.opacity=a;this._map&&this._updateOpacity();return this},_updateOpacity:function(){var a=this.options.opacity;c.DomUtil.setOpacity(this._icon,a);this._shadow&&c.DomUtil.setOpacity(this._shadow,a)},_bringToFront:function(){this._updateZIndex(this.options.riseOffset)},_resetZIndex:function(){this._updateZIndex(0)}});c.marker=function(a,b){return new c.Marker(a,
-b)};c.DivIcon=c.Icon.extend({options:{iconSize:[12,12],className:"leaflet-div-icon",html:!1},createIcon:function(a){a=a&&"DIV"===a.tagName?a:l.createElement("div");var b=this.options;a.innerHTML=!1!==b.html?b.html:"";b.bgPos&&(a.style.backgroundPosition=-b.bgPos.x+"px "+-b.bgPos.y+"px");this._setIconStyles(a,"icon");return a},createShadow:function(){return null}});c.divIcon=function(a){return new c.DivIcon(a)};c.Map.mergeOptions({closePopupOnClick:!0});c.Popup=c.Layer.extend({options:{pane:"popupPane",
-minWidth:50,maxWidth:300,offset:[0,7],autoPan:!0,autoPanPadding:[5,5],closeButton:!0,autoClose:!0,zoomAnimation:!0},initialize:function(a,b){c.setOptions(this,a);this._source=b},onAdd:function(a){this._zoomAnimated=this._zoomAnimated&&this.options.zoomAnimation;this._container||this._initLayout();a._fadeAnimated&&c.DomUtil.setOpacity(this._container,0);clearTimeout(this._removeTimeout);this.getPane().appendChild(this._container);this.update();a._fadeAnimated&&c.DomUtil.setOpacity(this._container,
-1);a.fire("popupopen",{popup:this});this._source&&this._source.fire("popupopen",{popup:this},!0)},openOn:function(a){a.openPopup(this);return this},onRemove:function(a){a._fadeAnimated?(c.DomUtil.setOpacity(this._container,0),this._removeTimeout=setTimeout(c.bind(c.DomUtil.remove,c.DomUtil,this._container),200)):c.DomUtil.remove(this._container);a.fire("popupclose",{popup:this});this._source&&this._source.fire("popupclose",{popup:this},!0)},getLatLng:function(){return this._latlng},setLatLng:function(a){this._latlng=
-c.latLng(a);this._map&&(this._updatePosition(),this._adjustPan());return this},getContent:function(){return this._content},setContent:function(a){this._content=a;this.update();return this},getElement:function(){return this._container},update:function(){this._map&&(this._container.style.visibility="hidden",this._updateContent(),this._updateLayout(),this._updatePosition(),this._container.style.visibility="",this._adjustPan())},getEvents:function(){var a={zoom:this._updatePosition,viewreset:this._updatePosition};
-this._zoomAnimated&&(a.zoomanim=this._animateZoom);if("closeOnClick"in this.options?this.options.closeOnClick:this._map.options.closePopupOnClick)a.preclick=this._close;this.options.keepInView&&(a.moveend=this._adjustPan);return a},isOpen:function(){return!!this._map&&this._map.hasLayer(this)},_close:function(){this._map&&this._map.closePopup(this)},_initLayout:function(){var a=this._container=c.DomUtil.create("div","leaflet-popup "+(this.options.className||"")+" leaflet-zoom-"+(this._zoomAnimated?
-"animated":"hide"));if(this.options.closeButton){var b=this._closeButton=c.DomUtil.create("a","leaflet-popup-close-button",a);b.href="#close";b.innerHTML="\x26#215;";c.DomEvent.on(b,"click",this._onCloseButtonClick,this)}b=this._wrapper=c.DomUtil.create("div","leaflet-popup-content-wrapper",a);this._contentNode=c.DomUtil.create("div","leaflet-popup-content",b);c.DomEvent.disableClickPropagation(b).disableScrollPropagation(this._contentNode).on(b,"contextmenu",c.DomEvent.stopPropagation);this._tipContainer=
-c.DomUtil.create("div","leaflet-popup-tip-container",a);this._tip=c.DomUtil.create("div","leaflet-popup-tip",this._tipContainer)},_updateContent:function(){if(this._content){var a=this._contentNode,b="function"===typeof this._content?this._content(this._source||this):this._content;if("string"===typeof b)a.innerHTML=b;else{for(;a.hasChildNodes();)a.removeChild(a.firstChild);a.appendChild(b)}this.fire("contentupdate")}},_updateLayout:function(){var a=this._contentNode,b=a.style;b.width="";b.whiteSpace=
-"nowrap";var d=a.offsetWidth,d=Math.min(d,this.options.maxWidth),d=Math.max(d,this.options.minWidth);b.width=d+1+"px";b.whiteSpace="";b.height="";var d=a.offsetHeight,f=this.options.maxHeight;f&&d>f?(b.height=f+"px",c.DomUtil.addClass(a,"leaflet-popup-scrolled")):c.DomUtil.removeClass(a,"leaflet-popup-scrolled");this._containerWidth=this._container.offsetWidth},_updatePosition:function(){if(this._map){var a=this._map.latLngToLayerPoint(this._latlng),b=c.point(this.options.offset);this._zoomAnimated?
-c.DomUtil.setPosition(this._container,a):b=b.add(a);a=this._containerBottom=-b.y;b=this._containerLeft=-Math.round(this._containerWidth/2)+b.x;this._container.style.bottom=a+"px";this._container.style.left=b+"px"}},_animateZoom:function(a){a=this._map._latLngToNewLayerPoint(this._latlng,a.zoom,a.center);c.DomUtil.setPosition(this._container,a)},_adjustPan:function(){if(this.options.autoPan){var a=this._map,b=this._container.offsetHeight,d=this._containerWidth,f=new c.Point(this._containerLeft,-b-
-this._containerBottom);this._zoomAnimated&&f._add(c.DomUtil.getPosition(this._container));var f=a.layerPointToContainerPoint(f),e=c.point(this.options.autoPanPadding),g=c.point(this.options.autoPanPaddingTopLeft||e),e=c.point(this.options.autoPanPaddingBottomRight||e),h=a.getSize(),l=0,m=0;f.x+d+e.x>h.x&&(l=f.x+d-h.x+e.x);0>f.x-l-g.x&&(l=f.x-g.x);f.y+b+e.y>h.y&&(m=f.y+b-h.y+e.y);0>f.y-m-g.y&&(m=f.y-g.y);(l||m)&&a.fire("autopanstart").panBy([l,m])}},_onCloseButtonClick:function(a){this._close();c.DomEvent.stop(a)}});
-c.popup=function(a,b){return new c.Popup(a,b)};c.Map.include({openPopup:function(a,b,d){a instanceof c.Popup||(a=(new c.Popup(d)).setContent(a));b&&a.setLatLng(b);if(this.hasLayer(a))return this;this._popup&&this._popup.options.autoClose&&this.closePopup();this._popup=a;return this.addLayer(a)},closePopup:function(a){a&&a!==this._popup||(a=this._popup,this._popup=null);a&&this.removeLayer(a);return this}});c.Layer.include({bindPopup:function(a,b){if(a instanceof c.Popup)c.setOptions(a,b),this._popup=
-a,a._source=this;else{if(!this._popup||b)this._popup=new c.Popup(b,this);this._popup.setContent(a)}this._popupHandlersAdded||(this.on({click:this._openPopup,remove:this.closePopup,move:this._movePopup}),this._popupHandlersAdded=!0);return this},unbindPopup:function(){this._popup&&(this.off({click:this._openPopup,remove:this.closePopup,move:this._movePopup}),this._popupHandlersAdded=!1,this._popup=null);return this},openPopup:function(a,b){a instanceof c.Layer||(b=a,a=this);if(a instanceof c.FeatureGroup)for(var d in this._layers){a=
-this._layers[d];break}b||(b=a.getCenter?a.getCenter():a.getLatLng());this._popup&&this._map&&(this._popup.options.offset=this._popupAnchor(a),this._popup._source=a,this._popup.update(),this._map.openPopup(this._popup,b));return this},closePopup:function(){this._popup&&this._popup._close();return this},togglePopup:function(a){this._popup&&(this._popup._map?this.closePopup():this.openPopup(a));return this},setPopupContent:function(a){this._popup&&this._popup.setContent(a);return this},getPopup:function(){return this._popup},
-_openPopup:function(a){var b=a.layer||a.target;this._popup&&this._map&&(b instanceof c.Path?this.openPopup(a.layer||a.target,a.latlng):this._map.hasLayer(this._popup)&&this._popup._source===b?this.closePopup():this.openPopup(b,a.latlng))},_popupAnchor:function(a){a=a._getPopupAnchor?a._getPopupAnchor():[0,0];return c.point(a).add(c.Popup.prototype.options.offset)},_movePopup:function(a){this._popup.setLatLng(a.latlng)}});c.Marker.include({_getPopupAnchor:function(){return this.options.icon.options.popupAnchor||
-[0,0]}});c.LayerGroup=c.Layer.extend({initialize:function(a){this._layers={};var b,c;if(a)for(b=0,c=a.length;b<c;b++)this.addLayer(a[b])},addLayer:function(a){var b=this.getLayerId(a);this._layers[b]=a;this._map&&this._map.addLayer(a);return this},removeLayer:function(a){a=a in this._layers?a:this.getLayerId(a);this._map&&this._layers[a]&&this._map.removeLayer(this._layers[a]);delete this._layers[a];return this},hasLayer:function(a){return!!a&&(a in this._layers||this.getLayerId(a)in this._layers)},
-clearLayers:function(){for(var a in this._layers)this.removeLayer(this._layers[a]);return this},invoke:function(a){var b=Array.prototype.slice.call(arguments,1),c,f;for(c in this._layers)f=this._layers[c],f[a]&&f[a].apply(f,b);return this},onAdd:function(a){for(var b in this._layers)a.addLayer(this._layers[b])},onRemove:function(a){for(var b in this._layers)a.removeLayer(this._layers[b])},eachLayer:function(a,b){for(var c in this._layers)a.call(b,this._layers[c]);return this},getLayer:function(a){return this._layers[a]},
-getLayers:function(){var a=[],b;for(b in this._layers)a.push(this._layers[b]);return a},setZIndex:function(a){return this.invoke("setZIndex",a)},getLayerId:function(a){return c.stamp(a)}});c.layerGroup=function(a){return new c.LayerGroup(a)};c.FeatureGroup=c.LayerGroup.extend({addLayer:function(a){if(this.hasLayer(a))return this;a.addEventParent(this);c.LayerGroup.prototype.addLayer.call(this,a);return this.fire("layeradd",{layer:a})},removeLayer:function(a){if(!this.hasLayer(a))return this;a in this._layers&&
-(a=this._layers[a]);a.removeEventParent(this);c.LayerGroup.prototype.removeLayer.call(this,a);return this.fire("layerremove",{layer:a})},setStyle:function(a){return this.invoke("setStyle",a)},bringToFront:function(){return this.invoke("bringToFront")},bringToBack:function(){return this.invoke("bringToBack")},getBounds:function(){var a=new c.LatLngBounds,b;for(b in this._layers){var d=this._layers[b];a.extend(d.getBounds?d.getBounds():d.getLatLng())}return a}});c.featureGroup=function(a){return new c.FeatureGroup(a)};
-c.Renderer=c.Layer.extend({options:{padding:0.1},initialize:function(a){c.setOptions(this,a);c.stamp(this)},onAdd:function(){this._container||(this._initContainer(),this._zoomAnimated&&c.DomUtil.addClass(this._container,"leaflet-zoom-animated"));this.getPane().appendChild(this._container);this._update()},onRemove:function(){c.DomUtil.remove(this._container)},getEvents:function(){var a={viewreset:this._reset,zoom:this._updateTransform,moveend:this._update};this._zoomAnimated&&(a.zoomanim=this._animateZoom);
-return a},_animateZoom:function(a){var b=this._map.getZoomScale(a.zoom,this._zoom);a=this._map._latLngToNewLayerPoint(this._topLeft,a.zoom,a.center);c.DomUtil.setTransform(this._container,a,b)},_updateTransform:function(){var a=this._map.getZoom(),b=this._map.getCenter(),d=this._map.getZoomScale(a,this._zoom),a=this._map._latLngToNewLayerPoint(this._topLeft,a,b);c.DomUtil.setTransform(this._container,a,d)},_reset:function(){this._update();this._updateTransform()},_update:function(){var a=this.options.padding,
-b=this._map.getSize(),d=this._map.containerPointToLayerPoint(b.multiplyBy(-a)).round();this._bounds=new c.Bounds(d,d.add(b.multiplyBy(1+2*a)).round());this._topLeft=this._map.layerPointToLatLng(d);this._zoom=this._map.getZoom()}});c.Map.include({getRenderer:function(a){a=a.options.renderer||this._getPaneRenderer(a.options.pane)||this.options.renderer||this._renderer;a||(a=this._renderer=c.SVG&&c.svg()||c.Canvas&&c.canvas());this.hasLayer(a)||this.addLayer(a);return a},_getPaneRenderer:function(a){if("overlayPane"===
-a||a===m)return!1;var b=this._paneRenderers[a];b===m&&(b=c.SVG&&c.svg({pane:a})||c.Canvas&&c.canvas({pane:a}),this._paneRenderers[a]=b);return b}});c.Path=c.Layer.extend({options:{stroke:!0,color:"#3388ff",weight:3,opacity:1,lineCap:"round",lineJoin:"round",fillOpacity:0.2,fillRule:"evenodd",interactive:!0},onAdd:function(){this._renderer=this._map.getRenderer(this);this._renderer._initPath(this);this._reset();this._renderer._addPath(this)},onRemove:function(){this._renderer._removePath(this)},getEvents:function(){return{zoomend:this._project,
-moveend:this._update,viewreset:this._reset}},redraw:function(){this._map&&this._renderer._updatePath(this);return this},setStyle:function(a){c.setOptions(this,a);this._renderer&&this._renderer._updateStyle(this);return this},bringToFront:function(){this._renderer&&this._renderer._bringToFront(this);return this},bringToBack:function(){this._renderer&&this._renderer._bringToBack(this);return this},getElement:function(){return this._path},_reset:function(){this._project();this._update()},_clickTolerance:function(){return(this.options.stroke?
-this.options.weight/2:0)+(c.Browser.touch?10:0)}});c.LineUtil={simplify:function(a,b){if(!b||!a.length)return a.slice();var c=b*b;a=this._reducePoints(a,c);return a=this._simplifyDP(a,c)},pointToSegmentDistance:function(a,b,c){return Math.sqrt(this._sqClosestPointOnSegment(a,b,c,!0))},closestPointOnSegment:function(a,b,c){return this._sqClosestPointOnSegment(a,b,c)},_simplifyDP:function(a,b){var c=a.length,f=new (typeof Uint8Array!==m+""?Uint8Array:Array)(c);f[0]=f[c-1]=1;this._simplifyDPStep(a,f,
-b,0,c-1);var e,g=[];for(e=0;e<c;e++)f[e]&&g.push(a[e]);return g},_simplifyDPStep:function(a,b,c,f,e){var g=0,h,l,m;for(l=f+1;l<=e-1;l++)m=this._sqClosestPointOnSegment(a[l],a[f],a[e],!0),m>g&&(h=l,g=m);g>c&&(b[h]=1,this._simplifyDPStep(a,b,c,f,h),this._simplifyDPStep(a,b,c,h,e))},_reducePoints:function(a,b){for(var c=[a[0]],f=1,e=0,g=a.length;f<g;f++)this._sqDist(a[f],a[e])>b&&(c.push(a[f]),e=f);e<g-1&&c.push(a[g-1]);return c},clipSegment:function(a,b,c,f,e){f=f?this._lastCode:this._getBitCode(a,
-c);var g=this._getBitCode(b,c),h,l,m;for(this._lastCode=g;;)if(f|g){if(f&g)return!1;h=f||g;l=this._getEdgeIntersection(a,b,h,c,e);m=this._getBitCode(l,c);h===f?(a=l,f=m):(b=l,g=m)}else return[a,b]},_getEdgeIntersection:function(a,b,d,f,e){var g=b.x-a.x;b=b.y-a.y;var h=f.min;f=f.max;var l,m;d&8?(l=a.x+g*(f.y-a.y)/b,m=f.y):d&4?(l=a.x+g*(h.y-a.y)/b,m=h.y):d&2?(l=f.x,m=a.y+b*(f.x-a.x)/g):d&1&&(l=h.x,m=a.y+b*(h.x-a.x)/g);return new c.Point(l,m,e)},_getBitCode:function(a,b){var c=0;a.x<b.min.x?c|=1:a.x>
-b.max.x&&(c|=2);a.y<b.min.y?c|=4:a.y>b.max.y&&(c|=8);return c},_sqDist:function(a,b){var c=b.x-a.x,f=b.y-a.y;return c*c+f*f},_sqClosestPointOnSegment:function(a,b,d,f){var e=b.x;b=b.y;var g=d.x-e,h=d.y-b,l=g*g+h*h;0<l&&(l=((a.x-e)*g+(a.y-b)*h)/l,1<l?(e=d.x,b=d.y):0<l&&(e+=g*l,b+=h*l));g=a.x-e;h=a.y-b;return f?g*g+h*h:new c.Point(e,b)}};c.Polyline=c.Path.extend({options:{smoothFactor:1},initialize:function(a,b){c.setOptions(this,b);this._setLatLngs(a)},getLatLngs:function(){return this._latlngs},setLatLngs:function(a){this._setLatLngs(a);
-return this.redraw()},isEmpty:function(){return!this._latlngs.length},closestLayerPoint:function(a){for(var b=Infinity,d=null,f=c.LineUtil._sqClosestPointOnSegment,e,g,h=0,l=this._parts.length;h<l;h++)for(var m=this._parts[h],H=1,D=m.length;H<D;H++){e=m[H-1];g=m[H];var A=f(a,e,g,!0);A<b&&(b=A,d=f(a,e,g))}d&&(d.distance=Math.sqrt(b));return d},getCenter:function(){var a,b,c,f,e,g,h=this._rings[0],l=h.length;if(!l)return null;for(b=a=0;a<l-1;a++)b+=h[a].distanceTo(h[a+1])/2;if(0===b)return this._map.layerPointToLatLng(h[0]);
-for(f=a=0;a<l-1;a++)if(e=h[a],g=h[a+1],c=e.distanceTo(g),f+=c,f>b)return a=(f-b)/c,this._map.layerPointToLatLng([g.x-a*(g.x-e.x),g.y-a*(g.y-e.y)])},getBounds:function(){return this._bounds},addLatLng:function(a,b){b=b||this._defaultShape();a=c.latLng(a);b.push(a);this._bounds.extend(a);return this.redraw()},_setLatLngs:function(a){this._bounds=new c.LatLngBounds;this._latlngs=this._convertLatLngs(a)},_defaultShape:function(){return c.Polyline._flat(this._latlngs)?this._latlngs:this._latlngs[0]},_convertLatLngs:function(a){for(var b=
-[],d=c.Polyline._flat(a),f=0,e=a.length;f<e;f++)d?(b[f]=c.latLng(a[f]),this._bounds.extend(b[f])):b[f]=this._convertLatLngs(a[f]);return b},_project:function(){this._rings=[];this._projectLatlngs(this._latlngs,this._rings);var a=this._clickTolerance(),a=new c.Point(a,-a);this._bounds.isValid()&&(this._pxBounds=new c.Bounds(this._map.latLngToLayerPoint(this._bounds.getSouthWest())._subtract(a),this._map.latLngToLayerPoint(this._bounds.getNorthEast())._add(a)))},_projectLatlngs:function(a,b){var d=
-a.length,f,e;if(a[0]instanceof c.LatLng){e=[];for(f=0;f<d;f++)e[f]=this._map.latLngToLayerPoint(a[f]);b.push(e)}else for(f=0;f<d;f++)this._projectLatlngs(a[f],b)},_clipPoints:function(){if(this.options.noClip)this._parts=this._rings;else{var a=this._parts=[],b=this._renderer._bounds,d,f,e,g,h,l,m;e=d=0;for(g=this._rings.length;d<g;d++)for(m=this._rings[d],f=0,h=m.length;f<h-1;f++)if(l=c.LineUtil.clipSegment(m[f],m[f+1],b,f,!0))if(a[e]=a[e]||[],a[e].push(l[0]),l[1]!==m[f+1]||f===h-2)a[e].push(l[1]),
-e++}},_simplifyPoints:function(){for(var a=this._parts,b=this.options.smoothFactor,d=0,f=a.length;d<f;d++)a[d]=c.LineUtil.simplify(a[d],b)},_update:function(){this._map&&(this._clipPoints(),this._simplifyPoints(),this._updatePath())},_updatePath:function(){this._renderer._updatePoly(this)}});c.polyline=function(a,b){return new c.Polyline(a,b)};c.Polyline._flat=function(a){return!c.Util.isArray(a[0])||"object"!==typeof a[0][0]&&"undefined"!==typeof a[0][0]};c.PolyUtil={};c.PolyUtil.clipPolygon=function(a,
-b,d){var f,e=[1,4,2,8],g,h,l,m,H,D,A=c.LineUtil;g=0;for(H=a.length;g<H;g++)a[g]._code=A._getBitCode(a[g],b);for(l=0;4>l;l++){D=e[l];f=[];g=0;H=a.length;for(h=H-1;g<H;h=g++)(m=a[g],h=a[h],m._code&D)?h._code&D||(h=A._getEdgeIntersection(h,m,D,b,d),h._code=A._getBitCode(h,b),f.push(h)):(h._code&D&&(h=A._getEdgeIntersection(h,m,D,b,d),h._code=A._getBitCode(h,b),f.push(h)),f.push(m));a=f}return a};c.Polygon=c.Polyline.extend({options:{fill:!0},isEmpty:function(){return!this._latlngs.length||!this._latlngs[0].length},
-getCenter:function(){var a,b,c,f,e,g,h,l=this._rings[0],m=l.length;if(!m)return null;a=e=g=h=0;for(b=m-1;a<m;b=a++)c=l[a],b=l[b],f=c.y*b.x-b.y*c.x,g+=(c.x+b.x)*f,h+=(c.y+b.y)*f,e+=3*f;return this._map.layerPointToLatLng(0===e?l[0]:[g/e,h/e])},_convertLatLngs:function(a){a=c.Polyline.prototype._convertLatLngs.call(this,a);var b=a.length;2<=b&&a[0]instanceof c.LatLng&&a[0].equals(a[b-1])&&a.pop();return a},_setLatLngs:function(a){c.Polyline.prototype._setLatLngs.call(this,a);c.Polyline._flat(this._latlngs)&&
-(this._latlngs=[this._latlngs])},_defaultShape:function(){return c.Polyline._flat(this._latlngs[0])?this._latlngs[0]:this._latlngs[0][0]},_clipPoints:function(){if(this.options.noClip)this._parts=this._rings;else{var a=this._renderer._bounds,b=this.options.weight,b=new c.Point(b,b),a=new c.Bounds(a.min.subtract(b),a.max.add(b));this._parts=[];for(var b=0,d=this._rings.length,f;b<d;b++)f=c.PolyUtil.clipPolygon(this._rings[b],a,!0),f.length&&this._parts.push(f)}},_updatePath:function(){this._renderer._updatePoly(this,
-!0)}});c.polygon=function(a,b){return new c.Polygon(a,b)};c.Rectangle=c.Polygon.extend({initialize:function(a,b){c.Polygon.prototype.initialize.call(this,this._boundsToLatLngs(a),b)},setBounds:function(a){this.setLatLngs(this._boundsToLatLngs(a))},_boundsToLatLngs:function(a){a=c.latLngBounds(a);return[a.getSouthWest(),a.getNorthWest(),a.getNorthEast(),a.getSouthEast()]}});c.rectangle=function(a,b){return new c.Rectangle(a,b)};c.CircleMarker=c.Path.extend({options:{fill:!0,radius:10},initialize:function(a,
-b){c.setOptions(this,b);this._latlng=c.latLng(a);this._radius=this.options.radius},setLatLng:function(a){this._latlng=c.latLng(a);this.redraw();return this.fire("move",{latlng:this._latlng})},getLatLng:function(){return this._latlng},setRadius:function(a){this.options.radius=this._radius=a;return this.redraw()},getRadius:function(){return this._radius},setStyle:function(a){var b=a&&a.radius||this._radius;c.Path.prototype.setStyle.call(this,a);this.setRadius(b);return this},_project:function(){this._point=
-this._map.latLngToLayerPoint(this._latlng);this._updateBounds()},_updateBounds:function(){var a=this._radius,b=this._radiusY||a,d=this._clickTolerance(),a=[a+d,b+d];this._pxBounds=new c.Bounds(this._point.subtract(a),this._point.add(a))},_update:function(){this._map&&this._updatePath()},_updatePath:function(){this._renderer._updateCircle(this)},_empty:function(){return this._radius&&!this._renderer._bounds.intersects(this._pxBounds)}});c.circleMarker=function(a,b){return new c.CircleMarker(a,b)};
-c.Circle=c.CircleMarker.extend({initialize:function(a,b,d){c.setOptions(this,d);this._latlng=c.latLng(a);this._mRadius=b},setRadius:function(a){this._mRadius=a;return this.redraw()},getRadius:function(){return this._mRadius},getBounds:function(){var a=[this._radius,this._radiusY];return new c.LatLngBounds(this._map.layerPointToLatLng(this._point.subtract(a)),this._map.layerPointToLatLng(this._point.add(a)))},setStyle:c.Path.prototype.setStyle,_project:function(){var a=this._latlng.lng,b=this._latlng.lat,
-d=this._map,f=d.options.crs;if(f.distance===c.CRS.Earth.distance){var e=Math.PI/180,g=this._mRadius/c.CRS.Earth.R/e,f=d.project([b+g,a]),h=d.project([b-g,a]),h=f.add(h).divideBy(2),l=d.unproject(h).lat,b=Math.acos((Math.cos(g*e)-Math.sin(b*e)*Math.sin(l*e))/(Math.cos(b*e)*Math.cos(l*e)))/e;this._point=h.subtract(d.getPixelOrigin());this._radius=isNaN(b)?0:Math.max(Math.round(h.x-d.project([l,a-b]).x),1);this._radiusY=Math.max(Math.round(h.y-f.y),1)}else a=f.unproject(f.project(this._latlng).subtract([this._mRadius,
-0])),this._point=d.latLngToLayerPoint(this._latlng),this._radius=this._point.x-d.latLngToLayerPoint(a).x;this._updateBounds()}});c.circle=function(a,b,d){return new c.Circle(a,b,d)};c.SVG=c.Renderer.extend({_initContainer:function(){this._container=c.SVG.create("svg");this._container.setAttribute("pointer-events","none");this._rootGroup=c.SVG.create("g");this._container.appendChild(this._rootGroup)},_update:function(){if(!this._map._animatingZoom||!this._bounds){c.Renderer.prototype._update.call(this);
-var a=this._bounds,b=a.getSize(),d=this._container;this._svgSize&&this._svgSize.equals(b)||(this._svgSize=b,d.setAttribute("width",b.x),d.setAttribute("height",b.y));c.DomUtil.setPosition(d,a.min);d.setAttribute("viewBox",[a.min.x,a.min.y,b.x,b.y].join(" "))}},_initPath:function(a){var b=a._path=c.SVG.create("path");a.options.className&&c.DomUtil.addClass(b,a.options.className);a.options.interactive&&c.DomUtil.addClass(b,"leaflet-interactive");this._updateStyle(a)},_addPath:function(a){this._rootGroup.appendChild(a._path);
-a.addInteractiveTarget(a._path)},_removePath:function(a){c.DomUtil.remove(a._path);a.removeInteractiveTarget(a._path)},_updatePath:function(a){a._project();a._update()},_updateStyle:function(a){var b=a._path;a=a.options;b&&(a.stroke?(b.setAttribute("stroke",a.color),b.setAttribute("stroke-opacity",a.opacity),b.setAttribute("stroke-width",a.weight),b.setAttribute("stroke-linecap",a.lineCap),b.setAttribute("stroke-linejoin",a.lineJoin),a.dashArray?b.setAttribute("stroke-dasharray",a.dashArray):b.removeAttribute("stroke-dasharray"),
-a.dashOffset?b.setAttribute("stroke-dashoffset",a.dashOffset):b.removeAttribute("stroke-dashoffset")):b.setAttribute("stroke","none"),a.fill?(b.setAttribute("fill",a.fillColor||a.color),b.setAttribute("fill-opacity",a.fillOpacity),b.setAttribute("fill-rule",a.fillRule||"evenodd")):b.setAttribute("fill","none"),b.setAttribute("pointer-events",a.pointerEvents||(a.interactive?"visiblePainted":"none")))},_updatePoly:function(a,b){this._setPath(a,c.SVG.pointsToPath(a._parts,b))},_updateCircle:function(a){var b=
-a._point,c=a._radius,f="a"+c+","+(a._radiusY||c)+" 0 1,0 ",b=a._empty()?"M0 0":"M"+(b.x-c)+","+b.y+f+2*c+",0 "+f+2*-c+",0 ";this._setPath(a,b)},_setPath:function(a,b){a._path.setAttribute("d",b)},_bringToFront:function(a){c.DomUtil.toFront(a._path)},_bringToBack:function(a){c.DomUtil.toBack(a._path)}});c.extend(c.SVG,{create:function(a){return l.createElementNS("http://www.w3.org/2000/svg",a)},pointsToPath:function(a,b){var d="",f,e,g,h,l,m;f=0;for(g=a.length;f<g;f++){l=a[f];e=0;for(h=l.length;e<
-h;e++)m=l[e],d+=(e?"L":"M")+m.x+" "+m.y;d+=b?c.Browser.svg?"z":"x":""}return d||"M0 0"}});c.Browser.svg=!(!l.createElementNS||!c.SVG.create("svg").createSVGRect);c.svg=function(a){return c.Browser.svg||c.Browser.vml?new c.SVG(a):null};c.Browser.vml=!c.Browser.svg&&function(){try{var a=l.createElement("div");a.innerHTML='\x3cv:shape adj\x3d"1"/\x3e';var b=a.firstChild;b.style.behavior="url(#default#VML)";return b&&"object"===typeof b.adj}catch(c){return!1}}();c.SVG.include(c.Browser.vml?{_initContainer:function(){this._container=
-c.DomUtil.create("div","leaflet-vml-container")},_update:function(){this._map._animatingZoom||c.Renderer.prototype._update.call(this)},_initPath:function(a){var b=a._container=c.SVG.create("shape");c.DomUtil.addClass(b,"leaflet-vml-shape "+(this.options.className||""));b.coordsize="1 1";a._path=c.SVG.create("path");b.appendChild(a._path);this._updateStyle(a)},_addPath:function(a){var b=a._container;this._container.appendChild(b);a.addInteractiveTarget(b)},_removePath:function(a){var b=a._container;
-c.DomUtil.remove(b);a.removeInteractiveTarget(b)},_updateStyle:function(a){var b=a._stroke,d=a._fill,f=a.options,e=a._container;e.stroked=!!f.stroke;e.filled=!!f.fill;f.stroke?(b||(b=a._stroke=c.SVG.create("stroke"),e.appendChild(b)),b.weight=f.weight+"px",b.color=f.color,b.opacity=f.opacity,b.dashStyle=f.dashArray?c.Util.isArray(f.dashArray)?f.dashArray.join(" "):f.dashArray.replace(/( *, *)/g," "):"",b.endcap=f.lineCap.replace("butt","flat"),b.joinstyle=f.lineJoin):b&&(e.removeChild(b),a._stroke=
-null);f.fill?(d||(d=a._fill=c.SVG.create("fill"),e.appendChild(d)),d.color=f.fillColor||f.color,d.opacity=f.fillOpacity):d&&(e.removeChild(d),a._fill=null)},_updateCircle:function(a){var b=a._point.round(),c=Math.round(a._radius),f=Math.round(a._radiusY||c);this._setPath(a,a._empty()?"M0 0":"AL "+b.x+","+b.y+" "+c+","+f+" 0,23592600")},_setPath:function(a,b){a._path.v=b},_bringToFront:function(a){c.DomUtil.toFront(a._container)},_bringToBack:function(a){c.DomUtil.toBack(a._container)}}:{});c.Browser.vml&&
-(c.SVG.create=function(){try{return l.namespaces.add("lvml","urn:schemas-microsoft-com:vml"),function(a){return l.createElement("\x3clvml:"+a+' class\x3d"lvml"\x3e')}}catch(a){return function(a){return l.createElement("\x3c"+a+' xmlns\x3d"urn:schemas-microsoft.com:vml" class\x3d"lvml"\x3e')}}}());c.Canvas=c.Renderer.extend({onAdd:function(){c.Renderer.prototype.onAdd.call(this);this._layers=this._layers||{};this._draw()},_initContainer:function(){var a=this._container=l.createElement("canvas");c.DomEvent.on(a,
-"mousemove",this._onMouseMove,this).on(a,"click dblclick mousedown mouseup contextmenu",this._onClick,this);this._ctx=a.getContext("2d")},_update:function(){if(!this._map._animatingZoom||!this._bounds){c.Renderer.prototype._update.call(this);var a=this._bounds,b=this._container,d=a.getSize(),f=c.Browser.retina?2:1;c.DomUtil.setPosition(b,a.min);b.width=f*d.x;b.height=f*d.y;b.style.width=d.x+"px";b.style.height=d.y+"px";c.Browser.retina&&this._ctx.scale(2,2);this._ctx.translate(-a.min.x,-a.min.y)}},
-_initPath:function(a){this._layers[c.stamp(a)]=a},_addPath:c.Util.falseFn,_removePath:function(a){a._removed=!0;this._requestRedraw(a)},_updatePath:function(a){this._redrawBounds=a._pxBounds;this._draw(!0);a._project();a._update();this._draw();this._redrawBounds=null},_updateStyle:function(a){this._requestRedraw(a)},_requestRedraw:function(a){this._map&&(this._redrawBounds=this._redrawBounds||new c.Bounds,this._redrawBounds.extend(a._pxBounds.min).extend(a._pxBounds.max),this._redrawRequest=this._redrawRequest||
-c.Util.requestAnimFrame(this._redraw,this))},_redraw:function(){this._redrawRequest=null;this._draw(!0);this._draw();this._redrawBounds=null},_draw:function(a){this._clear=a;var b,c;for(c in this._layers)b=this._layers[c],this._redrawBounds&&!b._pxBounds.intersects(this._redrawBounds)||b._updatePath(),a&&b._removed&&(delete b._removed,delete this._layers[c])},_updatePoly:function(a,b){var c,f,e,g,h=a._parts,l=h.length,m=this._ctx;if(l){m.beginPath();for(c=0;c<l;c++){f=0;for(e=h[c].length;f<e;f++)g=
-h[c][f],m[f?"lineTo":"moveTo"](g.x,g.y);b&&m.closePath()}this._fillStroke(m,a)}},_updateCircle:function(a){if(!a._empty()){var b=a._point,c=this._ctx,f=a._radius,e=(a._radiusY||f)/f;1!==e&&(c.save(),c.scale(1,e));c.beginPath();c.arc(b.x,b.y/e,f,0,2*Math.PI,!1);1!==e&&c.restore();this._fillStroke(c,a)}},_fillStroke:function(a,b){var c=this._clear,f=b.options;a.globalCompositeOperation=c?"destination-out":"source-over";f.fill&&(a.globalAlpha=c?1:f.fillOpacity,a.fillStyle=f.fillColor||f.color,a.fill(f.fillRule||
-"evenodd"));f.stroke&&0!==f.weight&&(a.globalAlpha=c?1:f.opacity,b._prevWeight=a.lineWidth=c?b._prevWeight+1:f.weight,a.strokeStyle=f.color,a.lineCap=f.lineCap,a.lineJoin=f.lineJoin,a.stroke())},_onClick:function(a){var b=this._map.mouseEventToLayerPoint(a),d;for(d in this._layers)this._layers[d]._containsPoint(b)&&(c.DomEvent._fakeStop(a),this._fireEvent(this._layers[d],a))},_onMouseMove:function(a){if(this._map&&!this._map._animatingZoom){var b=this._map.mouseEventToLayerPoint(a),c;for(c in this._layers)this._handleHover(this._layers[c],
-a,b)}},_handleHover:function(a,b,d){a.options.interactive&&(a._containsPoint(d)?(a._mouseInside||(c.DomUtil.addClass(this._container,"leaflet-interactive"),this._fireEvent(a,b,"mouseover"),a._mouseInside=!0),this._fireEvent(a,b)):a._mouseInside&&(c.DomUtil.removeClass(this._container,"leaflet-interactive"),this._fireEvent(a,b,"mouseout"),a._mouseInside=!1))},_fireEvent:function(a,b,c){this._map._fireDOMEvent(a,b,c||b.type)},_bringToFront:c.Util.falseFn,_bringToBack:c.Util.falseFn});c.Browser.canvas=
-!!l.createElement("canvas").getContext;c.canvas=function(a){return c.Browser.canvas?new c.Canvas(a):null};c.Polyline.prototype._containsPoint=function(a,b){var d,f,e,g,h,l,m=this._clickTolerance();if(!this._pxBounds.contains(a))return!1;d=0;for(g=this._parts.length;d<g;d++)for(l=this._parts[d],f=0,h=l.length,e=h-1;f<h;e=f++)if((b||0!==f)&&c.LineUtil.pointToSegmentDistance(a,l[e],l[f])<=m)return!0;return!1};c.Polygon.prototype._containsPoint=function(a){var b=!1,d,f,e,g,h,l,m;if(!this._pxBounds.contains(a))return!1;
-g=0;for(l=this._parts.length;g<l;g++)for(d=this._parts[g],h=0,m=d.length,e=m-1;h<m;e=h++)f=d[h],e=d[e],f.y>a.y!==e.y>a.y&&a.x<(e.x-f.x)*(a.y-f.y)/(e.y-f.y)+f.x&&(b=!b);return b||c.Polyline.prototype._containsPoint.call(this,a,!0)};c.CircleMarker.prototype._containsPoint=function(a){return a.distanceTo(this._point)<=this._radius+this._clickTolerance()};c.GeoJSON=c.FeatureGroup.extend({initialize:function(a,b){c.setOptions(this,b);this._layers={};a&&this.addData(a)},addData:function(a){var b=c.Util.isArray(a)?
-a:a.features,d,f;if(b){a=0;for(d=b.length;a<d;a++)f=b[a],(f.geometries||f.geometry||f.features||f.coordinates)&&this.addData(f);return this}b=this.options;if(b.filter&&!b.filter(a))return this;d=c.GeoJSON.geometryToLayer(a,b);d.feature=c.GeoJSON.asFeature(a);d.defaultOptions=d.options;this.resetStyle(d);if(b.onEachFeature)b.onEachFeature(a,d);return this.addLayer(d)},resetStyle:function(a){a.options=a.defaultOptions;this._setLayerStyle(a,this.options.style);return this},setStyle:function(a){return this.eachLayer(function(b){this._setLayerStyle(b,
-a)},this)},_setLayerStyle:function(a,b){"function"===typeof b&&(b=b(a.feature));a.setStyle&&a.setStyle(b)}});c.extend(c.GeoJSON,{geometryToLayer:function(a,b){var d="Feature"===a.type?a.geometry:a,f=d.coordinates,e=[],g=b&&b.pointToLayer,h=b&&b.coordsToLatLng||this.coordsToLatLng,l,m;switch(d.type){case "Point":return d=h(f),g?g(a,d):new c.Marker(d);case "MultiPoint":l=0;for(m=f.length;l<m;l++)d=h(f[l]),e.push(g?g(a,d):new c.Marker(d));return new c.FeatureGroup(e);case "LineString":case "MultiLineString":return f=
-this.coordsToLatLngs(f,"LineString"===d.type?0:1,h),new c.Polyline(f,b);case "Polygon":case "MultiPolygon":return f=this.coordsToLatLngs(f,"Polygon"===d.type?1:2,h),new c.Polygon(f,b);case "GeometryCollection":l=0;for(m=d.geometries.length;l<m;l++)e.push(this.geometryToLayer({geometry:d.geometries[l],type:"Feature",properties:a.properties},b));return new c.FeatureGroup(e);default:throw Error("Invalid GeoJSON object.");}},coordsToLatLng:function(a){return new c.LatLng(a[1],a[0],a[2])},coordsToLatLngs:function(a,
-b,c){for(var f=[],e=0,g=a.length,h;e<g;e++)h=b?this.coordsToLatLngs(a[e],b-1,c):(c||this.coordsToLatLng)(a[e]),f.push(h);return f},latLngToCoords:function(a){return a.alt!==m?[a.lng,a.lat,a.alt]:[a.lng,a.lat]},latLngsToCoords:function(a,b,d){for(var e=[],g=0,h=a.length;g<h;g++)e.push(b?c.GeoJSON.latLngsToCoords(a[g],b-1,d):c.GeoJSON.latLngToCoords(a[g]));!b&&d&&e.push(e[0]);return e},getFeature:function(a,b){return a.feature?c.extend({},a.feature,{geometry:b}):c.GeoJSON.asFeature(b)},asFeature:function(a){return"Feature"===
-a.type?a:{type:"Feature",properties:{},geometry:a}}});e={toGeoJSON:function(){return c.GeoJSON.getFeature(this,{type:"Point",coordinates:c.GeoJSON.latLngToCoords(this.getLatLng())})}};c.Marker.include(e);c.Circle.include(e);c.CircleMarker.include(e);c.Polyline.prototype.toGeoJSON=function(){var a=!c.Polyline._flat(this._latlngs),b=c.GeoJSON.latLngsToCoords(this._latlngs,a?1:0);return c.GeoJSON.getFeature(this,{type:(a?"Multi":"")+"LineString",coordinates:b})};c.Polygon.prototype.toGeoJSON=function(){var a=
-!c.Polyline._flat(this._latlngs),b=a&&!c.Polyline._flat(this._latlngs[0]),d=c.GeoJSON.latLngsToCoords(this._latlngs,b?2:a?1:0,!0);a||(d=[d]);return c.GeoJSON.getFeature(this,{type:(b?"Multi":"")+"Polygon",coordinates:d})};c.LayerGroup.include({toMultiPoint:function(){var a=[];this.eachLayer(function(b){a.push(b.toGeoJSON().geometry.coordinates)});return c.GeoJSON.getFeature(this,{type:"MultiPoint",coordinates:a})},toGeoJSON:function(){var a=this.feature&&this.feature.geometry&&this.feature.geometry.type;
-if("MultiPoint"===a)return this.toMultiPoint();var b="GeometryCollection"===a,d=[];this.eachLayer(function(a){a.toGeoJSON&&(a=a.toGeoJSON(),d.push(b?a.geometry:c.GeoJSON.asFeature(a)))});return b?c.GeoJSON.getFeature(this,{geometries:d,type:"GeometryCollection"}):{type:"FeatureCollection",features:d}}});c.geoJson=function(a,b){return new c.GeoJSON(a,b)};c.DomEvent={on:function(a,b,d,e){if("object"===typeof b)for(var g in b)this._on(a,g,b[g],d);else{b=c.Util.splitWords(b);g=0;for(var h=b.length;g<
-h;g++)this._on(a,b[g],d,e)}return this},off:function(a,b,d,e){if("object"===typeof b)for(var g in b)this._off(a,g,b[g],d);else{b=c.Util.splitWords(b);g=0;for(var h=b.length;g<h;g++)this._off(a,b[g],d,e)}return this},_on:function(a,b,d,e){var g=b+c.stamp(d)+(e?"_"+c.stamp(e):"");if(a._leaflet_events&&a._leaflet_events[g])return this;var l=function(b){return d.call(e||a,b||h.event)},m=l;c.Browser.pointer&&0===b.indexOf("touch")?this.addPointerListener(a,b,l,g):c.Browser.touch&&"dblclick"===b&&this.addDoubleTapListener?
-this.addDoubleTapListener(a,l,g):"addEventListener"in a?"mousewheel"===b?(a.addEventListener("DOMMouseScroll",l,!1),a.addEventListener(b,l,!1)):"mouseenter"===b||"mouseleave"===b?(l=function(b){b=b||h.event;c.DomEvent._checkMouse(a,b)&&m(b)},a.addEventListener("mouseenter"===b?"mouseover":"mouseout",l,!1)):("click"===b&&c.Browser.android&&(l=function(a){return c.DomEvent._filterClick(a,m)}),a.addEventListener(b,l,!1)):"attachEvent"in a&&a.attachEvent("on"+b,l);a._leaflet_events=a._leaflet_events||
-{};a._leaflet_events[g]=l;return this},_off:function(a,b,d,e){d=b+c.stamp(d)+(e?"_"+c.stamp(e):"");e=a._leaflet_events&&a._leaflet_events[d];if(!e)return this;c.Browser.pointer&&0===b.indexOf("touch")?this.removePointerListener(a,b,d):c.Browser.touch&&"dblclick"===b&&this.removeDoubleTapListener?this.removeDoubleTapListener(a,d):"removeEventListener"in a?"mousewheel"===b?(a.removeEventListener("DOMMouseScroll",e,!1),a.removeEventListener(b,e,!1)):a.removeEventListener("mouseenter"===b?"mouseover":
-"mouseleave"===b?"mouseout":b,e,!1):"detachEvent"in a&&a.detachEvent("on"+b,e);a._leaflet_events[d]=null;return this},stopPropagation:function(a){a.stopPropagation?a.stopPropagation():a.cancelBubble=!0;c.DomEvent._skipped(a);return this},disableScrollPropagation:function(a){return c.DomEvent.on(a,"mousewheel MozMousePixelScroll",c.DomEvent.stopPropagation)},disableClickPropagation:function(a){var b=c.DomEvent.stopPropagation;c.DomEvent.on(a,c.Draggable.START.join(" "),b);return c.DomEvent.on(a,{click:c.DomEvent._fakeStop,
-dblclick:b})},preventDefault:function(a){a.preventDefault?a.preventDefault():a.returnValue=!1;return this},stop:function(a){return c.DomEvent.preventDefault(a).stopPropagation(a)},getMousePosition:function(a,b){if(!b)return new c.Point(a.clientX,a.clientY);var d=b.getBoundingClientRect();return new c.Point(a.clientX-d.left-b.clientLeft,a.clientY-d.top-b.clientTop)},getWheelDelta:function(a){var b=0;a.wheelDelta&&(b=a.wheelDelta/120);a.detail&&(b=-a.detail/3);return b},_skipEvents:{},_fakeStop:function(a){c.DomEvent._skipEvents[a.type]=
-!0},_skipped:function(a){var b=this._skipEvents[a.type];this._skipEvents[a.type]=!1;return b},_checkMouse:function(a,b){var c=b.relatedTarget;if(!c)return!0;try{for(;c&&c!==a;)c=c.parentNode}catch(e){return!1}return c!==a},_filterClick:function(a,b){var d=a.timeStamp||a.originalEvent.timeStamp,e=c.DomEvent._lastClick&&d-c.DomEvent._lastClick;e&&100<e&&500>e||a.target._simulatedClick&&!a._simulated?c.DomEvent.stop(a):(c.DomEvent._lastClick=d,b(a))}};c.DomEvent.addListener=c.DomEvent.on;c.DomEvent.removeListener=
-c.DomEvent.off;c.Draggable=c.Evented.extend({statics:{START:c.Browser.touch?["touchstart","mousedown"]:["mousedown"],END:{mousedown:"mouseup",touchstart:"touchend",pointerdown:"touchend",MSPointerDown:"touchend"},MOVE:{mousedown:"mousemove",touchstart:"touchmove",pointerdown:"touchmove",MSPointerDown:"touchmove"}},initialize:function(a,b,c){this._element=a;this._dragStartTarget=b||a;this._preventOutline=c},enable:function(){this._enabled||(c.DomEvent.on(this._dragStartTarget,c.Draggable.START.join(" "),
-this._onDown,this),this._enabled=!0)},disable:function(){this._enabled&&(c.DomEvent.off(this._dragStartTarget,c.Draggable.START.join(" "),this._onDown,this),this._moved=this._enabled=!1)},_onDown:function(a){this._moved=!1;if(!(a.shiftKey||1!==a.which&&1!==a.button&&!a.touches||(c.DomEvent.stopPropagation(a),this._preventOutline&&c.DomUtil.preventOutline(this._element),c.DomUtil.hasClass(this._element,"leaflet-zoom-anim")||(c.DomUtil.disableImageDrag(),c.DomUtil.disableTextSelection(),this._moving)))){this.fire("down");
-var b=a.touches?a.touches[0]:a;this._startPoint=new c.Point(b.clientX,b.clientY);this._startPos=this._newPos=c.DomUtil.getPosition(this._element);c.DomEvent.on(l,c.Draggable.MOVE[a.type],this._onMove,this).on(l,c.Draggable.END[a.type],this._onUp,this)}},_onMove:function(a){if(a.touches&&1<a.touches.length)this._moved=!0;else{var b=a.touches&&1===a.touches.length?a.touches[0]:a,b=(new c.Point(b.clientX,b.clientY)).subtract(this._startPoint);!b.x&&!b.y||c.Browser.touch&&3>Math.abs(b.x)+Math.abs(b.y)||
-(c.DomEvent.preventDefault(a),this._moved||(this.fire("dragstart"),this._moved=!0,this._startPos=c.DomUtil.getPosition(this._element).subtract(b),c.DomUtil.addClass(l.body,"leaflet-dragging"),this._lastTarget=a.target||a.srcElement,c.DomUtil.addClass(this._lastTarget,"leaflet-drag-target")),this._newPos=this._startPos.add(b),this._moving=!0,c.Util.cancelAnimFrame(this._animRequest),this._lastEvent=a,this._animRequest=c.Util.requestAnimFrame(this._updatePosition,this,!0,this._dragStartTarget))}},_updatePosition:function(){var a=
-{originalEvent:this._lastEvent};this.fire("predrag",a);c.DomUtil.setPosition(this._element,this._newPos);this.fire("drag",a)},_onUp:function(){c.DomUtil.removeClass(l.body,"leaflet-dragging");this._lastTarget&&(c.DomUtil.removeClass(this._lastTarget,"leaflet-drag-target"),this._lastTarget=null);for(var a in c.Draggable.MOVE)c.DomEvent.off(l,c.Draggable.MOVE[a],this._onMove,this).off(l,c.Draggable.END[a],this._onUp,this);c.DomUtil.enableImageDrag();c.DomUtil.enableTextSelection();this._moved&&this._moving&&
-(c.Util.cancelAnimFrame(this._animRequest),this.fire("dragend",{distance:this._newPos.distanceTo(this._startPos)}));this._moving=!1}});c.Handler=c.Class.extend({initialize:function(a){this._map=a},enable:function(){this._enabled||(this._enabled=!0,this.addHooks())},disable:function(){this._enabled&&(this._enabled=!1,this.removeHooks())},enabled:function(){return!!this._enabled}});c.Map.mergeOptions({dragging:!0,inertia:!c.Browser.android23,inertiaDeceleration:3400,inertiaMaxSpeed:Infinity,easeLinearity:0.2,
-worldCopyJump:!1});c.Map.Drag=c.Handler.extend({addHooks:function(){if(!this._draggable){var a=this._map;this._draggable=new c.Draggable(a._mapPane,a._container);this._draggable.on({down:this._onDown,dragstart:this._onDragStart,drag:this._onDrag,dragend:this._onDragEnd},this);this._draggable.on("predrag",this._onPreDragLimit,this);a.options.worldCopyJump&&(this._draggable.on("predrag",this._onPreDragWrap,this),a.on("zoomend",this._onZoomEnd,this),a.whenReady(this._onZoomEnd,this))}c.DomUtil.addClass(this._map._container,
-"leaflet-grab");this._draggable.enable()},removeHooks:function(){c.DomUtil.removeClass(this._map._container,"leaflet-grab");this._draggable.disable()},moved:function(){return this._draggable&&this._draggable._moved},_onDown:function(){this._map.stop()},_onDragStart:function(){var a=this._map;if(this._map.options.maxBounds&&this._map.options.maxBoundsViscosity){var b=c.latLngBounds(this._map.options.maxBounds);this._offsetLimit=c.bounds(this._map.latLngToContainerPoint(b.getNorthWest()).multiplyBy(-1),
-this._map.latLngToContainerPoint(b.getSouthEast()).multiplyBy(-1).add(this._map.getSize()));this._viscosity=Math.min(1,Math.max(0,this._map.options.maxBoundsViscosity))}else this._offsetLimit=null;a.fire("movestart").fire("dragstart");a.options.inertia&&(this._positions=[],this._times=[])},_onDrag:function(a){if(this._map.options.inertia){var b=this._lastTime=+new Date,c=this._lastPos=this._draggable._absPos||this._draggable._newPos;this._positions.push(c);this._times.push(b);50<b-this._times[0]&&
-(this._positions.shift(),this._times.shift())}this._map.fire("move",a).fire("drag",a)},_onZoomEnd:function(){var a=this._map.getSize().divideBy(2);this._initialWorldOffset=this._map.latLngToLayerPoint([0,0]).subtract(a).x;this._worldWidth=this._map.getPixelWorldBounds().getSize().x},_viscousLimit:function(a,b){return a-(a-b)*this._viscosity},_onPreDragLimit:function(){if(this._viscosity&&this._offsetLimit){var a=this._draggable._newPos.subtract(this._draggable._startPos),b=this._offsetLimit;a.x<b.min.x&&
-(a.x=this._viscousLimit(a.x,b.min.x));a.y<b.min.y&&(a.y=this._viscousLimit(a.y,b.min.y));a.x>b.max.x&&(a.x=this._viscousLimit(a.x,b.max.x));a.y>b.max.y&&(a.y=this._viscousLimit(a.y,b.max.y));this._draggable._newPos=this._draggable._startPos.add(a)}},_onPreDragWrap:function(){var a=this._worldWidth,b=Math.round(a/2),c=this._initialWorldOffset,e=this._draggable._newPos.x,g=(e-b+c)%a+b-c,a=(e+b+c)%a-b-c,c=Math.abs(g+c)<Math.abs(a+c)?g:a;this._draggable._absPos=this._draggable._newPos.clone();this._draggable._newPos.x=
-c},_onDragEnd:function(a){var b=this._map,d=b.options,e=!d.inertia||2>this._times.length;b.fire("dragend",a);if(e)b.fire("moveend");else{a=this._lastPos.subtract(this._positions[0]);var g=d.easeLinearity,e=a.multiplyBy(g/((this._lastTime-this._times[0])/1E3)),h=e.distanceTo([0,0]);a=Math.min(d.inertiaMaxSpeed,h);var e=e.multiplyBy(a/h),l=a/(d.inertiaDeceleration*g),m=e.multiplyBy(-l/2).round();m.x||m.y?(m=b._limitOffset(m,b.options.maxBounds),c.Util.requestAnimFrame(function(){b.panBy(m,{duration:l,
-easeLinearity:g,noMoveStart:!0,animate:!0})})):b.fire("moveend")}}});c.Map.addInitHook("addHandler","dragging",c.Map.Drag);c.Map.mergeOptions({doubleClickZoom:!0});c.Map.DoubleClickZoom=c.Handler.extend({addHooks:function(){this._map.on("dblclick",this._onDoubleClick,this)},removeHooks:function(){this._map.off("dblclick",this._onDoubleClick,this)},_onDoubleClick:function(a){var b=this._map,c=b.getZoom(),c=a.originalEvent.shiftKey?Math.ceil(c)-1:Math.floor(c)+1;"center"===b.options.doubleClickZoom?
-b.setZoom(c):b.setZoomAround(a.containerPoint,c)}});c.Map.addInitHook("addHandler","doubleClickZoom",c.Map.DoubleClickZoom);c.Map.mergeOptions({scrollWheelZoom:!0,wheelDebounceTime:40});c.Map.ScrollWheelZoom=c.Handler.extend({addHooks:function(){c.DomEvent.on(this._map._container,{mousewheel:this._onWheelScroll,MozMousePixelScroll:c.DomEvent.preventDefault},this);this._delta=0},removeHooks:function(){c.DomEvent.off(this._map._container,{mousewheel:this._onWheelScroll,MozMousePixelScroll:c.DomEvent.preventDefault},
-this)},_onWheelScroll:function(a){var b=c.DomEvent.getWheelDelta(a),d=this._map.options.wheelDebounceTime;this._delta+=b;this._lastMousePos=this._map.mouseEventToContainerPoint(a);this._startTime||(this._startTime=+new Date);b=Math.max(d-(+new Date-this._startTime),0);clearTimeout(this._timer);this._timer=setTimeout(c.bind(this._performZoom,this),b);c.DomEvent.stop(a)},_performZoom:function(){var a=this._map,b=this._delta,c=a.getZoom();a.stop();b=0<b?Math.ceil(b):Math.floor(b);b=Math.max(Math.min(b,
-4),-4);b=a._limitZoom(c+b)-c;this._delta=0;this._startTime=null;b&&("center"===a.options.scrollWheelZoom?a.setZoom(c+b):a.setZoomAround(this._lastMousePos,c+b))}});c.Map.addInitHook("addHandler","scrollWheelZoom",c.Map.ScrollWheelZoom);c.extend(c.DomEvent,{_touchstart:c.Browser.msPointer?"MSPointerDown":c.Browser.pointer?"pointerdown":"touchstart",_touchend:c.Browser.msPointer?"MSPointerUp":c.Browser.pointer?"pointerup":"touchend",addDoubleTapListener:function(a,b,d){function e(a){if(!(1<(c.Browser.pointer?
-c.DomEvent._pointersCount:a.touches.length))){var b=Date.now(),d=b-(h||b);l=a.touches?a.touches[0]:a;m=0<d&&d<=z;h=b}}function g(){if(m){if(c.Browser.pointer){var a={},d,e;for(e in l)d=l[e],a[e]=d&&d.bind?d.bind(l):d;l=a}l.type="dblclick";b(l);h=null}}var h,l,m=!1,z=250,H=this._touchstart,D=this._touchend;a["_leaflet_"+H+d]=e;a["_leaflet_"+D+d]=g;a.addEventListener(H,e,!1);a.addEventListener(D,g,!1);return this},removeDoubleTapListener:function(a,b){var c=a["_leaflet_"+this._touchend+b];a.removeEventListener(this._touchstart,
-a["_leaflet_"+this._touchstart+b],!1);a.removeEventListener(this._touchend,c,!1);return this}});c.extend(c.DomEvent,{POINTER_DOWN:c.Browser.msPointer?"MSPointerDown":"pointerdown",POINTER_MOVE:c.Browser.msPointer?"MSPointerMove":"pointermove",POINTER_UP:c.Browser.msPointer?"MSPointerUp":"pointerup",POINTER_CANCEL:c.Browser.msPointer?"MSPointerCancel":"pointercancel",_pointers:{},_pointersCount:0,addPointerListener:function(a,b,c,e){"touchstart"===b?this._addPointerStart(a,c,e):"touchmove"===b?this._addPointerMove(a,
-c,e):"touchend"===b&&this._addPointerEnd(a,c,e);return this},removePointerListener:function(a,b,c){c=a["_leaflet_"+b+c];"touchstart"===b?a.removeEventListener(this.POINTER_DOWN,c,!1):"touchmove"===b?a.removeEventListener(this.POINTER_MOVE,c,!1):"touchend"===b&&(a.removeEventListener(this.POINTER_UP,c,!1),a.removeEventListener(this.POINTER_CANCEL,c,!1));return this},_addPointerStart:function(a,b,d){var e=c.bind(function(a){c.DomEvent.preventDefault(a);this._handlePointer(a,b)},this);a["_leaflet_touchstart"+
-d]=e;a.addEventListener(this.POINTER_DOWN,e,!1);this._pointerDocListener||(a=c.bind(this._globalPointerUp,this),l.documentElement.addEventListener(this.POINTER_DOWN,c.bind(this._globalPointerDown,this),!0),l.documentElement.addEventListener(this.POINTER_MOVE,c.bind(this._globalPointerMove,this),!0),l.documentElement.addEventListener(this.POINTER_UP,a,!0),l.documentElement.addEventListener(this.POINTER_CANCEL,a,!0),this._pointerDocListener=!0)},_globalPointerDown:function(a){this._pointers[a.pointerId]=
-a;this._pointersCount++},_globalPointerMove:function(a){this._pointers[a.pointerId]&&(this._pointers[a.pointerId]=a)},_globalPointerUp:function(a){delete this._pointers[a.pointerId];this._pointersCount--},_handlePointer:function(a,b){a.touches=[];for(var c in this._pointers)a.touches.push(this._pointers[c]);a.changedTouches=[a];b(a)},_addPointerMove:function(a,b,d){var e=c.bind(function(a){(a.pointerType!==a.MSPOINTER_TYPE_MOUSE&&"mouse"!==a.pointerType||0!==a.buttons)&&this._handlePointer(a,b)},
-this);a["_leaflet_touchmove"+d]=e;a.addEventListener(this.POINTER_MOVE,e,!1)},_addPointerEnd:function(a,b,d){var e=c.bind(function(a){this._handlePointer(a,b)},this);a["_leaflet_touchend"+d]=e;a.addEventListener(this.POINTER_UP,e,!1);a.addEventListener(this.POINTER_CANCEL,e,!1)}});c.Map.mergeOptions({touchZoom:c.Browser.touch&&!c.Browser.android23,bounceAtZoomLimits:!0});c.Map.TouchZoom=c.Handler.extend({addHooks:function(){c.DomEvent.on(this._map._container,"touchstart",this._onTouchStart,this)},
-removeHooks:function(){c.DomEvent.off(this._map._container,"touchstart",this._onTouchStart,this)},_onTouchStart:function(a){var b=this._map;if(a.touches&&2===a.touches.length&&!b._animatingZoom&&!this._zooming){var d=b.mouseEventToContainerPoint(a.touches[0]),e=b.mouseEventToContainerPoint(a.touches[1]);this._pinchStartPoint=d.add(e)._divideBy(2);this._startCenter=b.containerPointToLatLng(b.getSize()._divideBy(2));this._startDist=d.distanceTo(e);this._startZoom=b.getZoom();this._moved=!1;this._zooming=
-!0;b.stop();c.DomEvent.on(l,"touchmove",this._onTouchMove,this).on(l,"touchend",this._onTouchEnd,this);c.DomEvent.preventDefault(a)}},_onTouchMove:function(a){if(a.touches&&2===a.touches.length&&this._zooming){var b=this._map,d=b.mouseEventToContainerPoint(a.touches[0]),e=b.mouseEventToContainerPoint(a.touches[1]),g=d.distanceTo(e)/this._startDist;this._zoom=b.getScaleZoom(g,this._startZoom);"center"===b.options.touchZoom?(d=new c.Point(0,0),this._center=b.getCenter()):(d=d._add(e)._divideBy(2)._subtract(this._pinchStartPoint),
-this._center=b.containerPointToLatLng(b.latLngToContainerPoint(this._startCenter).subtract(d)));1===g&&0===d.x&&0===d.y||!b.options.bounceAtZoomLimits&&(this._zoom<=b.getMinZoom()&&1>g||this._zoom>=b.getMaxZoom()&&1<g)||(this._moved||(b._moveStart(!0),this._moved=!0),c.Util.cancelAnimFrame(this._animRequest),g=c.bind(b._move,b,this._center,this._zoom,{pinch:!0,round:!1}),this._animRequest=c.Util.requestAnimFrame(g,this,!0,b._container),c.DomEvent.preventDefault(a))}},_onTouchEnd:function(){if(this._moved&&
-this._zooming){this._zooming=!1;c.Util.cancelAnimFrame(this._animRequest);c.DomEvent.off(l,"touchmove",this._onTouchMove).off(l,"touchend",this._onTouchEnd);var a=this._zoom,a=this._map._limitZoom(0<a-this._startZoom?Math.ceil(a):Math.floor(a));this._map._animateZoom(this._center,a,!0,!0)}else this._zooming=!1}});c.Map.addInitHook("addHandler","touchZoom",c.Map.TouchZoom);c.Map.mergeOptions({tap:!0,tapTolerance:15});c.Map.Tap=c.Handler.extend({addHooks:function(){c.DomEvent.on(this._map._container,
-"touchstart",this._onDown,this)},removeHooks:function(){c.DomEvent.off(this._map._container,"touchstart",this._onDown,this)},_onDown:function(a){if(a.touches)if(c.DomEvent.preventDefault(a),this._fireClick=!0,1<a.touches.length)this._fireClick=!1,clearTimeout(this._holdTimeout);else{var b=a.touches[0];a=b.target;this._startPos=this._newPos=new c.Point(b.clientX,b.clientY);a.tagName&&"a"===a.tagName.toLowerCase()&&c.DomUtil.addClass(a,"leaflet-active");this._holdTimeout=setTimeout(c.bind(function(){this._isTapValid()&&
-(this._fireClick=!1,this._onUp(),this._simulateEvent("contextmenu",b))},this),1E3);this._simulateEvent("mousedown",b);c.DomEvent.on(l,{touchmove:this._onMove,touchend:this._onUp},this)}},_onUp:function(a){clearTimeout(this._holdTimeout);c.DomEvent.off(l,{touchmove:this._onMove,touchend:this._onUp},this);if(this._fireClick&&a&&a.changedTouches){a=a.changedTouches[0];var b=a.target;b&&b.tagName&&"a"===b.tagName.toLowerCase()&&c.DomUtil.removeClass(b,"leaflet-active");this._simulateEvent("mouseup",a);
-this._isTapValid()&&this._simulateEvent("click",a)}},_isTapValid:function(){return this._newPos.distanceTo(this._startPos)<=this._map.options.tapTolerance},_onMove:function(a){a=a.touches[0];this._newPos=new c.Point(a.clientX,a.clientY)},_simulateEvent:function(a,b){var c=l.createEvent("MouseEvents");c._simulated=!0;b.target._simulatedClick=!0;c.initMouseEvent(a,!0,!0,h,1,b.screenX,b.screenY,b.clientX,b.clientY,!1,!1,!1,!1,0,null);b.target.dispatchEvent(c)}});c.Browser.touch&&!c.Browser.pointer&&
-c.Map.addInitHook("addHandler","tap",c.Map.Tap);c.Map.mergeOptions({boxZoom:!0});c.Map.BoxZoom=c.Handler.extend({initialize:function(a){this._map=a;this._container=a._container;this._pane=a._panes.overlayPane},addHooks:function(){c.DomEvent.on(this._container,"mousedown",this._onMouseDown,this)},removeHooks:function(){c.DomEvent.off(this._container,"mousedown",this._onMouseDown,this)},moved:function(){return this._moved},_onMouseDown:function(a){if(!a.shiftKey||1!==a.which&&1!==a.button)return!1;
-this._moved=!1;c.DomUtil.disableTextSelection();c.DomUtil.disableImageDrag();this._startPoint=this._map.mouseEventToContainerPoint(a);c.DomEvent.on(l,{contextmenu:c.DomEvent.stop,mousemove:this._onMouseMove,mouseup:this._onMouseUp,keydown:this._onKeyDown},this)},_onMouseMove:function(a){this._moved||(this._moved=!0,this._box=c.DomUtil.create("div","leaflet-zoom-box",this._container),c.DomUtil.addClass(this._container,"leaflet-crosshair"),this._map.fire("boxzoomstart"));this._point=this._map.mouseEventToContainerPoint(a);
-a=new c.Bounds(this._point,this._startPoint);var b=a.getSize();c.DomUtil.setPosition(this._box,a.min);this._box.style.width=b.x+"px";this._box.style.height=b.y+"px"},_finish:function(){this._moved&&(c.DomUtil.remove(this._box),c.DomUtil.removeClass(this._container,"leaflet-crosshair"));c.DomUtil.enableTextSelection();c.DomUtil.enableImageDrag();c.DomEvent.off(l,{contextmenu:c.DomEvent.stop,mousemove:this._onMouseMove,mouseup:this._onMouseUp,keydown:this._onKeyDown},this)},_onMouseUp:function(a){if(1===
-a.which||1===a.button)this._finish(),this._moved&&(a=new c.LatLngBounds(this._map.containerPointToLatLng(this._startPoint),this._map.containerPointToLatLng(this._point)),this._map.fitBounds(a).fire("boxzoomend",{boxZoomBounds:a}))},_onKeyDown:function(a){27===a.keyCode&&this._finish()}});c.Map.addInitHook("addHandler","boxZoom",c.Map.BoxZoom);c.Map.mergeOptions({keyboard:!0,keyboardPanOffset:80,keyboardZoomOffset:1});c.Map.Keyboard=c.Handler.extend({keyCodes:{left:[37],right:[39],down:[40],up:[38],
-zoomIn:[187,107,61,171],zoomOut:[189,109,54,173]},initialize:function(a){this._map=a;this._setPanOffset(a.options.keyboardPanOffset);this._setZoomOffset(a.options.keyboardZoomOffset)},addHooks:function(){var a=this._map._container;-1===a.tabIndex&&(a.tabIndex="0");c.DomEvent.on(a,{focus:this._onFocus,blur:this._onBlur,mousedown:this._onMouseDown},this);this._map.on({focus:this._addHooks,blur:this._removeHooks},this)},removeHooks:function(){this._removeHooks();c.DomEvent.off(this._map._container,{focus:this._onFocus,
-blur:this._onBlur,mousedown:this._onMouseDown},this);this._map.off({focus:this._addHooks,blur:this._removeHooks},this)},_onMouseDown:function(){if(!this._focused){var a=l.body,b=l.documentElement,c=a.scrollTop||b.scrollTop,a=a.scrollLeft||b.scrollLeft;this._map._container.focus();h.scrollTo(a,c)}},_onFocus:function(){this._focused=!0;this._map.fire("focus")},_onBlur:function(){this._focused=!1;this._map.fire("blur")},_setPanOffset:function(a){var b=this._panKeys={},c=this.keyCodes,e,g;e=0;for(g=c.left.length;e<
-g;e++)b[c.left[e]]=[-1*a,0];e=0;for(g=c.right.length;e<g;e++)b[c.right[e]]=[a,0];e=0;for(g=c.down.length;e<g;e++)b[c.down[e]]=[0,a];e=0;for(g=c.up.length;e<g;e++)b[c.up[e]]=[0,-1*a]},_setZoomOffset:function(a){var b=this._zoomKeys={},c=this.keyCodes,e,g;e=0;for(g=c.zoomIn.length;e<g;e++)b[c.zoomIn[e]]=a;e=0;for(g=c.zoomOut.length;e<g;e++)b[c.zoomOut[e]]=-a},_addHooks:function(){c.DomEvent.on(l,"keydown",this._onKeyDown,this)},_removeHooks:function(){c.DomEvent.off(l,"keydown",this._onKeyDown,this)},
-_onKeyDown:function(a){if(!(a.altKey||a.ctrlKey||a.metaKey)){var b=a.keyCode,d=this._map;if(b in this._panKeys){if(d._panAnim&&d._panAnim._inProgress)return;d.panBy(this._panKeys[b]);d.options.maxBounds&&d.panInsideBounds(d.options.maxBounds)}else if(b in this._zoomKeys)d.setZoom(d.getZoom()+(a.shiftKey?3:1)*this._zoomKeys[b]);else if(27===b)d.closePopup();else return;c.DomEvent.stop(a)}}});c.Map.addInitHook("addHandler","keyboard",c.Map.Keyboard);c.Handler.MarkerDrag=c.Handler.extend({initialize:function(a){this._marker=
-a},addHooks:function(){var a=this._marker._icon;this._draggable||(this._draggable=new c.Draggable(a,a,!0));this._draggable.on({dragstart:this._onDragStart,drag:this._onDrag,dragend:this._onDragEnd},this).enable();c.DomUtil.addClass(a,"leaflet-marker-draggable")},removeHooks:function(){this._draggable.off({dragstart:this._onDragStart,drag:this._onDrag,dragend:this._onDragEnd},this).disable();this._marker._icon&&c.DomUtil.removeClass(this._marker._icon,"leaflet-marker-draggable")},moved:function(){return this._draggable&&
-this._draggable._moved},_onDragStart:function(){this._marker.closePopup().fire("movestart").fire("dragstart")},_onDrag:function(a){var b=this._marker,d=b._shadow,e=c.DomUtil.getPosition(b._icon),g=b._map.layerPointToLatLng(e);d&&c.DomUtil.setPosition(d,e);b._latlng=g;a.latlng=g;b.fire("move",a).fire("drag",a)},_onDragEnd:function(a){this._marker.fire("moveend").fire("dragend",a)}});c.Control=c.Class.extend({options:{position:"topright"},initialize:function(a){c.setOptions(this,a)},getPosition:function(){return this.options.position},
-setPosition:function(a){var b=this._map;b&&b.removeControl(this);this.options.position=a;b&&b.addControl(this);return this},getContainer:function(){return this._container},addTo:function(a){this.remove();this._map=a;var b=this._container=this.onAdd(a),d=this.getPosition();a=a._controlCorners[d];c.DomUtil.addClass(b,"leaflet-control");-1!==d.indexOf("bottom")?a.insertBefore(b,a.firstChild):a.appendChild(b);return this},remove:function(){if(!this._map)return this;c.DomUtil.remove(this._container);if(this.onRemove)this.onRemove(this._map);
-this._map=null;return this},_refocusOnMap:function(a){this._map&&a&&0<a.screenX&&0<a.screenY&&this._map.getContainer().focus()}});c.control=function(a){return new c.Control(a)};c.Map.include({addControl:function(a){a.addTo(this);return this},removeControl:function(a){a.remove();return this},_initControlPos:function(){function a(a,g){b[a+g]=c.DomUtil.create("div",d+a+" "+d+g,e)}var b=this._controlCorners={},d="leaflet-",e=this._controlContainer=c.DomUtil.create("div",d+"control-container",this._container);
-a("top","left");a("top","right");a("bottom","left");a("bottom","right")},_clearControlPos:function(){c.DomUtil.remove(this._controlContainer)}});c.Control.Zoom=c.Control.extend({options:{position:"topleft",zoomInText:"+",zoomInTitle:"Zoom in",zoomOutText:"-",zoomOutTitle:"Zoom out"},onAdd:function(a){var b=c.DomUtil.create("div","leaflet-control-zoom leaflet-bar"),d=this.options;this._zoomInButton=this._createButton(d.zoomInText,d.zoomInTitle,"leaflet-control-zoom-in",b,this._zoomIn);this._zoomOutButton=
-this._createButton(d.zoomOutText,d.zoomOutTitle,"leaflet-control-zoom-out",b,this._zoomOut);this._updateDisabled();a.on("zoomend zoomlevelschange",this._updateDisabled,this);return b},onRemove:function(a){a.off("zoomend zoomlevelschange",this._updateDisabled,this)},disable:function(){this._disabled=!0;this._updateDisabled();return this},enable:function(){this._disabled=!1;this._updateDisabled();return this},_zoomIn:function(a){this._disabled||this._map.zoomIn(a.shiftKey?3:1)},_zoomOut:function(a){this._disabled||
-this._map.zoomOut(a.shiftKey?3:1)},_createButton:function(a,b,d,e,g){d=c.DomUtil.create("a",d,e);d.innerHTML=a;d.href="#";d.title=b;c.DomEvent.on(d,"mousedown dblclick",c.DomEvent.stopPropagation).on(d,"click",c.DomEvent.stop).on(d,"click",g,this).on(d,"click",this._refocusOnMap,this);return d},_updateDisabled:function(){var a=this._map;c.DomUtil.removeClass(this._zoomInButton,"leaflet-disabled");c.DomUtil.removeClass(this._zoomOutButton,"leaflet-disabled");(this._disabled||a._zoom===a.getMinZoom())&&
-c.DomUtil.addClass(this._zoomOutButton,"leaflet-disabled");(this._disabled||a._zoom===a.getMaxZoom())&&c.DomUtil.addClass(this._zoomInButton,"leaflet-disabled")}});c.Map.mergeOptions({zoomControl:!0});c.Map.addInitHook(function(){this.options.zoomControl&&(this.zoomControl=new c.Control.Zoom,this.addControl(this.zoomControl))});c.control.zoom=function(a){return new c.Control.Zoom(a)};c.Control.Attribution=c.Control.extend({options:{position:"bottomright",prefix:'\x3ca href\x3d"http://leafletjs.com" title\x3d"A JS library for interactive maps"\x3eLeaflet\x3c/a\x3e'},
-initialize:function(a){c.setOptions(this,a);this._attributions={}},onAdd:function(a){this._container=c.DomUtil.create("div","leaflet-control-attribution");c.DomEvent&&c.DomEvent.disableClickPropagation(this._container);for(var b in a._layers)a._layers[b].getAttribution&&this.addAttribution(a._layers[b].getAttribution());this._update();return this._container},setPrefix:function(a){this.options.prefix=a;this._update();return this},addAttribution:function(a){if(!a)return this;this._attributions[a]||
-(this._attributions[a]=0);this._attributions[a]++;this._update();return this},removeAttribution:function(a){if(!a)return this;this._attributions[a]&&(this._attributions[a]--,this._update());return this},_update:function(){if(this._map){var a=[],b;for(b in this._attributions)this._attributions[b]&&a.push(b);b=[];this.options.prefix&&b.push(this.options.prefix);a.length&&b.push(a.join(", "));this._container.innerHTML=b.join(" | ")}}});c.Map.mergeOptions({attributionControl:!0});c.Map.addInitHook(function(){this.options.attributionControl&&
-(this.attributionControl=(new c.Control.Attribution).addTo(this))});c.control.attribution=function(a){return new c.Control.Attribution(a)};c.Control.Scale=c.Control.extend({options:{position:"bottomleft",maxWidth:100,metric:!0,imperial:!0},onAdd:function(a){var b=c.DomUtil.create("div","leaflet-control-scale"),d=this.options;this._addScales(d,"leaflet-control-scale-line",b);a.on(d.updateWhenIdle?"moveend":"move",this._update,this);a.whenReady(this._update,this);return b},onRemove:function(a){a.off(this.options.updateWhenIdle?
-"moveend":"move",this._update,this)},_addScales:function(a,b,d){a.metric&&(this._mScale=c.DomUtil.create("div",b,d));a.imperial&&(this._iScale=c.DomUtil.create("div",b,d))},_update:function(){var a=this._map,b=a.getSize().y/2,a=c.CRS.Earth.distance(a.containerPointToLatLng([0,b]),a.containerPointToLatLng([this.options.maxWidth,b]));this._updateScales(a)},_updateScales:function(a){this.options.metric&&a&&this._updateMetric(a);this.options.imperial&&a&&this._updateImperial(a)},_updateMetric:function(a){var b=
-this._getRoundNum(a);this._updateScale(this._mScale,1E3>b?b+" m":b/1E3+" km",b/a)},_updateImperial:function(a){a*=3.2808399;var b;5280<a?(a/=5280,b=this._getRoundNum(a),this._updateScale(this._iScale,b+" mi",b/a)):(b=this._getRoundNum(a),this._updateScale(this._iScale,b+" ft",b/a))},_updateScale:function(a,b,c){a.style.width=Math.round(this.options.maxWidth*c)+"px";a.innerHTML=b},_getRoundNum:function(a){var b=Math.pow(10,(Math.floor(a)+"").length-1);a/=b;return b*(10<=a?10:5<=a?5:3<=a?3:2<=a?2:1)}});
-c.control.scale=function(a){return new c.Control.Scale(a)};c.Control.Layers=c.Control.extend({options:{collapsed:!0,position:"topright",autoZIndex:!0,hideSingleBase:!1},initialize:function(a,b,d){c.setOptions(this,d);this._layers={};this._lastZIndex=0;this._handlingClick=!1;for(var e in a)this._addLayer(a[e],e);for(e in b)this._addLayer(b[e],e,!0)},onAdd:function(){this._initLayout();this._update();return this._container},addBaseLayer:function(a,b){this._addLayer(a,b);return this._update()},addOverlay:function(a,
-b){this._addLayer(a,b,!0);return this._update()},removeLayer:function(a){a.off("add remove",this._onLayerChange,this);delete this._layers[c.stamp(a)];return this._update()},_initLayout:function(){var a=this._container=c.DomUtil.create("div","leaflet-control-layers");a.setAttribute("aria-haspopup",!0);if(c.Browser.touch)c.DomEvent.on(a,"click",c.DomEvent.stopPropagation);else c.DomEvent.disableClickPropagation(a).disableScrollPropagation(a);var b=this._form=c.DomUtil.create("form","leaflet-control-layers-list");
-if(this.options.collapsed){if(!c.Browser.android)c.DomEvent.on(a,{mouseenter:this._expand,mouseleave:this._collapse},this);var d=this._layersLink=c.DomUtil.create("a","leaflet-control-layers-toggle",a);d.href="#";d.title="Layers";if(c.Browser.touch)c.DomEvent.on(d,"click",c.DomEvent.stop).on(d,"click",this._expand,this);else c.DomEvent.on(d,"focus",this._expand,this);c.DomEvent.on(b,"click",function(){setTimeout(c.bind(this._onInputClick,this),0)},this);this._map.on("click",this._collapse,this)}else this._expand();
-this._baseLayersList=c.DomUtil.create("div","leaflet-control-layers-base",b);this._separator=c.DomUtil.create("div","leaflet-control-layers-separator",b);this._overlaysList=c.DomUtil.create("div","leaflet-control-layers-overlays",b);a.appendChild(b)},_addLayer:function(a,b,d){a.on("add remove",this._onLayerChange,this);var e=c.stamp(a);this._layers[e]={layer:a,name:b,overlay:d};this.options.autoZIndex&&a.setZIndex&&(this._lastZIndex++,a.setZIndex(this._lastZIndex))},_update:function(){if(!this._container)return this;
-c.DomUtil.empty(this._baseLayersList);c.DomUtil.empty(this._overlaysList);var a,b,d,e,g=0;for(d in this._layers)e=this._layers[d],this._addItem(e),b=b||e.overlay,a=a||!e.overlay,g+=e.overlay?0:1;this.options.hideSingleBase&&(a=a&&1<g,this._baseLayersList.style.display=a?"":"none");this._separator.style.display=b&&a?"":"none";return this},_onLayerChange:function(a){this._handlingClick||this._update();var b=this._layers[c.stamp(a.target)].overlay?"add"===a.type?"overlayadd":"overlayremove":"add"===
-a.type?"baselayerchange":null;b&&this._map.fire(b,a.target)},_createRadioElement:function(a,b){var c='\x3cinput type\x3d"radio" class\x3d"leaflet-control-layers-selector" name\x3d"'+a+'"'+(b?' checked\x3d"checked"':"")+"/\x3e",e=l.createElement("div");e.innerHTML=c;return e.firstChild},_addItem:function(a){var b=l.createElement("label"),d=this._map.hasLayer(a.layer),e;a.overlay?(e=l.createElement("input"),e.type="checkbox",e.className="leaflet-control-layers-selector",e.defaultChecked=d):e=this._createRadioElement("leaflet-base-layers",
-d);e.layerId=c.stamp(a.layer);c.DomEvent.on(e,"click",this._onInputClick,this);d=l.createElement("span");d.innerHTML=" "+a.name;b.appendChild(e);b.appendChild(d);(a.overlay?this._overlaysList:this._baseLayersList).appendChild(b);return b},_onInputClick:function(){var a=this._form.getElementsByTagName("input"),b,c,e,g=[],h=[];this._handlingClick=!0;for(var l=0,m=a.length;l<m;l++)b=a[l],c=this._layers[b.layerId].layer,e=this._map.hasLayer(c),b.checked&&!e?g.push(c):!b.checked&&e&&h.push(c);for(l=0;l<
-h.length;l++)this._map.removeLayer(h[l]);for(l=0;l<g.length;l++)this._map.addLayer(g[l]);this._handlingClick=!1;this._refocusOnMap()},_expand:function(){c.DomUtil.addClass(this._container,"leaflet-control-layers-expanded")},_collapse:function(){c.DomUtil.removeClass(this._container,"leaflet-control-layers-expanded")}});c.control.layers=function(a,b,d){return new c.Control.Layers(a,b,d)};c.PosAnimation=c.Evented.extend({run:function(a,b,d,e){this.stop();this._el=a;this._inProgress=!0;this._duration=
-d||0.25;this._easeOutPower=1/Math.max(e||0.5,0.2);this._startPos=c.DomUtil.getPosition(a);this._offset=b.subtract(this._startPos);this._startTime=+new Date;this.fire("start");this._animate()},stop:function(){this._inProgress&&(this._step(!0),this._complete())},_animate:function(){this._animId=c.Util.requestAnimFrame(this._animate,this);this._step()},_step:function(a){var b=+new Date-this._startTime,c=1E3*this._duration;b<c?this._runFrame(this._easeOut(b/c),a):(this._runFrame(1),this._complete())},
-_runFrame:function(a,b){var d=this._startPos.add(this._offset.multiplyBy(a));b&&d._round();c.DomUtil.setPosition(this._el,d);this.fire("step")},_complete:function(){c.Util.cancelAnimFrame(this._animId);this._inProgress=!1;this.fire("end")},_easeOut:function(a){return 1-Math.pow(1-a,this._easeOutPower)}});c.Map.include({setView:function(a,b,d){b=b===m?this._zoom:this._limitZoom(b);a=this._limitCenter(c.latLng(a),b,this.options.maxBounds);d=d||{};this.stop();if(this._loaded&&!d.reset&&!0!==d&&(d.animate!==
-m&&(d.zoom=c.extend({animate:d.animate},d.zoom),d.pan=c.extend({animate:d.animate},d.pan)),this._zoom!==b?this._tryAnimatedZoom&&this._tryAnimatedZoom(a,b,d.zoom):this._tryAnimatedPan(a,d.pan)))return clearTimeout(this._sizeTimer),this;this._resetView(a,b);return this},panBy:function(a,b){a=c.point(a).round();b=b||{};if(!a.x&&!a.y)return this;if(!0!==b.animate&&!this.getSize().contains(a))return this._resetView(this.unproject(this.project(this.getCenter()).add(a)),this.getZoom()),this;this._panAnim||
-(this._panAnim=new c.PosAnimation,this._panAnim.on({step:this._onPanTransitionStep,end:this._onPanTransitionEnd},this));b.noMoveStart||this.fire("movestart");if(!1!==b.animate){c.DomUtil.addClass(this._mapPane,"leaflet-pan-anim");var d=this._getMapPanePos().subtract(a);this._panAnim.run(this._mapPane,d,b.duration||0.25,b.easeLinearity)}else this._rawPanBy(a),this.fire("move").fire("moveend");return this},_onPanTransitionStep:function(){this.fire("move")},_onPanTransitionEnd:function(){c.DomUtil.removeClass(this._mapPane,
-"leaflet-pan-anim");this.fire("moveend")},_tryAnimatedPan:function(a,b){var c=this._getCenterOffset(a)._floor();if(!0!==(b&&b.animate)&&!this.getSize().contains(c))return!1;this.panBy(c,b);return!1!==(b&&b.animate)}});c.Map.mergeOptions({zoomAnimation:!0,zoomAnimationThreshold:4});(e=c.DomUtil.TRANSITION&&c.Browser.any3d&&!c.Browser.mobileOpera)&&c.Map.addInitHook(function(){if(this._zoomAnimated=this.options.zoomAnimation)this._createAnimProxy(),c.DomEvent.on(this._proxy,c.DomUtil.TRANSITION_END,
-this._catchTransitionEnd,this)});c.Map.include(e?{_createAnimProxy:function(){var a=this._proxy=c.DomUtil.create("div","leaflet-proxy leaflet-zoom-animated");this._panes.mapPane.appendChild(a);this.on("zoomanim",function(b){var d=c.DomUtil.TRANSFORM,e=a.style[d];c.DomUtil.setTransform(a,this.project(b.center,b.zoom),this.getZoomScale(b.zoom,1));e===a.style[d]&&this._animatingZoom&&this._onZoomTransitionEnd()},this);this.on("load moveend",function(){var b=this.getCenter(),d=this.getZoom();c.DomUtil.setTransform(a,
-this.project(b,d),this.getZoomScale(d,1))},this)},_catchTransitionEnd:function(a){this._animatingZoom&&0<=a.propertyName.indexOf("transform")&&this._onZoomTransitionEnd()},_nothingToAnimate:function(){return!this._container.getElementsByClassName("leaflet-zoom-animated").length},_tryAnimatedZoom:function(a,b,d){if(this._animatingZoom)return!0;d=d||{};if(!this._zoomAnimated||!1===d.animate||this._nothingToAnimate()||Math.abs(b-this._zoom)>this.options.zoomAnimationThreshold)return!1;var e=this.getZoomScale(b),
-e=this._getCenterOffset(a)._divideBy(1-1/e);if(!0!==d.animate&&!this.getSize().contains(e))return!1;c.Util.requestAnimFrame(function(){this._moveStart(!0)._animateZoom(a,b,!0)},this);return!0},_animateZoom:function(a,b,d,e){d&&(this._animatingZoom=!0,this._animateToCenter=a,this._animateToZoom=b,c.DomUtil.addClass(this._mapPane,"leaflet-zoom-anim"));this.fire("zoomanim",{center:a,zoom:b,noUpdate:e})},_onZoomTransitionEnd:function(){this._animatingZoom=!1;c.DomUtil.removeClass(this._mapPane,"leaflet-zoom-anim");
-this._move(this._animateToCenter,this._animateToZoom)._moveEnd(!0)}}:{});c.Map.include({flyTo:function(a,b,d){function e(a){a=(A*A-D*D+(a?-1:1)*P*P*x*x)/(2*(a?A:D)*P*x);return Math.log(Math.sqrt(a*a+1)-a)}function g(a){return(Math.exp(a)+Math.exp(-a))/2}function h(){var d=(Date.now()-la)/V,e=(1-Math.pow(1-d,1.5))*ka;1>=d?(this._flyToFrame=c.Util.requestAnimFrame(h,this),this._move(this.unproject(l.add(t.subtract(l).multiplyBy(D*(g(v)*((Math.exp(v+F*e)-Math.exp(-(v+F*e)))/2/g(v+F*e))-(Math.exp(v)-
-Math.exp(-v))/2)/P/x)),H),this.getScaleZoom(D/(D*(g(v)/g(v+F*e))),H))):this._move(a,b)._moveEnd(!0)}d=d||{};if(!1===d.animate||!c.Browser.any3d)return this.setView(a,b,d);this.stop();var l=this.project(this.getCenter()),t=this.project(a),z=this.getSize(),H=this._zoom;a=c.latLng(a);b=b===m?H:b;var D=Math.max(z.x,z.y),A=D*this.getZoomScale(H,b),x=t.distanceTo(l),F=1.42,P=F*F,v=e(0),la=Date.now(),ka=(e(1)-v)/F,V=d.duration?1E3*d.duration:800*ka;this._moveStart(!0);h.call(this);return this},flyToBounds:function(a,
-b){var c=this._getBoundsCenterZoom(a,b);return this.flyTo(c.center,c.zoom,b)}});c.Map.include({_defaultLocateOptions:{timeout:1E4,watch:!1},locate:function(a){a=this._locateOptions=c.extend({},this._defaultLocateOptions,a);if(!("geolocation"in navigator))return this._handleGeolocationError({code:0,message:"Geolocation not supported."}),this;var b=c.bind(this._handleGeolocationResponse,this),d=c.bind(this._handleGeolocationError,this);a.watch?this._locationWatchId=navigator.geolocation.watchPosition(b,
-d,a):navigator.geolocation.getCurrentPosition(b,d,a);return this},stopLocate:function(){navigator.geolocation&&navigator.geolocation.clearWatch(this._locationWatchId);this._locateOptions&&(this._locateOptions.setView=!1);return this},_handleGeolocationError:function(a){var b=a.code;a=a.message||(1===b?"permission denied":2===b?"position unavailable":"timeout");this._locateOptions.setView&&!this._loaded&&this.fitWorld();this.fire("locationerror",{code:b,message:"Geolocation error: "+a+"."})},_handleGeolocationResponse:function(a){var b=
-new c.LatLng(a.coords.latitude,a.coords.longitude),d=b.toBounds(a.coords.accuracy),e=this._locateOptions;if(e.setView){var g=this.getBoundsZoom(d);this.setView(b,e.maxZoom?Math.min(g,e.maxZoom):g)}var b={latlng:b,bounds:d,timestamp:a.timestamp},h;for(h in a.coords)"number"===typeof a.coords[h]&&(b[h]=a.coords[h]);this.fire("locationfound",b)}})})(window,document);
-(function(h,l,m){L.MarkerClusterGroup=L.FeatureGroup.extend({options:{maxClusterRadius:80,iconCreateFunction:null,spiderfyOnMaxZoom:!0,showCoverageOnHover:!0,zoomToBoundsOnClick:!0,singleMarkerMode:!1,disableClusteringAtZoom:null,removeOutsideVisibleBounds:!0,animateAddingMarkers:!1,spiderfyDistanceMultiplier:1,polygonOptions:{}},initialize:function(g){L.Util.setOptions(this,g);this.options.iconCreateFunction||(this.options.iconCreateFunction=this._defaultIconCreateFunction);this._featureGroup=L.featureGroup();
-this._featureGroup.on(L.FeatureGroup.EVENTS,this._propagateEvent,this);this._nonPointGroup=L.featureGroup();this._nonPointGroup.on(L.FeatureGroup.EVENTS,this._propagateEvent,this);this._inZoomAnimation=0;this._needsClustering=[];this._needsRemoving=[];this._currentShownBounds=null;this._queue=[]},addLayer:function(g){if(g instanceof L.LayerGroup){var c=[],e;for(e in g._layers)c.push(g._layers[e]);return this.addLayers(c)}if(!g.getLatLng)return this._nonPointGroup.addLayer(g),this;if(!this._map)return this._needsClustering.push(g),
-this;if(this.hasLayer(g))return this;this._unspiderfy&&this._unspiderfy();this._addLayer(g,this._maxZoom);c=g;e=this._map.getZoom();if(g.__parent)for(;c.__parent._zoom>=e;)c=c.__parent;this._currentShownBounds.contains(c.getLatLng())&&(this.options.animateAddingMarkers?this._animationAddLayer(g,c):this._animationAddLayerNonAnimated(g,c));return this},removeLayer:function(g){if(g instanceof L.LayerGroup){var c=[],e;for(e in g._layers)c.push(g._layers[e]);return this.removeLayers(c)}if(!g.getLatLng)return this._nonPointGroup.removeLayer(g),
-this;if(!this._map)return!this._arraySplice(this._needsClustering,g)&&this.hasLayer(g)&&this._needsRemoving.push(g),this;if(!g.__parent)return this;this._unspiderfy&&(this._unspiderfy(),this._unspiderfyLayer(g));this._removeLayer(g,!0);this._featureGroup.hasLayer(g)&&(this._featureGroup.removeLayer(g),g.setOpacity&&g.setOpacity(1));return this},addLayers:function(g){var c,e,a,b=this._map,d=this._featureGroup,f=this._nonPointGroup;c=0;for(e=g.length;c<e;c++)if(a=g[c],!a.getLatLng)f.addLayer(a);else if(!this.hasLayer(a))if(b){if(this._addLayer(a,
-this._maxZoom),a.__parent&&2===a.__parent.getChildCount()){var h=a.__parent.getAllChildMarkers();d.removeLayer(h[0]===a?h[1]:h[0])}}else this._needsClustering.push(a);b&&(d.eachLayer(function(a){a instanceof L.MarkerCluster&&a._iconNeedsUpdate&&a._updateIcon()}),this._topClusterLevel._recursivelyAddChildrenToMap(null,this._zoom,this._currentShownBounds));return this},removeLayers:function(g){var c,e,a,b=this._featureGroup,d=this._nonPointGroup;if(!this._map){c=0;for(e=g.length;c<e;c++)a=g[c],this._arraySplice(this._needsClustering,
-a),d.removeLayer(a);return this}c=0;for(e=g.length;c<e;c++)a=g[c],a.__parent?(this._removeLayer(a,!0,!0),b.hasLayer(a)&&(b.removeLayer(a),a.setOpacity&&a.setOpacity(1))):d.removeLayer(a);this._topClusterLevel._recursivelyAddChildrenToMap(null,this._zoom,this._currentShownBounds);b.eachLayer(function(a){a instanceof L.MarkerCluster&&a._updateIcon()});return this},clearLayers:function(){this._map||(this._needsClustering=[],delete this._gridClusters,delete this._gridUnclustered);this._noanimationUnspiderfy&&
-this._noanimationUnspiderfy();this._featureGroup.clearLayers();this._nonPointGroup.clearLayers();this.eachLayer(function(g){delete g.__parent});this._map&&this._generateInitialClusters();return this},getBounds:function(){var g=new L.LatLngBounds;if(this._topClusterLevel)g.extend(this._topClusterLevel._bounds);else for(var c=this._needsClustering.length-1;0<=c;c--)g.extend(this._needsClustering[c].getLatLng());g.extend(this._nonPointGroup.getBounds());return g},eachLayer:function(g,c){var e=this._needsClustering.slice(),
-a;this._topClusterLevel&&this._topClusterLevel.getAllChildMarkers(e);for(a=e.length-1;0<=a;a--)g.call(c,e[a]);this._nonPointGroup.eachLayer(g,c)},getLayers:function(){var g=[];this.eachLayer(function(c){g.push(c)});return g},getLayer:function(g){var c=null;this.eachLayer(function(e){L.stamp(e)===g&&(c=e)});return c},hasLayer:function(g){if(!g)return!1;var c,e=this._needsClustering;for(c=e.length-1;0<=c;c--)if(e[c]===g)return!0;e=this._needsRemoving;for(c=e.length-1;0<=c;c--)if(e[c]===g)return!1;return!(!g.__parent||
-g.__parent._group!==this)||this._nonPointGroup.hasLayer(g)},zoomToShowLayer:function(g,c){var e=function(){if((g._icon||g.__parent._icon)&&!this._inZoomAnimation)if(this._map.off("moveend",e,this),this.off("animationend",e,this),g._icon)c();else if(g.__parent._icon){var a=function(){this.off("spiderfied",a,this);c()};this.on("spiderfied",a,this);g.__parent.spiderfy()}};g._icon&&this._map.getBounds().contains(g.getLatLng())?c():g.__parent._zoom<this._map.getZoom()?(this._map.on("moveend",e,this),this._map.panTo(g.getLatLng())):
-(this._map.on("moveend",e,this),this.on("animationend",e,this),this._map.setView(g.getLatLng(),g.__parent._zoom+1),g.__parent.zoomToBounds())},onAdd:function(g){this._map=g;var c,e;if(!isFinite(this._map.getMaxZoom()))throw"Map has no maxZoom specified";this._featureGroup.onAdd(g);this._nonPointGroup.onAdd(g);this._gridClusters||this._generateInitialClusters();g=0;for(c=this._needsRemoving.length;g<c;g++)e=this._needsRemoving[g],this._removeLayer(e,!0);this._needsRemoving=[];g=0;for(c=this._needsClustering.length;g<
-c;g++)e=this._needsClustering[g],e.getLatLng?e.__parent||this._addLayer(e,this._maxZoom):this._featureGroup.addLayer(e);this._needsClustering=[];this._map.on("zoomend",this._zoomEnd,this);this._map.on("moveend",this._moveEnd,this);this._spiderfierOnAdd&&this._spiderfierOnAdd();this._bindEvents();this._zoom=this._map.getZoom();this._currentShownBounds=this._getExpandedVisibleBounds();this._topClusterLevel._recursivelyAddChildrenToMap(null,this._zoom,this._currentShownBounds)},onRemove:function(g){g.off("zoomend",
-this._zoomEnd,this);g.off("moveend",this._moveEnd,this);this._unbindEvents();this._map._mapPane.className=this._map._mapPane.className.replace(" leaflet-cluster-anim","");this._spiderfierOnRemove&&this._spiderfierOnRemove();this._hideCoverage();this._featureGroup.onRemove(g);this._nonPointGroup.onRemove(g);this._featureGroup.clearLayers();this._map=null},getVisibleParent:function(g){for(;g&&!g._icon;)g=g.__parent;return g||null},_arraySplice:function(g,c){for(var e=g.length-1;0<=e;e--)if(g[e]===c)return g.splice(e,
-1),!0},_removeLayer:function(g,c,e){var a=this._gridClusters,b=this._gridUnclustered,d=this._featureGroup,f=this._map;if(c)for(var h=this._maxZoom;0<=h&&b[h].removeObject(g,f.project(g.getLatLng(),h));h--);var h=g.__parent,l;for(this._arraySplice(h._markers,g);h;){h._childCount--;if(0>h._zoom)break;else c&&1>=h._childCount?(l=h._markers[0]===g?h._markers[1]:h._markers[0],a[h._zoom].removeObject(h,f.project(h._cLatLng,h._zoom)),b[h._zoom].addObject(l,f.project(l.getLatLng(),h._zoom)),this._arraySplice(h.__parent._childClusters,
-h),h.__parent._markers.push(l),l.__parent=h.__parent,h._icon&&(d.removeLayer(h),e||d.addLayer(l))):(h._recalculateBounds(),e&&h._icon||h._updateIcon());h=h.__parent}delete g.__parent},_isOrIsParent:function(g,c){for(;c;){if(g===c)return!0;c=c.parentNode}return!1},_propagateEvent:function(g){if(g.layer instanceof L.MarkerCluster){if(g.originalEvent&&this._isOrIsParent(g.layer._icon,g.originalEvent.relatedTarget))return;g.type="cluster"+g.type}this.fire(g.type,g)},_defaultIconCreateFunction:function(g){g=
-g.getChildCount();var c=" marker-cluster-";return new L.DivIcon({html:"\x3cdiv\x3e\x3cspan\x3e"+g+"\x3c/span\x3e\x3c/div\x3e",className:"marker-cluster"+(10>g?c+"small":100>g?c+"medium":c+"large"),iconSize:new L.Point(40,40)})},_bindEvents:function(){var g=this._map,c=this.options.showCoverageOnHover,e=this.options.zoomToBoundsOnClick;if(this.options.spiderfyOnMaxZoom||e)this.on("clusterclick",this._zoomOrSpiderfy,this);c&&(this.on("clustermouseover",this._showCoverage,this),this.on("clustermouseout",
-this._hideCoverage,this),g.on("zoomend",this._hideCoverage,this))},_zoomOrSpiderfy:function(g){var c=this._map;c.getMaxZoom()===c.getZoom()?this.options.spiderfyOnMaxZoom&&g.layer.spiderfy():this.options.zoomToBoundsOnClick&&g.layer.zoomToBounds();g.originalEvent&&13===g.originalEvent.keyCode&&c._container.focus()},_showCoverage:function(g){var c=this._map;this._inZoomAnimation||(this._shownPolygon&&c.removeLayer(this._shownPolygon),2<g.layer.getChildCount()&&g.layer!==this._spiderfied&&(this._shownPolygon=
-new L.Polygon(g.layer.getConvexHull(),this.options.polygonOptions),c.addLayer(this._shownPolygon)))},_hideCoverage:function(){this._shownPolygon&&(this._map.removeLayer(this._shownPolygon),this._shownPolygon=null)},_unbindEvents:function(){var g=this.options.showCoverageOnHover,c=this.options.zoomToBoundsOnClick,e=this._map;(this.options.spiderfyOnMaxZoom||c)&&this.off("clusterclick",this._zoomOrSpiderfy,this);g&&(this.off("clustermouseover",this._showCoverage,this),this.off("clustermouseout",this._hideCoverage,
-this),e.off("zoomend",this._hideCoverage,this))},_zoomEnd:function(){this._map&&(this._mergeSplitClusters(),this._zoom=this._map._zoom,this._currentShownBounds=this._getExpandedVisibleBounds())},_moveEnd:function(){if(!this._inZoomAnimation){var g=this._getExpandedVisibleBounds();this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds,this._zoom,g);this._topClusterLevel._recursivelyAddChildrenToMap(null,this._map._zoom,g);this._currentShownBounds=g}},_generateInitialClusters:function(){var g=
-this._map.getMaxZoom(),c=this.options.maxClusterRadius;this.options.disableClusteringAtZoom&&(g=this.options.disableClusteringAtZoom-1);this._maxZoom=g;this._gridClusters={};for(this._gridUnclustered={};0<=g;g--)this._gridClusters[g]=new L.DistanceGrid(c),this._gridUnclustered[g]=new L.DistanceGrid(c);this._topClusterLevel=new L.MarkerCluster(this,-1)},_addLayer:function(g,c){var e=this._gridClusters,a=this._gridUnclustered,b,d;this.options.singleMarkerMode&&(g.options.icon=this.options.iconCreateFunction({getChildCount:function(){return 1},
-getAllChildMarkers:function(){return[g]}}));for(;0<=c;c--){b=this._map.project(g.getLatLng(),c);var f=e[c].getNearObject(b);if(f){f._addChild(g);g.__parent=f;return}if(f=a[c].getNearObject(b)){(b=f.__parent)&&this._removeLayer(f,!1);d=new L.MarkerCluster(this,c,f,g);e[c].addObject(d,this._map.project(d._cLatLng,c));f.__parent=d;var h=g.__parent=d;for(d=c-1;d>b._zoom;d--)h=new L.MarkerCluster(this,d,h),e[d].addObject(h,this._map.project(f.getLatLng(),d));b._addChild(h);for(d=c;0<=d&&a[d].removeObject(f,
-this._map.project(f.getLatLng(),d));d--);return}a[c].addObject(g,b)}this._topClusterLevel._addChild(g);g.__parent=this._topClusterLevel},_enqueue:function(g){this._queue.push(g);this._queueTimeout||(this._queueTimeout=setTimeout(L.bind(this._processQueue,this),300))},_processQueue:function(){for(var g=0;g<this._queue.length;g++)this._queue[g].call(this);this._queue.length=0;clearTimeout(this._queueTimeout);this._queueTimeout=null},_mergeSplitClusters:function(){this._processQueue();this._zoom<this._map._zoom&&
-this._currentShownBounds.contains(this._getExpandedVisibleBounds())?(this._animationStart(),this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds,this._zoom,this._getExpandedVisibleBounds()),this._animationZoomIn(this._zoom,this._map._zoom)):this._zoom>this._map._zoom?(this._animationStart(),this._animationZoomOut(this._zoom,this._map._zoom)):this._moveEnd()},_getExpandedVisibleBounds:function(){if(!this.options.removeOutsideVisibleBounds)return this.getBounds();var g=this._map.getBounds(),
-c=g._southWest,g=g._northEast,e=L.Browser.mobile?0:Math.abs(c.lat-g.lat),a=L.Browser.mobile?0:Math.abs(c.lng-g.lng);return new L.LatLngBounds(new L.LatLng(c.lat-e,c.lng-a,!0),new L.LatLng(g.lat+e,g.lng+a,!0))},_animationAddLayerNonAnimated:function(g,c){if(c===g)this._featureGroup.addLayer(g);else if(2===c._childCount){c._addToMap();var e=c.getAllChildMarkers();this._featureGroup.removeLayer(e[0]);this._featureGroup.removeLayer(e[1])}else c._updateIcon()}});L.MarkerClusterGroup.include(L.DomUtil.TRANSITION?
-{_animationStart:function(){this._map._mapPane.className+=" leaflet-cluster-anim";this._inZoomAnimation++},_animationEnd:function(){this._map&&(this._map._mapPane.className=this._map._mapPane.className.replace(" leaflet-cluster-anim",""));this._inZoomAnimation--;this.fire("animationend")},_animationZoomIn:function(g,c){var e=this._getExpandedVisibleBounds(),a=this._featureGroup,b;this._topClusterLevel._recursively(e,g,0,function(d){var f=d._latlng,h=d._markers;e.contains(f)||(f=null);d._isSingleParent()&&
-g+1===c?(a.removeLayer(d),d._recursivelyAddChildrenToMap(null,c,e)):(d.setOpacity(0),d._recursivelyAddChildrenToMap(f,c,e));for(b=h.length-1;0<=b;b--)d=h[b],e.contains(d._latlng)||a.removeLayer(d)});this._forceLayout();this._topClusterLevel._recursivelyBecomeVisible(e,c);a.eachLayer(function(a){a instanceof L.MarkerCluster||!a._icon||a.setOpacity(1)});this._topClusterLevel._recursively(e,g,c,function(a){a._recursivelyRestoreChildPositions(c)});this._enqueue(function(){this._topClusterLevel._recursively(e,
-g,0,function(b){a.removeLayer(b);b.setOpacity(1)});this._animationEnd()})},_animationZoomOut:function(g,c){this._animationZoomOutSingle(this._topClusterLevel,g-1,c);this._topClusterLevel._recursivelyAddChildrenToMap(null,c,this._getExpandedVisibleBounds());this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds,g,this._getExpandedVisibleBounds())},_animationZoomOutSingle:function(g,c,e){var a=this._getExpandedVisibleBounds();g._recursivelyAnimateChildrenInAndAddSelfToMap(a,
-c+1,e);var b=this;this._forceLayout();g._recursivelyBecomeVisible(a,e);this._enqueue(function(){if(1===g._childCount){var d=g._markers[0];d.setLatLng(d.getLatLng());d.setOpacity(1)}else g._recursively(a,e,0,function(b){b._recursivelyRemoveChildrenFromMap(a,c+1)});b._animationEnd()})},_animationAddLayer:function(g,c){var e=this,a=this._featureGroup;a.addLayer(g);c!==g&&(2<c._childCount?(c._updateIcon(),this._forceLayout(),this._animationStart(),g._setPos(this._map.latLngToLayerPoint(c.getLatLng())),
-g.setOpacity(0),this._enqueue(function(){a.removeLayer(g);g.setOpacity(1);e._animationEnd()})):(this._forceLayout(),e._animationStart(),e._animationZoomOutSingle(c,this._map.getMaxZoom(),this._map.getZoom())))},_forceLayout:function(){L.Util.falseFn(l.body.offsetWidth)}}:{_animationStart:function(){},_animationZoomIn:function(g,c){this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds,g);this._topClusterLevel._recursivelyAddChildrenToMap(null,c,this._getExpandedVisibleBounds())},
-_animationZoomOut:function(g,c){this._topClusterLevel._recursivelyRemoveChildrenFromMap(this._currentShownBounds,g);this._topClusterLevel._recursivelyAddChildrenToMap(null,c,this._getExpandedVisibleBounds())},_animationAddLayer:function(g,c){this._animationAddLayerNonAnimated(g,c)}});L.markerClusterGroup=function(g){return new L.MarkerClusterGroup(g)};L.MarkerCluster=L.Marker.extend({initialize:function(g,c,e,a){L.Marker.prototype.initialize.call(this,e?e._cLatLng||e.getLatLng():new L.LatLng(0,0),
-{icon:this});this._group=g;this._zoom=c;this._markers=[];this._childClusters=[];this._childCount=0;this._iconNeedsUpdate=!0;this._bounds=new L.LatLngBounds;e&&this._addChild(e);a&&this._addChild(a)},getAllChildMarkers:function(g){g=g||[];for(var c=this._childClusters.length-1;0<=c;c--)this._childClusters[c].getAllChildMarkers(g);for(c=this._markers.length-1;0<=c;c--)g.push(this._markers[c]);return g},getChildCount:function(){return this._childCount},zoomToBounds:function(){for(var g=this._childClusters.slice(),
-c=this._group._map,e=c.getBoundsZoom(this._bounds),a=this._zoom+1,c=c.getZoom(),b;0<g.length&&e>a;){a++;var d=[];for(b=0;b<g.length;b++)d=d.concat(g[b]._childClusters);g=d}e>a?this._group._map.setView(this._latlng,a):e<=c?this._group._map.setView(this._latlng,c+1):this._group._map.fitBounds(this._bounds)},getBounds:function(){var g=new L.LatLngBounds;g.extend(this._bounds);return g},_updateIcon:function(){this._iconNeedsUpdate=!0;this._icon&&this.setIcon(this)},createIcon:function(){this._iconNeedsUpdate&&
-(this._iconObj=this._group.options.iconCreateFunction(this),this._iconNeedsUpdate=!1);return this._iconObj.createIcon()},createShadow:function(){return this._iconObj.createShadow()},_addChild:function(g,c){this._iconNeedsUpdate=!0;this._expandBounds(g);g instanceof L.MarkerCluster?(c||(this._childClusters.push(g),g.__parent=this),this._childCount+=g._childCount):(c||this._markers.push(g),this._childCount++);this.__parent&&this.__parent._addChild(g,!0)},_expandBounds:function(g){var c,e=g._wLatLng||
-g._latlng;g instanceof L.MarkerCluster?(this._bounds.extend(g._bounds),c=g._childCount):(this._bounds.extend(e),c=1);this._cLatLng||(this._cLatLng=g._cLatLng||e);g=this._childCount+c;this._wLatLng?(this._wLatLng.lat=(e.lat*c+this._wLatLng.lat*this._childCount)/g,this._wLatLng.lng=(e.lng*c+this._wLatLng.lng*this._childCount)/g):this._latlng=this._wLatLng=new L.LatLng(e.lat,e.lng)},_addToMap:function(g){g&&(this._backupLatlng=this._latlng,this.setLatLng(g));this._group._featureGroup.addLayer(this)},
-_recursivelyAnimateChildrenIn:function(g,c,e){this._recursively(g,0,e-1,function(a){a=a._markers;var b,d;for(b=a.length-1;0<=b;b--)d=a[b],d._icon&&(d._setPos(c),d.setOpacity(0))},function(a){a=a._childClusters;var b,d;for(b=a.length-1;0<=b;b--)d=a[b],d._icon&&(d._setPos(c),d.setOpacity(0))})},_recursivelyAnimateChildrenInAndAddSelfToMap:function(g,c,e){this._recursively(g,e,0,function(a){a._recursivelyAnimateChildrenIn(g,a._group._map.latLngToLayerPoint(a.getLatLng()).round(),c);a._isSingleParent()&&
-c-1===e?(a.setOpacity(1),a._recursivelyRemoveChildrenFromMap(g,c)):a.setOpacity(0);a._addToMap()})},_recursivelyBecomeVisible:function(g,c){this._recursively(g,0,c,null,function(c){c.setOpacity(1)})},_recursivelyAddChildrenToMap:function(g,c,e){this._recursively(e,-1,c,function(a){if(c!==a._zoom)for(var b=a._markers.length-1;0<=b;b--){var d=a._markers[b];e.contains(d._latlng)&&(g&&(d._backupLatlng=d.getLatLng(),d.setLatLng(g),d.setOpacity&&d.setOpacity(0)),a._group._featureGroup.addLayer(d))}},function(a){a._addToMap(g)})},
-_recursivelyRestoreChildPositions:function(g){for(var c=this._markers.length-1;0<=c;c--){var e=this._markers[c];e._backupLatlng&&(e.setLatLng(e._backupLatlng),delete e._backupLatlng)}if(g-1===this._zoom)for(g=this._childClusters.length-1;0<=g;g--)this._childClusters[g]._restorePosition();else for(c=this._childClusters.length-1;0<=c;c--)this._childClusters[c]._recursivelyRestoreChildPositions(g)},_restorePosition:function(){this._backupLatlng&&(this.setLatLng(this._backupLatlng),delete this._backupLatlng)},
-_recursivelyRemoveChildrenFromMap:function(g,c,e){var a,b;this._recursively(g,-1,c-1,function(c){for(b=c._markers.length-1;0<=b;b--)a=c._markers[b],e&&e.contains(a._latlng)||(c._group._featureGroup.removeLayer(a),a.setOpacity&&a.setOpacity(1))},function(c){for(b=c._childClusters.length-1;0<=b;b--)a=c._childClusters[b],e&&e.contains(a._latlng)||(c._group._featureGroup.removeLayer(a),a.setOpacity&&a.setOpacity(1))})},_recursively:function(g,c,e,a,b){var d=this._childClusters,f=this._zoom,h;if(c>f)for(f=
-d.length-1;0<=f;f--)h=d[f],g.intersects(h._bounds)&&h._recursively(g,c,e,a,b);else if(a&&a(this),b&&this._zoom===e&&b(this),e>f)for(f=d.length-1;0<=f;f--)h=d[f],g.intersects(h._bounds)&&h._recursively(g,c,e,a,b)},_recalculateBounds:function(){var g=this._markers,c=this._childClusters,e;this._bounds=new L.LatLngBounds;delete this._wLatLng;for(e=g.length-1;0<=e;e--)this._expandBounds(g[e]);for(e=c.length-1;0<=e;e--)this._expandBounds(c[e])},_isSingleParent:function(){return 0<this._childClusters.length&&
-this._childClusters[0]._childCount===this._childCount}});L.DistanceGrid=function(g){this._cellSize=g;this._sqCellSize=g*g;this._grid={};this._objectPoint={}};L.DistanceGrid.prototype={addObject:function(g,c){var e=this._getCoord(c.x),a=this._getCoord(c.y),b=this._grid,a=b[a]=b[a]||{},e=a[e]=a[e]||[],a=L.Util.stamp(g);this._objectPoint[a]=c;e.push(g)},updateObject:function(g,c){this.removeObject(g);this.addObject(g,c)},removeObject:function(g,c){var e=this._getCoord(c.x),a=this._getCoord(c.y),b=this._grid,
-a=b[a]=b[a]||{},b=a[e]=a[e]||[],d,f;delete this._objectPoint[L.Util.stamp(g)];d=0;for(f=b.length;d<f;d++)if(b[d]===g)return b.splice(d,1),1===f&&delete a[e],!0},eachObject:function(g,c){var e,a,b,d,f,h,l,m=this._grid;for(e in m)for(a in f=m[e],f)for(h=f[a],b=0,d=h.length;b<d;b++)if(l=g.call(c,h[b]))b--,d--},getNearObject:function(g){var c=this._getCoord(g.x),e=this._getCoord(g.y),a,b,d,f,h,l,m,t,z=this._objectPoint,H=this._sqCellSize,D=null;for(a=e-1;a<=e+1;a++)if(f=this._grid[a])for(b=c-1;b<=c+1;b++)if(h=
-f[b])for(d=0,l=h.length;d<l;d++)m=h[d],t=this._sqDist(z[L.Util.stamp(m)],g),t<H&&(H=t,D=m);return D},_getCoord:function(g){return Math.floor(g/this._cellSize)},_sqDist:function(g,c){var e=c.x-g.x,a=c.y-g.y;return e*e+a*a}};(function(){L.QuickHull={getDistant:function(g,c){return(c[0].lng-c[1].lng)*(g.lat-c[0].lat)+(c[1].lat-c[0].lat)*(g.lng-c[0].lng)},findMostDistantPointFromBaseLine:function(g,c){var e=0,a=null,b=[],d,f,h;for(d=c.length-1;0<=d;d--)f=c[d],h=this.getDistant(f,g),0<h&&(b.push(f),h>
-e&&(e=h,a=f));return{maxPoint:a,newPoints:b}},buildConvexHull:function(g,c){var e=[],a=this.findMostDistantPointFromBaseLine(g,c);return a.maxPoint?(e=e.concat(this.buildConvexHull([g[0],a.maxPoint],a.newPoints)),e=e.concat(this.buildConvexHull([a.maxPoint,g[1]],a.newPoints))):[g[0]]},getConvexHull:function(g){var c=!1,e=!1,a=null,b=null,d;for(d=g.length-1;0<=d;d--){var f=g[d];if(!1===c||f.lat>c)a=f,c=f.lat;if(!1===e||f.lat<e)b=f,e=f.lat}return[].concat(this.buildConvexHull([b,a],g),this.buildConvexHull([a,
-b],g))}}})();L.MarkerCluster.include({getConvexHull:function(){var g=this.getAllChildMarkers(),c=[],e,a;for(a=g.length-1;0<=a;a--)e=g[a].getLatLng(),c.push(e);return L.QuickHull.getConvexHull(c)}});L.MarkerCluster.include({_2PI:2*Math.PI,_circleFootSeparation:25,_circleStartAngle:Math.PI/6,_spiralFootSeparation:28,_spiralLengthStart:11,_spiralLengthFactor:5,_circleSpiralSwitchover:9,spiderfy:function(){if(this._group._spiderfied!==this&&!this._group._inZoomAnimation){var g=this.getAllChildMarkers(),
-c=this._group._map.latLngToLayerPoint(this._latlng);this._group._unspiderfy();this._group._spiderfied=this;g.length>=this._circleSpiralSwitchover?c=this._generatePointsSpiral(g.length,c):(c.y+=10,c=this._generatePointsCircle(g.length,c));this._animationSpiderfy(g,c)}},unspiderfy:function(g){this._group._inZoomAnimation||(this._animationUnspiderfy(g),this._group._spiderfied=null)},_generatePointsCircle:function(g,c){var e=this._group.options.spiderfyDistanceMultiplier*this._circleFootSeparation*(2+
-g)/this._2PI,a=this._2PI/g,b=[],d,f;b.length=g;for(d=g-1;0<=d;d--)f=this._circleStartAngle+d*a,b[d]=(new L.Point(c.x+e*Math.cos(f),c.y+e*Math.sin(f)))._round();return b},_generatePointsSpiral:function(g,c){var e=this._group.options.spiderfyDistanceMultiplier*this._spiralLengthStart,a=this._group.options.spiderfyDistanceMultiplier*this._spiralFootSeparation,b=this._group.options.spiderfyDistanceMultiplier*this._spiralLengthFactor,d=0,f=[],h;f.length=g;for(h=g-1;0<=h;h--)d+=a/e+5E-4*h,f[h]=(new L.Point(c.x+
-e*Math.cos(d),c.y+e*Math.sin(d)))._round(),e+=this._2PI*b/d;return f},_noanimationUnspiderfy:function(){var g=this._group,c=g._map,e=g._featureGroup,a=this.getAllChildMarkers(),b,d;this.setOpacity(1);for(d=a.length-1;0<=d;d--)b=a[d],e.removeLayer(b),b._preSpiderfyLatlng&&(b.setLatLng(b._preSpiderfyLatlng),delete b._preSpiderfyLatlng),b.setZIndexOffset&&b.setZIndexOffset(0),b._spiderLeg&&(c.removeLayer(b._spiderLeg),delete b._spiderLeg);g._spiderfied=null}});L.MarkerCluster.include(L.DomUtil.TRANSITION?
-{SVG_ANIMATION:-1<l.createElementNS("http://www.w3.org/2000/svg","animate").toString().indexOf("SVGAnimate"),_animationSpiderfy:function(g,c){var e=this._group,a=e._map,b=e._featureGroup,d=a.latLngToLayerPoint(this._latlng),f,h,m;for(f=g.length-1;0<=f;f--)h=g[f],h.setOpacity?(h.setZIndexOffset(1E6),h.setOpacity(0),b.addLayer(h),h._setPos(d)):b.addLayer(h);e._forceLayout();e._animationStart();b=L.Path.SVG?0:0.3;d=L.Path.SVG_NS;for(f=g.length-1;0<=f;f--)if(m=a.layerPointToLatLng(c[f]),h=g[f],h._preSpiderfyLatlng=
-h._latlng,h.setLatLng(m),h.setOpacity&&h.setOpacity(1),m=new L.Polyline([this._latlng,m],{weight:1.5,color:"#222",opacity:b}),a.addLayer(m),h._spiderLeg=m,L.Path.SVG&&this.SVG_ANIMATION){h=m._path.getTotalLength();m._path.setAttribute("stroke-dasharray",h+","+h);var y=l.createElementNS(d,"animate");y.setAttribute("attributeName","stroke-dashoffset");y.setAttribute("begin","indefinite");y.setAttribute("from",h);y.setAttribute("to",0);y.setAttribute("dur",0.25);m._path.appendChild(y);y.beginElement();
-y=l.createElementNS(d,"animate");y.setAttribute("attributeName","stroke-opacity");y.setAttribute("attributeName","stroke-opacity");y.setAttribute("begin","indefinite");y.setAttribute("from",0);y.setAttribute("to",0.5);y.setAttribute("dur",0.25);m._path.appendChild(y);y.beginElement()}this.setOpacity(0.3);if(L.Path.SVG)for(this._group._forceLayout(),f=g.length-1;0<=f;f--)h=g[f]._spiderLeg,h.options.opacity=0.5,h._path.setAttribute("stroke-opacity",0.5);setTimeout(function(){e._animationEnd();e.fire("spiderfied")},
-200)},_animationUnspiderfy:function(g){var c=this._group,e=c._map,a=c._featureGroup;g=g?e._latLngToNewLayerPoint(this._latlng,g.zoom,g.center):e.latLngToLayerPoint(this._latlng);var b=this.getAllChildMarkers(),d=L.Path.SVG&&this.SVG_ANIMATION,f,h,l;c._animationStart();this.setOpacity(1);for(h=b.length-1;0<=h;h--)f=b[h],f._preSpiderfyLatlng&&(f.setLatLng(f._preSpiderfyLatlng),delete f._preSpiderfyLatlng,f.setOpacity?(f._setPos(g),f.setOpacity(0)):a.removeLayer(f),d&&(l=f._spiderLeg._path.childNodes[0],
-l.setAttribute("to",l.getAttribute("from")),l.setAttribute("from",0),l.beginElement(),l=f._spiderLeg._path.childNodes[1],l.setAttribute("from",0.5),l.setAttribute("to",0),l.setAttribute("stroke-opacity",0),l.beginElement(),f._spiderLeg._path.setAttribute("stroke-opacity",0)));setTimeout(function(){var d=0;for(h=b.length-1;0<=h;h--)f=b[h],f._spiderLeg&&d++;for(h=b.length-1;0<=h;h--)f=b[h],f._spiderLeg&&(f.setOpacity&&(f.setOpacity(1),f.setZIndexOffset(0)),1<d&&a.removeLayer(f),e.removeLayer(f._spiderLeg),
-delete f._spiderLeg);c._animationEnd()},200)}}:{_animationSpiderfy:function(g,c){var e=this._group,a=e._map,b=e._featureGroup,d,f,h;for(d=g.length-1;0<=d;d--)h=a.layerPointToLatLng(c[d]),f=g[d],f._preSpiderfyLatlng=f._latlng,f.setLatLng(h),f.setZIndexOffset&&f.setZIndexOffset(1E6),b.addLayer(f),h=new L.Polyline([this._latlng,h],{weight:1.5,color:"#222"}),a.addLayer(h),f._spiderLeg=h;this.setOpacity(0.3);e.fire("spiderfied")},_animationUnspiderfy:function(){this._noanimationUnspiderfy()}});L.MarkerClusterGroup.include({_spiderfied:null,
-_spiderfierOnAdd:function(){this._map.on("click",this._unspiderfyWrapper,this);if(this._map.options.zoomAnimation)this._map.on("zoomstart",this._unspiderfyZoomStart,this);this._map.on("zoomend",this._noanimationUnspiderfy,this);L.Path.SVG&&!L.Browser.touch&&this._map._initPathRoot()},_spiderfierOnRemove:function(){this._map.off("click",this._unspiderfyWrapper,this);this._map.off("zoomstart",this._unspiderfyZoomStart,this);this._map.off("zoomanim",this._unspiderfyZoomAnim,this);this._unspiderfy()},
-_unspiderfyZoomStart:function(){if(this._map)this._map.on("zoomanim",this._unspiderfyZoomAnim,this)},_unspiderfyZoomAnim:function(g){L.DomUtil.hasClass(this._map._mapPane,"leaflet-touching")||(this._map.off("zoomanim",this._unspiderfyZoomAnim,this),this._unspiderfy(g))},_unspiderfyWrapper:function(){this._unspiderfy()},_unspiderfy:function(g){this._spiderfied&&this._spiderfied.unspiderfy(g)},_noanimationUnspiderfy:function(){this._spiderfied&&this._spiderfied._noanimationUnspiderfy()},_unspiderfyLayer:function(g){g._spiderLeg&&
-(this._featureGroup.removeLayer(g),g.setOpacity(1),g.setZIndexOffset(0),this._map.removeLayer(g._spiderLeg),delete g._spiderLeg)}})})(window,document);L.GeoSearch={};L.GeoSearch.Provider={};L.GeoSearch.Result=function(h,l,m){this.X=h;this.Y=l;this.Label=m};
-L.Control.GeoSearch=L.Control.extend({options:{position:"topcenter",showMarker:!0},_config:{country:"",searchLabel:"search for address ...",notFoundMessage:"Sorry, that address could not be found.",messageHideDelay:3E3,zoomLevel:18},initialize:function(h){L.Util.extend(this.options,h);L.Util.extend(this._config,h)},onAdd:function(h){for(var l=h._controlContainer,m=l.childNodes,g=!1,c=0,e=m.length;c<e;c++){var a=m[c].className;if(/leaflet-top/.test(a)&&/leaflet-center/.test(a)){g=!0;break}}g||(m=document.createElement("div"),
-m.className+="leaflet-top leaflet-center",l.appendChild(m),h._controlCorners.topcenter=m);this._map=h;this._container=L.DomUtil.create("div","leaflet-control-geosearch");h=document.createElement("input");h.id="leaflet-control-geosearch-qry";h.type="text";h.placeholder=this._config.searchLabel;this._searchbox=h;h=document.createElement("div");h.id="leaflet-control-geosearch-msg";h.className="leaflet-control-geosearch-msg";this._msgbox=h;h=document.createElement("ul");h.id="leaflet-control-geosearch-results";
-this._resultslist=h;this._msgbox.appendChild(this._resultslist);this._container.appendChild(this._searchbox);this._container.appendChild(this._msgbox);L.DomEvent.addListener(this._container,"click",L.DomEvent.stop).addListener(this._searchbox,"keypress",this._onKeyUp,this);L.DomEvent.disableClickPropagation(this._container);return this._container},geosearch:function(h){try{var l=this._config.provider;if("function"==typeof l.GetLocations)l.GetLocations(h,function(c){this._processResults(c)}.bind(this));
-else{var m=l.GetServiceUrl(h);this.sendRequest(l,m)}}catch(g){this._printError(g)}},sendRequest:function(h,l){function m(a){a+="\x26callback\x3dparseLocation";var b=document.createElement("script");b.id="getJsonP";b.src=a;b.async=!0;document.body.appendChild(b)}var g=this;window.parseLocation=function(a){a=h.ParseJSON(a);g._processResults(a);document.body.removeChild(document.getElementById("getJsonP"));delete window.parseLocation};if(XMLHttpRequest){var c=new XMLHttpRequest;if("withCredentials"in
-c)c=new XMLHttpRequest,c.onreadystatechange=function(){if(4==c.readyState)if(200==c.status){var a=JSON.parse(c.responseText),a=h.ParseJSON(a);g._processResults(a)}else 0==c.status||400==c.status?m(l):g._printError(c.responseText)},c.open("GET",l,!0),c.send();else if(XDomainRequest){var e=new XDomainRequest;e.onerror=function(a){g._printError(a)};e.onload=function(){var a=JSON.parse(e.responseText),a=h.ParseJSON(a);g._processResults(a)};e.open("GET",l);e.send()}else m(l)}},_processResults:function(h){0<
-h.length?(this._map.fireEvent("geosearch_foundlocations",{Locations:h}),this._showLocation(h[0])):this._printError(this._config.notFoundMessage)},_showLocation:function(h){!0==this.options.showMarker&&("undefined"===typeof this._positionMarker?this._positionMarker=L.marker([h.Y,h.X]).addTo(this._map):this._positionMarker.setLatLng([h.Y,h.X]));this._map.setView([h.Y,h.X],this._config.zoomLevel,!1);this._map.fireEvent("geosearch_showlocation",{Location:h})},_printError:function(h){var l=this._resultslist;
-l.innerHTML="\x3cli\x3e"+h+"\x3c/li\x3e";l.style.display="block";setTimeout(function(){l.style.display="none"},3E3)},_onKeyUp:function(h){var l=document.getElementById("leaflet-control-geosearch-qry");27===h.keyCode?(l.value="",this._map._container.focus()):13===h.keyCode&&this.geosearch(l.value)}});
-L.GeoSearch.Provider.OpenStreetMap=L.Class.extend({options:{},initialize:function(h){L.Util.setOptions(this,h)},GetServiceUrl:function(h){h=L.Util.extend({q:h,format:"json"},this.options);return"http://nominatim.openstreetmap.org/search"+L.Util.getParamString(h)},ParseJSON:function(h){if(0==h.length)return[];for(var l=[],m=0;m<h.length;m++)l.push(new L.GeoSearch.Result(h[m].lon,h[m].lat,h[m].display_name));return l}});
-+function(h){function l(a){h(g).remove();h(c).each(function(){var c=m(h(this)),e={relatedTarget:this};c.hasClass("open")&&(c.trigger(a=h.Event("hide.bs.dropdown",e)),a.isDefaultPrevented()||c.removeClass("open").trigger("hidden.bs.dropdown",e))})}function m(a){var c=a.attr("data-target");c||(c=(c=a.attr("href"))&&/#[A-Za-z]/.test(c)&&c.replace(/.*(?=#[^\s]*$)/,""));return(c=c&&h(c))&&c.length?c:a.parent()}var g=".dropdown-backdrop",c="[data-toggle\x3ddropdown]",e=function(a){h(a).on("click.bs.dropdown",
-this.toggle)};e.prototype.toggle=function(a){var c=h(this);if(!c.is(".disabled, :disabled")){var e=m(c);a=e.hasClass("open");l();if(!a){if("ontouchstart"in document.documentElement&&!e.closest(".navbar-nav").length)h('\x3cdiv class\x3d"dropdown-backdrop"/\x3e').insertAfter(h(this)).on("click",l);var g={relatedTarget:this};e.trigger(a=h.Event("show.bs.dropdown",g));if(a.isDefaultPrevented())return;e.toggleClass("open").trigger("shown.bs.dropdown",g);c.focus()}return!1}};e.prototype.keydown=function(a){if(/(38|40|27)/.test(a.keyCode)){var d=
-h(this);a.preventDefault();a.stopPropagation();if(!d.is(".disabled, :disabled")){var e=m(d),g=e.hasClass("open");if(!g||g&&27==a.keyCode)return 27==a.which&&e.find(c).focus(),d.click();d=e.find("[role\x3dmenu] li:not(.divider):visible a, [role\x3dlistbox] li:not(.divider):visible a");d.length&&(e=d.index(d.filter(":focus")),38==a.keyCode&&0<e&&e--,40==a.keyCode&&e<d.length-1&&e++,~e||(e=0),d.eq(e).focus())}}};var a=h.fn.dropdown;h.fn.dropdown=function(a){return this.each(function(){var c=h(this),
-f=c.data("bs.dropdown");f||c.data("bs.dropdown",f=new e(this));"string"==typeof a&&f[a].call(c)})};h.fn.dropdown.Constructor=e;h.fn.dropdown.noConflict=function(){h.fn.dropdown=a;return this};h(document).on("click.bs.dropdown.data-api",l).on("click.bs.dropdown.data-api",".dropdown form",function(a){a.stopPropagation()}).on("click.bs.dropdown.data-api",c,e.prototype.toggle).on("keydown.bs.dropdown.data-api",c+", [role\x3dmenu], [role\x3dlistbox]",e.prototype.keydown)}(jQuery);
-+function(h){var l=function(g,c){this.options=c;this.$element=h(g);this.$backdrop=this.isShown=null;this.options.remote&&this.$element.find(".modal-content").load(this.options.remote,h.proxy(function(){this.$element.trigger("loaded.bs.modal")},this))};l.DEFAULTS={backdrop:!0,keyboard:!0,show:!0};l.prototype.toggle=function(g){return this[this.isShown?"hide":"show"](g)};l.prototype.show=function(g){var c=this,e=h.Event("show.bs.modal",{relatedTarget:g});this.$element.trigger(e);this.isShown||e.isDefaultPrevented()||
-(this.isShown=!0,this.escape(),this.$element.on("click.dismiss.bs.modal",'[data-dismiss\x3d"modal"]',h.proxy(this.hide,this)),this.backdrop(function(){var a=h.support.transition&&c.$element.hasClass("fade");c.$element.parent().length||c.$element.appendTo(document.body);c.$element.show().scrollTop(0);a&&c.$element[0].offsetWidth;c.$element.addClass("in").attr("aria-hidden",!1);c.enforceFocus();var b=h.Event("shown.bs.modal",{relatedTarget:g});a?c.$element.find(".modal-dialog").one(h.support.transition.end,
-function(){c.$element.focus().trigger(b)}).emulateTransitionEnd(300):c.$element.focus().trigger(b)}))};l.prototype.hide=function(g){g&&g.preventDefault();g=h.Event("hide.bs.modal");this.$element.trigger(g);this.isShown&&!g.isDefaultPrevented()&&(this.isShown=!1,this.escape(),h(document).off("focusin.bs.modal"),this.$element.removeClass("in").attr("aria-hidden",!0).off("click.dismiss.bs.modal"),h.support.transition&&this.$element.hasClass("fade")?this.$element.one(h.support.transition.end,h.proxy(this.hideModal,
-this)).emulateTransitionEnd(300):this.hideModal())};l.prototype.enforceFocus=function(){h(document).off("focusin.bs.modal").on("focusin.bs.modal",h.proxy(function(g){this.$element[0]===g.target||this.$element.has(g.target).length||this.$element.focus()},this))};l.prototype.escape=function(){if(this.isShown&&this.options.keyboard)this.$element.on("keyup.dismiss.bs.modal",h.proxy(function(g){27==g.which&&this.hide()},this));else this.isShown||this.$element.off("keyup.dismiss.bs.modal")};l.prototype.hideModal=
-function(){var g=this;this.$element.hide();this.backdrop(function(){g.removeBackdrop();g.$element.trigger("hidden.bs.modal")})};l.prototype.removeBackdrop=function(){this.$backdrop&&this.$backdrop.remove();this.$backdrop=null};l.prototype.backdrop=function(g){var c=this.$element.hasClass("fade")?"fade":"";if(this.isShown&&this.options.backdrop){var e=h.support.transition&&c;this.$backdrop=h('\x3cdiv class\x3d"modal-backdrop '+c+'" /\x3e').appendTo(document.body);this.$element.on("click.dismiss.bs.modal",
-h.proxy(function(a){a.target===a.currentTarget&&("static"==this.options.backdrop?this.$element[0].focus.call(this.$element[0]):this.hide.call(this))},this));e&&this.$backdrop[0].offsetWidth;this.$backdrop.addClass("in");g&&(e?this.$backdrop.one(h.support.transition.end,g).emulateTransitionEnd(150):g())}else!this.isShown&&this.$backdrop?(this.$backdrop.removeClass("in"),h.support.transition&&this.$element.hasClass("fade")?this.$backdrop.one(h.support.transition.end,g).emulateTransitionEnd(150):g()):
-g&&g()};var m=h.fn.modal;h.fn.modal=function(g,c){return this.each(function(){var e=h(this),a=e.data("bs.modal"),b=h.extend({},l.DEFAULTS,e.data(),"object"==typeof g&&g);a||e.data("bs.modal",a=new l(this,b));if("string"==typeof g)a[g](c);else b.show&&a.show(c)})};h.fn.modal.Constructor=l;h.fn.modal.noConflict=function(){h.fn.modal=m;return this};h(document).on("click.bs.modal.data-api",'[data-toggle\x3d"modal"]',function(g){var c=h(this),e=c.attr("href"),a=h(c.attr("data-target")||e&&e.replace(/.*(?=#[^\s]+$)/,
-"")),e=a.data("bs.modal")?"toggle":h.extend({remote:!/#/.test(e)&&e},a.data(),c.data());c.is("a")&&g.preventDefault();a.modal(e,this).one("hide",function(){c.is(":visible")&&c.focus()})});h(document).on("show.bs.modal",".modal",function(){h(document.body).addClass("modal-open")}).on("hidden.bs.modal",".modal",function(){h(document.body).removeClass("modal-open")})}(jQuery);
-+function(h){var l=function(g,c){this.type=this.options=this.enabled=this.timeout=this.hoverState=this.$element=null;this.init("tooltip",g,c)};l.DEFAULTS={animation:!0,placement:"top",selector:!1,template:'\x3cdiv class\x3d"tooltip"\x3e\x3cdiv class\x3d"tooltip-arrow"\x3e\x3c/div\x3e\x3cdiv class\x3d"tooltip-inner"\x3e\x3c/div\x3e\x3c/div\x3e',trigger:"hover focus",title:"",delay:0,html:!1,container:!1};l.prototype.init=function(g,c,e){this.enabled=!0;this.type=g;this.$element=h(c);this.options=this.getOptions(e);
-g=this.options.trigger.split(" ");for(c=g.length;c--;)if(e=g[c],"click"==e)this.$element.on("click."+this.type,this.options.selector,h.proxy(this.toggle,this));else if("manual"!=e){var a="hover"==e?"mouseleave":"focusout";this.$element.on(("hover"==e?"mouseenter":"focusin")+"."+this.type,this.options.selector,h.proxy(this.enter,this));this.$element.on(a+"."+this.type,this.options.selector,h.proxy(this.leave,this))}this.options.selector?this._options=h.extend({},this.options,{trigger:"manual",selector:""}):
-this.fixTitle()};l.prototype.getDefaults=function(){return l.DEFAULTS};l.prototype.getOptions=function(g){g=h.extend({},this.getDefaults(),this.$element.data(),g);g.delay&&"number"==typeof g.delay&&(g.delay={show:g.delay,hide:g.delay});return g};l.prototype.getDelegateOptions=function(){var g={},c=this.getDefaults();this._options&&h.each(this._options,function(e,a){c[e]!=a&&(g[e]=a)});return g};l.prototype.enter=function(g){var c=g instanceof this.constructor?g:h(g.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+
-this.type);clearTimeout(c.timeout);c.hoverState="in";if(!c.options.delay||!c.options.delay.show)return c.show();c.timeout=setTimeout(function(){"in"==c.hoverState&&c.show()},c.options.delay.show)};l.prototype.leave=function(g){var c=g instanceof this.constructor?g:h(g.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type);clearTimeout(c.timeout);c.hoverState="out";if(!c.options.delay||!c.options.delay.hide)return c.hide();c.timeout=setTimeout(function(){"out"==c.hoverState&&c.hide()},
-c.options.delay.hide)};l.prototype.show=function(){var g=h.Event("show.bs."+this.type);if(this.hasContent()&&this.enabled&&(this.$element.trigger(g),!g.isDefaultPrevented())){var c=this,g=this.tip();this.setContent();this.options.animation&&g.addClass("fade");var e="function"==typeof this.options.placement?this.options.placement.call(this,g[0],this.$element[0]):this.options.placement,a=/\s?auto?\s?/i,b=a.test(e);b&&(e=e.replace(a,"")||"top");g.detach().css({top:0,left:0,display:"block"}).addClass(e);
-this.options.container?g.appendTo(this.options.container):g.insertAfter(this.$element);var a=this.getPosition(),d=g[0].offsetWidth,f=g[0].offsetHeight;if(b){var l=this.$element.parent(),b=e,m=document.documentElement.scrollTop||document.body.scrollTop,y="body"==this.options.container?window.innerWidth:l.outerWidth(),t="body"==this.options.container?window.innerHeight:l.outerHeight(),l="body"==this.options.container?0:l.offset().left,e="bottom"==e&&a.top+a.height+f-m>t?"top":"top"==e&&0>a.top-m-f?
-"bottom":"right"==e&&a.right+d>y?"left":"left"==e&&a.left-d<l?"right":e;g.removeClass(b).addClass(e)}a=this.getCalculatedOffset(e,a,d,f);this.applyPlacement(a,e);this.hoverState=null;e=function(){c.$element.trigger("shown.bs."+c.type)};h.support.transition&&this.$tip.hasClass("fade")?g.one(h.support.transition.end,e).emulateTransitionEnd(150):e()}};l.prototype.applyPlacement=function(g,c){var e,a=this.tip(),b=a[0].offsetWidth,d=a[0].offsetHeight,f=parseInt(a.css("margin-top"),10),l=parseInt(a.css("margin-left"),
-10);isNaN(f)&&(f=0);isNaN(l)&&(l=0);g.top+=f;g.left+=l;h.offset.setOffset(a[0],h.extend({using:function(b){a.css({top:Math.round(b.top),left:Math.round(b.left)})}},g),0);a.addClass("in");f=a[0].offsetWidth;l=a[0].offsetHeight;"top"==c&&l!=d&&(e=!0,g.top=g.top+d-l);/bottom|top/.test(c)?(d=0,0>g.left&&(d=-2*g.left,g.left=0,a.offset(g),f=a[0].offsetWidth,l=a[0].offsetHeight),this.replaceArrow(d-b+f,f,"left")):this.replaceArrow(l-d,l,"top");e&&a.offset(g)};l.prototype.replaceArrow=function(g,c,e){this.arrow().css(e,
-g?50*(1-g/c)+"%":"")};l.prototype.setContent=function(){var g=this.tip(),c=this.getTitle();g.find(".tooltip-inner")[this.options.html?"html":"text"](c);g.removeClass("fade in top bottom left right")};l.prototype.hide=function(){function g(){"in"!=c.hoverState&&e.detach();c.$element.trigger("hidden.bs."+c.type)}var c=this,e=this.tip(),a=h.Event("hide.bs."+this.type);this.$element.trigger(a);if(!a.isDefaultPrevented())return e.removeClass("in"),h.support.transition&&this.$tip.hasClass("fade")?e.one(h.support.transition.end,
-g).emulateTransitionEnd(150):g(),this.hoverState=null,this};l.prototype.fixTitle=function(){var g=this.$element;(g.attr("title")||"string"!=typeof g.attr("data-original-title"))&&g.attr("data-original-title",g.attr("title")||"").attr("title","")};l.prototype.hasContent=function(){return this.getTitle()};l.prototype.getPosition=function(){var g=this.$element[0];return h.extend({},"function"==typeof g.getBoundingClientRect?g.getBoundingClientRect():{width:g.offsetWidth,height:g.offsetHeight},this.$element.offset())};
-l.prototype.getCalculatedOffset=function(g,c,e,a){return"bottom"==g?{top:c.top+c.height,left:c.left+c.width/2-e/2}:"top"==g?{top:c.top-a,left:c.left+c.width/2-e/2}:"left"==g?{top:c.top+c.height/2-a/2,left:c.left-e}:{top:c.top+c.height/2-a/2,left:c.left+c.width}};l.prototype.getTitle=function(){var g=this.$element,c=this.options;return g.attr("data-original-title")||("function"==typeof c.title?c.title.call(g[0]):c.title)};l.prototype.tip=function(){return this.$tip=this.$tip||h(this.options.template)};
-l.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".tooltip-arrow")};l.prototype.validate=function(){this.$element[0].parentNode||(this.hide(),this.options=this.$element=null)};l.prototype.enable=function(){this.enabled=!0};l.prototype.disable=function(){this.enabled=!1};l.prototype.toggleEnabled=function(){this.enabled=!this.enabled};l.prototype.toggle=function(g){g=g?h(g.currentTarget)[this.type](this.getDelegateOptions()).data("bs."+this.type):this;g.tip().hasClass("in")?
-g.leave(g):g.enter(g)};l.prototype.destroy=function(){clearTimeout(this.timeout);this.hide().$element.off("."+this.type).removeData("bs."+this.type)};var m=h.fn.tooltip;h.fn.tooltip=function(g){return this.each(function(){var c=h(this),e=c.data("bs.tooltip"),a="object"==typeof g&&g;if(e||"destroy"!=g)if(e||c.data("bs.tooltip",e=new l(this,a)),"string"==typeof g)e[g]()})};h.fn.tooltip.Constructor=l;h.fn.tooltip.noConflict=function(){h.fn.tooltip=m;return this}}(jQuery);
-+function(h){var l=function(g,c){this.init("popover",g,c)};if(!h.fn.tooltip)throw Error("Popover requires tooltip.js");l.DEFAULTS=h.extend({},h.fn.tooltip.Constructor.DEFAULTS,{placement:"right",trigger:"click",content:"",template:'\x3cdiv class\x3d"popover"\x3e\x3cdiv class\x3d"arrow"\x3e\x3c/div\x3e\x3ch3 class\x3d"popover-title"\x3e\x3c/h3\x3e\x3cdiv class\x3d"popover-content"\x3e\x3c/div\x3e\x3c/div\x3e'});l.prototype=h.extend({},h.fn.tooltip.Constructor.prototype);l.prototype.constructor=l;l.prototype.getDefaults=
-function(){return l.DEFAULTS};l.prototype.setContent=function(){var g=this.tip(),c=this.getTitle(),e=this.getContent();g.find(".popover-title")[this.options.html?"html":"text"](c);g.find(".popover-content")[this.options.html?"string"==typeof e?"html":"append":"text"](e);g.removeClass("fade top bottom left right in");g.find(".popover-title").html()||g.find(".popover-title").hide()};l.prototype.hasContent=function(){return this.getTitle()||this.getContent()};l.prototype.getContent=function(){var g=
-this.$element,c=this.options;return g.attr("data-content")||("function"==typeof c.content?c.content.call(g[0]):c.content)};l.prototype.arrow=function(){return this.$arrow=this.$arrow||this.tip().find(".arrow")};l.prototype.tip=function(){this.$tip||(this.$tip=h(this.options.template));return this.$tip};var m=h.fn.popover;h.fn.popover=function(g){return this.each(function(){var c=h(this),e=c.data("bs.popover"),a="object"==typeof g&&g;if(e||"destroy"!=g)if(e||c.data("bs.popover",e=new l(this,a)),"string"==
-typeof g)e[g]()})};h.fn.popover.Constructor=l;h.fn.popover.noConflict=function(){h.fn.popover=m;return this}}(jQuery);
-+function(h){var l=function(g){this.element=h(g)};l.prototype.show=function(){var g=this.element,c=g.closest("ul:not(.dropdown-menu)"),e=g.data("target");e||(e=(e=g.attr("href"))&&e.replace(/.*(?=#[^\s]*$)/,""));if(!g.parent("li").hasClass("active")){var a=c.find(".active:last a")[0],b=h.Event("show.bs.tab",{relatedTarget:a});g.trigger(b);b.isDefaultPrevented()||(e=h(e),this.activate(g.parent("li"),c),this.activate(e,e.parent(),function(){g.trigger({type:"shown.bs.tab",relatedTarget:a})}))}};l.prototype.activate=
-function(g,c,e){function a(){b.removeClass("active").find("\x3e .dropdown-menu \x3e .active").removeClass("active");g.addClass("active");d?(g[0].offsetWidth,g.addClass("in")):g.removeClass("fade");g.parent(".dropdown-menu")&&g.closest("li.dropdown").addClass("active");e&&e()}var b=c.find("\x3e .active"),d=e&&h.support.transition&&b.hasClass("fade");d?b.one(h.support.transition.end,a).emulateTransitionEnd(150):a();b.removeClass("in")};var m=h.fn.tab;h.fn.tab=function(g){return this.each(function(){var c=
-h(this),e=c.data("bs.tab");e||c.data("bs.tab",e=new l(this));if("string"==typeof g)e[g]()})};h.fn.tab.Constructor=l;h.fn.tab.noConflict=function(){h.fn.tab=m;return this};h(document).on("click.bs.tab.data-api",'[data-toggle\x3d"tab"], [data-toggle\x3d"pill"]',function(g){g.preventDefault();h(this).tab("show")})}(jQuery);
-+function(h){var l=function(g,c){this.$element=h(g);this.options=h.extend({},l.DEFAULTS,c);this.transitioning=null;this.options.parent&&(this.$parent=h(this.options.parent));this.options.toggle&&this.toggle()};l.DEFAULTS={toggle:!0};l.prototype.dimension=function(){return this.$element.hasClass("width")?"width":"height"};l.prototype.show=function(){if(!this.transitioning&&!this.$element.hasClass("in")){var g=h.Event("show.bs.collapse");this.$element.trigger(g);if(!g.isDefaultPrevented()){if((g=this.$parent&&
-this.$parent.find("\x3e .panel \x3e .in"))&&g.length){var c=g.data("bs.collapse");if(c&&c.transitioning)return;g.collapse("hide");c||g.data("bs.collapse",null)}var e=this.dimension();this.$element.removeClass("collapse").addClass("collapsing")[e](0);this.transitioning=1;g=function(){this.$element.removeClass("collapsing").addClass("collapse in")[e]("auto");this.transitioning=0;this.$element.trigger("shown.bs.collapse")};if(!h.support.transition)return g.call(this);c=h.camelCase(["scroll",e].join("-"));
-this.$element.one(h.support.transition.end,h.proxy(g,this)).emulateTransitionEnd(350)[e](this.$element[0][c])}}};l.prototype.hide=function(){if(!this.transitioning&&this.$element.hasClass("in")){var g=h.Event("hide.bs.collapse");this.$element.trigger(g);if(!g.isDefaultPrevented()){g=this.dimension();this.$element[g](this.$element[g]())[0].offsetHeight;this.$element.addClass("collapsing").removeClass("collapse").removeClass("in");this.transitioning=1;var c=function(){this.transitioning=0;this.$element.trigger("hidden.bs.collapse").removeClass("collapsing").addClass("collapse")};
-if(!h.support.transition)return c.call(this);this.$element[g](0).one(h.support.transition.end,h.proxy(c,this)).emulateTransitionEnd(350)}}};l.prototype.toggle=function(){this[this.$element.hasClass("in")?"hide":"show"]()};var m=h.fn.collapse;h.fn.collapse=function(g){return this.each(function(){var c=h(this),e=c.data("bs.collapse"),a=h.extend({},l.DEFAULTS,c.data(),"object"==typeof g&&g);!e&&a.toggle&&"show"==g&&(g=!g);e||c.data("bs.collapse",e=new l(this,a));if("string"==typeof g)e[g]()})};h.fn.collapse.Constructor=
-l;h.fn.collapse.noConflict=function(){h.fn.collapse=m;return this};h(document).on("click.bs.collapse.data-api","[data-toggle\x3dcollapse]",function(g){var c=h(this),e;g=c.attr("data-target")||g.preventDefault()||(e=c.attr("href"))&&e.replace(/.*(?=#[^\s]+$)/,"");e=h(g);var a=(g=e.data("bs.collapse"))?"toggle":c.data(),b=c.attr("data-parent"),d=b&&h(b);g&&g.transitioning||(d&&d.find('[data-toggle\x3dcollapse][data-parent\x3d"'+b+'"]').not(c).addClass("collapsed"),c[e.hasClass("in")?"addClass":"removeClass"]("collapsed"));
-e.collapse(a)})}(jQuery);
-+function(h){h.fn.emulateTransitionEnd=function(l){var m=!1,g=this;h(this).one(h.support.transition.end,function(){m=!0});setTimeout(function(){m||h(g).trigger(h.support.transition.end)},l);return this};h(function(){var l=h.support,m;a:{m=document.createElement("bootstrap");var g={WebkitTransition:"webkitTransitionEnd",MozTransition:"transitionend",OTransition:"oTransitionEnd otransitionend",transition:"transitionend"},c;for(c in g)if(void 0!==m.style[c]){m={end:g[c]};break a}m=!1}l.transition=m})}(jQuery);
-!function(h){function l(){return new Date(Date.UTC.apply(Date,arguments))}var m=function(e,a){var b=this;this.element=h(e);this.container=a.container||"body";this.language=a.language||this.element.data("date-language")||"en";this.language=this.language in g?this.language:"en";this.isRTL=g[this.language].rtl||!1;this.formatType=a.formatType||this.element.data("format-type")||"standard";this.format=c.parseFormat(a.format||this.element.data("date-format")||g[this.language].format||c.getDefaultFormat(this.formatType,
-"input"),this.formatType);this.isVisible=this.isInline=!1;this.bootcssVer=(this.isInput=this.element.is("input"))?this.element.is(".form-control")?3:2:this.bootcssVer=this.element.is(".input-group")?3:2;this.component=this.element.is(".date")?3==this.bootcssVer?this.element.find(".input-group-addon .glyphicon-th, .input-group-addon .glyphicon-time, .input-group-addon .glyphicon-calendar").parent():this.element.find(".add-on .icon-th, .add-on .icon-time, .add-on .icon-calendar").parent():!1;this.componentReset=
-this.element.is(".date")?3==this.bootcssVer?this.element.find(".input-group-addon .glyphicon-remove").parent():this.element.find(".add-on .icon-remove").parent():!1;this.hasInput=this.component&&this.element.find("input").length;this.component&&0===this.component.length&&(this.component=!1);this.linkField=a.linkField||this.element.data("link-field")||!1;this.linkFormat=c.parseFormat(a.linkFormat||this.element.data("link-format")||c.getDefaultFormat(this.formatType,"link"),this.formatType);this.minuteStep=
-a.minuteStep||this.element.data("minute-step")||5;this.pickerPosition=a.pickerPosition||this.element.data("picker-position")||"bottom-right";this.showMeridian=a.showMeridian||this.element.data("show-meridian")||!1;this.initialDate=a.initialDate||new Date;this._attachEvents();this.formatViewType="datetime";"formatViewType"in a?this.formatViewType=a.formatViewType:"formatViewType"in this.element.data()&&(this.formatViewType=this.element.data("formatViewType"));this.minView=0;"minView"in a?this.minView=
-a.minView:"minView"in this.element.data()&&(this.minView=this.element.data("min-view"));this.minView=c.convertViewMode(this.minView);this.maxView=c.modes.length-1;"maxView"in a?this.maxView=a.maxView:"maxView"in this.element.data()&&(this.maxView=this.element.data("max-view"));this.maxView=c.convertViewMode(this.maxView);this.wheelViewModeNavigation=!1;"wheelViewModeNavigation"in a?this.wheelViewModeNavigation=a.wheelViewModeNavigation:"wheelViewModeNavigation"in this.element.data()&&(this.wheelViewModeNavigation=
-this.element.data("view-mode-wheel-navigation"));this.wheelViewModeNavigationInverseDirection=!1;"wheelViewModeNavigationInverseDirection"in a?this.wheelViewModeNavigationInverseDirection=a.wheelViewModeNavigationInverseDirection:"wheelViewModeNavigationInverseDirection"in this.element.data()&&(this.wheelViewModeNavigationInverseDirection=this.element.data("view-mode-wheel-navigation-inverse-dir"));this.wheelViewModeNavigationDelay=100;"wheelViewModeNavigationDelay"in a?this.wheelViewModeNavigationDelay=
-a.wheelViewModeNavigationDelay:"wheelViewModeNavigationDelay"in this.element.data()&&(this.wheelViewModeNavigationDelay=this.element.data("view-mode-wheel-navigation-delay"));this.startViewMode=2;"startView"in a?this.startViewMode=a.startView:"startView"in this.element.data()&&(this.startViewMode=this.element.data("start-view"));this.viewMode=this.startViewMode=c.convertViewMode(this.startViewMode);this.viewSelect=this.minView;"viewSelect"in a?this.viewSelect=a.viewSelect:"viewSelect"in this.element.data()&&
-(this.viewSelect=this.element.data("view-select"));this.viewSelect=c.convertViewMode(this.viewSelect);this.forceParse=!0;"forceParse"in a?this.forceParse=a.forceParse:"dateForceParse"in this.element.data()&&(this.forceParse=this.element.data("date-force-parse"));this.picker=h(3==this.bootcssVer?c.templateV3:c.template).appendTo(this.isInline?this.element:this.container).on({click:h.proxy(this.click,this),mousedown:h.proxy(this.mousedown,this)});if(this.wheelViewModeNavigation)if(h.fn.mousewheel)this.picker.on({mousewheel:h.proxy(this.mousewheel,
-this)});else DEBUG&&console.log("Mouse Wheel event is not supported. Please include the jQuery Mouse Wheel plugin before enabling this option");this.isInline?this.picker.addClass("datetimepicker-inline"):this.picker.addClass("datetimepicker-dropdown-"+this.pickerPosition+" dropdown-menu");this.isRTL&&(this.picker.addClass("datetimepicker-rtl"),3==this.bootcssVer?this.picker.find(".prev span, .next span").toggleClass("glyphicon-arrow-left glyphicon-arrow-right"):this.picker.find(".prev i, .next i").toggleClass("icon-arrow-left icon-arrow-right"));
-h(document).on("mousedown",function(a){0===h(a.target).closest(".datetimepicker").length&&b.hide()});this.autoclose=!1;"autoclose"in a?this.autoclose=a.autoclose:"dateAutoclose"in this.element.data()&&(this.autoclose=this.element.data("date-autoclose"));this.keyboardNavigation=!0;"keyboardNavigation"in a?this.keyboardNavigation=a.keyboardNavigation:"dateKeyboardNavigation"in this.element.data()&&(this.keyboardNavigation=this.element.data("date-keyboard-navigation"));this.todayBtn=a.todayBtn||this.element.data("date-today-btn")||
-!1;this.todayHighlight=a.todayHighlight||this.element.data("date-today-highlight")||!1;this.weekStart=(a.weekStart||this.element.data("date-weekstart")||g[this.language].weekStart||0)%7;this.weekEnd=(this.weekStart+6)%7;this.startDate=-Infinity;this.endDate=Infinity;this.daysOfWeekDisabled=[];this.setStartDate(a.startDate||this.element.data("date-startdate"));this.setEndDate(a.endDate||this.element.data("date-enddate"));this.setDaysOfWeekDisabled(a.daysOfWeekDisabled||this.element.data("date-days-of-week-disabled"));
-this.fillDow();this.fillMonths();this.update();this.showMode();this.isInline&&this.show()};m.prototype={constructor:m,_events:[],_attachEvents:function(){this._detachEvents();this.isInput?this._events=[[this.element,{focus:h.proxy(this.show,this),keyup:h.proxy(this.update,this),keydown:h.proxy(this.keydown,this)}]]:this.component&&this.hasInput?(this._events=[[this.element.find("input"),{focus:h.proxy(this.show,this),keyup:h.proxy(this.update,this),keydown:h.proxy(this.keydown,this)}],[this.component,
-{click:h.proxy(this.show,this)}]],this.componentReset&&this._events.push([this.componentReset,{click:h.proxy(this.reset,this)}])):this.element.is("div")?this.isInline=!0:this._events=[[this.element,{click:h.proxy(this.show,this)}]];for(var c=0,a,b;c<this._events.length;c++)a=this._events[c][0],b=this._events[c][1],a.on(b)},_detachEvents:function(){for(var c=0,a,b;c<this._events.length;c++)a=this._events[c][0],b=this._events[c][1],a.off(b);this._events=[]},show:function(c){this.picker.show();this.height=
-this.component?this.component.outerHeight():this.element.outerHeight();this.forceParse&&this.update();this.place();h(window).on("resize",h.proxy(this.place,this));c&&(c.stopPropagation(),c.preventDefault());this.isVisible=!0;this.element.trigger({type:"show",date:this.date})},hide:function(c){this.isVisible&&!this.isInline&&(this.picker.hide(),h(window).off("resize",this.place),this.viewMode=this.startViewMode,this.showMode(),this.isInput||h(document).off("mousedown",this.hide),this.forceParse&&(this.isInput&&
-this.element.val()||this.hasInput&&this.element.find("input").val())&&this.setValue(),this.isVisible=!1,this.element.trigger({type:"hide",date:this.date}))},remove:function(){this._detachEvents();this.picker.remove();delete this.picker;delete this.element.data().datetimepicker},getDate:function(){var c=this.getUTCDate();return new Date(c.getTime()+6E4*c.getTimezoneOffset())},getUTCDate:function(){return this.date},setDate:function(c){this.setUTCDate(new Date(c.getTime()-6E4*c.getTimezoneOffset()))},
-setUTCDate:function(c){c>=this.startDate&&c<=this.endDate?(this.date=c,this.setValue(),this.viewDate=this.date,this.fill()):this.element.trigger({type:"outOfRange",date:c,startDate:this.startDate,endDate:this.endDate})},setFormat:function(e){this.format=c.parseFormat(e,this.formatType);var a;this.isInput?a=this.element:this.component&&(a=this.element.find("input"));a&&a.val()&&this.setValue()},setValue:function(){var c=this.getFormattedDate();this.isInput?this.element.val(c):(this.component&&this.element.find("input").val(c),
-this.element.data("date",c));this.linkField&&h("#"+this.linkField).val(this.getFormattedDate(this.linkFormat))},getFormattedDate:function(e){void 0==e&&(e=this.format);return c.formatDate(this.date,e,this.language,this.formatType)},setStartDate:function(e){this.startDate=e||-Infinity;-Infinity!==this.startDate&&(this.startDate=c.parseDate(this.startDate,this.format,this.language,this.formatType));this.update();this.updateNavArrows()},setEndDate:function(e){this.endDate=e||Infinity;Infinity!==this.endDate&&
-(this.endDate=c.parseDate(this.endDate,this.format,this.language,this.formatType));this.update();this.updateNavArrows()},setDaysOfWeekDisabled:function(c){this.daysOfWeekDisabled=c||[];h.isArray(this.daysOfWeekDisabled)||(this.daysOfWeekDisabled=this.daysOfWeekDisabled.split(/,\s*/));this.daysOfWeekDisabled=h.map(this.daysOfWeekDisabled,function(a){return parseInt(a,10)});this.update();this.updateNavArrows()},place:function(){if(!this.isInline){var c=0;h("div").each(function(){var a=parseInt(h(this).css("zIndex"),
-10);a>c&&(c=a)});var a=c+10,b,d,f;f=this.container instanceof h?this.container.offset():h(this.container).offset();if(this.component){if(b=this.component.offset(),d=b.left,"bottom-left"==this.pickerPosition||"top-left"==this.pickerPosition)d+=this.component.outerWidth()-this.picker.outerWidth()}else b=this.element.offset(),d=b.left;d+220>document.body.clientWidth&&(d=document.body.clientWidth-220);b="top-left"==this.pickerPosition||"top-right"==this.pickerPosition?b.top-this.picker.outerHeight():
-b.top+this.height;b-=f.top;d-=f.left;this.picker.css({top:b,left:d,zIndex:a})}},update:function(){var e,a=!1;if(arguments&&arguments.length&&("string"===typeof arguments[0]||arguments[0]instanceof Date))e=arguments[0],a=!0;else if(e=(this.isInput?this.element.val():this.element.find("input").val())||this.element.data("date")||this.initialDate,"string"==typeof e||e instanceof String)e=e.replace(/^\s+|\s+$/g,"");e||(e=new Date,a=!1);this.date=c.parseDate(e,this.format,this.language,this.formatType);
-a&&this.setValue();this.viewDate=this.date<this.startDate?new Date(this.startDate):this.date>this.endDate?new Date(this.endDate):new Date(this.date);this.fill()},fillDow:function(){for(var c=this.weekStart,a="\x3ctr\x3e";c<this.weekStart+7;)a+='\x3cth class\x3d"dow"\x3e'+g[this.language].daysMin[c++%7]+"\x3c/th\x3e";a+="\x3c/tr\x3e";this.picker.find(".datetimepicker-days thead").append(a)},fillMonths:function(){for(var c="",a=0;12>a;)c+='\x3cspan class\x3d"month"\x3e'+g[this.language].monthsShort[a++]+
-"\x3c/span\x3e";this.picker.find(".datetimepicker-months td").html(c)},fill:function(){if(null!=this.date&&null!=this.viewDate){var e=new Date(this.viewDate),a=e.getUTCFullYear(),b=e.getUTCMonth(),d=e.getUTCDate(),f=e.getUTCHours(),m=e.getUTCMinutes(),e=-Infinity!==this.startDate?this.startDate.getUTCFullYear():-Infinity,p=-Infinity!==this.startDate?this.startDate.getUTCMonth():-Infinity,y=Infinity!==this.endDate?this.endDate.getUTCFullYear():Infinity,t=Infinity!==this.endDate?this.endDate.getUTCMonth():
-Infinity,z=(new l(this.date.getUTCFullYear(),this.date.getUTCMonth(),this.date.getUTCDate())).valueOf(),H=new Date;this.picker.find(".datetimepicker-days thead th:eq(1)").text(g[this.language].months[b]+" "+a);if("time"==this.formatViewType){var D=f%12?f%12:12,D=(10>D?"0":"")+D,A=(10>m?"0":"")+m,x=g[this.language].meridiem[12>f?0:1];this.picker.find(".datetimepicker-hours thead th:eq(1)").text(D+":"+A+" "+(x?x.toUpperCase():""));this.picker.find(".datetimepicker-minutes thead th:eq(1)").text(D+":"+
-A+" "+(x?x.toUpperCase():""))}else this.picker.find(".datetimepicker-hours thead th:eq(1)").text(d+" "+g[this.language].months[b]+" "+a),this.picker.find(".datetimepicker-minutes thead th:eq(1)").text(d+" "+g[this.language].months[b]+" "+a);this.picker.find("tfoot th.today").text(g[this.language].today).toggle(!1!==this.todayBtn);this.updateNavArrows();this.fillMonths();x=l(a,b-1,28,0,0,0,0);D=c.getDaysInMonth(x.getUTCFullYear(),x.getUTCMonth());x.setUTCDate(D);x.setUTCDate(D-(x.getUTCDay()-this.weekStart+
-7)%7);var F=new Date(x);F.setUTCDate(F.getUTCDate()+42);F=F.valueOf();for(D=[];x.valueOf()<F;){x.getUTCDay()==this.weekStart&&D.push("\x3ctr\x3e");A="";if(x.getUTCFullYear()<a||x.getUTCFullYear()==a&&x.getUTCMonth()<b)A+=" old";else if(x.getUTCFullYear()>a||x.getUTCFullYear()==a&&x.getUTCMonth()>b)A+=" new";this.todayHighlight&&x.getUTCFullYear()==H.getFullYear()&&x.getUTCMonth()==H.getMonth()&&x.getUTCDate()==H.getDate()&&(A+=" today");x.valueOf()==z&&(A+=" active");if(x.valueOf()+864E5<=this.startDate||
-x.valueOf()>this.endDate||-1!==h.inArray(x.getUTCDay(),this.daysOfWeekDisabled))A+=" disabled";D.push('\x3ctd class\x3d"day'+A+'"\x3e'+x.getUTCDate()+"\x3c/td\x3e");x.getUTCDay()==this.weekEnd&&D.push("\x3c/tr\x3e");x.setUTCDate(x.getUTCDate()+1)}this.picker.find(".datetimepicker-days tbody").empty().append(D.join(""));D=[];H=x=x="";for(z=0;24>z;z++)x=l(a,b,d,z),A="",x.valueOf()+36E5<=this.startDate||x.valueOf()>this.endDate?A+=" disabled":f==z&&(A+=" active"),this.showMeridian&&2==g[this.language].meridiem.length?
-(x=12>z?g[this.language].meridiem[0]:g[this.language].meridiem[1],x!=H&&(""!=H&&D.push("\x3c/fieldset\x3e"),D.push('\x3cfieldset class\x3d"hour"\x3e\x3clegend\x3e'+x.toUpperCase()+"\x3c/legend\x3e")),H=x,x=z%12?z%12:12,D.push('\x3cspan class\x3d"hour'+A+" hour_"+(12>z?"am":"pm")+'"\x3e'+x+"\x3c/span\x3e"),23==z&&D.push("\x3c/fieldset\x3e")):(x=z+":00",D.push('\x3cspan class\x3d"hour'+A+'"\x3e'+x+"\x3c/span\x3e"));this.picker.find(".datetimepicker-hours td").html(D.join(""));D=[];H="";for(z=0;60>z;z+=
-this.minuteStep)x=l(a,b,d,f,z,0),A="",x.valueOf()<this.startDate||x.valueOf()>this.endDate?A+=" disabled":Math.floor(m/this.minuteStep)==Math.floor(z/this.minuteStep)&&(A+=" active"),this.showMeridian&&2==g[this.language].meridiem.length?(x=12>f?g[this.language].meridiem[0]:g[this.language].meridiem[1],x!=H&&(""!=H&&D.push("\x3c/fieldset\x3e"),D.push('\x3cfieldset class\x3d"minute"\x3e\x3clegend\x3e'+x.toUpperCase()+"\x3c/legend\x3e")),H=x,x=f%12?f%12:12,D.push('\x3cspan class\x3d"minute'+A+'"\x3e'+
-x+":"+(10>z?"0"+z:z)+"\x3c/span\x3e"),59==z&&D.push("\x3c/fieldset\x3e")):D.push('\x3cspan class\x3d"minute'+A+'"\x3e'+f+":"+(10>z?"0"+z:z)+"\x3c/span\x3e");this.picker.find(".datetimepicker-minutes td").html(D.join(""));b=this.date.getUTCFullYear();d=this.picker.find(".datetimepicker-months").find("th:eq(1)").text(a).end().find("span").removeClass("active");b==a&&d.eq(this.date.getUTCMonth()).addClass("active");(a<e||a>y)&&d.addClass("disabled");a==e&&d.slice(0,p).addClass("disabled");a==y&&d.slice(t+
-1).addClass("disabled");D="";a=10*parseInt(a/10,10);p=this.picker.find(".datetimepicker-years").find("th:eq(1)").text(a+"-"+(a+9)).end().find("td");a-=1;for(z=-1;11>z;z++)D+='\x3cspan class\x3d"year'+(-1==z||10==z?" old":"")+(b==a?" active":"")+(a<e||a>y?" disabled":"")+'"\x3e'+a+"\x3c/span\x3e",a+=1;p.html(D);this.place()}},updateNavArrows:function(){var c=new Date(this.viewDate),a=c.getUTCFullYear(),b=c.getUTCMonth(),d=c.getUTCDate(),c=c.getUTCHours();switch(this.viewMode){case 0:-Infinity!==this.startDate&&
-a<=this.startDate.getUTCFullYear()&&b<=this.startDate.getUTCMonth()&&d<=this.startDate.getUTCDate()&&c<=this.startDate.getUTCHours()?this.picker.find(".prev").css({visibility:"hidden"}):this.picker.find(".prev").css({visibility:"visible"});Infinity!==this.endDate&&a>=this.endDate.getUTCFullYear()&&b>=this.endDate.getUTCMonth()&&d>=this.endDate.getUTCDate()&&c>=this.endDate.getUTCHours()?this.picker.find(".next").css({visibility:"hidden"}):this.picker.find(".next").css({visibility:"visible"});break;
-case 1:-Infinity!==this.startDate&&a<=this.startDate.getUTCFullYear()&&b<=this.startDate.getUTCMonth()&&d<=this.startDate.getUTCDate()?this.picker.find(".prev").css({visibility:"hidden"}):this.picker.find(".prev").css({visibility:"visible"});Infinity!==this.endDate&&a>=this.endDate.getUTCFullYear()&&b>=this.endDate.getUTCMonth()&&d>=this.endDate.getUTCDate()?this.picker.find(".next").css({visibility:"hidden"}):this.picker.find(".next").css({visibility:"visible"});break;case 2:-Infinity!==this.startDate&&
-a<=this.startDate.getUTCFullYear()&&b<=this.startDate.getUTCMonth()?this.picker.find(".prev").css({visibility:"hidden"}):this.picker.find(".prev").css({visibility:"visible"});Infinity!==this.endDate&&a>=this.endDate.getUTCFullYear()&&b>=this.endDate.getUTCMonth()?this.picker.find(".next").css({visibility:"hidden"}):this.picker.find(".next").css({visibility:"visible"});break;case 3:case 4:-Infinity!==this.startDate&&a<=this.startDate.getUTCFullYear()?this.picker.find(".prev").css({visibility:"hidden"}):
-this.picker.find(".prev").css({visibility:"visible"}),Infinity!==this.endDate&&a>=this.endDate.getUTCFullYear()?this.picker.find(".next").css({visibility:"hidden"}):this.picker.find(".next").css({visibility:"visible"})}},mousewheel:function(c){c.preventDefault();c.stopPropagation();this.wheelPause||(this.wheelPause=!0,c=c.originalEvent.wheelDelta,c=0<c?1:0===c?0:-1,this.wheelViewModeNavigationInverseDirection&&(c=-c),this.showMode(c),setTimeout(h.proxy(function(){this.wheelPause=!1},this),this.wheelViewModeNavigationDelay))},
-click:function(e){e.stopPropagation();e.preventDefault();e=h(e.target).closest("span, td, th, legend");if(1==e.length)if(e.is(".disabled"))this.element.trigger({type:"outOfRange",date:this.viewDate,startDate:this.startDate,endDate:this.endDate});else switch(e[0].nodeName.toLowerCase()){case "th":switch(e[0].className){case "switch":this.showMode(1);break;case "prev":case "next":e=c.modes[this.viewMode].navStep*("prev"==e[0].className?-1:1);switch(this.viewMode){case 0:this.viewDate=this.moveHour(this.viewDate,
-e);break;case 1:this.viewDate=this.moveDate(this.viewDate,e);break;case 2:this.viewDate=this.moveMonth(this.viewDate,e);break;case 3:case 4:this.viewDate=this.moveYear(this.viewDate,e)}this.fill();break;case "today":e=new Date,e=l(e.getFullYear(),e.getMonth(),e.getDate(),e.getHours(),e.getMinutes(),e.getSeconds(),0),e<this.startDate?e=this.startDate:e>this.endDate&&(e=this.endDate),this.viewMode=this.startViewMode,this.showMode(0),this._setDate(e),this.fill(),this.autoclose&&this.hide()}break;case "span":if(!e.is(".disabled")){var a=
-this.viewDate.getUTCFullYear(),b=this.viewDate.getUTCMonth(),d=this.viewDate.getUTCDate(),f=this.viewDate.getUTCHours(),g=this.viewDate.getUTCMinutes(),m=this.viewDate.getUTCSeconds();if(e.is(".month"))this.viewDate.setUTCDate(1),b=e.parent().find("span").index(e),d=this.viewDate.getUTCDate(),this.viewDate.setUTCMonth(b),this.element.trigger({type:"changeMonth",date:this.viewDate}),3<=this.viewSelect&&this._setDate(l(a,b,d,f,g,m,0));else if(e.is(".year"))this.viewDate.setUTCDate(1),a=parseInt(e.text(),
-10)||0,this.viewDate.setUTCFullYear(a),this.element.trigger({type:"changeYear",date:this.viewDate}),4<=this.viewSelect&&this._setDate(l(a,b,d,f,g,m,0));else if(e.is(".hour")){f=parseInt(e.text(),10)||0;if(e.hasClass("hour_am")||e.hasClass("hour_pm"))12==f&&e.hasClass("hour_am")?f=0:12!=f&&e.hasClass("hour_pm")&&(f+=12);this.viewDate.setUTCHours(f);this.element.trigger({type:"changeHour",date:this.viewDate});1<=this.viewSelect&&this._setDate(l(a,b,d,f,g,m,0))}else e.is(".minute")&&(g=parseInt(e.text().substr(e.text().indexOf(":")+
-1),10)||0,this.viewDate.setUTCMinutes(g),this.element.trigger({type:"changeMinute",date:this.viewDate}),0<=this.viewSelect&&this._setDate(l(a,b,d,f,g,m,0)));0!=this.viewMode?(e=this.viewMode,this.showMode(-1),this.fill(),e==this.viewMode&&this.autoclose&&this.hide()):(this.fill(),this.autoclose&&this.hide())}break;case "td":e.is(".day")&&!e.is(".disabled")&&(d=parseInt(e.text(),10)||1,a=this.viewDate.getUTCFullYear(),b=this.viewDate.getUTCMonth(),f=this.viewDate.getUTCHours(),g=this.viewDate.getUTCMinutes(),
-m=this.viewDate.getUTCSeconds(),e.is(".old")?0===b?(b=11,a-=1):b-=1:e.is(".new")&&(11==b?(b=0,a+=1):b+=1),this.viewDate.setUTCFullYear(a),this.viewDate.setUTCMonth(b,d),this.element.trigger({type:"changeDay",date:this.viewDate}),2<=this.viewSelect&&this._setDate(l(a,b,d,f,g,m,0))),e=this.viewMode,this.showMode(-1),this.fill(),e==this.viewMode&&this.autoclose&&this.hide()}},_setDate:function(c,a){a&&"date"!=a||(this.date=c);a&&"view"!=a||(this.viewDate=c);this.fill();this.setValue();var b;this.isInput?
-b=this.element:this.component&&(b=this.element.find("input"));b&&b.change();this.element.trigger({type:"changeDate",date:this.date})},moveMinute:function(c,a){if(!a)return c;var b=new Date(c.valueOf());b.setUTCMinutes(b.getUTCMinutes()+a*this.minuteStep);return b},moveHour:function(c,a){if(!a)return c;var b=new Date(c.valueOf());b.setUTCHours(b.getUTCHours()+a);return b},moveDate:function(c,a){if(!a)return c;var b=new Date(c.valueOf());b.setUTCDate(b.getUTCDate()+a);return b},moveMonth:function(c,
-a){if(!a)return c;var b=new Date(c.valueOf()),d=b.getUTCDate(),f=b.getUTCMonth(),g=Math.abs(a),h;a=0<a?1:-1;if(1==g){if(g=-1==a?function(){return b.getUTCMonth()==f}:function(){return b.getUTCMonth()!=h},h=f+a,b.setUTCMonth(h),0>h||11<h)h=(h+12)%12}else{for(var l=0;l<g;l++)b=this.moveMonth(b,a);h=b.getUTCMonth();b.setUTCDate(d);g=function(){return h!=b.getUTCMonth()}}for(;g();)b.setUTCDate(--d),b.setUTCMonth(h);return b},moveYear:function(c,a){return this.moveMonth(c,12*a)},dateWithinRange:function(c){return c>=
-this.startDate&&c<=this.endDate},keydown:function(c){if(this.picker.is(":not(:visible)"))27==c.keyCode&&this.show();else{var a=!1,b,d,f;switch(c.keyCode){case 27:this.hide();c.preventDefault();break;case 37:case 39:if(!this.keyboardNavigation)break;b=37==c.keyCode?-1:1;viewMode=this.viewMode;c.ctrlKey?viewMode+=2:c.shiftKey&&(viewMode+=1);4==viewMode?(d=this.moveYear(this.date,b),f=this.moveYear(this.viewDate,b)):3==viewMode?(d=this.moveMonth(this.date,b),f=this.moveMonth(this.viewDate,b)):2==viewMode?
-(d=this.moveDate(this.date,b),f=this.moveDate(this.viewDate,b)):1==viewMode?(d=this.moveHour(this.date,b),f=this.moveHour(this.viewDate,b)):0==viewMode&&(d=this.moveMinute(this.date,b),f=this.moveMinute(this.viewDate,b));this.dateWithinRange(d)&&(this.date=d,this.viewDate=f,this.setValue(),this.update(),c.preventDefault(),a=!0);break;case 38:case 40:if(!this.keyboardNavigation)break;b=38==c.keyCode?-1:1;viewMode=this.viewMode;c.ctrlKey?viewMode+=2:c.shiftKey&&(viewMode+=1);4==viewMode?(d=this.moveYear(this.date,
-b),f=this.moveYear(this.viewDate,b)):3==viewMode?(d=this.moveMonth(this.date,b),f=this.moveMonth(this.viewDate,b)):2==viewMode?(d=this.moveDate(this.date,7*b),f=this.moveDate(this.viewDate,7*b)):1==viewMode?this.showMeridian?(d=this.moveHour(this.date,6*b),f=this.moveHour(this.viewDate,6*b)):(d=this.moveHour(this.date,4*b),f=this.moveHour(this.viewDate,4*b)):0==viewMode&&(d=this.moveMinute(this.date,4*b),f=this.moveMinute(this.viewDate,4*b));this.dateWithinRange(d)&&(this.date=d,this.viewDate=f,this.setValue(),
-this.update(),c.preventDefault(),a=!0);break;case 13:0!=this.viewMode?(b=this.viewMode,this.showMode(-1),this.fill(),b==this.viewMode&&this.autoclose&&this.hide()):(this.fill(),this.autoclose&&this.hide());c.preventDefault();break;case 9:this.hide()}if(a){var g;this.isInput?g=this.element:this.component&&(g=this.element.find("input"));g&&g.change();this.element.trigger({type:"changeDate",date:this.date})}}},showMode:function(e){e&&(e=Math.max(0,Math.min(c.modes.length-1,this.viewMode+e)),e>=this.minView&&
-e<=this.maxView&&(this.element.trigger({type:"changeMode",date:this.viewDate,oldViewMode:this.viewMode,newViewMode:e}),this.viewMode=e));this.picker.find("\x3ediv").hide().filter(".datetimepicker-"+c.modes[this.viewMode].clsName).css("display","block");this.updateNavArrows()},reset:function(c){this._setDate(null,"date")}};h.fn.datetimepicker=function(c){var a=Array.apply(null,arguments);a.shift();var b;this.each(function(){var d=h(this),f=d.data("datetimepicker"),g="object"==typeof c&&c;f||d.data("datetimepicker",
-f=new m(this,h.extend({},h.fn.datetimepicker.defaults,g)));if("string"==typeof c&&"function"==typeof f[c]&&(b=f[c].apply(f,a),void 0!==b))return!1});return void 0!==b?b:this};h.fn.datetimepicker.defaults={};h.fn.datetimepicker.Constructor=m;var g=h.fn.datetimepicker.dates={en:{days:"Sunday Monday Tuesday Wednesday Thursday Friday Saturday Sunday".split(" "),daysShort:"Sun Mon Tue Wed Thu Fri Sat Sun".split(" "),daysMin:"Su Mo Tu We Th Fr Sa Su".split(" "),months:"January February March April May June July August September October November December".split(" "),
-monthsShort:"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),meridiem:["am","pm"],suffix:["st","nd","rd","th"],today:"Today"}},c={modes:[{clsName:"minutes",navFnc:"Hours",navStep:1},{clsName:"hours",navFnc:"Date",navStep:1},{clsName:"days",navFnc:"Month",navStep:1},{clsName:"months",navFnc:"FullYear",navStep:1},{clsName:"years",navFnc:"FullYear",navStep:10}],isLeapYear:function(c){return 0===c%4&&0!==c%100||0===c%400},getDaysInMonth:function(e,a){return[31,c.isLeapYear(e)?29:28,31,30,
-31,30,31,31,30,31,30,31][a]},getDefaultFormat:function(c,a){if("standard"==c)return"input"==a?"yyyy-mm-dd hh:ii":"yyyy-mm-dd hh:ii:ss";if("php"==c)return"input"==a?"Y-m-d H:i":"Y-m-d H:i:s";throw Error("Invalid format type.");},validParts:function(c){if("standard"==c)return/hh?|HH?|p|P|ii?|ss?|dd?|DD?|mm?|MM?|yy(?:yy)?/g;if("php"==c)return/[dDjlNwzFmMnStyYaABgGhHis]/g;throw Error("Invalid format type.");},nonpunctuation:/[^ -\/:-@\[-`{-~\t\n\rTZ]+/g,parseFormat:function(c,a){var b=c.replace(this.validParts(a),
-"\x00").split("\x00"),d=c.match(this.validParts(a));if(!b||!b.length||!d||0==d.length)throw Error("Invalid date format.");return{separators:b,parts:d}},parseDate:function(c,a,b,d){if(c instanceof Date)return c=new Date(c.valueOf()-6E4*c.getTimezoneOffset()),c.setMilliseconds(0),c;/^\d{4}\-\d{1,2}\-\d{1,2}$/.test(c)&&(a=this.parseFormat("yyyy-mm-dd",d));/^\d{4}\-\d{1,2}\-\d{1,2}[T ]\d{1,2}\:\d{1,2}$/.test(c)&&(a=this.parseFormat("yyyy-mm-dd hh:ii",d));/^\d{4}\-\d{1,2}\-\d{1,2}[T ]\d{1,2}\:\d{1,2}\:\d{1,2}[Z]{0,1}$/.test(c)&&
-(a=this.parseFormat("yyyy-mm-dd hh:ii:ss",d));if(/^[-+]\d+[dmwy]([\s,]+[-+]\d+[dmwy])*$/.test(c)){a=/([-+]\d+)([dmwy])/;var f=c.match(/([-+]\d+)([dmwy])/g);c=new Date;for(var n=0;n<f.length;n++)switch(d=a.exec(f[n]),b=parseInt(d[1]),d[2]){case "d":c.setUTCDate(c.getUTCDate()+b);break;case "m":c=m.prototype.moveMonth.call(m.prototype,c,b);break;case "w":c.setUTCDate(c.getUTCDate()+7*b);break;case "y":c=m.prototype.moveYear.call(m.prototype,c,b)}return l(c.getUTCFullYear(),c.getUTCMonth(),c.getUTCDate(),
-c.getUTCHours(),c.getUTCMinutes(),c.getUTCSeconds(),0)}f=c&&c.match(this.nonpunctuation)||[];c=new Date(0,0,0,0,0,0,0);var p={},y="hh h ii i ss s yyyy yy M MM m mm D DD d dd H HH p P".split(" "),t={hh:function(a,b){return a.setUTCHours(b)},h:function(a,b){return a.setUTCHours(b)},HH:function(a,b){return a.setUTCHours(12==b?0:b)},H:function(a,b){return a.setUTCHours(12==b?0:b)},ii:function(a,b){return a.setUTCMinutes(b)},i:function(a,b){return a.setUTCMinutes(b)},ss:function(a,b){return a.setUTCSeconds(b)},
-s:function(a,b){return a.setUTCSeconds(b)},yyyy:function(a,b){return a.setUTCFullYear(b)},yy:function(a,b){return a.setUTCFullYear(2E3+b)},m:function(a,b){for(b-=1;0>b;)b+=12;b%=12;for(a.setUTCMonth(b);a.getUTCMonth()!=b&&!isNaN(a.getUTCMonth());)a.setUTCDate(a.getUTCDate()-1);return a},d:function(a,b){return a.setUTCDate(b)},p:function(a,b){return a.setUTCHours(1==b?a.getUTCHours()+12:a.getUTCHours())}},z;t.M=t.MM=t.mm=t.m;t.dd=t.d;t.P=t.p;c=l(c.getFullYear(),c.getMonth(),c.getDate(),c.getHours(),
-c.getMinutes(),c.getSeconds());if(f.length==a.parts.length){for(var n=0,H=a.parts.length;n<H;n++){z=parseInt(f[n],10);d=a.parts[n];if(isNaN(z))switch(d){case "MM":z=h(g[b].months).filter(function(){var a=this.slice(0,f[n].length),b=f[n].slice(0,a.length);return a==b});z=h.inArray(z[0],g[b].months)+1;break;case "M":z=h(g[b].monthsShort).filter(function(){var a=this.slice(0,f[n].length),b=f[n].slice(0,a.length);return a.toLowerCase()==b.toLowerCase()});z=h.inArray(z[0],g[b].monthsShort)+1;break;case "p":case "P":z=
-h.inArray(f[n].toLowerCase(),g[b].meridiem)}p[d]=z}for(n=0;n<y.length;n++)if(d=y[n],d in p&&!isNaN(p[d]))t[d](c,p[d])}return c},formatDate:function(e,a,b,d){if(null==e)return"";if("standard"==d)d={yy:e.getUTCFullYear().toString().substring(2),yyyy:e.getUTCFullYear(),m:e.getUTCMonth()+1,M:g[b].monthsShort[e.getUTCMonth()],MM:g[b].months[e.getUTCMonth()],d:e.getUTCDate(),D:g[b].daysShort[e.getUTCDay()],DD:g[b].days[e.getUTCDay()],p:2==g[b].meridiem.length?g[b].meridiem[12>e.getUTCHours()?0:1]:"",h:e.getUTCHours(),
-i:e.getUTCMinutes(),s:e.getUTCSeconds()},d.H=2==g[b].meridiem.length?0==d.h%12?12:d.h%12:d.h,d.HH=(10>d.H?"0":"")+d.H,d.P=d.p.toUpperCase(),d.hh=(10>d.h?"0":"")+d.h,d.ii=(10>d.i?"0":"")+d.i,d.ss=(10>d.s?"0":"")+d.s,d.dd=(10>d.d?"0":"")+d.d,d.mm=(10>d.m?"0":"")+d.m;else if("php"==d)d={y:e.getUTCFullYear().toString().substring(2),Y:e.getUTCFullYear(),F:g[b].months[e.getUTCMonth()],M:g[b].monthsShort[e.getUTCMonth()],n:e.getUTCMonth()+1,t:c.getDaysInMonth(e.getUTCFullYear(),e.getUTCMonth()),j:e.getUTCDate(),
-l:g[b].days[e.getUTCDay()],D:g[b].daysShort[e.getUTCDay()],w:e.getUTCDay(),N:0==e.getUTCDay()?7:e.getUTCDay(),S:e.getUTCDate()%10<=g[b].suffix.length?g[b].suffix[e.getUTCDate()%10-1]:"",a:2==g[b].meridiem.length?g[b].meridiem[12>e.getUTCHours()?0:1]:"",g:0==e.getUTCHours()%12?12:e.getUTCHours()%12,G:e.getUTCHours(),i:e.getUTCMinutes(),s:e.getUTCSeconds()},d.m=(10>d.n?"0":"")+d.n,d.d=(10>d.j?"0":"")+d.j,d.A=d.a.toString().toUpperCase(),d.h=(10>d.g?"0":"")+d.g,d.H=(10>d.G?"0":"")+d.G,d.i=(10>d.i?"0":
-"")+d.i,d.s=(10>d.s?"0":"")+d.s;else throw Error("Invalid format type.");e=[];b=h.extend([],a.separators);for(var f=0,l=a.parts.length;f<l;f++)b.length&&e.push(b.shift()),e.push(d[a.parts[f]]);b.length&&e.push(b.shift());return e.join("")},convertViewMode:function(c){switch(c){case 4:case "decade":c=4;break;case 3:case "year":c=3;break;case 2:case "month":c=2;break;case 1:case "day":c=1;break;case 0:case "hour":c=0}return c},headTemplate:'\x3cthead\x3e\x3ctr\x3e\x3cth class\x3d"prev"\x3e\x3ci class\x3d"icon-arrow-left"/\x3e\x3c/th\x3e\x3cth colspan\x3d"5" class\x3d"switch"\x3e\x3c/th\x3e\x3cth class\x3d"next"\x3e\x3ci class\x3d"icon-arrow-right"/\x3e\x3c/th\x3e\x3c/tr\x3e\x3c/thead\x3e',
-headTemplateV3:'\x3cthead\x3e\x3ctr\x3e\x3cth class\x3d"prev"\x3e\x3ci class\x3d"glyphicon glyphicon-arrow-left"\x3e\x3c/i\x3e \x3c/th\x3e\x3cth colspan\x3d"5" class\x3d"switch"\x3e\x3c/th\x3e\x3cth class\x3d"next"\x3e\x3ci class\x3d"glyphicon glyphicon-arrow-right"\x3e\x3c/i\x3e \x3c/th\x3e\x3c/tr\x3e\x3c/thead\x3e',contTemplate:'\x3ctbody\x3e\x3ctr\x3e\x3ctd colspan\x3d"7"\x3e\x3c/td\x3e\x3c/tr\x3e\x3c/tbody\x3e',footTemplate:'\x3ctfoot\x3e\x3ctr\x3e\x3cth colspan\x3d"7" class\x3d"today"\x3e\x3c/th\x3e\x3c/tr\x3e\x3c/tfoot\x3e'};
-c.template='\x3cdiv class\x3d"datetimepicker"\x3e\x3cdiv class\x3d"datetimepicker-minutes"\x3e\x3ctable class\x3d" table-condensed"\x3e'+c.headTemplate+c.contTemplate+c.footTemplate+'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-hours"\x3e\x3ctable class\x3d" table-condensed"\x3e'+c.headTemplate+c.contTemplate+c.footTemplate+'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-days"\x3e\x3ctable class\x3d" table-condensed"\x3e'+c.headTemplate+"\x3ctbody\x3e\x3c/tbody\x3e"+c.footTemplate+
-'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-months"\x3e\x3ctable class\x3d"table-condensed"\x3e'+c.headTemplate+c.contTemplate+c.footTemplate+'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-years"\x3e\x3ctable class\x3d"table-condensed"\x3e'+c.headTemplate+c.contTemplate+c.footTemplate+"\x3c/table\x3e\x3c/div\x3e\x3c/div\x3e";c.templateV3='\x3cdiv class\x3d"datetimepicker"\x3e\x3cdiv class\x3d"datetimepicker-minutes"\x3e\x3ctable class\x3d" table-condensed"\x3e'+c.headTemplateV3+
-c.contTemplate+c.footTemplate+'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-hours"\x3e\x3ctable class\x3d" table-condensed"\x3e'+c.headTemplateV3+c.contTemplate+c.footTemplate+'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-days"\x3e\x3ctable class\x3d" table-condensed"\x3e'+c.headTemplateV3+"\x3ctbody\x3e\x3c/tbody\x3e"+c.footTemplate+'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-months"\x3e\x3ctable class\x3d"table-condensed"\x3e'+c.headTemplateV3+c.contTemplate+
-c.footTemplate+'\x3c/table\x3e\x3c/div\x3e\x3cdiv class\x3d"datetimepicker-years"\x3e\x3ctable class\x3d"table-condensed"\x3e'+c.headTemplateV3+c.contTemplate+c.footTemplate+"\x3c/table\x3e\x3c/div\x3e\x3c/div\x3e";h.fn.datetimepicker.DPGlobal=c;h.fn.datetimepicker.noConflict=function(){h.fn.datetimepicker=old;return this};h(document).on("focus.datetimepicker.data-api click.datetimepicker.data-api",'[data-provide\x3d"datetimepicker"]',function(c){var a=h(this);a.data("datetimepicker")||(c.preventDefault(),
-a.datetimepicker("show"))});h(function(){h('[data-provide\x3d"datetimepicker-inline"]').datetimepicker()})}(window.jQuery);
-(function(h){h.fn.datetimepicker.dates.de={days:"Sonntag Montag Dienstag Mittwoch Donnerstag Freitag Samstag Sonntag".split(" "),daysShort:"Son Mon Die Mit Don Fre Sam Son".split(" "),daysMin:"So Mo Di Mi Do Fr Sa So".split(" "),months:"Januar Februar März April Mai Juni Juli August September Oktober November Dezember".split(" "),monthsShort:"Jan Feb Mär Apr Mai Jun Jul Aug Sep Okt Nov Dez".split(" "),today:"Heute",suffix:[],meridiem:[],weekStart:1,format:"dd.mm.yyyy"}})(jQuery);
-var Mustache=function(){var h=function(){};h.prototype={otag:"{{",ctag:"}}",pragmas:{},buffer:[],pragmas_implemented:{"IMPLICIT-ITERATOR":!0,"TRANSLATION-HINT":!0},context:{},render:function(h,m,g,c){c||(this.context=m,this.buffer=[]);if(this.includes("",h)){this.pragmas["TRANSLATION-HINT"]&&(m._mode=this.pragmas["TRANSLATION-HINT"].mode);h=this.render_pragmas(h);h=this.render_i18n(h,m,g);var e=this.render_section(h,m,g);if(e===h){if(c)return this.render_tags(e,m,g,!0);this.render_tags(e,m,g,!1)}else{if(c)return e;
-h=e.split("\n");for(m=0;m<h.length;m++)this.send(h[m])}}else{if(c)return h;this.send(h)}},send:function(h){""!=h&&this.buffer.push(h)},render_pragmas:function(h){if(!this.includes("%",h))return h;var m=this;return h.replace(RegExp(this.otag+"%([\\w-]+) ?([\\w]+\x3d[\\w]+)?"+this.ctag),function(g,c,e){if(!m.pragmas_implemented[c])throw{message:"This implementation of mustache doesn't understand the '"+c+"' pragma"};m.pragmas[c]={};e&&(g=e.split("\x3d"),m.pragmas[c][g[0]]=g[1]);return""})},render_partial:function(h,
-m,g){h=this.trim(h);if(!g||void 0===g[h])throw{message:"unknown_partial '"+h+"'"};return"object"!=typeof m[h]?this.render(g[h],m,g,!0):this.render(g[h],m[h],g,!0)},render_i18n:function(h,m,g){if(-1==h.indexOf(this.otag+"_i"))return h;var c=this;return h.replace(RegExp(this.otag+"\\_i"+this.ctag+"\\s*([\\s\\S]+?)"+this.otag+"\\/i"+this.ctag,"mg"),function(e,a){var b=void 0;c.pragmas&&c.pragmas["TRANSLATION-HINT"]&&c.pragmas["TRANSLATION-HINT"].mode?b={_mode:c.pragmas["TRANSLATION-HINT"].mode}:m._mode&&
-(b={_mode:m._mode});return c.render(_(a,b),m,g,!0)})},render_section:function(h,m,g){if(!this.includes("#",h)&&!this.includes("^",h))return h;var c=this;return h.replace(RegExp("^([\\s\\S]*?)"+this.otag+"(\\^|\\#)\\s*(.+)\\s*"+this.ctag+"\n*([\\s\\S]*?)"+this.otag+"\\/\\s*\\3\\s*"+this.ctag+"\\s*([\\s\\S]*)$","g"),function(e,a,b,d,f,h){e=a?c.render_tags(a,m,g,!0):"";h=h?c.render(h,m,g,!0):"";d=c.find(d,m);if("^"==b)return!d||c.is_array(d)&&0===d.length?e+c.render(f,m,g,!0)+h:e+""+h;if("#"==b)return c.is_array(d)?
-e+c.map(d,function(a){return c.render(f,c.create_context(a),g,!0)}).join("")+h:c.is_object(d)?e+c.render(f,c.create_context(d),g,!0)+h:"function"===typeof d?e+d.call(m,f,function(a){return c.render(a,m,g,!0)})+h:d?e+c.render(f,m,g,!0)+h:e+""+h})},render_tags:function(h,m,g,c){var e=this,a=function(){return RegExp(e.otag+"(\x3d|!|\x3e|\\{|%)?([^\\/#\\^]+?)\\1?"+e.ctag+"+","g")},b=a(),d=function(c,d,f){switch(d){case "!":return"";case "\x3d":return e.set_delimiters(f),b=a(),"";case "\x3e":return e.render_partial(f,
-m,g);case "{":return e.find(f,m);default:return e.escape(e.find(f,m))}};h=h.split("\n");for(var f=0;f<h.length;f++)h[f]=h[f].replace(b,d,this),c||this.send(h[f]);if(c)return h.join("\n")},set_delimiters:function(h){h=h.split(" ");this.otag=this.escape_regex(h[0]);this.ctag=this.escape_regex(h[1])},escape_regex:function(h){arguments.callee.sRE||(arguments.callee.sRE=RegExp("(\\/|\\.|\\*|\\+|\\?|\\||\\(|\\)|\\[|\\]|\\{|\\}|\\\\)","g"));return h.replace(arguments.callee.sRE,"\\$1")},find:function(h,
-m){h=this.trim(h);var g;if(!1===m[h]||0===m[h]||m[h])g=m[h];else if(!1===this.context[h]||0===this.context[h]||this.context[h])g=this.context[h];return"function"===typeof g?g.apply(m):void 0!==g?g:""},includes:function(h,m){return-1!=m.indexOf(this.otag+h)},escape:function(h){h=String(null===h?"":h);return h.replace(/&(?!\w+;)|["'<>\\]/g,function(h){switch(h){case "\x26":return"\x26amp;";case "\\":return"\\\\";case '"':return"\x26quot;";case "'":return"\x26#39;";case "\x3c":return"\x26lt;";case "\x3e":return"\x26gt;";
-default:return h}})},create_context:function(h){if(this.is_object(h))return h;var m=".";this.pragmas["IMPLICIT-ITERATOR"]&&(m=this.pragmas["IMPLICIT-ITERATOR"].iterator);var g={};g[m]=h;return g},is_object:function(h){return h&&"object"==typeof h},is_array:function(h){return"[object Array]"===Object.prototype.toString.call(h)},trim:function(h){return h.replace(/^\s*|\s*$/g,"")},map:function(h,m){if("function"==typeof h.map)return h.map(m);for(var g=[],c=h.length,e=0;e<c;e++)g.push(m(h[e]));return g}};
-return{name:"mustache.js",version:"0.3.1-dev-twitter",to_html:function(l,m,g,c){var e=new h;c&&(e.send=c);e.render(l,m||{},g);if(!c)return e.buffer.join("\n")}}}();
-(function(h){function l(a,b,c){switch(arguments.length){case 2:return null!=a?a:b;case 3:return null!=a?a:null!=b?b:c;default:throw Error("Implement me");}}function m(){return{empty:!1,unusedTokens:[],unusedInput:[],overflow:-2,charsLeftOver:0,nullInput:!1,invalidMonth:null,invalidFormat:!1,userInvalidated:!1,iso:!1}}function g(a){!1===q.suppressDeprecationWarnings&&"undefined"!==typeof console&&console.warn&&console.warn("Deprecation warning: "+a)}function c(a,b){var c=!0;return n(function(){c&&
-(g(a),c=!1);return b.apply(this,arguments)},b)}function e(a,b){return function(c){return t(a.call(this,c),b)}}function a(a,b){return function(c){return this.localeData().ordinal(a.call(this,c),b)}}function b(){}function d(a,b){!1!==b&&xa(a);p(this,a);this._d=new Date(+a._d);!1===pa&&(pa=!0,q.updateOffset(this),pa=!1)}function f(a){a=la(a);var b=a.year||0,c=a.quarter||0,d=a.month||0,e=a.week||0,f=a.day||0;this._milliseconds=+(a.millisecond||0)+1E3*(a.second||0)+6E4*(a.minute||0)+36E5*(a.hour||0);this._days=
-+f+7*e;this._months=+d+3*c+12*b;this._data={};this._locale=q.localeData();this._bubble()}function n(a,b){for(var c in b)T.call(b,c)&&(a[c]=b[c]);T.call(b,"toString")&&(a.toString=b.toString);T.call(b,"valueOf")&&(a.valueOf=b.valueOf);return a}function p(a,b){var c,d,e;"undefined"!==typeof b._isAMomentObject&&(a._isAMomentObject=b._isAMomentObject);"undefined"!==typeof b._i&&(a._i=b._i);"undefined"!==typeof b._f&&(a._f=b._f);"undefined"!==typeof b._l&&(a._l=b._l);"undefined"!==typeof b._strict&&(a._strict=
-b._strict);"undefined"!==typeof b._tzm&&(a._tzm=b._tzm);"undefined"!==typeof b._isUTC&&(a._isUTC=b._isUTC);"undefined"!==typeof b._offset&&(a._offset=b._offset);"undefined"!==typeof b._pf&&(a._pf=b._pf);"undefined"!==typeof b._locale&&(a._locale=b._locale);if(0<ha.length)for(c in ha)d=ha[c],e=b[d],"undefined"!==typeof e&&(a[d]=e);return a}function y(a){return 0>a?Math.ceil(a):Math.floor(a)}function t(a,b,c){for(var d=""+Math.abs(a);d.length<b;)d="0"+d;return(0<=a?c?"+":"":"-")+d}function z(a,b){var c=
-{milliseconds:0,months:0};c.months=b.month()-a.month()+12*(b.year()-a.year());a.clone().add(c.months,"M").isAfter(b)&&--c.months;c.milliseconds=+b-+a.clone().add(c.months,"M");return c}function H(a,b){var c;b=Da(b,a);a.isBefore(b)?c=z(a,b):(c=z(b,a),c.milliseconds=-c.milliseconds,c.months=-c.months);return c}function D(a,b){return function(c,d){var e;null===d||isNaN(+d)||(ob[b]||(g("moment()."+b+"(period, number) is deprecated. Please use moment()."+b+"(number, period)."),ob[b]=!0),e=c,c=d,d=e);e=
-q.duration("string"===typeof c?+c:c,d);A(this,e,a);return this}}function A(a,b,c,d){var e=b._milliseconds,f=b._days;b=b._months;d=null==d?!0:d;e&&a._d.setTime(+a._d+e*c);f&&da(a,"Date",ga(a,"Date")+f*c);b&&w(a,ga(a,"Month")+b*c);d&&q.updateOffset(a,f||b)}function x(a){return"[object Array]"===Object.prototype.toString.call(a)}function F(a){return"[object Date]"===Object.prototype.toString.call(a)||a instanceof Date}function P(a,b,c){var d=Math.min(a.length,b.length),e=Math.abs(a.length-b.length),
-f=0,g;for(g=0;g<d;g++)(c&&a[g]!==b[g]||!c&&V(a[g])!==V(b[g]))&&f++;return f+e}function v(a){if(a){var b=a.toLowerCase().replace(/(.)s$/,"$1");a=sb[a]||tb[b]||b}return a}function la(a){var b={},c,d;for(d in a)T.call(a,d)&&(c=v(d))&&(b[c]=a[d]);return b}function ka(a){var b,c;if(0===a.indexOf("week"))b=7,c="day";else if(0===a.indexOf("month"))b=12,c="month";else return;q[a]=function(d,e){var f,g,k=q._locale[a],l=[];"number"===typeof d&&(e=d,d=h);g=function(a){a=q().utc().set(c,a);return k.call(q._locale,
-a,d||"")};if(null!=e)return g(e);for(f=0;f<b;f++)l.push(g(f));return l}}function V(a){a=+a;var b=0;0!==a&&isFinite(a)&&(b=0<=a?Math.floor(a):Math.ceil(a));return b}function ja(a,b){return(new Date(Date.UTC(a,b+1,0))).getUTCDate()}function Na(a,b,c){return W(q([a,11,31+b-c]),b,c).week}function Ca(a){return 0===a%4&&0!==a%100||0===a%400}function xa(a){var b;a._a&&-2===a._pf.overflow&&(b=0>a._a[ea]||11<a._a[ea]?ea:1>a._a[X]||a._a[X]>ja(a._a[ba],a._a[ea])?X:0>a._a[fa]||24<a._a[fa]||24===a._a[fa]&&(0!==
-a._a[ra]||0!==a._a[ia]||0!==a._a[ua])?fa:0>a._a[ra]||59<a._a[ra]?ra:0>a._a[ia]||59<a._a[ia]?ia:0>a._a[ua]||999<a._a[ua]?ua:-1,a._pf._overflowDayOfYear&&(b<ba||b>X)&&(b=X),a._pf.overflow=b)}function qa(a){null==a._isValid&&(a._isValid=!isNaN(a._d.getTime())&&0>a._pf.overflow&&!a._pf.empty&&!a._pf.invalidMonth&&!a._pf.nullInput&&!a._pf.invalidFormat&&!a._pf.userInvalidated,a._strict&&(a._isValid=a._isValid&&0===a._pf.charsLeftOver&&0===a._pf.unusedTokens.length&&a._pf.bigHour===h));return a._isValid}
-function Oa(a){var b=null;if(!ya[a]&&Va)try{b=q.locale(),require("./locale/"+a),q.locale(b)}catch(c){}return ya[a]}function Da(a,b){var c,d;return b._isUTC?(c=b.clone(),d=(q.isMoment(a)||F(a)?+a:+q(a))-+c,c._d.setTime(+c._d+d),q.updateOffset(c,!1),c):q(a).local()}function Ia(a){var b=a.match(za),c,d;c=0;for(d=b.length;c<d;c++)b[c]=Ba[b[c]]?Ba[b[c]]:b[c].match(/\[[\s\S]/)?b[c].replace(/^\[|\]$/g,""):b[c].replace(/\\/g,"");return function(e){var f="";for(c=0;c<d;c++)f+=b[c]instanceof Function?b[c].call(e,
-a):b[c];return f}}function Ea(a,b){if(!a.isValid())return a.localeData().invalidDate();b=Fa(b,a.localeData());kb[b]||(kb[b]=Ia(b));return kb[b](a)}function Fa(a,b){function c(a){return b.longDateFormat(a)||a}var d=5;for(Aa.lastIndex=0;0<=d&&Aa.test(a);)a=a.replace(Aa,c),Aa.lastIndex=0,d-=1;return a}function ta(a,b){var c=b._strict;switch(a){case "Q":return fb;case "DDDD":return mb;case "YYYY":case "GGGG":case "gggg":return c?Db:zb;case "Y":case "G":case "g":return Eb;case "YYYYYY":case "YYYYY":case "GGGGG":case "ggggg":return c?
-rb:Ab;case "S":if(c)return fb;case "SS":if(c)return gb;case "SSS":if(c)return mb;case "DDD":return yb;case "MMM":case "MMMM":case "dd":case "ddd":case "dddd":return Pa;case "a":case "A":return b._locale._meridiemParse;case "x":return Bb;case "X":return Cb;case "Z":case "ZZ":return Sa;case "T":return eb;case "SSSS":return db;case "MM":case "DD":case "YY":case "GG":case "gg":case "HH":case "hh":case "mm":case "ss":case "ww":case "WW":return c?gb:Ra;case "M":case "D":case "d":case "H":case "h":case "m":case "s":case "w":case "W":case "e":case "E":return Ra;
-case "Do":return c?b._locale._ordinalParse:b._locale._ordinalParseLenient;default:var c=RegExp,d;d=Ja(a.replace("\\","")).replace(/[-\/\\^$*+?.()|[\]{}]/g,"\\$\x26");return new c(d)}}function Z(a){a=(a||"").match(Sa)||[];a=((a[a.length-1]||[])+"").match(ib)||["-",0,0];var b=+(60*a[1])+V(a[2]);return"+"===a[0]?b:-b}function ma(a){var b,c,d=[],e;if(!a._d){e=new Date;e=a._useUTC?[e.getUTCFullYear(),e.getUTCMonth(),e.getUTCDate()]:[e.getFullYear(),e.getMonth(),e.getDate()];if(a._w&&null==a._a[X]&&null==
-a._a[ea]){var f,g,h;f=a._w;null!=f.GG||null!=f.W||null!=f.E?(b=1,h=4,c=l(f.GG,a._a[ba],W(q(),1,4).year),g=l(f.W,1),f=l(f.E,1)):(b=a._locale._week.dow,h=a._locale._week.doy,c=l(f.gg,a._a[ba],W(q(),b,h).year),g=l(f.w,1),null!=f.d?(f=f.d,f<b&&++g):f=null!=f.e?f.e+b:b);var k=R(c,0,1).getUTCDay(),k=0===k?7:k;h=7*(g-1)+((null!=f?f:b)-b)+(b-k+(k>h?7:0)-(k<b?7:0))+1;b=0<h?c:c-1;c=0<h?h:(Ca(c-1)?366:365)+h;a._a[ba]=b;a._dayOfYear=c}a._dayOfYear&&(c=l(a._a[ba],e[ba]),a._dayOfYear>(Ca(c)?366:365)&&(a._pf._overflowDayOfYear=
-!0),c=R(c,0,a._dayOfYear),a._a[ea]=c.getUTCMonth(),a._a[X]=c.getUTCDate());for(c=0;3>c&&null==a._a[c];++c)a._a[c]=d[c]=e[c];for(;7>c;c++)a._a[c]=d[c]=null==a._a[c]?2===c?1:0:a._a[c];24===a._a[fa]&&0===a._a[ra]&&0===a._a[ia]&&0===a._a[ua]&&(a._nextDay=!0,a._a[fa]=0);a._d=(a._useUTC?R:K).apply(null,d);null!=a._tzm&&a._d.setUTCMinutes(a._d.getUTCMinutes()-a._tzm);a._nextDay&&(a._a[fa]=24)}}function $(a){var b;a._d||(b=la(a._i),a._a=[b.year,b.month,b.day||b.date,b.hour,b.minute,b.second,b.millisecond],
-ma(a))}function J(a){if(a._f===q.ISO_8601)na(a);else{a._a=[];a._pf.empty=!0;var b=""+a._i,c,d,e,f,g,k=b.length,l=0;e=Fa(a._f,a._locale).match(za)||[];for(c=0;c<e.length;c++){f=e[c];if(d=(b.match(ta(f,a))||[])[0])g=b.substr(0,b.indexOf(d)),0<g.length&&a._pf.unusedInput.push(g),b=b.slice(b.indexOf(d)+d.length),l+=d.length;if(Ba[f]){d?a._pf.empty=!1:a._pf.unusedTokens.push(f);g=a;var m=void 0,n=g._a;switch(f){case "Q":null!=d&&(n[ea]=3*(V(d)-1));break;case "M":case "MM":null!=d&&(n[ea]=V(d)-1);break;
-case "MMM":case "MMMM":m=g._locale.monthsParse(d,f,g._strict);null!=m?n[ea]=m:g._pf.invalidMonth=d;break;case "D":case "DD":null!=d&&(n[X]=V(d));break;case "Do":null!=d&&(n[X]=V(parseInt(d.match(/\d{1,2}/)[0],10)));break;case "DDD":case "DDDD":null!=d&&(g._dayOfYear=V(d));break;case "YY":n[ba]=q.parseTwoDigitYear(d);break;case "YYYY":case "YYYYY":case "YYYYYY":n[ba]=V(d);break;case "a":case "A":g._meridiem=d;break;case "h":case "hh":g._pf.bigHour=!0;case "H":case "HH":n[fa]=V(d);break;case "m":case "mm":n[ra]=
-V(d);break;case "s":case "ss":n[ia]=V(d);break;case "S":case "SS":case "SSS":case "SSSS":n[ua]=V(1E3*("0."+d));break;case "x":g._d=new Date(V(d));break;case "X":g._d=new Date(1E3*parseFloat(d));break;case "Z":case "ZZ":g._useUTC=!0;g._tzm=Z(d);break;case "dd":case "ddd":case "dddd":m=g._locale.weekdaysParse(d);null!=m?(g._w=g._w||{},g._w.d=m):g._pf.invalidWeekday=d;break;case "w":case "ww":case "W":case "WW":case "d":case "e":case "E":f=f.substr(0,1);case "gggg":case "GGGG":case "GGGGG":f=f.substr(0,
-2);d&&(g._w=g._w||{},g._w[f]=V(d));break;case "gg":case "GG":g._w=g._w||{},g._w[f]=q.parseTwoDigitYear(d)}}else a._strict&&!d&&a._pf.unusedTokens.push(f)}a._pf.charsLeftOver=k-l;0<b.length&&a._pf.unusedInput.push(b);!0===a._pf.bigHour&&12>=a._a[fa]&&(a._pf.bigHour=h);b=a._a;c=fa;k=a._locale;e=a._a[fa];l=a._meridiem;null!=l&&(null!=k.meridiemHour?e=k.meridiemHour(e,l):null!=k.isPM&&((k=k.isPM(l))&&12>e&&(e+=12),k||12!==e||(e=0)));b[c]=e;ma(a);xa(a)}}function Ja(a){return a.replace(/\\(\[)|\\(\])|\[([^\]\[]*)\]|\\(.)/g,
-function(a,b,c,d,e){return b||c||d||e})}function na(a){var b,c,d=a._i,e=nb.exec(d);if(e){a._pf.iso=!0;b=0;for(c=hb.length;b<c;b++)if(hb[b][1].exec(d)){a._f=hb[b][0]+(e[6]||" ");break}b=0;for(c=$a.length;b<c;b++)if($a[b][1].exec(d)){a._f+=$a[b][0];break}d.match(Sa)&&(a._f+="Z");J(a)}else a._isValid=!1}function O(a){na(a);!1===a._isValid&&(delete a._isValid,q.createFromInputFallback(a))}function s(a,b){var c=[],d;for(d=0;d<a.length;++d)c.push(b(a[d],d));return c}function M(a){var b=a._i,c;b===h?a._d=
-new Date:F(b)?a._d=new Date(+b):null!==(c=sa.exec(b))?a._d=new Date(+c[1]):"string"===typeof b?O(a):x(b)?(a._a=s(b.slice(0),function(a){return parseInt(a,10)}),ma(a)):"object"===typeof b?$(a):"number"===typeof b?a._d=new Date(b):q.createFromInputFallback(a)}function K(a,b,c,d,e,f,g){b=new Date(a,b,c,d,e,f,g);1970>a&&b.setFullYear(a);return b}function R(a){var b=new Date(Date.UTC.apply(null,arguments));1970>a&&b.setUTCFullYear(a);return b}function u(a,b,c,d,e){return e.relativeTime(b||1,!!c,a,d)}function W(a,
-b,c){b=c-b;c-=a.day();c>b&&(c-=7);c<b-7&&(c+=7);a=q(a).add(c,"d");return{week:Math.ceil(a.dayOfYear()/7),year:a.year()}}function ca(a){var b=a._i,c=a._f;a._locale=a._locale||q.localeData(a._l);if(null===b||c===h&&""===b)return q.invalid({nullInput:!0});"string"===typeof b&&(a._i=b=a._locale.preparse(b));if(q.isMoment(b))return new d(b,!0);if(c)if(x(c)){var e,f,g;if(0===a._f.length)a._pf.invalidFormat=!0,a._d=new Date(NaN);else{for(b=0;b<a._f.length;b++)if(c=0,e=p({},a),null!=a._useUTC&&(e._useUTC=
-a._useUTC),e._pf=m(),e._f=a._f[b],J(e),qa(e)&&(c+=e._pf.charsLeftOver,c+=10*e._pf.unusedTokens.length,e._pf.score=c,null==g||c<g))g=c,f=e;n(a,f||e)}}else J(a);else M(a);a=new d(a);a._nextDay&&(a.add(1,"d"),a._nextDay=h);return a}function aa(a,b){var c,d;1===b.length&&x(b[0])&&(b=b[0]);if(!b.length)return q();c=b[0];for(d=1;d<b.length;++d)b[d][a](c)&&(c=b[d]);return c}function w(a,b){var c;if("string"===typeof b&&(b=a.localeData().monthsParse(b),"number"!==typeof b))return a;c=Math.min(a.date(),ja(a.year(),
-b));a._d["set"+(a._isUTC?"UTC":"")+"Month"](b,c);return a}function ga(a,b){return a._d["get"+(a._isUTC?"UTC":"")+b]()}function da(a,b,c){return"Month"===b?w(a,c):a._d["set"+(a._isUTC?"UTC":"")+b](c)}function G(a,b){return function(c){return null!=c?(da(this,a,c),q.updateOffset(this,b),this):ga(this,a)}}function Y(a){q.duration.fn[a]=function(){return this._data[a]}}function B(a){"undefined"===typeof ender&&(oa=k.moment,k.moment=a?c("Accessing Moment through the global scope is deprecated, and will be removed in an upcoming release.",
-q):q)}for(var q,k="undefined"===typeof global||"undefined"!==typeof window&&window!==global.window?this:global,oa,U=Math.round,T=Object.prototype.hasOwnProperty,Q,ba=0,ea=1,X=2,fa=3,ra=4,ia=5,ua=6,ya={},ha=[],Va="undefined"!==typeof module&&module&&module.exports,sa=/^\/?Date\((\-?\d+)/i,Ha=/(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/,bb=/^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/,za=/(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g,
-Aa=/(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g,Ra=/\d\d?/,yb=/\d{1,3}/,zb=/\d{1,4}/,Ab=/[+\-]?\d{1,6}/,db=/\d+/,Pa=/[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i,Sa=/Z|[\+\-]\d\d:?\d\d/gi,eb=/T/i,Bb=/[\+\-]?\d+/,Cb=/[\+\-]?\d+(\.\d{1,3})?/,fb=/\d/,gb=/\d\d/,mb=/\d{3}/,Db=/\d{4}/,rb=/[+-]?\d{6}/,Eb=/[+-]?\d+/,nb=/^\s*(?:[+-]\d{6}|\d{4})-(?:(\d\d-\d\d)|(W\d\d$)|(W\d\d-\d)|(\d\d\d))((T| )(\d\d(:\d\d(:\d\d(\.\d+)?)?)?)?([\+\-]\d\d(?::?\d\d)?|\s*Z)?)?$/,
-hb=[["YYYYYY-MM-DD",/[+-]\d{6}-\d{2}-\d{2}/],["YYYY-MM-DD",/\d{4}-\d{2}-\d{2}/],["GGGG-[W]WW-E",/\d{4}-W\d{2}-\d/],["GGGG-[W]WW",/\d{4}-W\d{2}/],["YYYY-DDD",/\d{4}-\d{3}/]],$a=[["HH:mm:ss.SSSS",/(T| )\d\d:\d\d:\d\d\.\d+/],["HH:mm:ss",/(T| )\d\d:\d\d:\d\d/],["HH:mm",/(T| )\d\d:\d\d/],["HH",/(T| )\d\d/]],ib=/([\+\-]|\d\d)/gi,jb={Milliseconds:1,Seconds:1E3,Minutes:6E4,Hours:36E5,Days:864E5,Months:2592E6,Years:31536E6},sb={ms:"millisecond",s:"second",m:"minute",h:"hour",d:"day",D:"date",w:"week",W:"isoWeek",
-M:"month",Q:"quarter",y:"year",DDD:"dayOfYear",e:"weekday",E:"isoWeekday",gg:"weekYear",GG:"isoWeekYear"},tb={dayofyear:"dayOfYear",isoweekday:"isoWeekday",isoweek:"isoWeek",weekyear:"weekYear",isoweekyear:"isoWeekYear"},kb={},Ka={s:45,m:45,h:22,d:26,M:11},Ya="DDD w W M D d".split(" "),ub="MDHhmswW".split(""),Ba={M:function(){return this.month()+1},MMM:function(a){return this.localeData().monthsShort(this,a)},MMMM:function(a){return this.localeData().months(this,a)},D:function(){return this.date()},
-DDD:function(){return this.dayOfYear()},d:function(){return this.day()},dd:function(a){return this.localeData().weekdaysMin(this,a)},ddd:function(a){return this.localeData().weekdaysShort(this,a)},dddd:function(a){return this.localeData().weekdays(this,a)},w:function(){return this.week()},W:function(){return this.isoWeek()},YY:function(){return t(this.year()%100,2)},YYYY:function(){return t(this.year(),4)},YYYYY:function(){return t(this.year(),5)},YYYYYY:function(){var a=this.year();return(0<=a?"+":
-"-")+t(Math.abs(a),6)},gg:function(){return t(this.weekYear()%100,2)},gggg:function(){return t(this.weekYear(),4)},ggggg:function(){return t(this.weekYear(),5)},GG:function(){return t(this.isoWeekYear()%100,2)},GGGG:function(){return t(this.isoWeekYear(),4)},GGGGG:function(){return t(this.isoWeekYear(),5)},e:function(){return this.weekday()},E:function(){return this.isoWeekday()},a:function(){return this.localeData().meridiem(this.hours(),this.minutes(),!0)},A:function(){return this.localeData().meridiem(this.hours(),
-this.minutes(),!1)},H:function(){return this.hours()},h:function(){return this.hours()%12||12},m:function(){return this.minutes()},s:function(){return this.seconds()},S:function(){return V(this.milliseconds()/100)},SS:function(){return t(V(this.milliseconds()/10),2)},SSS:function(){return t(this.milliseconds(),3)},SSSS:function(){return t(this.milliseconds(),3)},Z:function(){var a=this.utcOffset(),b="+";0>a&&(a=-a,b="-");return b+t(V(a/60),2)+":"+t(V(a)%60,2)},ZZ:function(){var a=this.utcOffset(),
-b="+";0>a&&(a=-a,b="-");return b+t(V(a/60),2)+t(V(a)%60,2)},z:function(){return this.zoneAbbr()},zz:function(){return this.zoneName()},x:function(){return this.valueOf()},X:function(){return this.unix()},Q:function(){return this.quarter()}},ob={},vb=["months","monthsShort","weekdays","weekdaysShort","weekdaysMin"],pa=!1;Ya.length;)Q=Ya.pop(),Ba[Q+"o"]=a(Ba[Q],Q);for(;ub.length;)Q=ub.pop(),Ba[Q+Q]=e(Ba[Q],2);Ba.DDDD=e(Ba.DDD,3);n(b.prototype,{set:function(a){var b,c;for(c in a)b=a[c],"function"===
-typeof b?this[c]=b:this["_"+c]=b;this._ordinalParseLenient=RegExp(this._ordinalParse.source+"|"+/\d{1,2}/.source)},_months:"January February March April May June July August September October November December".split(" "),months:function(a){return this._months[a.month()]},_monthsShort:"Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" "),monthsShort:function(a){return this._monthsShort[a.month()]},monthsParse:function(a,b,c){var d,e;this._monthsParse||(this._monthsParse=[],this._longMonthsParse=
-[],this._shortMonthsParse=[]);for(d=0;12>d;d++)if(e=q.utc([2E3,d]),c&&!this._longMonthsParse[d]&&(this._longMonthsParse[d]=RegExp("^"+this.months(e,"").replace(".","")+"$","i"),this._shortMonthsParse[d]=RegExp("^"+this.monthsShort(e,"").replace(".","")+"$","i")),c||this._monthsParse[d]||(e="^"+this.months(e,"")+"|^"+this.monthsShort(e,""),this._monthsParse[d]=RegExp(e.replace(".",""),"i")),c&&"MMMM"===b&&this._longMonthsParse[d].test(a)||c&&"MMM"===b&&this._shortMonthsParse[d].test(a)||!c&&this._monthsParse[d].test(a))return d},
-_weekdays:"Sunday Monday Tuesday Wednesday Thursday Friday Saturday".split(" "),weekdays:function(a){return this._weekdays[a.day()]},_weekdaysShort:"Sun Mon Tue Wed Thu Fri Sat".split(" "),weekdaysShort:function(a){return this._weekdaysShort[a.day()]},_weekdaysMin:"Su Mo Tu We Th Fr Sa".split(" "),weekdaysMin:function(a){return this._weekdaysMin[a.day()]},weekdaysParse:function(a){var b,c;this._weekdaysParse||(this._weekdaysParse=[]);for(b=0;7>b;b++)if(this._weekdaysParse[b]||(c=q([2E3,1]).day(b),
-c="^"+this.weekdays(c,"")+"|^"+this.weekdaysShort(c,"")+"|^"+this.weekdaysMin(c,""),this._weekdaysParse[b]=RegExp(c.replace(".",""),"i")),this._weekdaysParse[b].test(a))return b},_longDateFormat:{LTS:"h:mm:ss A",LT:"h:mm A",L:"MM/DD/YYYY",LL:"MMMM D, YYYY",LLL:"MMMM D, YYYY LT",LLLL:"dddd, MMMM D, YYYY LT"},longDateFormat:function(a){var b=this._longDateFormat[a];!b&&this._longDateFormat[a.toUpperCase()]&&(b=this._longDateFormat[a.toUpperCase()].replace(/MMMM|MM|DD|dddd/g,function(a){return a.slice(1)}),
-this._longDateFormat[a]=b);return b},isPM:function(a){return"p"===(a+"").toLowerCase().charAt(0)},_meridiemParse:/[ap]\.?m?\.?/i,meridiem:function(a,b,c){return 11<a?c?"pm":"PM":c?"am":"AM"},_calendar:{sameDay:"[Today at] LT",nextDay:"[Tomorrow at] LT",nextWeek:"dddd [at] LT",lastDay:"[Yesterday at] LT",lastWeek:"[Last] dddd [at] LT",sameElse:"L"},calendar:function(a,b,c){a=this._calendar[a];return"function"===typeof a?a.apply(b,[c]):a},_relativeTime:{future:"in %s",past:"%s ago",s:"a few seconds",
-m:"a minute",mm:"%d minutes",h:"an hour",hh:"%d hours",d:"a day",dd:"%d days",M:"a month",MM:"%d months",y:"a year",yy:"%d years"},relativeTime:function(a,b,c,d){var e=this._relativeTime[c];return"function"===typeof e?e(a,b,c,d):e.replace(/%d/i,a)},pastFuture:function(a,b){var c=this._relativeTime[0<a?"future":"past"];return"function"===typeof c?c(b):c.replace(/%s/i,b)},ordinal:function(a){return this._ordinal.replace("%d",a)},_ordinal:"%d",_ordinalParse:/\d{1,2}/,preparse:function(a){return a},postformat:function(a){return a},
-week:function(a){return W(a,this._week.dow,this._week.doy).week},_week:{dow:0,doy:6},firstDayOfWeek:function(){return this._week.dow},firstDayOfYear:function(){return this._week.doy},_invalidDate:"Invalid date",invalidDate:function(){return this._invalidDate}});q=function(a,b,c,d){var e;"boolean"===typeof c&&(d=c,c=h);e={_isAMomentObject:!0};e._i=a;e._f=b;e._l=c;e._strict=d;e._isUTC=!1;e._pf=m();return ca(e)};q.suppressDeprecationWarnings=!1;q.createFromInputFallback=c("moment construction falls back to js Date. This is discouraged and will be removed in upcoming major release. Please refer to https://github.com/moment/moment/issues/1407 for more info.",
-function(a){a._d=new Date(a._i+(a._useUTC?" UTC":""))});q.min=function(){var a=[].slice.call(arguments,0);return aa("isBefore",a)};q.max=function(){var a=[].slice.call(arguments,0);return aa("isAfter",a)};q.utc=function(a,b,c,d){var e;"boolean"===typeof c&&(d=c,c=h);e={_isAMomentObject:!0,_useUTC:!0,_isUTC:!0};e._l=c;e._i=a;e._f=b;e._strict=d;e._pf=m();return ca(e).utc()};q.unix=function(a){return q(1E3*a)};q.duration=function(a,b){var c=a,d=null,e;q.isDuration(a)?c={ms:a._milliseconds,d:a._days,
-M:a._months}:"number"===typeof a?(c={},b?c[b]=a:c.milliseconds=a):(d=Ha.exec(a))?(e="-"===d[1]?-1:1,c={y:0,d:V(d[X])*e,h:V(d[fa])*e,m:V(d[ra])*e,s:V(d[ia])*e,ms:V(d[ua])*e}):(d=bb.exec(a))?(e="-"===d[1]?-1:1,c=function(a){a=a&&parseFloat(a.replace(",","."));return(isNaN(a)?0:a)*e},c={y:c(d[2]),M:c(d[3]),d:c(d[4]),h:c(d[5]),m:c(d[6]),s:c(d[7]),w:c(d[8])}):null==c?c={}:"object"===typeof c&&("from"in c||"to"in c)&&(d=H(q(c.from),q(c.to)),c={},c.ms=d.milliseconds,c.M=d.months);c=new f(c);q.isDuration(a)&&
-T.call(a,"_locale")&&(c._locale=a._locale);return c};q.version="2.9.0";q.defaultFormat="YYYY-MM-DDTHH:mm:ssZ";q.ISO_8601=function(){};q.momentProperties=ha;q.updateOffset=function(){};q.relativeTimeThreshold=function(a,b){if(Ka[a]===h)return!1;if(b===h)return Ka[a];Ka[a]=b;return!0};q.lang=c("moment.lang is deprecated. Use moment.locale instead.",function(a,b){return q.locale(a,b)});q.locale=function(a,b){var c;a&&(c="undefined"!==typeof b?q.defineLocale(a,b):q.localeData(a))&&(q.duration._locale=
-q._locale=c);return q._locale._abbr};q.defineLocale=function(a,c){if(null!==c)return c.abbr=a,ya[a]||(ya[a]=new b),ya[a].set(c),q.locale(a),ya[a];delete ya[a];return null};q.langData=c("moment.langData is deprecated. Use moment.localeData instead.",function(a){return q.localeData(a)});q.localeData=function(a){var b;a&&a._locale&&a._locale._abbr&&(a=a._locale._abbr);if(!a)return q._locale;if(!x(a)){if(b=Oa(a))return b;a=[a]}a:{b=0;for(var c,d,e,f;b<a.length;){f=(a[b]?a[b].toLowerCase().replace("_",
-"-"):a[b]).split("-");c=f.length;for(d=(d=a[b+1]?a[b+1].toLowerCase().replace("_","-"):a[b+1])?d.split("-"):null;0<c;){if(e=Oa(f.slice(0,c).join("-"))){a=e;break a}if(d&&d.length>=c&&P(f,d,!0)>=c-1)break;c--}b++}a=null}return a};q.isMoment=function(a){return a instanceof d||null!=a&&T.call(a,"_isAMomentObject")};q.isDuration=function(a){return a instanceof f};for(Q=vb.length-1;0<=Q;--Q)ka(vb[Q]);q.normalizeUnits=function(a){return v(a)};q.invalid=function(a){var b=q.utc(NaN);null!=a?n(b._pf,a):b._pf.userInvalidated=
-!0;return b};q.parseZone=function(){return q.apply(null,arguments).parseZone()};q.parseTwoDigitYear=function(a){return V(a)+(68<V(a)?1900:2E3)};q.isDate=F;n(q.fn=d.prototype,{clone:function(){return q(this)},valueOf:function(){return+this._d-6E4*(this._offset||0)},unix:function(){return Math.floor(+this/1E3)},toString:function(){return this.clone().locale("en").format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ")},toDate:function(){return this._offset?new Date(+this):this._d},toISOString:function(){var a=q(this).utc();
-return 0<a.year()&&9999>=a.year()?"function"===typeof Date.prototype.toISOString?this.toDate().toISOString():Ea(a,"YYYY-MM-DD[T]HH:mm:ss.SSS[Z]"):Ea(a,"YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]")},toArray:function(){return[this.year(),this.month(),this.date(),this.hours(),this.minutes(),this.seconds(),this.milliseconds()]},isValid:function(){return qa(this)},isDSTShifted:function(){return this._a?this.isValid()&&0<P(this._a,(this._isUTC?q.utc(this._a):q(this._a)).toArray()):!1},parsingFlags:function(){return n({},
-this._pf)},invalidAt:function(){return this._pf.overflow},utc:function(a){return this.utcOffset(0,a)},local:function(a){this._isUTC&&(this.utcOffset(0,a),this._isUTC=!1,a&&this.subtract(this._dateUtcOffset(),"m"));return this},format:function(a){a=Ea(this,a||q.defaultFormat);return this.localeData().postformat(a)},add:D(1,"add"),subtract:D(-1,"subtract"),diff:function(a,b,c){a=Da(a,this);var d=6E4*(a.utcOffset()-this.utcOffset());b=v(b);if("year"===b||"month"===b||"quarter"===b){var d=12*(a.year()-
-this.year())+(a.month()-this.month()),e=this.clone().add(d,"months"),f;0>a-e?(f=this.clone().add(d-1,"months"),a=(a-e)/(e-f)):(f=this.clone().add(d+1,"months"),a=(a-e)/(f-e));a=-(d+a);"quarter"===b?a/=3:"year"===b&&(a/=12)}else a=this-a,a="second"===b?a/1E3:"minute"===b?a/6E4:"hour"===b?a/36E5:"day"===b?(a-d)/864E5:"week"===b?(a-d)/6048E5:a;return c?a:y(a)},from:function(a,b){return q.duration({to:this,from:a}).locale(this.locale()).humanize(!b)},fromNow:function(a){return this.from(q(),a)},calendar:function(a){a=
-a||q();var b=Da(a,this).startOf("day"),b=this.diff(b,"days",!0),b=-6>b?"sameElse":-1>b?"lastWeek":0>b?"lastDay":1>b?"sameDay":2>b?"nextDay":7>b?"nextWeek":"sameElse";return this.format(this.localeData().calendar(b,this,q(a)))},isLeapYear:function(){return Ca(this.year())},isDST:function(){return this.utcOffset()>this.clone().month(0).utcOffset()||this.utcOffset()>this.clone().month(5).utcOffset()},day:function(a){var b=this._isUTC?this._d.getUTCDay():this._d.getDay();if(null!=a){a:{var c=this.localeData();
-if("string"===typeof a)if(isNaN(a)){if(a=c.weekdaysParse(a),"number"!==typeof a){a=null;break a}}else a=parseInt(a,10)}return this.add(a-b,"d")}return b},month:G("Month",!0),startOf:function(a){a=v(a);switch(a){case "year":this.month(0);case "quarter":case "month":this.date(1);case "week":case "isoWeek":case "day":this.hours(0);case "hour":this.minutes(0);case "minute":this.seconds(0);case "second":this.milliseconds(0)}"week"===a?this.weekday(0):"isoWeek"===a&&this.isoWeekday(1);"quarter"===a&&this.month(3*
-Math.floor(this.month()/3));return this},endOf:function(a){a=v(a);return a===h||"millisecond"===a?this:this.startOf(a).add(1,"isoWeek"===a?"week":a).subtract(1,"ms")},isAfter:function(a,b){b=v("undefined"!==typeof b?b:"millisecond");return"millisecond"===b?(a=q.isMoment(a)?a:q(a),+this>+a):(q.isMoment(a)?+a:+q(a))<+this.clone().startOf(b)},isBefore:function(a,b){var c;b=v("undefined"!==typeof b?b:"millisecond");if("millisecond"===b)return a=q.isMoment(a)?a:q(a),+this<+a;c=q.isMoment(a)?+a:+q(a);return+this.clone().endOf(b)<
-c},isBetween:function(a,b,c){return this.isAfter(a,c)&&this.isBefore(b,c)},isSame:function(a,b){var c;b=v(b||"millisecond");if("millisecond"===b)return a=q.isMoment(a)?a:q(a),+this===+a;c=+q(a);return+this.clone().startOf(b)<=c&&c<=+this.clone().endOf(b)},min:c("moment().min is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548",function(a){a=q.apply(null,arguments);return a<this?this:a}),max:c("moment().max is deprecated, use moment.max instead. https://github.com/moment/moment/issues/1548",
-function(a){a=q.apply(null,arguments);return a>this?this:a}),zone:c("moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779",function(a,b){return null!=a?("string"!==typeof a&&(a=-a),this.utcOffset(a,b),this):-this.utcOffset()}),utcOffset:function(a,b){var c=this._offset||0,d;return null!=a?("string"===typeof a&&(a=Z(a)),16>Math.abs(a)&&(a*=60),!this._isUTC&&b&&(d=this._dateUtcOffset()),this._offset=a,this._isUTC=!0,null!=d&&this.add(d,"m"),c!==a&&
-(!b||this._changeInProgress?A(this,q.duration(a-c,"m"),1,!1):this._changeInProgress||(this._changeInProgress=!0,q.updateOffset(this,!0),this._changeInProgress=null)),this):this._isUTC?c:this._dateUtcOffset()},isLocal:function(){return!this._isUTC},isUtcOffset:function(){return this._isUTC},isUtc:function(){return this._isUTC&&0===this._offset},zoneAbbr:function(){return this._isUTC?"UTC":""},zoneName:function(){return this._isUTC?"Coordinated Universal Time":""},parseZone:function(){this._tzm?this.utcOffset(this._tzm):
-"string"===typeof this._i&&this.utcOffset(Z(this._i));return this},hasAlignedHourOffset:function(a){a=a?q(a).utcOffset():0;return 0===(this.utcOffset()-a)%60},daysInMonth:function(){return ja(this.year(),this.month())},dayOfYear:function(a){var b=U((q(this).startOf("day")-q(this).startOf("year"))/864E5)+1;return null==a?b:this.add(a-b,"d")},quarter:function(a){return null==a?Math.ceil((this.month()+1)/3):this.month(3*(a-1)+this.month()%3)},weekYear:function(a){var b=W(this,this.localeData()._week.dow,
-this.localeData()._week.doy).year;return null==a?b:this.add(a-b,"y")},isoWeekYear:function(a){var b=W(this,1,4).year;return null==a?b:this.add(a-b,"y")},week:function(a){var b=this.localeData().week(this);return null==a?b:this.add(7*(a-b),"d")},isoWeek:function(a){var b=W(this,1,4).week;return null==a?b:this.add(7*(a-b),"d")},weekday:function(a){var b=(this.day()+7-this.localeData()._week.dow)%7;return null==a?b:this.add(a-b,"d")},isoWeekday:function(a){return null==a?this.day()||7:this.day(this.day()%
-7?a:a-7)},isoWeeksInYear:function(){return Na(this.year(),1,4)},weeksInYear:function(){var a=this.localeData()._week;return Na(this.year(),a.dow,a.doy)},get:function(a){a=v(a);return this[a]()},set:function(a,b){var c;if("object"===typeof a)for(c in a)this.set(c,a[c]);else if(a=v(a),"function"===typeof this[a])this[a](b);return this},locale:function(a){if(a===h)return this._locale._abbr;a=q.localeData(a);null!=a&&(this._locale=a);return this},lang:c("moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.",
-function(a){return a===h?this.localeData():this.locale(a)}),localeData:function(){return this._locale},_dateUtcOffset:function(){return 15*-Math.round(this._d.getTimezoneOffset()/15)}});q.fn.millisecond=q.fn.milliseconds=G("Milliseconds",!1);q.fn.second=q.fn.seconds=G("Seconds",!1);q.fn.minute=q.fn.minutes=G("Minutes",!1);q.fn.hour=q.fn.hours=G("Hours",!0);q.fn.date=G("Date",!0);q.fn.dates=c("dates accessor is deprecated. Use date instead.",G("Date",!0));q.fn.year=G("FullYear",!0);q.fn.years=c("years accessor is deprecated. Use year instead.",
-G("FullYear",!0));q.fn.days=q.fn.day;q.fn.months=q.fn.month;q.fn.weeks=q.fn.week;q.fn.isoWeeks=q.fn.isoWeek;q.fn.quarters=q.fn.quarter;q.fn.toJSON=q.fn.toISOString;q.fn.isUTC=q.fn.isUtc;n(q.duration.fn=f.prototype,{_bubble:function(){var a=this._milliseconds,b=this._days,c=this._months,d=this._data,e=0;d.milliseconds=a%1E3;a=y(a/1E3);d.seconds=a%60;a=y(a/60);d.minutes=a%60;a=y(a/60);d.hours=a%24;b+=y(a/24);e=y(400*b/146097);b-=y(146097*e/400);c+=y(b/30);b%=30;e+=y(c/12);d.days=b;d.months=c%12;d.years=
-e},abs:function(){this._milliseconds=Math.abs(this._milliseconds);this._days=Math.abs(this._days);this._months=Math.abs(this._months);this._data.milliseconds=Math.abs(this._data.milliseconds);this._data.seconds=Math.abs(this._data.seconds);this._data.minutes=Math.abs(this._data.minutes);this._data.hours=Math.abs(this._data.hours);this._data.months=Math.abs(this._data.months);this._data.years=Math.abs(this._data.years);return this},weeks:function(){return y(this.days()/7)},valueOf:function(){return this._milliseconds+
-864E5*this._days+2592E6*(this._months%12)+31536E6*V(this._months/12)},humanize:function(a){var b;b=!a;var c=this.localeData(),d=q.duration(this).abs(),e=U(d.as("s")),f=U(d.as("m")),g=U(d.as("h")),h=U(d.as("d")),k=U(d.as("M")),d=U(d.as("y")),e=e<Ka.s&&["s",e]||1===f&&["m"]||f<Ka.m&&["mm",f]||1===g&&["h"]||g<Ka.h&&["hh",g]||1===h&&["d"]||h<Ka.d&&["dd",h]||1===k&&["M"]||k<Ka.M&&["MM",k]||1===d&&["y"]||["yy",d];e[2]=b;e[3]=0<+this;e[4]=c;b=u.apply({},e);a&&(b=this.localeData().pastFuture(+this,b));return this.localeData().postformat(b)},
-add:function(a,b){var c=q.duration(a,b);this._milliseconds+=c._milliseconds;this._days+=c._days;this._months+=c._months;this._bubble();return this},subtract:function(a,b){var c=q.duration(a,b);this._milliseconds-=c._milliseconds;this._days-=c._days;this._months-=c._months;this._bubble();return this},get:function(a){a=v(a);return this[a.toLowerCase()+"s"]()},as:function(a){var b;a=v(a);if("month"===a||"year"===a)return b=this._days+this._milliseconds/864E5,b=this._months+12*(400*b/146097),"month"===
-a?b:b/12;b=this._days+Math.round(146097*(this._months/12)/400);switch(a){case "week":return b/7+this._milliseconds/6048E5;case "day":return b+this._milliseconds/864E5;case "hour":return 24*b+this._milliseconds/36E5;case "minute":return 1440*b+this._milliseconds/6E4;case "second":return 86400*b+this._milliseconds/1E3;case "millisecond":return Math.floor(864E5*b)+this._milliseconds;default:throw Error("Unknown unit "+a);}},lang:q.fn.lang,locale:q.fn.locale,toIsoString:c("toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)",
-function(){return this.toISOString()}),toISOString:function(){var a=Math.abs(this.years()),b=Math.abs(this.months()),c=Math.abs(this.days()),d=Math.abs(this.hours()),e=Math.abs(this.minutes()),f=Math.abs(this.seconds()+this.milliseconds()/1E3);return this.asSeconds()?(0>this.asSeconds()?"-":"")+"P"+(a?a+"Y":"")+(b?b+"M":"")+(c?c+"D":"")+(d||e||f?"T":"")+(d?d+"H":"")+(e?e+"M":"")+(f?f+"S":""):"P0D"},localeData:function(){return this._locale},toJSON:function(){return this.toISOString()}});q.duration.fn.toString=
-q.duration.fn.toISOString;for(Q in jb)T.call(jb,Q)&&Y(Q.toLowerCase());q.duration.fn.asMilliseconds=function(){return this.as("ms")};q.duration.fn.asSeconds=function(){return this.as("s")};q.duration.fn.asMinutes=function(){return this.as("m")};q.duration.fn.asHours=function(){return this.as("h")};q.duration.fn.asDays=function(){return this.as("d")};q.duration.fn.asWeeks=function(){return this.as("weeks")};q.duration.fn.asMonths=function(){return this.as("M")};q.duration.fn.asYears=function(){return this.as("y")};
-q.locale("en",{ordinalParse:/\d{1,2}(th|st|nd|rd)/,ordinal:function(a){var b=a%10,b=1===V(a%100/10)?"th":1===b?"st":2===b?"nd":3===b?"rd":"th";return a+b}});Va?module.exports=q:"function"===typeof define&&define.amd?(define(function(a,b,c){c.config&&c.config()&&!0===c.config().noGlobal&&(k.moment=oa);return q}),B(!0)):B()}).call(this);
-!function(h){function l(a,b,c){b=b.mime||ka;h.location.href=a.toDataURL(b).replace(b,V);"function"==typeof c&&c()}function m(a){return"string"==typeof a&&(a={value:a}),a||{}}function g(a){function b(c){a[c]=function(){throw Error(c+" requires HTML5 canvas element support");}}var c,d=["canvas","image","save","saveSync","toDataURL"];for(c=0;c<d.length;c++)b(d[c])}function c(a,b,c){function d(){x.write(e,f,0,f.length,0,function(a){x.close(e);c(a)})}if("string"!=typeof b.path)return c(new TypeError("Invalid path type: "+
-typeof b.path));var e,f;a.toBuffer(function(a,b){return a?c(a):(f=b,void(e&&d()))});x.open(b.path,"w",ta,function(a,b){return a?c(a):(e=b,void(f&&d()))})}function e(a,b){var c;a>b&&(c=a,a=b,b=c);c=b*b;c+=b;c>>=1;c+=a;Ja[c]=1}function a(a,b){var c;J[a+v*b]=1;for(c=-2;2>c;c++)J[a+c+v*(b-2)]=1,J[a-2+v*(b+c+1)]=1,J[a+2+v*(b+c)]=1,J[a+c+1+v*(b+2)]=1;for(c=0;2>c;c++)e(a-1,b+c),e(a+1,b-c),e(a-c,b-1),e(a+c,b+1)}function b(a){for(;255<=a;)a-=255,a=(a>>8)+(255&a);return a}function d(a,c,d,e){var f,g,h;for(g=
-0;e>g;g++)M[d+g]=0;for(g=0;c>g;g++){if(f=qa[M[a+g]^M[d]],255!==f)for(h=1;e>h;h++)M[d+h-1]=M[d+h]^xa[b(f+O[e-h])];else for(h=d;d+e>h;h++)M[h]=M[h+1];M[d+e-1]=255===f?0:xa[b(f+O[0])]}}function f(a,b){var c;return a>b&&(c=a,a=b,b=c),c=b,c+=b*b,c>>=1,c+=a,1===Ja[c]}function n(a){var b,c,d;switch(a){case 0:for(b=0;v>b;b++)for(a=0;v>a;a++)a+b&1||f(a,b)||(J[a+b*v]^=1);break;case 1:for(b=0;v>b;b++)for(a=0;v>a;a++)1&b||f(a,b)||(J[a+b*v]^=1);break;case 2:for(b=0;v>b;b++)for(a=c=0;v>a;a++,c++)3===c&&(c=0),c||
-f(a,b)||(J[a+b*v]^=1);break;case 3:for(b=d=0;v>b;b++,d++)for(3===d&&(d=0),c=d,a=0;v>a;a++,c++)3===c&&(c=0),c||f(a,b)||(J[a+b*v]^=1);break;case 4:for(b=0;v>b;b++)for(c=0,d=b>>1&1,a=0;v>a;a++,c++)3===c&&(c=0,d=!d),d||f(a,b)||(J[a+b*v]^=1);break;case 5:for(b=d=0;v>b;b++,d++)for(3===d&&(d=0),a=c=0;v>a;a++,c++)3===c&&(c=0),(a&b&1)+!(!c|!d)||f(a,b)||(J[a+b*v]^=1);break;case 6:for(b=d=0;v>b;b++,d++)for(3===d&&(d=0),a=c=0;v>a;a++,c++)3===c&&(c=0),(a&b&1)+(c&&c===d)&1||f(a,b)||(J[a+b*v]^=1);break;case 7:for(b=
-d=0;v>b;b++,d++)for(3===d&&(d=0),a=c=0;v>a;a++,c++)3===c&&(c=0),(c&&c===d)+(a+b&1)&1||f(a,b)||(J[a+b*v]^=1)}}function p(a){var b,c=0;for(b=0;a>=b;b++)5<=Z[b]&&(c+=Oa+Z[b]-5);for(b=3;a-1>b;b+=2)Z[b-2]===Z[b+2]&&Z[b+2]===Z[b-1]&&Z[b-1]===Z[b+1]&&3*Z[b-1]===Z[b]&&(0===Z[b-3]||b+3>a||3*Z[b-3]>=4*Z[b]||3*Z[b+3]>=4*Z[b])&&(c+=Ia);return c}function y(){var a,b,c,d,e,f,g,h;for(h=c=d=e=0;v-1>h;h++)for(g=0;v-1>g;g++)(J[g+v*h]&&J[g+1+v*h]&&J[g+v*(h+1)]&&J[g+1+v*(h+1)]||!(J[g+v*h]||J[g+1+v*h]||J[g+v*(h+1)]||
-J[g+1+v*(h+1)]))&&(c+=Da);for(h=0;v>h;h++){for(f=a=g=Z[0]=0;v>g;g++)(b=J[g+v*h])===a?Z[f]++:Z[++f]=1,a=b,d+=a?1:-1;c+=p(f)}0>d&&(d=-d);a=d;for(a=a+(a<<2)<<1;a>v*v;)a-=v*v,e++;c+=e*Ea;for(g=0;v>g;g++){for(f=a=h=Z[0]=0;v>h;h++)(b=J[g+v*h])===a?Z[f]++:Z[++f]=1,a=b;c+=p(f)}return c}var t,z,H,D,A,x,F,P,v,la=[0,11,15,19,23,27,31,16,18,20,22,24,26,28,20,22,24,24,26,28,28,22,24,24,26,26,28,28,24,24,26,26,26,28,28,24,26,26,26,28,28],ka="image/png",V="image/octet-stream",ja=[1,0,19,7,1,0,16,10,1,0,13,13,1,
-0,9,17,1,0,34,10,1,0,28,16,1,0,22,22,1,0,16,28,1,0,55,15,1,0,44,26,2,0,17,18,2,0,13,22,1,0,80,20,2,0,32,18,2,0,24,26,4,0,9,16,1,0,108,26,2,0,43,24,2,2,15,18,2,2,11,22,2,0,68,18,4,0,27,16,4,0,19,24,4,0,15,28,2,0,78,20,4,0,31,18,2,4,14,18,4,1,13,26,2,0,97,24,2,2,38,22,4,2,18,22,4,2,14,26,2,0,116,30,3,2,36,22,4,4,16,20,4,4,12,24,2,2,68,18,4,1,43,26,6,2,19,24,6,2,15,28,4,0,81,20,1,4,50,30,4,4,22,28,3,8,12,24,2,2,92,24,6,2,36,22,4,6,20,26,7,4,14,28,4,0,107,26,8,1,37,22,8,4,20,24,12,4,11,22,3,1,115,30,
-4,5,40,24,11,5,16,20,11,5,12,24,5,1,87,22,5,5,41,24,5,7,24,30,11,7,12,24,5,1,98,24,7,3,45,28,15,2,19,24,3,13,15,30,1,5,107,28,10,1,46,28,1,15,22,28,2,17,14,28,5,1,120,30,9,4,43,26,17,1,22,28,2,19,14,28,3,4,113,28,3,11,44,26,17,4,21,26,9,16,13,26,3,5,107,28,3,13,41,26,15,5,24,30,15,10,15,28,4,4,116,28,17,0,42,26,17,6,22,28,19,6,16,30,2,7,111,28,17,0,46,28,7,16,24,30,34,0,13,24,4,5,121,30,4,14,47,28,11,14,24,30,16,14,15,30,6,4,117,30,6,14,45,28,11,16,24,30,30,2,16,30,8,4,106,26,8,13,47,28,7,22,24,30,
-22,13,15,30,10,2,114,28,19,4,46,28,28,6,22,28,33,4,16,30,8,4,122,30,22,3,45,28,8,26,23,30,12,28,15,30,3,10,117,30,3,23,45,28,4,31,24,30,11,31,15,30,7,7,116,30,21,7,45,28,1,37,23,30,19,26,15,30,5,10,115,30,19,10,47,28,15,25,24,30,23,25,15,30,13,3,115,30,2,29,46,28,42,1,24,30,23,28,15,30,17,0,115,30,10,23,46,28,10,35,24,30,19,35,15,30,17,1,115,30,14,21,46,28,29,19,24,30,11,46,15,30,13,6,115,30,14,23,46,28,44,7,24,30,59,1,16,30,12,7,121,30,12,26,47,28,39,14,24,30,22,41,15,30,6,14,121,30,6,34,47,28,46,
-10,24,30,2,64,15,30,17,4,122,30,29,14,46,28,49,10,24,30,24,46,15,30,4,18,122,30,13,32,46,28,48,14,24,30,42,32,15,30,20,4,117,30,40,7,47,28,43,22,24,30,10,67,15,30,19,6,118,30,18,31,47,28,34,34,24,30,20,61,15,30],Na={L:1,M:2,Q:3,H:4},Ca=[30660,29427,32170,30877,26159,25368,27713,26998,21522,20773,24188,23371,17913,16590,20375,19104,13663,12392,16177,14854,9396,8579,11994,11245,5769,5054,7399,6608,1890,597,3340,2107],xa=[1,2,4,8,16,32,64,128,29,58,116,232,205,135,19,38,76,152,45,90,180,117,234,201,
-143,3,6,12,24,48,96,192,157,39,78,156,37,74,148,53,106,212,181,119,238,193,159,35,70,140,5,10,20,40,80,160,93,186,105,210,185,111,222,161,95,190,97,194,153,47,94,188,101,202,137,15,30,60,120,240,253,231,211,187,107,214,177,127,254,225,223,163,91,182,113,226,217,175,67,134,17,34,68,136,13,26,52,104,208,189,103,206,129,31,62,124,248,237,199,147,59,118,236,197,151,51,102,204,133,23,46,92,184,109,218,169,79,158,33,66,132,21,42,84,168,77,154,41,82,164,85,170,73,146,57,114,228,213,183,115,230,209,191,99,
-198,145,63,126,252,229,215,179,123,246,241,255,227,219,171,75,150,49,98,196,149,55,110,220,165,87,174,65,130,25,50,100,200,141,7,14,28,56,112,224,221,167,83,166,81,162,89,178,121,242,249,239,195,155,43,86,172,69,138,9,18,36,72,144,61,122,244,245,247,243,251,235,203,139,11,22,44,88,176,125,250,233,207,131,27,54,108,216,173,71,142,0],qa=[255,0,1,25,2,50,26,198,3,223,51,238,27,104,199,75,4,100,224,14,52,141,239,129,28,193,105,248,200,8,76,113,5,138,101,47,225,36,15,33,53,147,142,218,240,18,130,69,29,
-181,194,125,106,39,249,185,201,154,9,120,77,228,114,166,6,191,139,98,102,221,48,253,226,152,37,179,16,145,34,136,54,208,148,206,143,150,219,189,241,210,19,92,131,56,70,64,30,66,182,163,195,72,126,110,107,58,40,84,250,133,186,61,202,94,155,159,10,21,121,43,78,212,229,172,115,243,167,87,7,112,192,247,140,128,99,13,103,74,222,237,49,197,254,24,227,165,153,119,38,184,180,124,17,68,146,217,35,32,137,46,55,63,209,91,149,188,207,205,144,135,151,178,220,252,190,97,242,86,211,171,20,42,93,158,132,60,57,83,
-71,109,65,162,31,45,67,216,183,123,164,118,196,23,73,236,127,12,111,246,108,161,59,82,41,157,85,170,251,96,134,177,187,204,62,90,203,89,95,176,156,169,160,81,11,245,22,235,122,117,44,215,79,174,213,233,230,231,173,232,116,214,244,234,168,80,88,175],Oa=3,Da=3,Ia=40,Ea=10,Fa=[3220,1468,2713,1235,3062,1890,2119,1549,2344,2936,1117,2583,1330,2470,1667,2249,2028,3780,481,4011,142,3098,831,3445,592,2517,1776,2234,1951,2827,1070,2660,1345,3177],ta=438,Z=[],ma=[],$=1,J=[],Ja=[],na=!1,O=[],s=h.qr,M=[],K={VERSION:"1.1.2",
-canvas:function(c){c=m(c);var g=1<=c.size&&10>=c.size?c.size:4,g=25*g,l=c.canvas||(na?new t:h.document.createElement("canvas")),p=l.getContext("2d");p.canvas.width=g;p.canvas.height=g;p.fillStyle=c.background||"#fff";p.fillRect(0,0,g,g);$=Na[c.level&&c.level.toUpperCase()||"L"];var s,w=c.value||"",x,K,G,F,B,q;G=w.length;P=0;do if(P++,s=4*($-1)+16*(P-1),D=ja[s++],A=ja[s++],z=ja[s++],H=ja[s],s=z*(D+A)+A-3+(9>=P),s>=G)break;while(40>P);v=17+4*P;F=z+(z+H)*(D+A)+A;for(G=0;F>G;G++)ma[G]=0;M=w.slice(0);
-for(G=0;v*v>G;G++)J[G]=0;for(G=0;(v*(v+1)+1)/2>G;G++)Ja[G]=0;for(G=0;3>G;G++){s=q=0;1===G&&(s=v-7);2===G&&(q=v-7);J[q+3+v*(s+3)]=1;for(B=0;6>B;B++)J[q+B+v*s]=1,J[q+v*(s+B+1)]=1,J[q+6+v*(s+B)]=1,J[q+B+1+v*(s+6)]=1;for(B=1;5>B;B++)e(q+B,s+1),e(q+1,s+B+1),e(q+5,s+B),e(q+B+1,s+5);for(B=2;4>B;B++)J[q+B+v*(s+2)]=1,J[q+2+v*(s+B+1)]=1,J[q+4+v*(s+B)]=1,J[q+B+1+v*(s+4)]=1}if(1<P)for(G=la[P],q=v-7;;){for(B=v-7;B>G-3&&(a(B,q),!(G>B));)B-=G;if(G+9>=q)break;q-=G;a(6,q);a(q,6)}J[8+v*(v-8)]=1;for(q=0;7>q;q++)e(7,
-q),e(v-8,q),e(7,q+v-7);for(B=0;8>B;B++)e(B,7),e(B+v-8,7),e(B,v-8);for(B=0;9>B;B++)e(B,8);for(B=0;8>B;B++)e(B+v-8,8),e(8,B);for(q=0;7>q;q++)e(8,q+v-7);for(B=0;v-14>B;B++)1&B?(e(8+B,6),e(6,8+B)):(J[8+B+6*v]=1,J[6+v*(8+B)]=1);if(6<P)for(G=Fa[P-7],s=17,B=0;6>B;B++)for(q=0;3>q;q++,s--)1&(11<s?P>>s-12:G>>s)?(J[5-B+v*(2-q+v-11)]=1,J[2-q+v-11+v*(5-B)]=1):(e(5-B,2-q+v-11),e(2-q+v-11,5-B));for(q=0;v>q;q++)for(B=0;q>=B;B++)J[B+v*q]&&e(B,q);F=M.length;for(w=0;F>w;w++)ma[w]=M.charCodeAt(w);if(M=ma.slice(0),B=
-z*(D+A)+A,F>=B-2&&(F=B-2,9<P&&F--),w=F,9<P){M[w+2]=0;for(M[w+3]=0;w--;)G=M[w],M[w+3]|=255&G<<4,M[w+2]=G>>4;M[2]|=255&F<<4;M[1]=F>>4;M[0]=64|F>>12}else{M[w+1]=0;for(M[w+2]=0;w--;)G=M[w],M[w+2]|=255&G<<4,M[w+1]=G>>4;M[1]|=255&F<<4;M[0]=64|F>>4}for(w=F+3-(10>P);B>w;)M[w++]=236,M[w++]=17;O[0]=1;for(w=0;H>w;w++){O[w+1]=1;for(x=w;0<x;x--)O[x]=O[x]?O[x-1]^xa[b(qa[O[x]]+w)]:O[x-1];O[0]=xa[b(qa[O[0]]+w)]}for(w=0;H>=w;w++)O[w]=qa[O[w]];s=B;for(w=q=0;D>w;w++)d(q,z,s,H),q+=z,s+=H;for(w=0;A>w;w++)d(q,z+1,s,H),
-q+=z+1,s+=H;for(w=q=0;z>w;w++){for(x=0;D>x;x++)ma[q++]=M[w+x*z];for(x=0;A>x;x++)ma[q++]=M[D*z+w+x*(z+1)]}for(x=0;A>x;x++)ma[q++]=M[D*z+w+x*(z+1)];for(w=0;H>w;w++)for(x=0;D+A>x;x++)ma[q++]=M[B+w+x*H];M=ma;B=q=v-1;s=F=1;K=(z+H)*(D+A)+A;for(w=0;K>w;w++)for(G=M[w],x=0;8>x;x++,G<<=1){128&G&&(J[B+v*q]=1);do F?B--:(B++,s?0!==q?q--:(B-=2,s=!s,6===B&&(B--,q=9)):q!==v-1?q++:(B-=2,s=!s,6===B&&(B--,q-=8))),F=!F;while(f(B,q))}M=J.slice(0);G=0;q=3E4;for(s=0;8>s&&(n(s),B=y(),q>B&&(q=B,G=s),7!==G);s++)J=M.slice(0);
-G!==s&&n(G);q=Ca[G+($-1<<3)];for(s=0;8>s;s++,q>>=1)1&q&&(J[v-1-s+8*v]=1,6>s?J[8+v*s]=1:J[8+v*(s+1)]=1);for(s=0;7>s;s++,q>>=1)1&q&&(J[8+v*(v-7+s)]=1,s?J[6-s+8*v]=1:J[7+8*v]=1);s=J;p.lineWidth=1;G=g/v;G=Math.floor(G);p.clearRect(0,0,g,g);p.fillStyle=c.background||"#fff";p.fillRect(0,0,G*(v+8),G*(v+8));p.fillStyle=c.foreground||"#000";for(c=0;v>c;c++)for(g=0;v>g;g++)s[g*v+c]&&p.fillRect(G*c,G*g,G,G);return l},image:function(a){a=m(a);var b=this.canvas(a),c=a.image||(na?new F:h.document.createElement("img"));
-return c.src=b.toDataURL(a.mime||ka),c.height=b.height,c.width=b.width,c},save:function(a,b,d){function e(a){f||(f=!0,d(a))}switch(a=m(a),typeof b){case "function":d=b;b=null;break;case "string":a.path=b}if("function"!=typeof d)throw new TypeError("Invalid callback type: "+typeof d);var f=!1;b=this.canvas(a);na?c(b,a,e):l(b,a,e)},saveSync:function(a,b){a=m(a);"string"==typeof b&&(a.path=b);var c=this.canvas(a);if(na){var d=a;if("string"!=typeof d.path)throw new TypeError("Invalid path type: "+typeof d.path);
-c=c.toBuffer();d=x.openSync(d.path,"w",ta);try{x.writeSync(d,c,0,c.length,0)}finally{x.closeSync(d)}}else l(c,a)},toDataURL:function(a){return a=m(a),this.canvas(a).toDataURL(a.mime||ka)},noConflict:function(){return h.qr=s,this}};"undefined"!=typeof exports?(na=!0,"undefined"!=typeof module&&module.exports&&(exports=module.exports=K),exports.qr=K,t=require("canvas"),F=t.Image,x=require("fs")):"function"==typeof define&&define.amd?define(function(){return K}):(h.HTMLCanvasElement||g(K),h.qr=K)}(this);
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Permalink = {
+    getUrlParameter: function(sParam) {
+        var hash = window.location.search;
+        hash = hash.substring(hash.indexOf('?') + 1);
+        var parameters = hash.split('&');
+        for (var i = 0; i < parameters.length; i++) {
+            var sParameterName = parameters[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return decodeURIComponent(sParameterName[1]);
+            }
+        }
+    }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var i18n = {};
+var languageChooser;
+function _(key) {
+    var lang = currentLanguage();
+    var text = readI18n(lang, key) || readI18n("en", key);
+    if ($.isEmptyObject(text)) {
+        return key;
+    } else {
+        return text;
+    }
+}
+
+function currentLanguage() {
+    var lang = Permalink.getUrlParameter('lang') || Permalink.getUrlParameter('locale') || navigator.language || navigator.userLanguage;
+    if(lang.indexOf('-') > -1) {
+        return lang.substring(0, lang.indexOf('-'));
+    }
+    return lang;
+}
+
+function languagesAvailable() {
+    return Object.keys(i18n);
+}
+
+function createLanguageChooser() {
+    var options = $(".language-chooser-box ul");
+    createFlagImage = function(code) {
+        return $("<img />", {
+            src: "../images/blank.gif",
+            name: readI18n(code, 'fullName')
+        })
+                .addClass("flag flag-" + code)
+                .addClass("pull-right");
+    };
+    //$(".language-chooser-box button").append(createFlagImage(currentLanguage()));
+    $.each(languagesAvailable(), function(idx, code) {
+        if (code.indexOf('_') === -1 && currentLanguage().indexOf(code) !== 0) {
+            var item = $("<li />", {
+                role: "menuitem"
+            })
+                    .append(readI18n(code, 'fullName'))
+                    .append(createFlagImage(code))
+                    .on("click", function() {
+                        var ok = window.confirm(_("settings.requiresRestart"));
+                        if (ok) {
+                            Settings.additionalParameters.locale = code;
+                            window.location = PermalinkController.createPermalink() + "&locale=" + code;
+                        }
+                    });
+
+            options.append(item);
+        }
+    });
+}
+
+function readI18n(lang, key) {
+    try {
+        var keyArray = key.split('.');
+        var value = i18n[lang];
+        if (!value) {
+            var langParts = lang.split('-');
+            // convert lang to 'en_US' as 'en-US' not allowed
+            var value = i18n[langParts[0] + "_" + langParts[1]];
+            if (!value && langParts.length > 1) {
+// no subregion, try e.g. en-US => en
+                value = i18n[langParts[0]];
+            }
+        }
+        while (keyArray.length) {
+            var property = keyArray.splice(0, 1);
+            value = read_prop(value, property[0]);
+        }
+        if ($.isEmptyObject(value)) {
+            console.error("Missing i18n key '" + key + "' for language " + lang);
+        }
+        return value;
+    } catch (ex) {
+        console.error("Don't find the i18n key '" + key + "' for language " + lang);
+    }
+}
+
+function read_prop(obj, prop) {
+    return obj[prop];
+}/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.en = {
+    fullName: 'English',
+    ok: 'OK',
+    main: {
+        legend: 'Legend',
+        diagram: 'Diagram',
+        mapView: 'Map view',
+        favoriteView: 'Favorites',
+        settings: 'Settings',
+        stationSelection: 'Select a station',
+        chartView: 'Chart view',
+        allPhenomena: 'All Phenomena',
+        phenomenon: 'Phenomenon',
+        favoritesList: 'Favorites',
+        importFavorites: 'Import',
+        exportFavorites: 'Export',
+        importExportHelp: 'To import a file, please choose a file you exported before.',
+        noFileSelected: 'No file selected'
+    },
+    chart: {
+        noTimeseriesSelected: 'You have selected no timeseries, the selected timeseries have no values in the given time range or the timeseries are hidden.',
+        outsideOfDataRange: 'Outside of data range!',
+        annotation: 'Unvalidated data!',
+        monthNames: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    table: {
+        time: 'Time'
+    },
+    map: {
+        userLocation: 'Here is your current location',
+        stationSelection: {
+            station: 'Station',
+            selectAllTimeseries: 'select all timeseries'
+        },
+        stationLocation: {
+            station: 'Station',
+            timeseries: 'Timeseries',
+            provider: 'Provider',
+            jumpBackToChart: 'back to chart'
+        },
+        providerList: {
+            provider: 'Provider',
+            stations: 'Stations',
+            timeseries: 'Timeseries',
+            phenomena: 'Phenomena'
+        },
+        search: {
+            label: 'search for address ...',
+            noResult: 'Sorry, that address could not be found.'
+        }
+    },
+    listSelection: {
+        header: 'Select timeseries by list',
+        headers: {
+            category: 'Category',
+            station: 'Station',
+            phenomenon: 'Phenomenon',
+            procedure: 'Sensor'
+        },
+        warning: {
+            moreThanOneTimeseries: 'found more than one timeseries'
+        }
+    },
+    legend: {
+        entry: {
+            noData: 'no Data available',
+            jumpToLastValue: 'jump to last value',
+            firstValueAt: 'First value at',
+            lastValueAt: 'Last value at'
+        }
+    },
+    export: {
+        label: 'Data as CSV (Zip Archive)'
+    },
+    timeSelection: {
+        header: 'Time Range',
+        presetsHeader: 'presets',
+        presets: {
+            lastHour: 'last hour',
+            today: 'today',
+            yesterday: 'yesterday',
+            todayYesterday: 'today & yesterday',
+            thisWeek: 'this week',
+            lastWeek: 'last week',
+            thisMonth: 'this month',
+            lastMonth: 'last month',
+            thisYear: 'this year',
+            lastYear: 'last year'
+        },
+        custom: {
+            header: 'custom',
+            start: 'Start date',
+            end: 'End date'
+        },
+        warning: {
+            startBeforeEnd: 'The start date can not be greater then the end date',
+            maxTimeRange: 'The time range can not be greater then one year'
+        }
+    },
+    styleChange: {
+        header: 'Change style',
+        currentColor: 'Current color',
+        selectColor: 'Select a new color',
+        selectBarInterval: 'Select the bar interval',
+        barChartInterval: {
+            hour: 'Hour',
+            day: 'Day',
+            week: 'Week',
+            month: 'Month'
+        },
+        zeroScaled: 'zero scaled Y-axis',
+        groupedAxis: 'grouped axis'
+    },
+    settings: {
+        header: 'Settings',
+        chooseLanguage: 'Switch language',
+        requiresRestart: 'Needs Restart!',
+        permalink: {
+            create: 'Create a permalink as',
+            inWindow: 'link in a new window',
+            inMail: 'link in an email',
+            inClipboard: 'link for the clipboard',
+            clipboardInfo: 'Please copy the following link by yourself to clipboard:',
+            inQrCode: 'as QR-Code',
+            favorite: 'Save working environment as favorite entry'
+        },
+        clusterMarker: 'cluster marker',
+        markerWithLastInfo: {
+            header: 'marker with last value information',
+            label: 'attention - some data provider are very slow'
+        },
+        saveStatus: {
+            header: 'Save environment',
+            label: 'All timeseries, the selected timespan and the settings are saved continuous.'
+        },
+        resetStatus: 'Reset environment',
+        generalizeData: 'generalize Data',
+        imprint: {
+            header: 'Imprint',
+            github: 'Find this project at <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+            text: '<p><a href="http://52north.org" target="_blank">52&deg;North GmbH</a> is responsible for this website.</p><p>52&deg;North Initiative for Geospatial Open Source Software GmbH<br>Martin-Luther-King-Weg 24<br>48155 Muenster, Germany</p>'
+        }
+    },
+    permalink: {
+        noMatchingTimeseriesFound: 'No matching timeseries is found.'
+    },
+    guide: {
+        start: {
+            request: 'When you start this guide, the the current state will be reset.'
+        },
+        step1: {
+            header: 'JavaScript Client - Guided Tour',
+            text: 'This tour gives in a few steps an overview how to use this client. First we add a timeseries from the map.'
+        },
+        step2: {
+            header: 'Go to the map',
+            text: 'Here we switch the view to get a map.'
+        },
+        step3: {
+            header: 'Map view',
+            text: 'This is the map view. In the map you can see markers or markergroups.'
+        },
+        step4: {
+            header: 'Change Provider',
+            text: 'Here you can select another timeseries provider.'
+        },
+        step5: {
+            header: 'Show location',
+            text: 'And here you can locate your device on the map.'
+        },
+        step6: {
+            header: 'List selection',
+            text: 'Here you can select a timeseries out of ordered lists.'
+        },
+        step7: {
+            header: 'Select a station',
+            text: 'Please select now a station on the map.'
+        },
+        step8: {
+            header: 'Select timeseries',
+            text: 'Select this checkbox. If there is only one timeseries for this station, the checkbox is already checked. Now you can go on with the "OK" button to load the timeseries.'
+        },
+        step9: {
+            header: 'Legend entry',
+            text: 'Here you see the added time series. You can delete or locate the time series or change the color.'
+        },
+        step10: {
+            header: 'Chart',
+            text: 'This is the chart of the selected time series.'
+        },
+        step11: {
+            header: 'Change time',
+            text: 'Here you can change the time extent for your selected time series.'
+        },
+        step12: {
+            header: 'Table View',
+            text: 'Here you get a table of the raw data values to your selected time series.'
+        },
+        step13: {
+            header: 'Favorite management',
+            text: 'The legend entries/timeseries could be saved as favorites. In this view all favorites are listed and could be maintained.'
+        },
+        step14: {
+            header: 'Finished',
+            text: 'Well done!<br> This client is a product of <a href="http://52north.org" target="_blank">52&deg;North GmbH</a>. You can find the source code on <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>.'
+        }
+    },
+    favorite: {
+        firstValueAt: 'First value at',
+        lastValueAt: 'Last value at',
+        label: 'favorite',
+        edit: {
+            header: 'Edit favorite'
+        },
+        group: {
+            add: 'The status &#39;{0}&#39; is added to the favorite list.',
+            exists: 'This status still exists.',
+            noTimeseries: 'Currently no timeseries are selected.',
+            notSupported: 'The provider of an entry of the status &#39;{0}&#39; isn&#39;t supported and can&#39;t be loaded.'
+        },
+        single: {
+            add: 'A new favorite &#39;{0}&#39; is added to the list.',
+            remove: 'The favorite &#39;{0}&#39; is removed.',
+            exists: 'This favorite still exists.',
+            notSupported: 'The provider of the favorite &#39;{0}&#39; isn&#39;t supported and can&#39;t be loaded.'
+        },
+        import: {
+            override: 'Do you want to override your current favorites?',
+            wrongFile: 'Could not read the file',
+            noValidJson: 'The JSON file is not valid!',
+            header: 'Import favorites',
+            text: 'Here you can import your exported favorites. Just paste the JSON in this text field:'
+        },
+        export: {
+            header: 'Export favorites',
+            text: 'Here you can export your favorites. Just copy the JSON out of this textbox and save it in a file to import it later:'
+        },
+        error: {
+            fileApiNotSupported: 'The File APIs are not fully supported in this browser.'
+        }
+    },
+    inform: {
+        error: 'An error occured: ',
+        warn: 'Please remember that: '
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.en_GB = {
+    main: {
+        favoritesList: 'Favourites',
+        favoriteView: 'Favourites'
+    },
+    settings: {
+        permalink: {
+            favorite: 'Save working environment as favourite entry'
+        }
+    },
+    guide: {
+        step13: {
+            header: 'Favourite management',
+            text: 'The legend entries/timeseries could be saved as favourites. In this view all favourites are listed and could be maintained.'
+        }
+    },
+    favorite: {
+        label: 'favourite',
+        edit: {
+            header: "Edit favourite"
+        },
+        group: {
+            add: "The status '{0}' is added to the favourite list."
+        },
+        single: {
+            add: "A new favourite '{0}' is added to the list.",
+            remove: "The favourite '{0}' is removed.",
+            exists: "This favourite still exists.",
+            notSupported: "The provider of the favourite '{0}' isn't supported and can't be loaded."
+        }
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.de = {
+  fullName: 'Deutsch',
+  ok: 'OK',
+  main: {
+    legend: 'Legende',
+    diagram: 'Diagramm',
+    mapView: 'Kartenansicht',
+    favoriteView: 'Favoriten',
+    settings: 'Einstellungen',
+    stationSelection: 'Wähle eine Station aus',
+    chartView: 'Diagrammansicht',
+    allPhenomena: 'Alle Phänomene',
+    phenomenon: 'Phänomen',
+    favoritesList: 'Favoriten',
+    importFavorites: 'Importieren',
+    exportFavorites: 'Exportieren',
+    importExportHelp: 'Zum Import wählen sie eine zuvor exportierten JSON-Datei.',
+    noFileSelected: 'Keine Datei ausgewählt'
+  },
+  chart: {
+    noTimeseriesSelected: 'Sie haben keine Zeitreihe ausgewählt, die gewählten Zeitreihen haben keine Werte in dem derzeitigen Zeitraum oder die Zeitreihen sind unsichtbar.',
+    outsideOfDataRange: 'Außerhalb des Datenbereichs!',
+    annotation: 'Unvalidierte Daten!',
+    monthNames: [ 'Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez' ]
+  },
+  table: {
+    time: 'Zeit'
+  },
+  map: {
+    userLocation: 'Hier ist ihr Standort',
+    stationSelection: {
+      station: 'Station',
+      selectAllTimeseries: 'wähle alle Zeitreihen'
+    },
+    stationLocation: {
+      station: 'Station',
+      timeseries: 'Zeitreihe',
+      provider: 'Datenanbieter',
+      jumpBackToChart: 'zurück zum Diagramm'
+    },
+    providerList: {
+      provider: 'Datenanbieter',
+      stations: 'Stationen',
+      timeseries: 'Zeitreihen',
+      phenomena: 'Phänomene'
+    },
+    search: {
+      label: 'suche Addresse ...',
+      noResult: 'Sorry, es konnte keine Adresse gefunden werden.'
+    }
+  },
+  listSelection: {
+    header: 'Listenbasierte Zeitreihenauswahl',
+    headers: {
+      category: 'Kategorie',
+      station: 'Station',
+      phenomenon: 'Phänomen',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'Mehr als eine Zeitreihe gefunden'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'keine Daten verfügbar',
+      jumpToLastValue: 'Springe zur letzten Messung',
+      firstValueAt: 'Erster Wert bei',
+      lastValueAt: 'Letzter Wert bei'
+    }
+  },
+  export: {
+    label: 'Daten als CSV (Zip-Archiv)'
+  },
+  timeSelection: {
+    header: 'Zeitraum',
+    presetsHeader: 'Vordefiniert',
+    presets: {
+      lastHour: 'letzte Stunde',
+      today: 'heute',
+      yesterday: 'gestern',
+      todayYesterday: 'heute & gestern',
+      thisWeek: 'diese Woche',
+      lastWeek: 'letzte Woche',
+      thisMonth: 'diesen Monat',
+      lastMonth: 'letzten Monat',
+      thisYear: 'dieses Jahr',
+      lastYear: 'letztes Jahr'
+    },
+    custom: {
+      header: 'Freidefiniert',
+      start: 'Startzeitpunkt',
+      end: 'Endzeitpunkt'
+    },
+    warning: {
+      startBeforeEnd: 'Der Startzeitpunkt darf nicht größer als der Endzeitpunkt sein',
+      maxTimeRange: 'Der ausgewählte Zeitraum darf nicht größer als ein Jahr sein'
+    }
+  },
+  styleChange: {
+    header: 'Ändern der Zeitreihengestaltung',
+    currentColor: 'Derzeitige Farbe',
+    selectColor: 'Wähle neue Farbe',
+    selectBarInterval: 'Wähle Balkeninterval',
+    barChartInterval: {
+      hour: 'Stunde',
+      day: 'Tag',
+      week: 'Woche',
+      month: 'Monat'
+    },
+    zeroScaled: 'Nullbasierte Y-Achse',
+    groupedAxis: 'gruppierte Achse'
+  },
+  settings: {
+    header: 'Einstellungen',
+    chooseLanguage: 'Sprache wechseln',
+    requiresRestart: 'Erfordert Neustart!',
+    permalink: {
+      create: 'Erstelle Permalink',
+      inWindow: 'öffnen im neuen Fenster',
+      inMail: 'öffnen in leerer Mail',
+            inClipboard: 'Link für die Zwischenablage',
+            clipboardInfo: 'Bitte kopiere den folgenden Link selbstständig in die Zwischenablage:',
+      inQrCode: 'als QR-Code',
+      favorite: 'Arbeitsumgebung als Favorit speichern'
+    },
+    clusterMarker: 'Marker gruppieren',
+    markerWithLastInfo: {
+      header: 'Marker mit Wert der letzten Messung',
+      label: 'Achtung - dies kann bei einigen Providern zu langen Abfragen führen'
+    },
+    saveStatus: {
+      header: 'Arbeitsumgebung abspeichern',
+      label: 'Alle Zeitreihen, der ausgewählte Zeitraum und die Einstellungen werden kontinuierlich abgespeichert.'
+    },
+    resetStatus: 'Arbeitsumgebung zurücksetzen',
+    generalizeData: 'Daten generalisiert abfragen',
+    imprint: {
+      header: 'Impressum',
+      github: 'Zur <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>-Seite dieses Projekts',
+      text: '<p><a href="http://52north.org" target="_blank">52&deg;North GmbH</a> ist für diese Website verantwortlich.</p><p>52&deg;North Initiative for Geospatial Open Source Software GmbH<br>Martin-Luther-King-Weg 24<br>48155 Muenster, Deutschland</p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Keine passende Zeitreihe gefunden.'
+  },
+  guide: {
+    start: {
+      request: 'Wenn du den Guide startest wird der aktuellen Zustand zurückgesetzt.'
+    },
+    step1: {
+      header: 'JavaScript Client - Geführte Tour',
+      text: 'Die Tour gibt in ein paar Schritten einen Überblick über den Client. Zuerst fügen wir eine Zeitreihe von der Karte hinzu.'
+    },
+    step2: {
+      header: 'Zur Karte',
+      text: 'Hier kann man zur Kartenansicht wechseln.'
+    },
+    step3: {
+      header: 'Kartenansicht',
+      text: 'In der Karte siehst du die Stationen als Marker oder Markergruppen.'
+    },
+    step4: {
+      header: 'Datenanbieter',
+      text: 'Hier kannst du aus einer Liste von Datenanbieter auswählen.'
+    },
+    step5: {
+      header: 'Eigene Position',
+      text: 'Hier kannst du dich lokalisieren lassen.'
+    },
+    step6: {
+      header: 'Listenauswahl',
+      text: 'Hier ist eine Zeitreihenauswahl durch geordnete Listen möglich.'
+    },
+    step7: {
+      header: 'Auswahl einer Station',
+      text: 'Bitte wähle eine Station auf der Karte aus.'
+    },
+    step8: {
+      header: 'Zeitreihe auswählen',
+      text: 'Wähle eine Zeitreihe durch Anklicken der Checkbox. Liegt an dieser Station nur eine Zeitreihe vor, ist diese direkt angewählt. Durch klicken des OK-Buttons wird die Zeitreihe eingeladen.'
+    },
+    step9: {
+      header: 'Legendeneintrag',
+      text: 'Hier wird die zugefügte Zeitreihe angezeigt. Du kannst die Zeitreihe hier wieder entfernen oder den Style ändern.'
+    },
+    step10: {
+      header: 'Diagramm',
+      text: 'Dies ist das Diagramm der gewählten Zeitreihen.'
+    },
+    step11: {
+      header: 'Zeit ändern',
+      text: 'Hier kann der Zeitraum angepasst werden.'
+    },
+    step12: {
+      header: 'Tabellenansicht',
+      text: 'Hier bekommt man die Rohdaten in einer Tabelle präsentiert.'
+    },
+    step13: {
+      header: 'Favoritenverwaltung',
+      text: 'Die Legendeneinträge/Zeitreihen können als Favoriten abgespeichert werden. Hier werden alle Favoriten gelistet und können verwaltet werden.'
+    },
+    step14: {
+      header: 'Fertig',
+      text: 'Super!<br> Dieser Client ist ein Produkt von der <a href="http://52north.org" target="_blank">52&deg;North GmbH</a>. Auf <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> findest du den aktuellen Entwicklungsstand.'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Erster Wert bei',
+    lastValueAt: 'Letzter Wert bei',
+    label: 'Favorit',
+    edit: {
+      header: 'Favorit editieren'
+    },
+    group: {
+      add: 'Der Status wird mit dem Name &#39;{0}&#39; in den Favoriten abgelegt.',
+      exists: 'Dieser Status existiert bereits.',
+      noTimeseries: 'Derzeit sind keine Zeitreihen ausgewählt.',
+      notSupported: 'Der Datenanbieter eines Eintrag aus &#39;{0}&#39; wird nicht unterstützt und kann deswegen nicht eingeladen werden.'
+    },
+    single: {
+      add: 'Einer neuer Favorit mit dem Name &#39;{0}&#39; ist abgelegt worden.',
+      remove: 'Der Favorit &#39;{0}&#39; ist entfernt worden.',
+      exists: 'Dieser Favorit existiert bereits.',
+      notSupported: 'Der Datenanbieter des Favoriten &#39;{0}&#39; wird nicht unterstützt und kann deswegen nicht eingeladen werden.'
+    },
+    import: {
+      override: 'Wollen Sie die aktuellen Favoriten überschreiben?',
+      wrongFile: 'Die Datei kann nicht gelesen werden.',
+      noValidJson: 'Die JSON Datei ist nicht valide.',
+      header: 'Importiere Favoriten',
+      text: 'Hier können Sie ihre Favoriten importieren. Einfach das JSON in das Textfeld einfügen:'
+    },
+    export: {
+      header: 'Exportiere Favortien',
+      text: 'Hier können Sie ihre Favoriten exportieren. Einfah das JSON aus dem Textfeld kopieren und speichern, um es später wieder zu importieren:'
+    },
+    error: {
+      fileApiNotSupported: 'Die File-API wird in diesem Browser nicht unterstüzt.'
+    }
+  },
+  inform: {
+    error: 'Ein Fehler ist aufgetreten: ',
+    warn: 'Bitte beachten Sie: '
+  }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.bg = {
+  fullName: 'български',
+  ok: 'Добре',
+  main: {
+    legend: 'Легенда',
+    diagram: 'Диаграма',
+    mapView: 'Екран на картата',
+    favoriteView: 'Бележник',
+    settings: 'Settings',
+    stationSelection: 'Изберете станция',
+    chartView: 'Преглед на диаграмата',
+    allPhenomena: 'Всички явления',
+    phenomenon: 'Феномен',
+    favoritesList: 'Бележник',
+    importFavorites: 'Внос',
+    exportFavorites: 'Износ',
+    importExportHelp: 'За да импортирате файл, моля изберете файла, който изнася преди.',
+    noFileSelected: 'Няма избран файл'
+  },
+  chart: {
+    noTimeseriesSelected: 'Не сте избрали timeseries, избраните timeseries нямат никакви ценности в даден момент обсег или timeseries са скрити.',
+    outsideOfDataRange: 'Извън обхвата на данните!',
+    annotation: 'Data без гаранция!',
+    monthNames: [ 'Jan', 'Февруари', 'Развалям', 'Април', 'Май', 'Юни', 'Юли', 'Август', 'Септември', 'Октомври', 'Ноември', 'Декември' ]
+  },
+  table: {
+    time: 'Време'
+  },
+  map: {
+    userLocation: 'Тук е текущото ви местоположение',
+    stationSelection: {
+      station: 'Станция',
+      selectAllTimeseries: 'изберете всички timeseries'
+    },
+    stationLocation: {
+      station: 'Станция',
+      timeseries: 'Timeseries',
+      provider: 'Доставчик',
+      jumpBackToChart: 'обратно към графиката'
+    },
+    providerList: {
+      provider: 'Доставчик',
+      stations: 'Станции',
+      timeseries: 'Timeseries',
+      phenomena: 'Феномени'
+    },
+    search: {
+      label: 'Търсенето на адреса ...',
+      noResult: 'Съжаляваме, че адресът не може да бъде намерен.'
+    }
+  },
+  listSelection: {
+    header: 'Изберете timeseries по списък',
+    headers: {
+      category: 'Категория',
+      station: 'Станция',
+      phenomenon: 'Феномен',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'намерено повече от едно timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'няма информация',
+      jumpToLastValue: 'скочи до последния стойност',
+      firstValueAt: 'Първо стойност към',
+      lastValueAt: 'Last стойност към'
+    }
+  },
+  export: {
+    label: 'Data като CSV (Zip архив)'
+  },
+  timeSelection: {
+    header: 'Time Range',
+    presetsHeader: 'пресети',
+    presets: {
+      lastHour: 'последния час',
+      today: 'днес',
+      yesterday: 'вчера',
+      todayYesterday: 'днес и вчера',
+      thisWeek: 'тази седмица',
+      lastWeek: 'миналата седмица',
+      thisMonth: 'този месец',
+      lastMonth: 'миналия месец',
+      thisYear: 'тази година',
+      lastYear: 'миналата година'
+    },
+    custom: {
+      header: 'обичай',
+      start: 'Начална дата',
+      end: 'Крайна дата'
+    },
+    warning: {
+      startBeforeEnd: 'Началната дата не може да бъде по-голяма след крайната дата',
+      maxTimeRange: 'Диапазонът на времето не може да бъде по-голям от една година'
+    }
+  },
+  styleChange: {
+    header: 'Промяна на стила',
+    currentColor: 'Current цвят',
+    selectColor: 'Изберете нов цвят',
+    selectBarInterval: 'Изберете интервала бар',
+    barChartInterval: {
+      hour: 'Час',
+      day: 'Ден',
+      week: 'Седмица',
+      month: 'Месец'
+    },
+    zeroScaled: 'нулеви мащабирани ордината',
+    groupedAxis: 'групирани ос'
+  },
+  settings: {
+    header: 'Settings',
+    chooseLanguage: 'Switch език',
+    requiresRestart: 'Има нужда от рестартиране!',
+    permalink: {
+      create: 'Създаване на Permalink като',
+      inWindow: 'връзка в нов прозорец',
+      inMail: 'връзка в имейл',
+      inClipboard: 'Линк към клипборда',
+      clipboardInfo: 'Линк към клипборда:',
+      inQrCode: 'като QR-Code',
+      favorite: 'Спестете работна среда като любим влизане'
+    },
+    clusterMarker: 'клъстер маркер',
+    markerWithLastInfo: {
+      header: 'маркер с информация миналата стойност',
+      label: 'внимание - някои доставчик на данни са много бавен'
+    },
+    saveStatus: {
+      header: 'Save среда',
+      label: 'Всички timeseries, избрания времеви период и настройките се съхраняват непрекъснато.'
+    },
+    resetStatus: 'Reset среда',
+    generalizeData: 'обобщим данните',
+    imprint: {
+      header: 'Отпечатък',
+      github: 'Намерете този проект в <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° север GmbH</a> е отговорен за този сайт. </p><p> 52 ° север Инициатива за геопространствена Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Мюнстер, Германия </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Няма съвпадащи timeseries се намират.'
+  },
+  guide: {
+    start: {
+      request: 'Когато стартирате това ръководство, за сегашното състояние ще бъде сменена с нова.'
+    },
+    step1: {
+      header: 'JavaScript Client - Guided Tour',
+      text: 'Това турне дава в няколко стъпки преглед как да използвате този клиент. Първо добавяме timeseries от картата.'
+    },
+    step2: {
+      header: 'Отидете на картата',
+      text: 'Тук превключите на мнение да получи карта.'
+    },
+    step3: {
+      header: 'Екран на картата',
+      text: 'Това е фрагмент от картата. В сайта можете да видите маркери или markergroups.'
+    },
+    step4: {
+      header: 'Промени Provider',
+      text: 'Тук можете да изберете друг timeseries доставчик.'
+    },
+    step5: {
+      header: 'Покажи населено място',
+      text: 'И тук можете да намерите вашето устройство на картата.'
+    },
+    step6: {
+      header: 'Избор на списък',
+      text: 'Тук можете да изберете timeseries от подредени списъци.'
+    },
+    step7: {
+      header: 'Изберете станция',
+      text: 'Моля изберете сега станция на картата.'
+    },
+    step8: {
+      header: 'Изберете timeseries',
+      text: 'Изберете тази опция. Ако има само един timeseries за тази станция, отметката вече е проверена. Сега можете да продължа с &quot;OK&quot; бутона, за да заредите timeseries.'
+    },
+    step9: {
+      header: 'Влизане Legend',
+      text: 'Тук можете да видите на продълженията серия. Можете да изтриете или намерете динамичния ред, или промяна на цвета.'
+    },
+    step10: {
+      header: 'Диаграма',
+      text: 'Това е графиката на избрания времеви ред.'
+    },
+    step11: {
+      header: 'Промяна на времето',
+      text: 'Тук можете да промените времето степента за Вашия избран времеви редове.'
+    },
+    step12: {
+      header: 'Таблица View',
+      text: 'Тук можете да получите една маса на суровини стойностите на данните в избрания времеви редове.'
+    },
+    step13: {
+      header: 'Любими управление',
+      text: 'Вписванията легенда / timeseries може да се запишат като любими. От тази гледна точка всички фаворити са изброени и могат да бъдат поддържани.'
+    },
+    step14: {
+      header: 'Завършен',
+      text: 'Браво! <br> Този клиент е продукт на <a href="http://52north.org" target="_blank">52 ° север GmbH</a> . Можете да намерите изходния код на <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Първо стойност към',
+    lastValueAt: 'Last стойност към',
+    label: 'любим',
+    edit: {
+      header: 'Edit любимата'
+    },
+    group: {
+      add: 'Статутът &quot;{0}&quot; се добавя към списъка с предпочитани.',
+      exists: 'Този статут все още съществува.',
+      noTimeseries: 'В момента са избрани не timeseries.',
+      notSupported: 'Доставчикът на запис на състоянието &quot;{0}&quot; не се поддържа и не може да се зареди.'
+    },
+    single: {
+      add: 'Нов любим &quot;{0}&quot; е прибавена в списъка.',
+      remove: 'Фаворитът &quot;{0}&quot; е отстранена.',
+      exists: 'Това любимо все още съществува.',
+      notSupported: 'Доставчикът на фаворита &quot;{0}&quot; не се поддържа и не може да се зареди.'
+    },
+    import: {
+      override: 'Искате ли да се преодолеят настоящите си любими?',
+      wrongFile: 'Не може да се прочете файла',
+      noValidJson: 'Файлът с JSON не е валидна!',
+      header: 'Вносните любими',
+      text: 'Тук можете да импортирате изнесени любими. Просто поставете JSON в това текстово поле:'
+    },
+    export: {
+      header: 'Експортните любими',
+      text: 'Тук можете да експортирате вашите любими. Просто копирате JSON от тази кутия и да го запишете във файл, за да го внесе по-късно:'
+    },
+    error: {
+      fileApiNotSupported: 'APIs файла не се поддържат напълно в този браузър.'
+    }
+  },
+  inform: {
+    error: 'Възникна грешка:',
+    warn: 'Моля, не забравяйте, че:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.cz = {
+  fullName: 'čeština',
+  ok: 'OK',
+  main: {
+    legend: 'Legenda',
+    diagram: 'Diagram',
+    mapView: 'Zobrazení mapy',
+    favoriteView: 'Oblíbené',
+    settings: 'Nastavení',
+    stationSelection: 'Vyberte stanici',
+    chartView: 'Pohled Chart',
+    allPhenomena: 'Všechny jevy',
+    phenomenon: 'Jev',
+    favoritesList: 'Oblíbené',
+    importFavorites: 'Import',
+    exportFavorites: 'Export',
+    importExportHelp: 'Chcete-li importovat soubor, vyberte soubor, který jste exportovali dříve.',
+    noFileSelected: 'Nebyl vybrán žádný soubor'
+  },
+  chart: {
+    noTimeseriesSelected: 'Vybrali jste žádné TimeSeries, vybrané TimeSeries nemají hodnoty v daném časovém rozmezí nebo TimeSeries jsou skryté.',
+    outsideOfDataRange: 'Mimo oblast dat!',
+    annotation: 'Údaje bez záruky!',
+    monthNames: [ 'Leden', 'Únor', 'Kazit', 'Dubna', 'Květen', 'Června', 'Července', 'Srpna', 'Sep', 'Říjen', 'Listopad', 'Prosince' ]
+  },
+  table: {
+    time: 'Čas'
+  },
+  map: {
+    userLocation: 'Tady je vaše aktuální poloha',
+    stationSelection: {
+      station: 'Stanice',
+      selectAllTimeseries: 'vybrat všechny TimeSeries'
+    },
+    stationLocation: {
+      station: 'Stanice',
+      timeseries: 'TimeSeries',
+      provider: 'Poskytovatel',
+      jumpBackToChart: 'zpět do grafu'
+    },
+    providerList: {
+      provider: 'Poskytovatel',
+      stations: 'Stanice',
+      timeseries: 'TimeSeries',
+      phenomena: 'Jevy'
+    },
+    search: {
+      label: 'hledat adresu ...',
+      noResult: 'Je nám líto, že adresa nebyla nalezena.'
+    }
+  },
+  listSelection: {
+    header: 'Vyberte TimeSeries podle seznamu',
+    headers: {
+      category: 'Kategorie',
+      station: 'Stanice',
+      phenomenon: 'Jev',
+      procedure: 'Senzor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'nalezeno více než jeden TimeSeries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'k dispozici žádné údaje',
+      jumpToLastValue: 'skok na poslední hodnotě',
+      firstValueAt: 'První hodnota v',
+      lastValueAt: 'Poslední hodnota při'
+    }
+  },
+  export: {
+    label: 'Data ve formátu CSV (Zip archiv)'
+  },
+  timeSelection: {
+    header: 'Časový rozsah',
+    presetsHeader: 'Předvolby',
+    presets: {
+      lastHour: 'Poslední hodina',
+      today: 'dnes',
+      yesterday: 'včera',
+      todayYesterday: 'dnes a včera',
+      thisWeek: 'tento týden',
+      lastWeek: 'minulý týden',
+      thisMonth: 'tento měsíc',
+      lastMonth: 'minulý měsíc',
+      thisYear: 'tento rok',
+      lastYear: 'loni'
+    },
+    custom: {
+      header: 'zvyk',
+      start: 'Datum zahájení',
+      end: 'Datum ukončení'
+    },
+    warning: {
+      startBeforeEnd: 'Datum zahájení nemůže být větší, než je datum ukončení',
+      maxTimeRange: 'Časový rozsah nemůže být větší než jeden rok'
+    }
+  },
+  styleChange: {
+    header: 'Změnit styl',
+    currentColor: 'Aktuální barva',
+    selectColor: 'Vyberte nové barvy',
+    selectBarInterval: 'Vyberte bar interval',
+    barChartInterval: {
+      hour: 'Hodina',
+      day: 'Den',
+      week: 'Týden',
+      month: 'Měsíc'
+    },
+    zeroScaled: 'nula šupinatý osa y',
+    groupedAxis: 'seskupené osa'
+  },
+  settings: {
+    header: 'Nastavení',
+    chooseLanguage: 'Přepnout jazyk',
+    requiresRestart: 'Potřebuje Restart!',
+    permalink: {
+      create: 'Vytvořit Permalink jako',
+      inWindow: 'odkaz v novém okně',
+      inMail: 'odkaz v e-mailu',
+      inClipboard: 'Odkaz do schránky',
+      clipboardInfo: 'Kopírovat do schránky:',
+      inQrCode: 'as QR-Code',
+      favorite: 'Uložit pracovní prostředí jako oblíbené položky'
+    },
+    clusterMarker: 'klastr značka',
+    markerWithLastInfo: {
+      header: 'značkovač s informacemi poslední hodnotu',
+      label: 'pozor - některé poskytovatele dat je velmi pomalé'
+    },
+    saveStatus: {
+      header: 'Save prostředí',
+      label: 'Všechny TimeSeries, vybraný OBDOBÍ a nastavení jsou uloženy kontinuální.'
+    },
+    resetStatus: 'Obnovit prostředí',
+    generalizeData: 'zobecnit dat',
+    imprint: {
+      header: 'Otisk',
+      github: 'Najít tento projekt na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° severní GmbH</a> je zodpovědný za tuto webovou stránku. </p><p> 52 ° severní Initiative for Geospatial Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Německo </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Bez odpovídající TimeSeries je nalezen.'
+  },
+  guide: {
+    start: {
+      request: 'Při spuštění tohoto průvodce, bude současný stav obnovit.'
+    },
+    step1: {
+      header: 'JavaScript Client - Komentovaná prohlídka',
+      text: 'Tato prohlídka poskytuje v několika krocích přehled, jak používat tuto klienta. Nejprve přidáme TimeSeries z mapy.'
+    },
+    step2: {
+      header: 'Přejít na mapu',
+      text: 'Zde se přepnout zobrazení získat mapy.'
+    },
+    step3: {
+      header: 'Zobrazení mapy',
+      text: 'To je zobrazení mapy. V mapě si můžete prohlédnout značky nebo markergroups.'
+    },
+    step4: {
+      header: 'Změna dodavatele',
+      text: 'Zde si můžete vybrat jiný TimeSeries provozovatele.'
+    },
+    step5: {
+      header: 'Show umístění',
+      text: 'A zde si můžete najít svůj přístroj na mapě.'
+    },
+    step6: {
+      header: 'Výběr Seznam',
+      text: 'Zde si můžete vybrat TimeSeries z objednaných seznamů.'
+    },
+    step7: {
+      header: 'Vyberte stanici',
+      text: 'Vyberte nyní stanici na mapě.'
+    },
+    step8: {
+      header: 'Vybrat TimeSeries',
+      text: 'Zaškrtněte toto políčko. Pokud je pouze jeden TimeSeries na této stanici, políčko je již kontrolována. Nyní můžete jít na tlačítkem &quot;OK&quot; načíst TimeSeries.'
+    },
+    step9: {
+      header: 'Vstup Legend',
+      text: 'Zde vidíte přidané časové řady. Můžete odstranit nebo najít časovou řadu, nebo změnit barvu.'
+    },
+    step10: {
+      header: 'Graf',
+      text: 'To je schéma vybrané časové řady.'
+    },
+    step11: {
+      header: 'Změnit čas',
+      text: 'Zde si můžete změnit rozsah času pro zvolené časové řady.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Zde máte tabulku surových datových hodnot k vybranému časové řady.'
+    },
+    step13: {
+      header: 'Oblíbený řízení',
+      text: 'Položky Legenda / TimeSeries mohou být uloženy jako oblíbené. V tomto pohledu jsou všechny oblíbené uvedeny a může být zachována.'
+    },
+    step14: {
+      header: 'Dokončeno',
+      text: 'Výborně! <br> Tento klient je produkt <a href="http://52north.org" target="_blank">52 ° severní GmbH</a> . Zde můžete najít zdrojový kód na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'První hodnota v',
+    lastValueAt: 'Poslední hodnota při',
+    label: 'oblíbený',
+    edit: {
+      header: 'Upravit oblíbené'
+    },
+    group: {
+      add: 'Stav &#39;{0}&#39; je přidán do seznamu oblíbených.',
+      exists: 'Tento stav stále existuje.',
+      noTimeseries: 'V současné době jsou vybrány žádné TimeSeries.',
+      notSupported: 'Poskytovatel zápisu stavu &#39;{0}&#39; není podporováno a nelze načíst.'
+    },
+    single: {
+      add: 'Nový oblíbený &#39;{0}&#39; je přidán do seznamu.',
+      remove: 'Oblíbené &#39;{0}&#39; se odstraní.',
+      exists: 'Tento oblíbený stále existuje.',
+      notSupported: 'Poskytovatel favorita &#39;{0}&#39; není podporováno a nelze načíst.'
+    },
+    import: {
+      override: 'Chcete přepsat aktuální oblíbené?',
+      wrongFile: 'Nelze přečíst soubor',
+      noValidJson: 'Soubor JSON není platný!',
+      header: 'Importovat oblíbené',
+      text: 'Zde si můžete importovat exportované oblíbené. Stačí vložit JSON v tomto textovém poli:'
+    },
+    export: {
+      header: 'Export oblíbené',
+      text: 'Zde si můžete exportovat své oblíbené. Stačí pouze zkopírovat JSON z tohoto textového pole a uložit do souboru, aby ji později importovat:'
+    },
+    error: {
+      fileApiNotSupported: 'API souborů nejsou plně podporovány v tomto prohlížeči.'
+    }
+  },
+  inform: {
+    error: 'Došlo k chybě:',
+    warn: 'Mějte prosím na paměti, že:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.dk = {
+  fullName: 'Dansk',
+  ok: 'OK',
+  main: {
+    legend: 'Legend',
+    diagram: 'Diagram',
+    mapView: 'Kortvisning',
+    favoriteView: 'Foretrukne',
+    settings: 'Indstillinger',
+    stationSelection: 'Vælg en station',
+    chartView: 'Kortvisning',
+    allPhenomena: 'Alle fænomener',
+    phenomenon: 'Phenomenon',
+    favoritesList: 'Foretrukne',
+    importFavorites: 'Import',
+    exportFavorites: 'Eksport',
+    importExportHelp: 'For at importere en fil, skal du vælge en fil, du eksporterede før.',
+    noFileSelected: 'Ingen fil er valgt'
+  },
+  chart: {
+    noTimeseriesSelected: 'Du har valgt ikke Timeseries, de valgte Timeseries har ingen værdier i det givne tidsinterval eller Timeseries er skjult.',
+    outsideOfDataRange: 'Uden for dataområde!',
+    annotation: 'Data uden garanti!',
+    monthNames: [ 'Jan', 'Februar', 'Mar', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'December' ]
+  },
+  table: {
+    time: 'Tid'
+  },
+  map: {
+    userLocation: 'Her er din aktuelle placering',
+    stationSelection: {
+      station: 'Station',
+      selectAllTimeseries: 'vælge alle Timeseries'
+    },
+    stationLocation: {
+      station: 'Station',
+      timeseries: 'Timeseries',
+      provider: 'Provider',
+      jumpBackToChart: 'Tilbage til diagram'
+    },
+    providerList: {
+      provider: 'Provider',
+      stations: 'Stationer',
+      timeseries: 'Timeseries',
+      phenomena: 'Phenomena'
+    },
+    search: {
+      label: 'søge efter adresse ...',
+      noResult: 'Beklager, kunne denne adresse ikke findes.'
+    }
+  },
+  listSelection: {
+    header: 'Vælg Timeseries ved liste',
+    headers: {
+      category: 'Kategori',
+      station: 'Station',
+      phenomenon: 'Phenomenon',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'fundet mere end én Timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Ingen data til rådighed',
+      jumpToLastValue: 'springe til sidste værdi',
+      firstValueAt: 'Første værdi på',
+      lastValueAt: 'Sidste værdi på'
+    }
+  },
+  export: {
+    label: 'Data, som CSV (zip arkiv)'
+  },
+  timeSelection: {
+    header: 'Time Range',
+    presetsHeader: 'forudindstillinger',
+    presets: {
+      lastHour: 'sidste time',
+      today: 'i dag',
+      yesterday: 'i går',
+      todayYesterday: 'i dag &amp; i går',
+      thisWeek: 'denne uge',
+      lastWeek: 'sidste uge',
+      thisMonth: 'denne måned',
+      lastMonth: 'sidste måned',
+      thisYear: 'år',
+      lastYear: 'sidste år'
+    },
+    custom: {
+      header: 'skik',
+      start: 'Startdato',
+      end: 'Slutdato'
+    },
+    warning: {
+      startBeforeEnd: 'Startdatoen kan ikke være større end slutdatoen',
+      maxTimeRange: 'Tidsintervallet kan ikke være større end et år'
+    }
+  },
+  styleChange: {
+    header: 'Skift stil',
+    currentColor: 'Nuværende farve',
+    selectColor: 'Vælg en ny farve',
+    selectBarInterval: 'Vælg bar interval',
+    barChartInterval: {
+      hour: 'Time',
+      day: 'Dag',
+      week: 'Uge',
+      month: 'Måned'
+    },
+    zeroScaled: 'nul skaleret Y-akse',
+    groupedAxis: 'grupperede akse'
+  },
+  settings: {
+    header: 'Indstillinger',
+    chooseLanguage: 'Skift sprog',
+    requiresRestart: 'Behov Genstart!',
+    permalink: {
+      create: 'Opret en permalink som',
+      inWindow: 'link i et nyt vindue',
+      inMail: 'link i en e-mail',
+      inClipboard: 'Link til udklipsholder',
+      clipboardInfo: 'Kopier til udklipsholder:',
+      inQrCode: 'som QR-kode',
+      favorite: 'Gem arbejdsmiljø som favorit post'
+    },
+    clusterMarker: 'klynge markør',
+    markerWithLastInfo: {
+      header: 'markør med sidste værdi information',
+      label: 'opmærksomhed - nogle dataleverandør er meget langsom'
+    },
+    saveStatus: {
+      header: 'Gem miljø',
+      label: 'Alle Timeseries, den valgte timespan og indstillingerne gemmes kontinuerligt.'
+    },
+    resetStatus: 'Reset miljø',
+    generalizeData: 'generalisere data',
+    imprint: {
+      header: 'Imprint',
+      github: 'Find dette projekt på <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> er ansvarlig for dette websted. </p><p> 52 ° North initiativ for Geospatial Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Muenster, Tyskland </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Ingen matchende Timeseries er fundet.'
+  },
+  guide: {
+    start: {
+      request: 'Når du starter denne vejledning, vil den aktuelle tilstand nulstilles.'
+    },
+    step1: {
+      header: 'JavaScript klient - Guided Tour',
+      text: 'Denne tur giver i et par skridt overblik, hvordan du bruger denne klient. Først tilføjer vi en Timeseries fra kortet.'
+    },
+    step2: {
+      header: 'Gå til kortet',
+      text: 'Her skifter vi udsigten til at få et kort.'
+    },
+    step3: {
+      header: 'Kortvisning',
+      text: 'Dette er kortet. I kortet kan du se markører eller markergroups.'
+    },
+    step4: {
+      header: 'Skift Provider',
+      text: 'Her kan du vælge en anden Timeseries udbyder.'
+    },
+    step5: {
+      header: 'Vis beliggenhed',
+      text: 'Og her kan du finde din enhed på kortet.'
+    },
+    step6: {
+      header: 'Valgliste',
+      text: 'Her kan du vælge en Timeseries ud af ordnede lister.'
+    },
+    step7: {
+      header: 'Vælg en station',
+      text: 'Vælg nu en station på kortet.'
+    },
+    step8: {
+      header: 'Vælg Timeseries',
+      text: 'Marker dette afkrydsningsfelt. Hvis der kun er én Timeseries til denne station, er afkrydsningsfeltet allerede er markeret. Nu kan du gå videre med &quot;OK&quot; -knappen for at indlæse Timeseries.'
+    },
+    step9: {
+      header: 'Legend post',
+      text: 'Her ses serien den ekstra tid. Du kan slette eller finde tidsserien eller ændre farven.'
+    },
+    step10: {
+      header: 'Chart',
+      text: 'Dette er diagram af serien den valgte tid.'
+    },
+    step11: {
+      header: 'Skift tid',
+      text: 'Her kan du ændre tidspunktet omfang til serie valgte tid.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Her får du en oversigt over de rå dataværdier til serie valgte tid.'
+    },
+    step13: {
+      header: 'Favorit ledelse',
+      text: 'Legenden indgange / Timeseries kunne gemmes som favoritter. I denne visning alle favoritter er opført og kunne opretholdes.'
+    },
+    step14: {
+      header: 'Færdig',
+      text: 'Godt gået! <br> Denne klient er et produkt af <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Du kan finde kildekoden på <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Første værdi på',
+    lastValueAt: 'Sidste værdi på',
+    label: 'favorit',
+    edit: {
+      header: 'Rediger favorit'
+    },
+    group: {
+      add: 'Status &#39;{0}&#39; føjes til favoritlisten.',
+      exists: 'Denne status stadig eksisterer.',
+      noTimeseries: 'I øjeblikket ingen Timeseries er valgt.',
+      notSupported: 'Udbyderen af ​​en post af status &#39;{0}&#39; er ikke understøttet og kan ikke indlæses.'
+    },
+    single: {
+      add: 'En ny favorit &#39;{0}&#39; er føjet til listen.',
+      remove: 'Den foretrukne &#39;{0}&#39; er fjernet.',
+      exists: 'Denne favorit eksisterer stadig.',
+      notSupported: 'Udbyderen af ​​foretrukne &#39;{0}&#39; er ikke understøttet og kan ikke indlæses.'
+    },
+    import: {
+      override: 'Har du lyst til at tilsidesætte dine nuværende favoritter?',
+      wrongFile: 'Kunne ikke læse filen',
+      noValidJson: 'Den JSON fil er ikke gyldig!',
+      header: 'Importer favoritter',
+      text: 'Her kan du importere dine eksporterede favoritter. Bare indsæt JSON i dette tekstfelt:'
+    },
+    export: {
+      header: 'Eksport favoritter',
+      text: 'Her kan du eksportere dine favoritter. Bare kopiere JSON ud af dette tekstfelt og gemme det i en fil til at importere det senere:'
+    },
+    error: {
+      fileApiNotSupported: 'Filen API&#39;er er ikke fuldt understøttet i denne browser.'
+    }
+  },
+  inform: {
+    error: 'Der opstod en fejl:',
+    warn: 'Husk, at:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.gr = {
+  fullName: 'ελληνικά',
+  ok: 'OK',
+  main: {
+    legend: 'Θρύλος',
+    diagram: 'Διάγραμμα',
+    mapView: 'Προβολή χάρτη',
+    favoriteView: 'Αγαπημένα',
+    settings: 'Ρυθμίσεις',
+    stationSelection: 'Επιλέξτε ένα σταθμό',
+    chartView: 'Προβολή γραφήματος',
+    allPhenomena: 'Όλα τα Φαινόμενα',
+    phenomenon: 'Φαινόμενο',
+    favoritesList: 'Αγαπημένα',
+    importFavorites: 'Εισαγωγή',
+    exportFavorites: 'Εξαγωγή',
+    importExportHelp: 'Για να εισαγάγετε ένα αρχείο, επιλέξτε ένα αρχείο που εξάγονται πριν.',
+    noFileSelected: 'Δεν έχει επιλεγεί αρχείο'
+  },
+  chart: {
+    noTimeseriesSelected: 'Έχετε επιλέξει δεν χρονοσειρών, οι επιλεγμένες χρονοσειρών δεν έχουν τιμές στο δεδομένο χρονικό διάστημα ή οι χρονοσειρές είναι κρυφό.',
+    outsideOfDataRange: 'Έξω από την περιοχή δεδομένων!',
+    annotation: 'Τα στοιχεία χωρίς εγγύηση!',
+    monthNames: [ 'Ιαν', 'Φεβρουάριος', 'Mar', 'Απρίλιος', 'Μάιος', 'Ιούνιος', 'Ιούλιος', 'Αύγουστος', 'Σεπτέμβριος', 'Οκτώβριο', 'Νοέμβριος', 'Δεκέμβριος' ]
+  },
+  table: {
+    time: 'Ώρα'
+  },
+  map: {
+    userLocation: 'Εδώ είναι η τρέχουσα τοποθεσία σας',
+    stationSelection: {
+      station: 'Σταθμός',
+      selectAllTimeseries: 'επιλέξετε όλες τις χρονοσειρές'
+    },
+    stationLocation: {
+      station: 'Σταθμός',
+      timeseries: 'Χρονοσειρά',
+      provider: 'Προμηθευτής',
+      jumpBackToChart: 'πίσω στο διάγραμμα'
+    },
+    providerList: {
+      provider: 'Προμηθευτής',
+      stations: 'Σταθμοί',
+      timeseries: 'Χρονοσειρά',
+      phenomena: 'Φαινόμενα'
+    },
+    search: {
+      label: 'αναζήτηση διεύθυνσης ...',
+      noResult: 'Λυπούμαστε, αλλά αυτή η διεύθυνση δεν θα μπορούσε να βρεθεί.'
+    }
+  },
+  listSelection: {
+    header: 'Επιλέξτε χρονοσειρές από λίστα',
+    headers: {
+      category: 'Κατηγορία',
+      station: 'Σταθμός',
+      phenomenon: 'Φαινόμενο',
+      procedure: 'Αισθητήρας'
+    },
+    warning: {
+      moreThanOneTimeseries: 'βρέθηκαν περισσότερες από μία χρονοσειρά'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Δεν υπάρχουν διαθέσιμα στοιχεία',
+      jumpToLastValue: 'άλμα στην τελευταία τιμή',
+      firstValueAt: 'Πρώτη αξία σε',
+      lastValueAt: 'Τελευταία αξία σε'
+    }
+  },
+  export: {
+    label: 'Τα δεδομένα ως CSV (Zip Αρχείο)'
+  },
+  timeSelection: {
+    header: 'Χρονικό διάστημα',
+    presetsHeader: 'προεπιλογές',
+    presets: {
+      lastHour: 'τελευταία ώρα',
+      today: 'σήμερα',
+      yesterday: 'εχθές',
+      todayYesterday: 'σήμερα και χθες',
+      thisWeek: 'αυτή την εβδομάδα',
+      lastWeek: 'την περασμένη εβδομάδα',
+      thisMonth: 'Αυτό το μήνα',
+      lastMonth: 'τον περασμένο μήνα',
+      thisYear: 'φέτος',
+      lastYear: 'πέρυσι'
+    },
+    custom: {
+      header: 'έθιμο',
+      start: 'Ημερομηνία έναρξης',
+      end: 'Ημερομηνία λήξης'
+    },
+    warning: {
+      startBeforeEnd: 'Η ημερομηνία έναρξης δεν μπορεί να είναι μεγαλύτερη από την ημερομηνία λήξης',
+      maxTimeRange: 'Το εύρος του χρόνου δεν μπορεί να είναι μεγαλύτερη του ενός έτους'
+    }
+  },
+  styleChange: {
+    header: 'Αλλαγή στυλ',
+    currentColor: 'Τρέχουσα χρώμα',
+    selectColor: 'Επιλέξτε ένα νέο χρώμα',
+    selectBarInterval: 'Επιλέξτε το διάστημα μπαρ',
+    barChartInterval: {
+      hour: 'Ώρα',
+      day: 'Ημέρα',
+      week: 'Εβδομάδα',
+      month: 'Μήνας'
+    },
+    zeroScaled: 'μηδέν κλίμακα Y-άξονα',
+    groupedAxis: 'ομαδοποιούνται άξονα'
+  },
+  settings: {
+    header: 'Ρυθμίσεις',
+    chooseLanguage: 'Αλλαγή γλώσσας',
+    requiresRestart: 'Ανάγκες Επανεκκίνηση!',
+    permalink: {
+      create: 'Δημιουργήστε ένα permalink ως',
+      inWindow: 'σύνδεσμο σε νέο παράθυρο',
+      inMail: 'σύνδεσμο σε ένα μήνυμα ηλεκτρονικού ταχυδρομείου',
+      inClipboard: 'Σύνδεση στο πρόχειρο',
+      clipboardInfo: 'Αντιγραφή στο πρόχειρο:',
+      inQrCode: 'ως QR-Code',
+      favorite: 'Αποθήκευση εργασιακό περιβάλλον ως αγαπημένο είσοδο'
+    },
+    clusterMarker: 'σύμπλεγμα δείκτη',
+    markerWithLastInfo: {
+      header: 'δείκτη με πληροφορίες τελευταία τιμή',
+      label: 'προσοχή - κάποια υπηρεσία παροχής δεδομένων είναι πολύ αργή'
+    },
+    saveStatus: {
+      header: 'Αποθήκευση περιβάλλον',
+      label: 'Όλες οι χρονοσειρές, η επιλεγμένη χρονικού διαστήματος και οι ρυθμίσεις που έχουν αποθηκευτεί συνεχής.'
+    },
+    resetStatus: 'Επαναφορά περιβάλλον',
+    generalizeData: 'γενίκευση των δεδομένων',
+    imprint: {
+      header: 'Αποτύπωμα',
+      github: 'Βρείτε αυτό το έργο στο <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° Βόρεια GmbH</a> είναι υπεύθυνη για αυτή την ιστοσελίδα. </p><p> 52 ° Βόρεια Πρωτοβουλία για Γεωχωρικών Λογισμικό Ανοικτού Κώδικα GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Μούνστερ, Γερμανία </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Δεν ταιριάζουν χρονοσειρά βρίσκεται.'
+  },
+  guide: {
+    start: {
+      request: 'Όταν ξεκινάτε αυτόν τον οδηγό, η η σημερινή κατάσταση θα μηδενιστεί.'
+    },
+    step1: {
+      header: 'JavaScript Πελάτης - Ξενάγηση',
+      text: 'Αυτή η περιήγηση δίνει σε λίγα βήματα μια επισκόπηση πώς να χρησιμοποιήσετε αυτόν τον πελάτη. Πρώτα προσθέτουμε ένα χρονοσειρές από το χάρτη.'
+    },
+    step2: {
+      header: 'Μετάβαση στο χάρτη',
+      text: 'Εδώ αλλάξετε την προβολή για να πάρετε ένα χάρτη.'
+    },
+    step3: {
+      header: 'Προβολή χάρτη',
+      text: 'Αυτή είναι η προβολή χάρτη. Στο χάρτη μπορείτε να δείτε δείκτες ή markergroups.'
+    },
+    step4: {
+      header: 'Αλλαγή Provider',
+      text: 'Εδώ μπορείτε να επιλέξετε έναν άλλο πάροχο χρονοσειρών.'
+    },
+    step5: {
+      header: 'Παρουσιάστε την τοποθεσία',
+      text: 'Και εδώ μπορείτε να εντοπίσετε τη συσκευή σας στο χάρτη.'
+    },
+    step6: {
+      header: 'Λίστα επιλογής',
+      text: 'Εδώ μπορείτε να επιλέξετε μια χρονοσειρά από ταξινομημένες λίστες.'
+    },
+    step7: {
+      header: 'Επιλέξτε ένα σταθμό',
+      text: 'Επιλέξτε τώρα ένα σταθμό στο χάρτη.'
+    },
+    step8: {
+      header: 'Επιλέξτε χρονοσειρά',
+      text: 'Επιλέξτε αυτό το πλαίσιο ελέγχου. Εάν υπάρχει μόνο μία χρονοσειρά για το σταθμό αυτό, το πλαίσιο ελέγχου είναι ήδη επιλεγμένο. Τώρα μπορείτε να πάτε με το πλήκτρο &quot;OK&quot; για να φορτώσετε τις χρονοσειρές.'
+    },
+    step9: {
+      header: 'Καταχώρηση Υπόμνημα',
+      text: 'Εδώ μπορείτε να δείτε την προστιθέμενη χρονοσειρές. Μπορείτε να διαγράψετε ή να εντοπίσετε τις χρονοσειρές ή να αλλάξετε το χρώμα.'
+    },
+    step10: {
+      header: 'Διάγραμμα',
+      text: 'Αυτό είναι το διάγραμμα του επιλεγμένου χρονοσειρών.'
+    },
+    step11: {
+      header: 'Αλλαγή του χρόνου',
+      text: 'Εδώ μπορείτε να αλλάξετε την ώρα έκταση για την επιλεγμένη σειρά το χρόνο σας.'
+    },
+    step12: {
+      header: 'Πίνακας Προβολή',
+      text: 'Εδώ μπορείτε να πάρετε έναν πίνακα των πρώτων τιμών δεδομένων για την επιλεγμένη σειρά το χρόνο σας.'
+    },
+    step13: {
+      header: 'Αγαπημένη διαχείριση',
+      text: 'Οι καταχωρήσεις θρύλος / χρονοσειρά θα μπορούσαν να αποθηκευτούν ως αγαπημένα. Σε αυτή την άποψη όλα τα αγαπημένα που αναφέρονται και θα μπορούσε να διατηρηθεί.'
+    },
+    step14: {
+      header: 'Ολοκληρώθηκε',
+      text: 'Μπράβο! <br> Ο πελάτης είναι ένα προϊόν <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Μπορείτε να βρείτε τον πηγαίο κώδικα για <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Πρώτη αξία σε',
+    lastValueAt: 'Τελευταία αξία σε',
+    label: 'αγαπημένο',
+    edit: {
+      header: 'Επεξεργασία αγαπημένο'
+    },
+    group: {
+      add: 'Η ιδιότητα &#39;{0}&#39; προστέθηκε στη λίστα αγαπημένων.',
+      exists: 'Αυτή η κατάσταση εξακολουθεί να υπάρχει.',
+      noTimeseries: 'Προς το παρόν δεν υπάρχουν χρονοσειρές επιλεγεί.',
+      notSupported: 'Ο πάροχος της εισόδου του καθεστώτος &#39;{0}&#39; δεν υποστηρίζεται και δεν μπορεί να φορτωθεί.'
+    },
+    single: {
+      add: 'Ένα νέο αγαπημένο &#39;{0}&#39;, προστίθεται στη λίστα.',
+      remove: 'Το αγαπημένο &#39;{0}&#39; έχει αφαιρεθεί.',
+      exists: 'Αυτό το αγαπημένο εξακολουθεί να υφίσταται.',
+      notSupported: 'Ο πάροχος της αγαπημένο &#39;{0}&#39; δεν υποστηρίζεται και δεν μπορεί να φορτωθεί.'
+    },
+    import: {
+      override: 'Θέλετε να παρακάμψετε την τρέχουσα αγαπημένα σας;',
+      wrongFile: 'Δεν ήταν δυνατή η ανάγνωση του αρχείου',
+      noValidJson: 'Το αρχείο JSON δεν είναι έγκυρο!',
+      header: 'Εισαγωγή αγαπημένα',
+      text: 'Εδώ μπορείτε να εισάγετε εξάγονται τα αγαπημένα σας. Απλά επικολλήστε το JSON σε αυτό το πεδίο κειμένου:'
+    },
+    export: {
+      header: 'Εξαγωγή αγαπημένα',
+      text: 'Εδώ μπορείτε να εξάγετε τα αγαπημένα σας. Απλά αντιγράψτε το JSON έξω από αυτό το πλαίσιο κειμένου και να το αποθηκεύσετε σε ένα αρχείο για να το εισάγετε αργότερα:'
+    },
+    error: {
+      fileApiNotSupported: 'Τα APIs αρχείων δεν υποστηρίζονται πλήρως σε αυτό το πρόγραμμα περιήγησης.'
+    }
+  },
+  inform: {
+    error: 'Προέκυψε σφάλμα:',
+    warn: 'Να θυμάστε ότι:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.es = {
+  fullName: 'Español',
+  ok: 'OKAY',
+  main: {
+    legend: 'Leyenda',
+    diagram: 'Diagrama',
+    mapView: 'Ver mapa',
+    favoriteView: 'Favoritos',
+    settings: 'Ajustes',
+    stationSelection: 'Seleccione una estación',
+    chartView: 'Vista de gráfico',
+    allPhenomena: 'Todos los fenómenos',
+    phenomenon: 'Fenómeno',
+    favoritesList: 'Favoritos',
+    importFavorites: 'Importación',
+    exportFavorites: 'Exportación',
+    importExportHelp: 'Para importar un archivo, elija un archivo que exportó antes.',
+    noFileSelected: 'No archivo seleccionado'
+  },
+  chart: {
+    noTimeseriesSelected: 'Ha seleccionado no hay series de tiempo, las series de tiempo seleccionados tienen ningún valor en el intervalo de tiempo dado o las series de tiempo están ocultas.',
+    outsideOfDataRange: 'Fuera del rango de datos!',
+    annotation: 'Datos sin garantía!',
+    monthNames: [ 'Jan', 'Febrero', 'Mar', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre' ]
+  },
+  table: {
+    time: 'Tiempo'
+  },
+  map: {
+    userLocation: 'Aquí está su ubicación actual',
+    stationSelection: {
+      station: 'Estación',
+      selectAllTimeseries: 'seleccionar todas las series de tiempo'
+    },
+    stationLocation: {
+      station: 'Estación',
+      timeseries: 'Timeseries',
+      provider: 'Proveedor',
+      jumpBackToChart: 'Vuelta al gráfico'
+    },
+    providerList: {
+      provider: 'Proveedor',
+      stations: 'Estaciones',
+      timeseries: 'Timeseries',
+      phenomena: 'Fenómenos'
+    },
+    search: {
+      label: 'buscar dirección ...',
+      noResult: 'Lo sentimos, esa dirección no se pudo encontrar.'
+    }
+  },
+  listSelection: {
+    header: 'Seleccione timeseries por lista',
+    headers: {
+      category: 'Categoría',
+      station: 'Estación',
+      phenomenon: 'Fenómeno',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'encontrado más de un timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'No hay datos disponibles',
+      jumpToLastValue: 'saltar al último valor',
+      firstValueAt: 'Primer valor en',
+      lastValueAt: 'Del último valor en'
+    }
+  },
+  export: {
+    label: 'Datos como CSV (archivo Zip)'
+  },
+  timeSelection: {
+    header: 'Intervalo de tiempo',
+    presetsHeader: 'presets',
+    presets: {
+      lastHour: 'última hora',
+      today: 'hoy',
+      yesterday: 'ayer',
+      todayYesterday: 'hoy y de ayer',
+      thisWeek: 'esta semana',
+      lastWeek: 'la semana pasada',
+      thisMonth: 'este mes',
+      lastMonth: 'mes pasado',
+      thisYear: 'este año',
+      lastYear: 'el año pasado'
+    },
+    custom: {
+      header: 'costumbre',
+      start: 'Fecha de inicio',
+      end: 'Fecha de finalización'
+    },
+    warning: {
+      startBeforeEnd: 'La fecha de inicio no puede ser mayor que la fecha de finalización',
+      maxTimeRange: 'El rango de tiempo no puede ser mayor que un año'
+    }
+  },
+  styleChange: {
+    header: 'Cambiar estilo',
+    currentColor: 'El color actual',
+    selectColor: 'Seleccione un nuevo color',
+    selectBarInterval: 'Seleccione el intervalo de bar',
+    barChartInterval: {
+      hour: 'Hora',
+      day: 'Día',
+      week: 'Semana',
+      month: 'Mes'
+    },
+    zeroScaled: 'Y-eje escala de cero',
+    groupedAxis: 'eje agrupados'
+  },
+  settings: {
+    header: 'Ajustes',
+    chooseLanguage: 'Cambiar idioma',
+    requiresRestart: 'Necesidades Reiniciar!',
+    permalink: {
+      create: 'Crear un enlace permanente como',
+      inWindow: 'enlace en una nueva ventana',
+      inMail: 'enlace en un correo electrónico',
+      inClipboard: 'Vincular al portapapeles',
+      clipboardInfo: 'Copiar al portapapeles:',
+      inQrCode: 'como QR-Code',
+      favorite: 'Guardar entorno de trabajo como entrada favorita'
+    },
+    clusterMarker: 'marcador de racimo',
+    markerWithLastInfo: {
+      header: 'marcador con la última información sobre el valor',
+      label: 'atención - algunos proveedor de datos son muy lentos'
+    },
+    saveStatus: {
+      header: 'Guardar ambiente',
+      label: 'Todas las series de tiempo, el intervalo de tiempo seleccionado y los ajustes se guardan continua.'
+    },
+    resetStatus: 'Restablecer ambiente',
+    generalizeData: 'generalizar los datos',
+    imprint: {
+      header: 'Pie de imprenta',
+      github: 'Encuentra este proyecto en <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° norte GmbH</a> es responsable de este sitio web. </p><p> 52 ° Iniciativa del Norte para Geoespacial de Código Abierto Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Alemania </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'No hay timeseries juego se encuentra.'
+  },
+  guide: {
+    start: {
+      request: 'Al iniciar esta guía, el estado actual se restablecerá.'
+    },
+    step1: {
+      header: 'JavaScript Client - Visita Guiada',
+      text: 'Este tour da en pocos pasos una visión general de cómo utilizar este cliente. Primero añadimos unas series de tiempo desde el mapa.'
+    },
+    step2: {
+      header: 'Ir al mapa',
+      text: 'Aquí se pasa el fin de obtener un mapa.'
+    },
+    step3: {
+      header: 'Ver mapa',
+      text: 'Esta es la vista del mapa. En el mapa se puede ver marcadores o markergroups.'
+    },
+    step4: {
+      header: 'Cambio de Proveedores',
+      text: 'Aquí puede seleccionar otro proveedor de series de tiempo.'
+    },
+    step5: {
+      header: 'Mostrar ubicación',
+      text: 'Y aquí se puede localizar el dispositivo en el mapa.'
+    },
+    step6: {
+      header: 'Selección de listas',
+      text: 'Aquí puede seleccionar un timeseries de listas ordenadas.'
+    },
+    step7: {
+      header: 'Seleccione una estación',
+      text: 'Favor, seleccione una estación en el mapa.'
+    },
+    step8: {
+      header: 'Seleccione timeseries',
+      text: 'Seleccione esta casilla de verificación. Si sólo hay una series de tiempo para esta estación, la casilla ya está marcada. Ahora puede seguir con el botón &quot;OK&quot; para cargar las series de tiempo.'
+    },
+    step9: {
+      header: 'Entrada de la leyenda',
+      text: 'Aquí puedes ver la serie de tiempo añadido. Puede eliminar o localizar las series de tiempo o cambiar el color.'
+    },
+    step10: {
+      header: 'Tabla',
+      text: 'Este es el gráfico de la serie de tiempo seleccionado.'
+    },
+    step11: {
+      header: 'Cambiar tiempo',
+      text: 'Aquí puede cambiar la medida en la hora de su serie de tiempo seleccionado.'
+    },
+    step12: {
+      header: 'Vista de tabla',
+      text: 'Aquí puede obtener una tabla de los valores de los datos en bruto para su serie de tiempo seleccionado.'
+    },
+    step13: {
+      header: 'Gestión favorita',
+      text: 'Las entradas de leyenda / timeseries podrían ser guardados como favoritos. En este punto de vista todos los favoritos se enumeran y se podrían mantener.'
+    },
+    step14: {
+      header: 'Terminado',
+      text: 'Bien hecho! <br> Este cliente es un producto de <a href="http://52north.org" target="_blank">52 ° norte GmbH</a> . Usted puede encontrar el código fuente en <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Primer valor en',
+    lastValueAt: 'Del último valor en',
+    label: 'favorito',
+    edit: {
+      header: 'Editar favorito'
+    },
+    group: {
+      add: 'El estado &#39;{0}&#39; se añade a la lista de favoritos.',
+      exists: 'Todavía existe este estado.',
+      noTimeseries: 'Actualmente no se han seleccionado series de tiempo.',
+      notSupported: 'El proveedor de una entrada de la situación &#39;{0}&#39; no es compatible y no se puede cargar.'
+    },
+    single: {
+      add: 'Un nuevo favorito &#39;{0}&#39; se añade a la lista.',
+      remove: 'Se retira el favorito &#39;{0}&#39;.',
+      exists: 'Todavía existe este favorito.',
+      notSupported: 'El proveedor de los favoritos &#39;{0}&#39; no es compatible y no se puede cargar.'
+    },
+    import: {
+      override: '¿Quieres anular sus favoritos?',
+      wrongFile: 'No se pudo leer el archivo',
+      noValidJson: 'El archivo JSON no es válida!',
+      header: 'Importar favoritos',
+      text: 'Aquí puedes importar tus favoritos exportados. Sólo tienes que pegar el JSON en este campo de texto:'
+    },
+    export: {
+      header: 'Exportar favoritos',
+      text: 'Aquí usted puede exportar sus favoritos. Sólo tienes que copiar el JSON salir de este cuadro de texto y guardarlo en un archivo para importarlo más tarde:'
+    },
+    error: {
+      fileApiNotSupported: 'Las API de archivos no son totalmente compatibles con este navegador.'
+    }
+  },
+  inform: {
+    error: 'Se produjo un error:',
+    warn: 'Por favor, recuerde que:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.ee = {
+  fullName: 'eesti',
+  ok: 'Korras',
+  main: {
+    legend: 'Legend',
+    diagram: 'Skeem',
+    mapView: 'Kaart vaade',
+    favoriteView: 'Lemmikud',
+    settings: 'Seaded',
+    stationSelection: 'Valige jaama',
+    chartView: 'Graafiku vaade',
+    allPhenomena: 'Kõik Nähtused',
+    phenomenon: 'Nähtus',
+    favoritesList: 'Lemmikud',
+    importFavorites: 'Import',
+    exportFavorites: 'Eksport',
+    importExportHelp: 'Faili importimiseks, palun vali fail, mida eksporditakse varem.',
+    noFileSelected: 'Faili pole valitud'
+  },
+  chart: {
+    noTimeseriesSelected: 'Oled valinud ei timeseries, valitud timeseries pole väärtused antud aja piires või timeseries on peidetud.',
+    outsideOfDataRange: 'Väljaspool andmete valikut!',
+    annotation: 'Andmed ilma garantii!',
+    monthNames: [ 'Jan', 'Veebruar', 'Moonutama', 'Aprill', 'Mai', 'Juuni', 'Juuli', 'August', 'September', 'Oktoober', 'November', 'Detsember' ]
+  },
+  table: {
+    time: 'Aeg'
+  },
+  map: {
+    userLocation: 'Siin on teie praegune asukoht',
+    stationSelection: {
+      station: 'Jaam',
+      selectAllTimeseries: 'vali kõik timeseries'
+    },
+    stationLocation: {
+      station: 'Jaam',
+      timeseries: 'Timeseries',
+      provider: 'Tarnija',
+      jumpBackToChart: 'tagasi skeem'
+    },
+    providerList: {
+      provider: 'Tarnija',
+      stations: 'Jaamad',
+      timeseries: 'Timeseries',
+      phenomena: 'Nähtused'
+    },
+    search: {
+      label: 'otsi aadress ...',
+      noResult: 'Vabandame, et aadress ei leitud.'
+    }
+  },
+  listSelection: {
+    header: 'Vali timeseries nimekirja järgi',
+    headers: {
+      category: 'Kategooria',
+      station: 'Jaam',
+      phenomenon: 'Nähtus',
+      procedure: 'Andur'
+    },
+    warning: {
+      moreThanOneTimeseries: 'leidis rohkem kui üks timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'andmed ei ole kättesaadavad',
+      jumpToLastValue: 'Viimasele väärtus',
+      firstValueAt: 'Esiteks väärtus',
+      lastValueAt: 'Viimati väärtus'
+    }
+  },
+  export: {
+    label: 'Andmed CSV (Zip Archive)'
+  },
+  timeSelection: {
+    header: 'Ajavahemik',
+    presetsHeader: 'presets',
+    presets: {
+      lastHour: 'Viimase tunni jooksul',
+      today: 'täna',
+      yesterday: 'eile',
+      todayYesterday: 'täna ja eile',
+      thisWeek: 'Sel nädalal',
+      lastWeek: 'Eelmisel nädalal',
+      thisMonth: 'sel kuul',
+      lastMonth: 'viimase kuu jooksul',
+      thisYear: 'Sel aastal',
+      lastYear: 'mullu'
+    },
+    custom: {
+      header: 'tava',
+      start: 'Alguskuupäev',
+      end: 'Lõppkuupäev'
+    },
+    warning: {
+      startBeforeEnd: 'Alguskuupäev ei tohi olla suurem kui lõppkuupäev',
+      maxTimeRange: 'Ajavahemik ei tohi olla suurem kui üks aasta'
+    }
+  },
+  styleChange: {
+    header: 'Muuda stiili',
+    currentColor: 'Praegune värv',
+    selectColor: 'Vali uus värv',
+    selectBarInterval: 'Vali baar intervalli',
+    barChartInterval: {
+      hour: 'Tund',
+      day: 'Päev',
+      week: 'Nädal',
+      month: 'Kuu'
+    },
+    zeroScaled: 'null korrastatakse Y-telg',
+    groupedAxis: 'grupeeritud telje'
+  },
+  settings: {
+    header: 'Seaded',
+    chooseLanguage: 'Vaheta keelt',
+    requiresRestart: 'Vajab Restart!',
+    permalink: {
+      create: 'Loo permalink kui',
+      inWindow: 'link uues aknas',
+      inMail: 'link e-posti',
+      inClipboard: 'Link lõikelauale',
+      clipboardInfo: 'Kopeeri lõikelauale:',
+      inQrCode: 'nagu QR-kood',
+      favorite: 'Säästa töökeskkonda lemmiktöö'
+    },
+    clusterMarker: 'klastri marker',
+    markerWithLastInfo: {
+      header: 'marker eelmise väärtuse kohta',
+      label: 'tähelepanu - mõned andmed pakkuja on väga aeglane'
+    },
+    saveStatus: {
+      header: 'Save keskkond',
+      label: 'Kõik timeseries, valitud ajavahemiku ja sätted salvestatakse pidevalt.'
+    },
+    resetStatus: 'Taasta keskkond',
+    generalizeData: 'üldistada andmed',
+    imprint: {
+      header: 'Jälg',
+      github: 'Leia selle projekti juures <a href="https://github.com/52North/js-sensorweb-client" target="_blank">github</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> vastutab sellel veebilehel. </p><p> 52 ° North algatus Geospatial Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Saksamaa </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Vastavaid timeseries leitakse.'
+  },
+  guide: {
+    start: {
+      request: 'Kui hakkad seda juhendit, hetkeseisu nullitakse.'
+    },
+    step1: {
+      header: 'JavaScript Klient - tutvustust',
+      text: 'See ekskursioon annab mõne sammu ülevaate, kuidas kasutada seda kliendile. Esiteks lisame timeseries kaardilt.'
+    },
+    step2: {
+      header: 'Mine kaart',
+      text: 'Siin me vahetada, et saada kaart.'
+    },
+    step3: {
+      header: 'Kaart vaade',
+      text: 'See on kaardi vaade. Kaardil näed markerid või markergroups.'
+    },
+    step4: {
+      header: 'Muuda Provider',
+      text: 'Siin saab valida mõne muu timeseries poole.'
+    },
+    step5: {
+      header: 'Näita asukohta',
+      text: 'Ja siin võite leida oma seadme kaardil.'
+    },
+    step6: {
+      header: 'Eesti valik',
+      text: 'Siin saab valida timeseries välja tellitud nimekirja.'
+    },
+    step7: {
+      header: 'Valige jaama',
+      text: 'Palun valige nüüd jaam kaardil.'
+    },
+    step8: {
+      header: 'Vali timeseries',
+      text: 'Valige see märkeruut. Kui on ainult üks timeseries selle jaama kast on märkimata. Nüüd võite minna koos &quot;OK&quot; nuppu, et laadida timeseries.'
+    },
+    step9: {
+      header: 'Legend kirje',
+      text: 'Siin on näha lisatud aegread. Saate kustutada või leida aegrea või muuta värvi.'
+    },
+    step10: {
+      header: 'Skeem',
+      text: 'See on skeem, mis on valitud aegread.'
+    },
+    step11: {
+      header: 'Muuda aeg',
+      text: 'Siin saab muuta aega määral Valitud aegread.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Siin saad tabel algandmed väärtused valitud aegread.'
+    },
+    step13: {
+      header: 'Lemmik juhtimine',
+      text: 'Legend sissekanded / timeseries saab salvestada lemmikuid. Seda silmas pidades kõik lemmikutesse loetletud ja mida saab säilitada.'
+    },
+    step14: {
+      header: 'Lõpetas',
+      text: 'Hästi tehtud! <br> See klient on toode <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Leiate lähtekoodi <a href="https://github.com/52North/js-sensorweb-client" target="_blank">github</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Esiteks väärtus',
+    lastValueAt: 'Viimati väärtus',
+    label: 'lemmik',
+    edit: {
+      header: 'Edit lemmik'
+    },
+    group: {
+      add: 'Status &#39;{0}&#39; on lisatud lemmikute nimekirja.',
+      exists: 'See seisund on endiselt olemas.',
+      noTimeseries: 'Praegu ei ole timeseries on valitud.',
+      notSupported: 'Pakkuja kandmise staatuse &quot;{0}&quot; ei toetata ja ei saa laadida.'
+    },
+    single: {
+      add: 'Uus lemmik &quot;{0}&quot; on loendisse lisatud.',
+      remove: 'Lemmik &#39;{0}&#39; on eemaldatud.',
+      exists: 'See lemmik on endiselt olemas.',
+      notSupported: 'Pakkuja lemmik &quot;{0}&quot; ei toetata ja ei saa laadida.'
+    },
+    import: {
+      override: 'Kas soovite tühistada oma praeguse nimekirja?',
+      wrongFile: 'Ei saa lugeda faili',
+      noValidJson: 'JSON faili ei kehti!',
+      header: 'Import nimekirja',
+      text: 'Siin saate importida oma eksporditud lemmikud. Just kleebi JSON selles tekstiväli:'
+    },
+    export: {
+      header: 'Ekspordi lemmikud',
+      text: 'Siin saate eksportida oma lemmikuks. Lihtsalt kopeeri JSON läbi selle tekstikasti ja salvestage see fail importida seda hiljem:'
+    },
+    error: {
+      fileApiNotSupported: 'Faili API ei ole täielikult toetatud selles brauserit.'
+    }
+  },
+  inform: {
+    error: 'Tekkis viga:',
+    warn: 'Pidage meeles, et:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.fi = {
+  fullName: 'Suomi',
+  ok: 'Kunnossa',
+  main: {
+    legend: 'Legenda',
+    diagram: 'Kaavio',
+    mapView: 'Kartta näkymä',
+    favoriteView: 'Suosikit',
+    settings: 'Asetukset',
+    stationSelection: 'Valitse asema',
+    chartView: 'Kuvionäyttöä',
+    allPhenomena: 'Kaikki ilmiöt',
+    phenomenon: 'Ilmiö',
+    favoritesList: 'Suosikit',
+    importFavorites: 'Tuonti',
+    exportFavorites: 'Vienti',
+    importExportHelp: 'Jos haluat tuoda tiedoston, valitse tiedosto viedä ennen.',
+    noFileSelected: 'Ei tiedostoa valittuna'
+  },
+  chart: {
+    noTimeseriesSelected: 'Et ole valinnut Palkat, valittu Palkat ei ole arvoja tietyn ajan alue tai Palkat ovat piilossa.',
+    outsideOfDataRange: 'Ulkopuolella tietojen valikoima!',
+    annotation: 'Tiedot ilman takuuta!',
+    monthNames: [ 'Tammikuu', 'Helmikuu', 'Maaliskuu', 'Huhtikuu', 'Toukokuu', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu', 'Lokakuu', 'Marraskuu', 'Joulukuu' ]
+  },
+  table: {
+    time: 'Aika'
+  },
+  map: {
+    userLocation: 'Tässä on nykyinen sijainti',
+    stationSelection: {
+      station: 'Asema',
+      selectAllTimeseries: 'Valitse kaikki Palkat'
+    },
+    stationLocation: {
+      station: 'Asema',
+      timeseries: 'Palkat',
+      provider: 'Toimittaja',
+      jumpBackToChart: 'takaisin kaavioon'
+    },
+    providerList: {
+      provider: 'Toimittaja',
+      stations: 'Asemat',
+      timeseries: 'Palkat',
+      phenomena: 'Ilmiöt'
+    },
+    search: {
+      label: 'etsi osoite ...',
+      noResult: 'Anteeksi, että osoitetta ei löytynyt.'
+    }
+  },
+  listSelection: {
+    header: 'Valitse Palkat mukaan lista',
+    headers: {
+      category: 'Luokka',
+      station: 'Asema',
+      phenomenon: 'Ilmiö',
+      procedure: 'Anturi'
+    },
+    warning: {
+      moreThanOneTimeseries: 'havaittu useampi kuin yksi Palkat'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'tietoja ei ole käytettävissä',
+      jumpToLastValue: 'Siirry viimeiselle arvo',
+      firstValueAt: 'Ensimmäinen arvo',
+      lastValueAt: 'Viimeinen arvo'
+    }
+  },
+  export: {
+    label: 'Data CSV (Zip-arkisto)'
+  },
+  timeSelection: {
+    header: 'Aikaväli',
+    presetsHeader: 'esiasetukset',
+    presets: {
+      lastHour: 'viimeisen tunnin',
+      today: 'tänään',
+      yesterday: 'eilen',
+      todayYesterday: 'tänään &amp; eilen',
+      thisWeek: 'tällä viikolla',
+      lastWeek: 'viime viikolla',
+      thisMonth: 'tässä kuussa',
+      lastMonth: 'viime kuussa',
+      thisYear: 'tänä vuonna',
+      lastYear: 'viime vuonna'
+    },
+    custom: {
+      header: 'asiakassuhde',
+      start: 'Aloituspäivä',
+      end: 'Päättymispäivä'
+    },
+    warning: {
+      startBeforeEnd: 'Alkamispäivä ei voi olla suurempi silloin lopetuspäivä',
+      maxTimeRange: 'Aikaväli ei voi olla suurempi silloin yksi vuosi'
+    }
+  },
+  styleChange: {
+    header: 'Muuta tyyliä',
+    currentColor: 'Nykyinen väri',
+    selectColor: 'Valitse uusi väri',
+    selectBarInterval: 'Valitse bar aikaväli',
+    barChartInterval: {
+      hour: 'Tunti',
+      day: 'Päivä',
+      week: 'Viikko',
+      month: 'Kuukausi'
+    },
+    zeroScaled: 'nolla skaalata Y-akselilla',
+    groupedAxis: 'ryhmitelty akseli'
+  },
+  settings: {
+    header: 'Asetukset',
+    chooseLanguage: 'Vaihda kieltä',
+    requiresRestart: 'Tarvitsee Restart!',
+    permalink: {
+      create: 'Luo permalink kuin',
+      inWindow: 'linkki uuteen ikkunaan',
+      inMail: 'linkki sähköpostitse',
+      inClipboard: 'Linkki leikepöydälle',
+      clipboardInfo: 'Kopioi leikepöydälle:',
+      inQrCode: 'kuten QR-koodi',
+      favorite: 'Säästä työympäristöä suosikkikohdetta'
+    },
+    clusterMarker: 'klusterin merkki',
+    markerWithLastInfo: {
+      header: 'markkeri viime arvotiedon',
+      label: 'huomiota - joidenkin tietojen toimittaja ovat hyvin hitaita'
+    },
+    saveStatus: {
+      header: 'Tallenna ympäristö',
+      label: 'Kaikki Palkat, valittu aikajänne ja asetukset tallennetaan jatkuvasti.'
+    },
+    resetStatus: 'Nollaa ympäristö',
+    generalizeData: 'yleistää Data',
+    imprint: {
+      header: 'Jälki',
+      github: 'Etsi tätä hanketta <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> vastaa tällä sivustolla. </p><p> 52 ° North aloitteen Geospatiaalinen Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Saksa </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Ei vastaavia Palkat löytyy.'
+  },
+  guide: {
+    start: {
+      request: 'Kun käynnistät tämän oppaan, nykytilaa nollataan.'
+    },
+    step1: {
+      header: 'JavaScript Client - Opastettu kierros',
+      text: 'Tämä kiertue tarjoaa muutaman askeleen yleiskuvan miten käyttää tätä asiakkaalle. Ensin lisätään Palkat kartalta.'
+    },
+    step2: {
+      header: 'Siirry kartalla',
+      text: 'Täällä vaihtaa näkymän saada kartan.'
+    },
+    step3: {
+      header: 'Kartta näkymä',
+      text: 'Tämä on karttanäkymässä. Vuonna karttaa näet markkereita tai markergroups.'
+    },
+    step4: {
+      header: 'Muuta Provider',
+      text: 'Täällä voit valita toisen Palkat tarjoaja.'
+    },
+    step5: {
+      header: 'Näytä sijainti',
+      text: 'Ja täällä voit paikantaa laitteen kartalta.'
+    },
+    step6: {
+      header: 'Luettelo valinta',
+      text: 'Täällä voit valita Palkat ulos tilata luetteloita.'
+    },
+    step7: {
+      header: 'Valitse asema',
+      text: 'Valitse nyt asema kartalla.'
+    },
+    step8: {
+      header: 'Valitse Palkat',
+      text: 'Valitse tämä valintaruutu. Jos on vain yksi Palkat tämän aseman, valintaruutu on jo valittuna. Nyt voit mennä &quot;OK&quot; -painiketta ladataksesi Palkat.'
+    },
+    step9: {
+      header: 'Legend merkintä',
+      text: 'Täällä näet lisätty aikasarjoja. Voit poistaa tai paikantaa aikasarjan tai muuttaa väriä.'
+    },
+    step10: {
+      header: 'Kaavio',
+      text: 'Tämä on kaavio aikasarjaotoksen.'
+    },
+    step11: {
+      header: 'Muuta aikaa',
+      text: 'Täällä voit muuttaa aikaa määrin valitsemallesi aikasarjoja.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Täältä saat taulukko raakadatan arvoja valitsemasi aikasarjoja.'
+    },
+    step13: {
+      header: 'Suosikki hallinta',
+      text: 'Legenda merkinnät / Palkat voitaisiin suosikeiksi. Tässä näkymässä kaikki suosikit on lueteltu ja voidaan säilyttää.'
+    },
+    step14: {
+      header: 'Valmiit',
+      text: 'Hyvin tehty! <br> Tämä asiakas on tuotteen <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Löydät lähdekoodia <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Ensimmäinen arvo',
+    lastValueAt: 'Viimeinen arvo',
+    label: 'suosikki',
+    edit: {
+      header: 'Muokkaa suosikki'
+    },
+    group: {
+      add: 'Tila &quot;{0}&quot; lisätään suosikkilistan.',
+      exists: 'Tämä asema on edelleen olemassa.',
+      noTimeseries: 'Tällä hetkellä ei ole Palkat valitaan.',
+      notSupported: 'Tarjoajan tulon tila &quot;{0}&quot; ei tueta, eikä sitä voi ladata.'
+    },
+    single: {
+      add: 'Uusi suosikki &quot;{0}&quot; on lisätty luetteloon.',
+      remove: 'Suosikki &quot;{0}&quot; on poistettu.',
+      exists: 'Tämä suosikki on edelleen olemassa.',
+      notSupported: 'Tarjoaja suosikki &quot;{0}&quot; ei tueta, eikä sitä voi ladata.'
+    },
+    import: {
+      override: 'Haluatko ohittaa nykyisen suosikkeja?',
+      wrongFile: 'Ei voitu lukea tiedostoa',
+      noValidJson: 'JSON-tiedosto ei kelpaa!',
+      header: 'Tuo suosikit',
+      text: 'Täällä voit tuoda viedä suosikkeja. Vain liitä JSON tällä tekstikenttään:'
+    },
+    export: {
+      header: 'Vie suosikit',
+      text: 'Täällä voit viedä suosikkisi. Kopioi JSON pois tässä kentässä ja tallentaa sen tiedostoon tuoda sen myöhemmin:'
+    },
+    error: {
+      fileApiNotSupported: 'File API eivät täysin tue tätä selainta.'
+    }
+  },
+  inform: {
+    error: 'Virhe:',
+    warn: 'Muista, että:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.fr = {
+  fullName: 'Français',
+  ok: 'D&#39;ACCORD',
+  main: {
+    legend: 'Légende',
+    diagram: 'Diagramme',
+    mapView: 'Voir la carte',
+    favoriteView: 'Favoris',
+    settings: 'Paramètres',
+    stationSelection: 'Sélectionnez une station',
+    chartView: 'vue graphique',
+    allPhenomena: 'Tous les phénomènes',
+    phenomenon: 'Phénomène',
+    favoritesList: 'Favoris',
+    importFavorites: 'Importation',
+    exportFavorites: 'Exportation',
+    importExportHelp: 'Pour importer un fichier, se il vous plaît choisir un fichier que vous avez exporté auparavant.',
+    noFileSelected: 'Aucun fichier sélectionné'
+  },
+  chart: {
+    noTimeseriesSelected: 'Vous avez sélectionné aucun timeseries, les séries chronologiques sélectionnées ne ont pas de valeurs dans l&#39;intervalle de temps donné ou les séries chronologiques sont cachés.',
+    outsideOfDataRange: 'En dehors de la plage de données!',
+    annotation: 'Données non validées!',
+    monthNames: [ 'Jan', 'Février', 'Mar', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre' ]
+  },
+  table: {
+    time: 'Temps'
+  },
+  map: {
+    userLocation: 'Voici votre position actuelle',
+    stationSelection: {
+      station: 'Station',
+      selectAllTimeseries: 'sélectionner toutes les séries chronologiques'
+    },
+    stationLocation: {
+      station: 'Station',
+      timeseries: 'Timeseries',
+      provider: 'Fournisseur',
+      jumpBackToChart: 'Retour au tableau'
+    },
+    providerList: {
+      provider: 'Fournisseur',
+      stations: 'Stations',
+      timeseries: 'Timeseries',
+      phenomena: 'Phénomènes'
+    },
+    search: {
+      label: 'Recherche d&#39;adresse ...',
+      noResult: 'Désolé, cette adresse n&#39;a pu être trouvée.'
+    }
+  },
+  listSelection: {
+    header: 'Sélectionnez timeseries par liste',
+    headers: {
+      category: 'Catégorie',
+      station: 'Station',
+      phenomenon: 'Phénomène',
+      procedure: 'Capteur'
+    },
+    warning: {
+      moreThanOneTimeseries: 'trouvé plus d&#39;un timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Aucune donnée disponible',
+      jumpToLastValue: 'sauter à la dernière valeur',
+      firstValueAt: 'Première valeur à',
+      lastValueAt: 'Dernière valeur au'
+    }
+  },
+  export: {
+    label: 'Les données au format CSV (Archive Zip)'
+  },
+  timeSelection: {
+    header: 'Plage de temps',
+    presetsHeader: 'presets',
+    presets: {
+      lastHour: 'dernière heure',
+      today: 'aujourd&#39;hui',
+      yesterday: 'hier',
+      todayYesterday: 'aujourd&#39;hui et hier',
+      thisWeek: 'cette semaine',
+      lastWeek: 'la semaine dernière',
+      thisMonth: 'ce mois-ci',
+      lastMonth: 'mois dernier',
+      thisYear: 'cette année',
+      lastYear: 'l&#39;année dernière'
+    },
+    custom: {
+      header: 'coutume',
+      start: 'Date de début',
+      end: 'Date de fin'
+    },
+    warning: {
+      startBeforeEnd: 'La date de début ne peut pas être supérieur à la date de fin',
+      maxTimeRange: 'La plage de temps ne peut pas être supérieur à un année'
+    }
+  },
+  styleChange: {
+    header: 'Changer le style',
+    currentColor: 'Couleur actuelle',
+    selectColor: 'Sélectionnez une nouvelle couleur',
+    selectBarInterval: 'Sélectionnez l&#39;intervalle de bar',
+    barChartInterval: {
+      hour: 'Heure',
+      day: 'Jour',
+      week: 'Semaine',
+      month: 'Mois'
+    },
+    zeroScaled: 'zéro axe Y mises à l&#39;échelle',
+    groupedAxis: 'axe regroupés'
+  },
+  settings: {
+    header: 'Paramètres',
+    chooseLanguage: 'Changer de langue',
+    requiresRestart: 'Redémarrer besoins!',
+    permalink: {
+      create: 'Créez un permalien que',
+      inWindow: 'lien dans une nouvelle fenêtre',
+      inMail: 'lien dans un email',
+      inClipboard: 'Lien vers le presse-papiers',
+      clipboardInfo: 'Copier dans le presse-papiers:',
+      inQrCode: 'que QR-Code',
+      favorite: 'Enregistrer environnement de travail que l&#39;entrée préférée'
+    },
+    clusterMarker: 'marqueur pôle',
+    markerWithLastInfo: {
+      header: 'marqueur des informations de dernière valeur',
+      label: 'attention - certains fournisseurs de données sont très lents'
+    },
+    saveStatus: {
+      header: 'Sauvegarder l&#39;environnement',
+      label: 'Toutes les séries chronologiques, le laps de temps sélectionné et les paramètres sont enregistrés en continu.'
+    },
+    resetStatus: 'Réinitialiser environnement',
+    generalizeData: 'généraliser données',
+    imprint: {
+      header: 'Empreinte',
+      github: 'Trouvez ce projet à <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° Nord GmbH</a> est responsable de ce site. </p><p> 52 ° Initiative du Nord pour Geospatial Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Allemagne </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Pas de séries chronologiques est trouvé.'
+  },
+  guide: {
+    start: {
+      request: 'Lorsque vous démarrez ce guide, le l&#39;état actuel sera réinitialisé.'
+    },
+    step1: {
+      header: 'JavaScript client - Visite guidée',
+      text: 'Cette visite donne en quelques étapes un aperçu comment utiliser ce client. D&#39;abord, nous ajoutons un timeseries de la carte.'
+    },
+    step2: {
+      header: 'Accéder à la carte',
+      text: 'Ici, nous passons la vue pour obtenir une carte.'
+    },
+    step3: {
+      header: 'Voir la carte',
+      text: 'Ce est la vue de la carte. Dans la carte vous pouvez voir des marqueurs ou markergroups.'
+    },
+    step4: {
+      header: 'Changer de fournisseur',
+      text: 'Ici vous pouvez choisir un autre fournisseur de séries chronologiques.'
+    },
+    step5: {
+      header: 'Montrer emplacement',
+      text: 'Et là, vous pouvez localiser votre appareil sur la carte.'
+    },
+    step6: {
+      header: 'Sélection d&#39;une liste',
+      text: 'Ici vous pouvez sélectionner un timeseries sur les listes ordonnées.'
+    },
+    step7: {
+      header: 'Sélectionnez une station',
+      text: 'Se il vous plaît sélectionnez maintenant une station sur la carte.'
+    },
+    step8: {
+      header: 'Sélectionnez timeseries',
+      text: 'Cochez cette case. Se il ya seulement une séries chronologiques pour cette station, la case est déjà cochée. Maintenant vous pouvez aller avec le bouton &quot;OK&quot; pour charger les séries chronologiques.'
+    },
+    step9: {
+      header: 'Légende entrée',
+      text: 'Ici, vous voyez la série de temps additionnel. Vous pouvez supprimer ou de localiser la série de temps ou de modifier la couleur.'
+    },
+    step10: {
+      header: 'Graphique',
+      text: 'Ce est le tableau de la série de temps sélectionné.'
+    },
+    step11: {
+      header: 'Changer temps',
+      text: 'Ici vous pouvez changer la mesure de temps pour votre série de temps sélectionné.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Ici, vous obtenez un tableau des valeurs de données brutes à votre série de temps sélectionné.'
+    },
+    step13: {
+      header: 'Gestion des Signets',
+      text: 'Les entrées de légende / séries chronologiques pourraient être enregistrés comme favoris. Dans ce point de vue tous les favoris sont répertoriés et peuvent être maintenues.'
+    },
+    step14: {
+      header: 'Fini',
+      text: 'Bravo! <br> Ce client est un produit de <a href="http://52north.org" target="_blank">52 ° Nord GmbH</a> . Vous pouvez trouver le code source sur <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Première valeur à',
+    lastValueAt: 'Dernière valeur au',
+    label: 'favori',
+    edit: {
+      header: 'Modifier préférée'
+    },
+    group: {
+      add: 'Le statut &#39;{0}&#39; est ajouté à la liste des favoris.',
+      exists: 'Ce statut existe toujours.',
+      noTimeseries: 'Actuellement aucun timeseries sont sélectionnés.',
+      notSupported: 'Le fournisseur d&#39;une entrée de l&#39;état &#39;{0}&#39; ne est pas supporté et ne peut pas être chargé.'
+    },
+    single: {
+      add: 'Un nouveau favori &#39;{0}&#39; est ajouté à la liste.',
+      remove: 'Le favori &#39;{0}&#39; est retiré.',
+      exists: 'Ce favori existe toujours.',
+      notSupported: 'Le fournisseur de la favorite &#39;{0}&#39; ne est pas supporté et ne peut pas être chargé.'
+    },
+    import: {
+      override: 'Voulez-vous remplacer vos favoris actuels?',
+      wrongFile: 'Impossible de lire le fichier',
+      noValidJson: 'Le fichier JSON est pas valide!',
+      header: 'favoris d&#39;importation',
+      text: 'Ici vous pouvez importer vos favoris exportés. Il suffit de coller l&#39;JSON dans ce champ de texte:'
+    },
+    export: {
+      header: 'Exporter les favoris',
+      text: 'Ici vous pouvez exporter vos favoris. Il suffit de copier le JSON sortir de cette zone de texte et l&#39;enregistrer dans un fichier à importer plus tard:'
+    },
+    error: {
+      fileApiNotSupported: 'Les API de fichiers ne sont pas entièrement pris en charge dans ce navigateur.'
+    }
+  },
+  inform: {
+    error: 'Une erreur est survenue:',
+    warn: 'Se il vous plaît ne oubliez pas que:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.ga = {
+  fullName: 'Gaeilge',
+  ok: 'OK',
+  main: {
+    legend: 'Finscéal',
+    diagram: 'Léaráid',
+    mapView: 'Léarscáil dearcadh',
+    favoriteView: 'Favorites',
+    settings: 'Socruithe',
+    stationSelection: 'Roghnaigh stáisiún',
+    chartView: 'Dearcadh Cairt',
+    allPhenomena: 'Gach feiniméin',
+    phenomenon: 'Feiniméan',
+    favoritesList: 'Favorites',
+    importFavorites: 'Iompórtáil',
+    exportFavorites: 'Easpórtáil',
+    importExportHelp: 'A allmhairiú comhad, le do thoil a roghnú comhad a onnmhairíodh tú roimh.',
+    noFileSelected: 'Níl comhad roghnaithe'
+  },
+  chart: {
+    noTimeseriesSelected: 'Tá tú a roghnaigh aon timeseries, tá na timeseries roghnaithe bith luachanna sa réimse am ar leith nó na timeseries bhfolach.',
+    outsideOfDataRange: 'Taobh amuigh de raon sonraí!',
+    annotation: 'Sonraí gan bharántas!',
+    monthNames: [ 'Jan', 'Feabhra', 'Mar', 'Aibreán', 'Bealtaine', 'Meitheamh', 'Iúil', 'Lúnasa', 'Meán Fómhair', 'Deireadh Fómhair', 'Samhain', 'Nollaig' ]
+  },
+  table: {
+    time: 'Am'
+  },
+  map: {
+    userLocation: 'Seo é do suíomh reatha',
+    stationSelection: {
+      station: 'Stáisiún',
+      selectAllTimeseries: 'roghnú go léir timeseries'
+    },
+    stationLocation: {
+      station: 'Stáisiún',
+      timeseries: 'Timeseries',
+      provider: 'Soláthraí',
+      jumpBackToChart: 'ar ais go dtí chairt'
+    },
+    providerList: {
+      provider: 'Soláthraí',
+      stations: 'Stáisiúin',
+      timeseries: 'Timeseries',
+      phenomena: 'Feiniméin'
+    },
+    search: {
+      label: 'cuardach a dhéanamh ar seoladh ...',
+      noResult: 'Tá brón orainn, ní fhéadfadh an seoladh sin a fháil.'
+    }
+  },
+  listSelection: {
+    header: 'Roghnaigh timeseries le liosta',
+    headers: {
+      category: 'Catagóir',
+      station: 'Stáisiún',
+      phenomenon: 'Feiniméan',
+      procedure: 'Braiteoir'
+    },
+    warning: {
+      moreThanOneTimeseries: 'Fuair ​​timeseries níos mó ná aon'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Níl aon sonraí ar fáil',
+      jumpToLastValue: 'léim go luach deiridh',
+      firstValueAt: 'An chéad luach ag',
+      lastValueAt: 'Luach Last ag'
+    }
+  },
+  export: {
+    label: 'Sonraí mar CSV (Zip Cartlann)'
+  },
+  timeSelection: {
+    header: 'Am Raon',
+    presetsHeader: 'réamhshocruithe',
+    presets: {
+      lastHour: 'uair dheireanach',
+      today: 'lá atá inniu ann',
+      yesterday: 'inné',
+      todayYesterday: 'lá atá inniu ann agus an lae inné',
+      thisWeek: 'an tseachtain seo',
+      lastWeek: 'an tseachtain seo caite',
+      thisMonth: 'an mhí seo',
+      lastMonth: 'an mhí seo caite',
+      thisYear: 'i mbliana',
+      lastYear: 'na bliana seo caite'
+    },
+    custom: {
+      header: 'saincheaptha',
+      start: 'Dáta tosaithe',
+      end: 'Dáta deiridh'
+    },
+    warning: {
+      startBeforeEnd: 'Ní féidir leis an dáta tosaigh a bheith níos mó ansin an dáta deiridh',
+      maxTimeRange: 'Ní féidir leis an raon ama a bheith níos mó ansin aon bhliain amháin'
+    }
+  },
+  styleChange: {
+    header: 'Athraigh stíl',
+    currentColor: 'Dath atá ann faoi láthair',
+    selectColor: 'Roghnaigh dath nua',
+    selectBarInterval: 'Roghnaigh an t-eatramh barra',
+    barChartInterval: {
+      hour: 'Uair',
+      day: 'Lá',
+      week: 'Seachtain',
+      month: 'Month'
+    },
+    zeroScaled: 'náid scála Y-ais',
+    groupedAxis: 'ais grúpáilte'
+  },
+  settings: {
+    header: 'Socruithe',
+    chooseLanguage: 'Teanga Athraigh',
+    requiresRestart: 'Atosaigh Riachtanais!',
+    permalink: {
+      create: 'Cruthaigh permalink mar',
+      inWindow: 'nasc i bhfuinneog nua',
+      inMail: 'nasc sa ríomhphost',
+      inClipboard: 'Nasc a gearrthaisce',
+      clipboardInfo: 'Cóipeáil go gearrthaisce:',
+      inQrCode: 'mar QR-Cód',
+      favorite: 'Timpeallacht oibre mar iontráil is fearr leat Sábháil'
+    },
+    clusterMarker: 'marcóir braisle',
+    markerWithLastInfo: {
+      header: 'marcóir le faisnéis luach deiridh',
+      label: 'aird - tá roinnt soláthraí sonraí an-mhall'
+    },
+    saveStatus: {
+      header: 'Sábháil timpeallacht',
+      label: 'Gach timeseries, an méid ama maidir roghnaithe agus na socruithe a shábháil leanúnach.'
+    },
+    resetStatus: 'Timpeallacht Athshocraigh',
+    generalizeData: 'ghinearálú Sonraí',
+    imprint: {
+      header: 'Imprint',
+      github: 'Faigh an tionscadal seo ag <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° GmbH Thuaidh</a> freagrach as an suíomh gréasáin seo. </p><p> 52 ° Tionscnamh Thuaidh do geospáis Foinse Oscailte Bogearraí GmbH <br> Martin Luther--King-Weg 24 <br> 48,155 MUENSTER, An Ghearmáin </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Níl timeseries meaitseáil fáil.'
+  },
+  guide: {
+    start: {
+      request: 'Nuair a thosaíonn tú an treoir, beidh an staid reatha a athshocrú.'
+    },
+    step1: {
+      header: 'JavaScript Cliant - Treoraithe Turas',
+      text: 'Tugann an turas seo i roinnt céimeanna forbhreathnú conas é a úsáid seo a cliant. An Chéad muid add timeseries ón léarscáil.'
+    },
+    step2: {
+      header: 'Téigh go dtí an léarscáil',
+      text: 'Anseo táimid ag aistriú an dearcadh a fháil ar léarscáil.'
+    },
+    step3: {
+      header: 'Léarscáil dearcadh',
+      text: 'Is é seo an dearcadh léarscáil. Sa an léarscáil is féidir leat a fheiceáil marcóirí nó markergroups.'
+    },
+    step4: {
+      header: 'Athraigh Soláthraí',
+      text: 'Anseo is féidir leat a roghnú soláthraí eile timeseries.'
+    },
+    step5: {
+      header: 'Taispeáin suíomh',
+      text: 'Agus is anseo is féidir leat a aimsiú do gléas ar an léarscáil.'
+    },
+    step6: {
+      header: 'Liosta roghnú',
+      text: 'Anseo is féidir leat a roghnú timeseries as liostaí ordaigh.'
+    },
+    step7: {
+      header: 'Roghnaigh stáisiún',
+      text: 'Roghnaigh le do thoil anois stáisiún ar an léarscáil.'
+    },
+    step8: {
+      header: 'Roghnaigh timeseries',
+      text: 'Roghnaigh an ticbhosca seo. Mura bhfuil ach aon timeseries don stáisiún, tá an ticbhosca sheiceáil cheana féin. Anois is féidir leat dul ar aghaidh leis an cnaipe &quot;OK&quot; a luchtú an timeseries.'
+    },
+    step9: {
+      header: 'Iontráil finscéal',
+      text: 'Anseo a fheiceann tú ar an tsraith ama leis. Is féidir leat a scriosadh nó a lonnú ar an tsraith ama nó a athrú ar an dath.'
+    },
+    step10: {
+      header: 'Cairt',
+      text: 'Is é seo an chairt ar an tsraith ama roghnaithe.'
+    },
+    step11: {
+      header: 'Athraigh am',
+      text: 'Anseo is féidir leat athrú ar an méid ama do do chuid shraith ama roghnaithe.'
+    },
+    step12: {
+      header: 'Radharc an Tábla',
+      text: 'Anseo gheobhaidh tú tábla na luachanna sonraí amh le do shraith ama roghnaithe.'
+    },
+    step13: {
+      header: 'Bainistíocht Favorite',
+      text: 'D&#39;fhéadfadh na hiontrálacha finscéal / timeseries a shábháil mar Favorites. Sa dearcadh seo go léir Favorites liostaithe agus d&#39;fhéadfadh a chothabháil.'
+    },
+    step14: {
+      header: 'Críochnaithe',
+      text: 'Maith thú! <br> Is é seo an cliant a táirge de <a href="http://52north.org" target="_blank">52 ° GmbH Thuaidh</a> . Is féidir leat teacht ar an cód foinse ar <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'An chéad luach ag',
+    lastValueAt: 'Luach Last ag',
+    label: 'is fearr leat',
+    edit: {
+      header: 'Cuir fearr leat'
+    },
+    group: {
+      add: 'Stádas &#39;{0}&#39; a chur leis an liosta is fearr leat.',
+      exists: 'Seo an stádas ann go fóill.',
+      noTimeseries: 'Faoi láthair níl aon timeseries a roghnú.',
+      notSupported: 'An soláthraí iontráil ar stádas &#39;{0}&#39; Níl tacaíocht agus ní féidir iad a luchtú.'
+    },
+    single: {
+      add: 'A is fearr leat nua &#39;{0}&#39; a chur leis an liosta.',
+      remove: 'Is é an fearr leat &#39;{0}&#39; bhaint.',
+      exists: 'Seo is fearr leat ann go fóill.',
+      notSupported: 'An soláthraí an fearr leat &#39;{0}&#39; Níl tacaíocht agus ní féidir iad a luchtú.'
+    },
+    import: {
+      override: 'Ar mhaith leat a shárú do Favorites reatha?',
+      wrongFile: 'Níorbh fhéidir an comhad a léamh',
+      noValidJson: 'Níl an comhad JSON bailí!',
+      header: 'Favorites Iompórtáil',
+      text: 'Anseo is féidir leat a allmhairiú do Favorites a onnmhairíodh. Just a ghreamú ar an JSON sa réimse téacs:'
+    },
+    export: {
+      header: 'Favorites Easpórtáil',
+      text: 'Anseo is féidir leat a onnmhairiú do rogha pearsanta. Just a chóipeáil an JSON as an textbox agus é a shábháil i gcomhad a allmhairiú níos déanaí:'
+    },
+    error: {
+      fileApiNotSupported: 'Níl na APIs Comhad tacaíocht iomlán sa bhrabhsálaí.'
+    }
+  },
+  inform: {
+    error: 'Tharla earráid:',
+    warn: 'Cuimhnigh go:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.hr = {
+  fullName: 'Hrvatski',
+  ok: 'OK',
+  main: {
+    legend: 'Legenda',
+    diagram: 'Dijagram',
+    mapView: 'Prikaz karte',
+    favoriteView: 'Omiljene',
+    settings: 'Postavke',
+    stationSelection: 'Odaberite stanicu',
+    chartView: 'Prikaz grafikona',
+    allPhenomena: 'Sve pojave',
+    phenomenon: 'Pojava',
+    favoritesList: 'Omiljene',
+    importFavorites: 'Uvoz',
+    exportFavorites: 'Izvoz',
+    importExportHelp: 'Za uvoz datoteke, odaberite datoteku koju izvozi prije.',
+    noFileSelected: 'Ne odabrane datoteke'
+  },
+  chart: {
+    noTimeseriesSelected: 'Odabrali ste ne timeseries, odabrani timeseries nemaju vrijednosti u određenom vremenskom rasponu ili timeseries su skriveni.',
+    outsideOfDataRange: 'Izvan raspona podataka!',
+    annotation: 'Podaci bez jamstva!',
+    monthNames: [ 'Jan', 'Veljače', 'Pokvariti', 'Travnja', 'Svibanj', 'Lipnja', 'Srpnja', 'Kolovoz', 'Rujna', 'Listopada', 'Studeni', 'Prosinca' ]
+  },
+  table: {
+    time: 'Vrijeme'
+  },
+  map: {
+    userLocation: 'Ovdje je vaš trenutni položaj',
+    stationSelection: {
+      station: 'Stanica',
+      selectAllTimeseries: 'odaberite sve timeseries'
+    },
+    stationLocation: {
+      station: 'Stanica',
+      timeseries: 'Timeseries',
+      provider: 'Davatelj',
+      jumpBackToChart: 'Povratak na grafikonu'
+    },
+    providerList: {
+      provider: 'Davatelj',
+      stations: 'Postaje',
+      timeseries: 'Timeseries',
+      phenomena: 'Fenomeni'
+    },
+    search: {
+      label: 'tražiti adrese ...',
+      noResult: 'Žao nam je, da je adresa se ne može naći.'
+    }
+  },
+  listSelection: {
+    header: 'Odaberite timeseries po popisu',
+    headers: {
+      category: 'Kategorija',
+      station: 'Stanica',
+      phenomenon: 'Pojava',
+      procedure: 'Senzor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'naći više od jednog timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'nema raspoloživih podataka',
+      jumpToLastValue: 'skočiti na posljednjem vrijednost',
+      firstValueAt: 'Prvo vrijednost na',
+      lastValueAt: 'Zadnja vrijednost na'
+    }
+  },
+  export: {
+    label: 'Podaci kao CSV (Zip arhiva)'
+  },
+  timeSelection: {
+    header: 'Vrijeme Raspon',
+    presetsHeader: 'Zadane postavke',
+    presets: {
+      lastHour: 'posljednji čas',
+      today: 'danas',
+      yesterday: 'jučer',
+      todayYesterday: 'Danas i jučer',
+      thisWeek: 'ovaj tjedan',
+      lastWeek: 'prošlog tjedna',
+      thisMonth: 'ovaj mjesec',
+      lastMonth: 'prošli mjesec',
+      thisYear: 'Ove godine',
+      lastYear: 'prošle godine'
+    },
+    custom: {
+      header: 'običaj',
+      start: 'Datum početka',
+      end: 'Datum završetka'
+    },
+    warning: {
+      startBeforeEnd: 'Datum početka ne može biti veći od datuma završetka',
+      maxTimeRange: 'Vremensko razdoblje ne može biti veći od jedne godine'
+    }
+  },
+  styleChange: {
+    header: 'Promjena stila',
+    currentColor: 'Trenutna boja',
+    selectColor: 'Odaberite novu boju',
+    selectBarInterval: 'Odaberite bar interval',
+    barChartInterval: {
+      hour: 'Sat',
+      day: 'Dan',
+      week: 'Tjedan',
+      month: 'Mjesec'
+    },
+    zeroScaled: 'nula krljuštima Y-os',
+    groupedAxis: 'grupirani os'
+  },
+  settings: {
+    header: 'Postavke',
+    chooseLanguage: 'Prebacivanje jezika',
+    requiresRestart: 'Potrebno Restart!',
+    permalink: {
+      create: 'Napravite Permalink kao',
+      inWindow: 'karika u novom prozoru',
+      inMail: 'Veza na e-mail',
+      inClipboard: 'Veza u međuspremnik',
+      clipboardInfo: 'Kopiraj u međuspremnik:',
+      inQrCode: 'kao QR-Code',
+      favorite: 'Spremite radnu okolinu kao omiljeni stupanja'
+    },
+    clusterMarker: 'cluster marker',
+    markerWithLastInfo: {
+      header: 'marker s prošlom informacije vrijednosti',
+      label: 'pozornost - neki pružatelj podaci su vrlo sporo'
+    },
+    saveStatus: {
+      header: 'Spremi okoliš',
+      label: 'Svi timeseries, odabranog razdoblja i postavke se spremaju kontinuirano.'
+    },
+    resetStatus: 'Reset okoliš',
+    generalizeData: 'generalizirati podataka',
+    imprint: {
+      header: 'Otisak',
+      github: 'Nađi ovaj projekt na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> je odgovorna za ove web stranice. </p><p> 52 ° North Inicijativa geoprostornih Open Source Software GmbH <br> Martin Luther--kralj-Weg 24 <br> 48155 Münster, Njemačka </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Nema podudaranje timeseries pronađen.'
+  },
+  guide: {
+    start: {
+      request: 'Kada pokrenete ovaj vodič, trenutno stanje će se vratiti.'
+    },
+    step1: {
+      header: 'JavaScript Klijent - vodič',
+      text: 'Ovaj izlet daje u nekoliko koraka pregled kako koristiti ovu stranku. Prvo ćemo dodati timeseries s karte.'
+    },
+    step2: {
+      header: 'Idi na karti',
+      text: 'Ovdje smo se prebacili u pogledu dobiti kartu.'
+    },
+    step3: {
+      header: 'Prikaz karte',
+      text: 'Ovo je prikaz karte. U karti možete vidjeti markere ili markergroups.'
+    },
+    step4: {
+      header: 'Promjena usluga',
+      text: 'Ovdje možete odabrati drugi timeseries usluga.'
+    },
+    step5: {
+      header: 'Pokaži položaj',
+      text: 'I ovdje možete pronaći svoj uređaj na karti.'
+    },
+    step6: {
+      header: 'Izbor popis',
+      text: 'Ovdje možete odabrati timeseries od naručenih liste.'
+    },
+    step7: {
+      header: 'Odaberite stanicu',
+      text: 'Odaberite sada postaju na karti.'
+    },
+    step8: {
+      header: 'Odaberite timeseries',
+      text: 'Odaberite ovaj okvir. Ako postoji samo jedna timeseries za ovu stanicu, okvir je već provjerio. Sada možete nastaviti s &quot;OK&quot; gumb za učitavanje timeseries.'
+    },
+    step9: {
+      header: 'Unos Legenda',
+      text: 'Ovdje možete vidjeti dodanu vremenske serije. Možete brisati ili pronaći vremenske serije ili promijeniti boju.'
+    },
+    step10: {
+      header: 'Grafikon',
+      text: 'To je shema odabranom vremenskom nizu.'
+    },
+    step11: {
+      header: 'Promjena vremena',
+      text: 'Ovdje možete promijeniti vremensku mjeru za vaše odabrane vremenske serije.'
+    },
+    step12: {
+      header: 'Tablica Pogledaj',
+      text: 'Ovdje možete dobiti stol od sirovih vrijednosti podataka o odabranom vremenskom nizu.'
+    },
+    step13: {
+      header: 'Omiljeni upravljanje',
+      text: 'Legenda unosi / timeseries mogu se spremiti kao favorite. U tom pogledu svi favoriti su navedeni i mogu se održavati.'
+    },
+    step14: {
+      header: 'Gotovi',
+      text: 'Bravo! <br> Ovaj klijent je produkt <a href="http://52north.org" target="_blank">52 ° sjeverne GmbH</a> . Možete pronaći izvorni kod na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Prvo vrijednost na',
+    lastValueAt: 'Zadnja vrijednost na',
+    label: 'omiljen',
+    edit: {
+      header: 'Uredi omiljene'
+    },
+    group: {
+      add: 'Status &#39;{0}&#39; je dodana na popis omiljenih.',
+      exists: 'Ovaj status i dalje postoji.',
+      noTimeseries: 'Trenutno nema timeseries su izabrani.',
+      notSupported: 'Pružatelj upis statusa &#39;{0}&#39; nije podržana i ne može se učitati.'
+    },
+    single: {
+      add: 'Nova omiljena &#39;{0}&#39; je dodan na popis.',
+      remove: 'Omiljena &#39;{0}&#39; je uklonjen.',
+      exists: 'Ova omiljena i dalje postoji.',
+      notSupported: 'Pružatelj favorita &#39;{0}&#39; nije podržana i ne može se učitati.'
+    },
+    import: {
+      override: 'Želite li poništiti svoje trenutne favorite?',
+      wrongFile: 'Ne mogu pročitati datoteku',
+      noValidJson: 'JSON datoteka nije valjana!',
+      header: 'Uvoz favoriti',
+      text: 'Ovdje možete uvesti svoje favorite izvozi. Samo zalijepite JSON u ovom tekstnom polju:'
+    },
+    export: {
+      header: 'Izvoz favoriti',
+      text: 'Ovdje možete izvoziti svoje favorite. Samo kopirajte JSON iz ove tekstom i spremite ga u datoteku to uvesti kasnije:'
+    },
+    error: {
+      fileApiNotSupported: 'API-ja datoteke nisu u potpunosti podržan u ovom pregledniku.'
+    }
+  },
+  inform: {
+    error: 'Došlo je do pogreške:',
+    warn: 'Imajte na umu da:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.hu = {
+  fullName: 'Magyar',
+  ok: 'Rendben',
+  main: {
+    legend: 'Legenda',
+    diagram: 'Diagram',
+    mapView: 'Térkép nézet',
+    favoriteView: 'Kedvencek',
+    settings: 'Beállítások',
+    stationSelection: 'Válasszon ki egy állomást',
+    chartView: 'Diagram nézet',
+    allPhenomena: 'Minden jelenség',
+    phenomenon: 'Jelenség',
+    favoritesList: 'Kedvencek',
+    importFavorites: 'Import',
+    exportFavorites: 'Export',
+    importExportHelp: 'Fájl importálásához, válasszon egy exportált fájlt előtt.',
+    noFileSelected: 'Nincs fájl kiválasztva'
+  },
+  chart: {
+    noTimeseriesSelected: 'Nem választott ki előre definiált, a kiválasztott előre definiált nincs értékeket az adott időben tartomány vagy a előre definiált rejtett.',
+    outsideOfDataRange: 'Kívül adatok körét!',
+    annotation: 'Az adatok garancia nélkül!',
+    monthNames: [ 'Január', 'Február', 'Elront', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December' ]
+  },
+  table: {
+    time: 'Idő'
+  },
+  map: {
+    userLocation: 'Itt az aktuális tartózkodási helyét',
+    stationSelection: {
+      station: 'Állomás',
+      selectAllTimeseries: 'jelölje ki az összes előre definiált'
+    },
+    stationLocation: {
+      station: 'Állomás',
+      timeseries: 'Előre definiált',
+      provider: 'Ellátó',
+      jumpBackToChart: 'Vissza a chart'
+    },
+    providerList: {
+      provider: 'Ellátó',
+      stations: 'Állomások',
+      timeseries: 'Előre definiált',
+      phenomena: 'Jelenségek'
+    },
+    search: {
+      label: 'címkereséshez ...',
+      noResult: 'Sajnáljuk, hogy címet nem található.'
+    }
+  },
+  listSelection: {
+    header: 'Válassza ki az előre definiált tömbök által lista',
+    headers: {
+      category: 'Kategória',
+      station: 'Állomás',
+      phenomenon: 'Jelenség',
+      procedure: 'Érzékelő'
+    },
+    warning: {
+      moreThanOneTimeseries: 'találtak több mint egy előre definiált'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'nincs adat',
+      jumpToLastValue: 'utolsó értéket',
+      firstValueAt: 'Első érték',
+      lastValueAt: 'Utolsó érték'
+    }
+  },
+  export: {
+    label: 'Az adatok CSV (Zip archívum)'
+  },
+  timeSelection: {
+    header: 'Idő Tartomány',
+    presetsHeader: 'előre beállított',
+    presets: {
+      lastHour: 'az elmúlt órában',
+      today: 'ma',
+      yesterday: 'tegnap',
+      todayYesterday: 'Ma &amp; tegnap',
+      thisWeek: 'ezen a héten',
+      lastWeek: 'a múlt héten',
+      thisMonth: 'ebben a hónapban',
+      lastMonth: 'az utolsó hónapban',
+      thisYear: 'ebben az évben',
+      lastYear: 'tavaly'
+    },
+    custom: {
+      header: 'szokás',
+      start: 'Kezdési időpont',
+      end: 'A befejezés dátuma'
+    },
+    warning: {
+      startBeforeEnd: 'A kezdő dátum nem lehet nagyobb, mint a befejezés dátumát',
+      maxTimeRange: 'Az idő tartomány nem lehet nagyobb, mint egy év'
+    }
+  },
+  styleChange: {
+    header: 'Stílus',
+    currentColor: 'Jelenlegi színe',
+    selectColor: 'Válasszon egy új színt',
+    selectBarInterval: 'Válassza ki a vonalat intervallum',
+    barChartInterval: {
+      hour: 'Óra',
+      day: 'Nap',
+      week: 'Hét',
+      month: 'Hónap'
+    },
+    zeroScaled: 'zéró pikkelyes Y-tengely',
+    groupedAxis: 'csoportosítva tengely'
+  },
+  settings: {
+    header: 'Beállítások',
+    chooseLanguage: 'Switch nyelven',
+    requiresRestart: 'Újra kell indítani!',
+    permalink: {
+      create: 'Hozzon létre egy permalink mint',
+      inWindow: 'Link új ablakban',
+      inMail: 'linkre egy e-mailt',
+      inClipboard: 'Hivatkoznak a vágólapra',
+      clipboardInfo: 'Másolás a vágólapra:',
+      inQrCode: 'mint QR-kód',
+      favorite: 'Mentsd munkakörnyezet kedvencként bejegyzés'
+    },
+    clusterMarker: 'cluster marker',
+    markerWithLastInfo: {
+      header: 'marker utolsó értéket információk',
+      label: 'Figyelem - néhány adatszolgáltató nagyon lassúak'
+    },
+    saveStatus: {
+      header: 'Save környezet',
+      label: 'Minden előre definiált, a kiválasztott időtávot és a beállítások mentése folyamatos.'
+    },
+    resetStatus: 'Reset környezet',
+    generalizeData: 'általánosítani adatok',
+    imprint: {
+      header: 'Impresszum',
+      github: 'Keresd meg ezt a projektet <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> felelős ezen a weboldalon. </p><p> 52 ° North Initiative for térinformatikai nyílt forráskódú szoftver GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Németország </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Nem illő előre definiált található.'
+  },
+  guide: {
+    start: {
+      request: 'Amikor elindítja ezt az útmutatót, az a jelenlegi állapot visszaáll.'
+    },
+    step1: {
+      header: 'JavaScript Client - Tárlatvezetés',
+      text: 'Ez a túra ad néhány lépésben áttekintést, hogyan kell használni ezt a kliens. Először adjunk hozzá egy előre definiált a térképről.'
+    },
+    step2: {
+      header: 'Menj a térképen',
+      text: 'Itt váltani a nézetet, hogy a térképet.'
+    },
+    step3: {
+      header: 'Térkép nézet',
+      text: 'Ez a térkép nézet. A térképen látható markerek vagy markergroups.'
+    },
+    step4: {
+      header: 'Change Provider',
+      text: 'Itt választhatunk más előre definiált szolgáltatót.'
+    },
+    step5: {
+      header: 'Show location',
+      text: 'És itt keresse meg a készülék a térképen.'
+    },
+    step6: {
+      header: 'Lista kiválasztása',
+      text: 'Itt lehet kiválasztani a előre definiált ki rendezett listák.'
+    },
+    step7: {
+      header: 'Válasszon ki egy állomást',
+      text: 'Kérjük, válasszon most egy állomás a térképen.'
+    },
+    step8: {
+      header: 'Válassza ki az előre definiált tömbök',
+      text: 'Válassza ki ezt a jelölőnégyzetet. Ha csak egy előre definiált ennek az állomásnak, a négyzetet bejelölve. Most lehet menni az &quot;OK&quot; gombot betölteni az előre definiált.'
+    },
+    step9: {
+      header: 'Legend bejegyzés',
+      text: 'Itt láthatja a hozzá idősorok. Törölheti, vagy keresse az idősor, vagy változtatni a színét.'
+    },
+    step10: {
+      header: 'Táblázat',
+      text: 'Ez az ábra a kiválasztott idősorok.'
+    },
+    step11: {
+      header: 'Váltási idő',
+      text: 'Itt lehet megváltoztatni az időt mértékben az Ön által választott idősorok.'
+    },
+    step12: {
+      header: 'Táblázat megtekintése',
+      text: 'Most itt van egy táblázat a nyers adatok értékeket a kiválasztott idősorok.'
+    },
+    step13: {
+      header: 'Kedvenc menedzsment',
+      text: 'A legenda bejegyzések / előre definiált meg lehetne menteni a kedvencek. Ebben a nézetben az összes kedvenc vannak felsorolva, és fenn lehet tartani.'
+    },
+    step14: {
+      header: 'Kész',
+      text: 'Szép munka! <br> Ez a kliens egy olyan termék a <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Megtalálható a forráskódot <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Első érték',
+    lastValueAt: 'Utolsó érték',
+    label: 'kedvenc',
+    edit: {
+      header: 'Kedvenc szerkesztése'
+    },
+    group: {
+      add: 'A status &#39;{0}&#39; hozzáadódik a kedvenceid közé.',
+      exists: 'Ez az állapot továbbra is fennáll.',
+      noTimeseries: 'Jelenleg nincs előre definiált kerülnek kiválasztásra.',
+      notSupported: 'A szolgáltató a bejegyzést a status &#39;{0}&#39; nem támogatott és nem lehet betölteni.'
+    },
+    single: {
+      add: 'Egy új kedvenc &quot;{0}&quot; hozzáadódik a listához.',
+      remove: 'A kedvenc &#39;{0}&#39; eltávolítása.',
+      exists: 'Ez a kedvenc még mindig létezik.',
+      notSupported: 'A szolgáltató a kedvenc &#39;{0}&#39; nem támogatott és nem lehet betölteni.'
+    },
+    import: {
+      override: 'Szeretné, hogy felülbírálja az aktuális kedvencek?',
+      wrongFile: 'Nem sikerült beolvasni a fájlt',
+      noValidJson: 'A JSON fájl nem érvényes!',
+      header: 'Import kedvencekhez',
+      text: 'Itt lehet importálni az exportált kedvenceket. Csak illessze be a JSON ezen a beviteli mezőbe:'
+    },
+    export: {
+      header: 'Export kedvencekhez',
+      text: 'Itt tudja exportálni a kedvenceit. Csak másolja a JSON ki ezt a szövegdobozba, és mentse el egy fájlba importálni később:'
+    },
+    error: {
+      fileApiNotSupported: 'A File API-k nem támogatják maradéktalanul ezt a böngészőt.'
+    }
+  },
+  inform: {
+    error: 'Hiba történt:',
+    warn: 'Kérjük, ne feledje, hogy:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.it = {
+  fullName: 'Italiano',
+  ok: 'OK',
+  main: {
+    legend: 'Leggenda',
+    diagram: 'Diagramma',
+    mapView: 'Guarda la mappa',
+    favoriteView: 'Preferiti',
+    settings: 'Impostazioni',
+    stationSelection: 'Selezionare una stazione',
+    chartView: 'Vista Mappa',
+    allPhenomena: 'Tutti i fenomeni',
+    phenomenon: 'Fenomeno',
+    favoritesList: 'Preferiti',
+    importFavorites: 'Importazione',
+    exportFavorites: 'Esportazione',
+    importExportHelp: 'Per importare un file, si prega di scegliere un file esportato prima.',
+    noFileSelected: 'Nessun file selezionato'
+  },
+  chart: {
+    noTimeseriesSelected: 'Hai selezionato non timeseries, le serie storica selezionati non hanno valori nella determinato intervallo di tempo o le serie temporali sono nascosti.',
+    outsideOfDataRange: 'Al di fuori del campo di dati!',
+    annotation: 'Dati senza garanzia!',
+    monthNames: [ 'Jan', 'Febbraio', 'Mar', 'Aprile', 'Maggio', 'Giugno', 'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre' ]
+  },
+  table: {
+    time: 'Tempo'
+  },
+  map: {
+    userLocation: 'Ecco la posizione corrente',
+    stationSelection: {
+      station: 'Stazione',
+      selectAllTimeseries: 'selezionare tutte le serie temporali'
+    },
+    stationLocation: {
+      station: 'Stazione',
+      timeseries: 'TimeSeries',
+      provider: 'Provider',
+      jumpBackToChart: 'Torna alla lista'
+    },
+    providerList: {
+      provider: 'Provider',
+      stations: 'Stazioni',
+      timeseries: 'TimeSeries',
+      phenomena: 'Fenomeni'
+    },
+    search: {
+      label: 'cercare l&#39;indirizzo ...',
+      noResult: 'Siamo spiacenti, questo indirizzo non è stato trovato.'
+    }
+  },
+  listSelection: {
+    header: 'Selezionare timeseries elenco',
+    headers: {
+      category: 'Categoria',
+      station: 'Stazione',
+      phenomenon: 'Fenomeno',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'trovato più di una serie storica'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Non sono disponibili dati',
+      jumpToLastValue: 'Continua all&#39;ultimo valore',
+      firstValueAt: 'Primo valore',
+      lastValueAt: 'Ultimo valore'
+    }
+  },
+  export: {
+    label: 'I dati in formato CSV (Zip Archive)'
+  },
+  timeSelection: {
+    header: 'Intervallo di tempo',
+    presetsHeader: 'preset',
+    presets: {
+      lastHour: 'ultima ora',
+      today: 'oggi',
+      yesterday: 'ieri',
+      todayYesterday: 'oggi e ieri',
+      thisWeek: 'questa settimana',
+      lastWeek: 'la settimana scorsa',
+      thisMonth: 'questo mese',
+      lastMonth: 'il mese scorso',
+      thisYear: 'quest&#39;anno',
+      lastYear: 'l&#39;anno scorso'
+    },
+    custom: {
+      header: 'abitudine',
+      start: 'Data di inizio',
+      end: 'Data di fine'
+    },
+    warning: {
+      startBeforeEnd: 'La data di inizio non può essere superiore alla data di fine',
+      maxTimeRange: 'L&#39;intervallo di tempo non può essere maggiore di uno anno'
+    }
+  },
+  styleChange: {
+    header: 'Cambia stile',
+    currentColor: 'Colore corrente',
+    selectColor: 'Selezionare un nuovo colore',
+    selectBarInterval: 'Selezionare l&#39;intervallo bar',
+    barChartInterval: {
+      hour: 'Ora',
+      day: 'Giorno',
+      week: 'Settimana',
+      month: 'Mese'
+    },
+    zeroScaled: 'a zero in scala dell&#39;asse Y',
+    groupedAxis: 'Asse raggruppati'
+  },
+  settings: {
+    header: 'Impostazioni',
+    chooseLanguage: 'Cambia lingua',
+    requiresRestart: 'Needs Restart!',
+    permalink: {
+      create: 'Creare un permalink come',
+      inWindow: 'link in una nuova finestra',
+      inMail: 'link in una e-mail',
+      inClipboard: 'Collegare negli appunti',
+      clipboardInfo: 'Copia nella clipboard:',
+      inQrCode: 'come QR-Code',
+      favorite: 'Salva ambiente di lavoro come voce dei preferiti'
+    },
+    clusterMarker: 'indicatore di cluster',
+    markerWithLastInfo: {
+      header: 'marcatore con l&#39;ultimo valore informazioni',
+      label: 'attenzione - alcuni provider di dati sono molto lenti'
+    },
+    saveStatus: {
+      header: 'Salva l&#39;ambiente',
+      label: 'Tutte le serie storica, il periodo scelto e le impostazioni vengono salvate continuo.'
+    },
+    resetStatus: 'Ambiente di ripristino',
+    generalizeData: 'generalizzare dati',
+    imprint: {
+      header: 'Impronta',
+      github: 'Trova questo progetto <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° Nord GmbH</a> è responsabile di questo sito. </p><p> 52 ° Nord Initiative for Open Source Geospatial Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Muenster, Germania </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Nessun timeseries viene trovato.'
+  },
+  guide: {
+    start: {
+      request: 'Quando si avvia questa guida, lo stato attuale viene azzerato.'
+    },
+    step1: {
+      header: 'JavaScript Client - Visita guidata',
+      text: 'Questo tour dà in pochi passi una panoramica sull&#39;utilizzo di questo client. Prima aggiungiamo un timeseries dalla mappa.'
+    },
+    step2: {
+      header: 'Vai alla mappa',
+      text: 'Qui si passa il fine di ottenere una mappa.'
+    },
+    step3: {
+      header: 'Guarda la mappa',
+      text: 'Questa è la visualizzazione della mappa. Nella mappa è possibile vedere i marcatori o markergroups.'
+    },
+    step4: {
+      header: 'Cambio Provider',
+      text: 'Qui è possibile selezionare un altro provider timeseries.'
+    },
+    step5: {
+      header: 'Mostra localizzazione',
+      text: 'E qui è possibile individuare il dispositivo sulla mappa.'
+    },
+    step6: {
+      header: 'Selezione List',
+      text: 'Qui è possibile selezionare una serie storica su liste ordinate.'
+    },
+    step7: {
+      header: 'Selezionare una stazione',
+      text: 'Seleziona ora una stazione sulla mappa.'
+    },
+    step8: {
+      header: 'Seleziona timeseries',
+      text: 'Seleziona questa casella. Se vi è un solo timeseries per questa stazione, la casella è già selezionata. Ora si può andare avanti con il tasto &quot;OK&quot; per caricare le serie temporali.'
+    },
+    step9: {
+      header: 'Ingresso leggenda',
+      text: 'Qui si vede la serie storica aggiunto. È possibile eliminare o individuare la serie storica o cambiare il colore.'
+    },
+    step10: {
+      header: 'Grafico',
+      text: 'Questo è il grafico della serie storica selezionata.'
+    },
+    step11: {
+      header: 'Cambia il tempo',
+      text: 'Qui è possibile modificare il tempo di misura per la serie del tempo selezionato.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Qui si ottiene una tabella con i valori dei dati grezzi per la vostra serie tempo selezionato.'
+    },
+    step13: {
+      header: 'Gestione Favorite',
+      text: 'Le voci di legenda / timeseries potrebbero essere salvati come preferiti. In quest&#39;ottica tutti i favoriti sono elencati e possono essere mantenute.'
+    },
+    step14: {
+      header: 'Finito',
+      text: 'Ben fatto! <br> Questo client è un prodotto di <a href="http://52north.org" target="_blank">52 ° Nord GmbH</a> . È possibile trovare il codice sorgente su <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Primo valore',
+    lastValueAt: 'Ultimo valore',
+    label: 'favorito',
+    edit: {
+      header: 'Modifica preferito'
+    },
+    group: {
+      add: 'Lo stato &#39;{0}&#39; è aggiunto all&#39;elenco dei preferiti.',
+      exists: 'Questo stato esiste ancora.',
+      noTimeseries: 'Attualmente non sono selezionate timeseries.',
+      notSupported: 'Il fornitore di una voce dello stato di &#39;{0}&#39; non è supportata e non può essere caricato.'
+    },
+    single: {
+      add: 'Un nuovo preferito &#39;{0}&#39; viene aggiunto alla lista.',
+      remove: 'Il favorito &#39;{0}&#39; è stato rimosso.',
+      exists: 'Questo preferito esiste ancora.',
+      notSupported: 'Il fornitore del favorito &#39;{0}&#39; non è supportata e non può essere caricato.'
+    },
+    import: {
+      override: 'Vuoi sostituire i tuoi preferiti?',
+      wrongFile: 'Impossibile leggere il file',
+      noValidJson: 'Il file JSON non è valido!',
+      header: 'Importa preferiti',
+      text: 'Qui è possibile importare i preferiti esportate. Basta incollare il JSON in questo campo di testo:'
+    },
+    export: {
+      header: 'Favoriti Export',
+      text: 'Qui è possibile esportare i preferiti. Basta copiare il JSON di questo campo testo e salvarlo in un file da importare in un secondo momento:'
+    },
+    error: {
+      fileApiNotSupported: 'Le API di file non sono completamente supportate in questo browser.'
+    }
+  },
+  inform: {
+    error: 'Errore:',
+    warn: 'Si ricorda che:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.lt = {
+  fullName: 'Lietuvos',
+  ok: 'Gerai',
+  main: {
+    legend: 'Legenda',
+    diagram: 'Diagrama',
+    mapView: 'Žemėlapis vaizdas',
+    favoriteView: 'Mėgstami',
+    settings: 'Nustatymai',
+    stationSelection: 'Pasirinkite stotį',
+    chartView: 'Diagrama vaizdas',
+    allPhenomena: 'Visi reiškiniai',
+    phenomenon: 'Reiškinys',
+    favoritesList: 'Mėgstami',
+    importFavorites: 'Importas',
+    exportFavorites: 'Eksportas',
+    importExportHelp: 'Jei norite importuoti failą, pasirinkite failą galite eksportavo anksčiau.',
+    noFileSelected: 'Nėra failų pasirinktas'
+  },
+  chart: {
+    noTimeseriesSelected: 'Jūs nepasirinkote jokių timeseries, pasirinkti timeseries neturi reikšmes nurodytą laikotarpį arba timeseries yra paslėptas.',
+    outsideOfDataRange: 'Už duomenų diapazone!',
+    annotation: 'Duomenų be garantija!',
+    monthNames: [ 'Sau', 'Vasaris', 'Sugadinti', 'Balandis', 'Gegužė', 'Birželis', 'Liepa', 'Rugpjūtis', 'Rugsėjis', 'Spalis', 'Lapkritis', 'Gruodis' ]
+  },
+  table: {
+    time: 'Laikas'
+  },
+  map: {
+    userLocation: 'Čia yra jūsų dabartinė vieta',
+    stationSelection: {
+      station: 'Stotis',
+      selectAllTimeseries: 'Atrinkti visus timeseries'
+    },
+    stationLocation: {
+      station: 'Stotis',
+      timeseries: 'Timeseries',
+      provider: 'Tiekėjas',
+      jumpBackToChart: 'atgal į diagramą'
+    },
+    providerList: {
+      provider: 'Tiekėjas',
+      stations: 'Stotys',
+      timeseries: 'Timeseries',
+      phenomena: 'Reiškiniai'
+    },
+    search: {
+      label: 'ieškoti adresu ...',
+      noResult: 'Atsiprašome, kad adresas nerastas.'
+    }
+  },
+  listSelection: {
+    header: 'Pasirinkite timeseries pagal sąrašą',
+    headers: {
+      category: 'Kategorija',
+      station: 'Stotis',
+      phenomenon: 'Reiškinys',
+      procedure: 'Jutiklio'
+    },
+    warning: {
+      moreThanOneTimeseries: 'rašo daugiau nei vieną timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Nėra duomenų',
+      jumpToLastValue: 'peršokti į paskutinę vertės',
+      firstValueAt: 'Pirma vertė',
+      lastValueAt: 'Paskutinis vertė'
+    }
+  },
+  export: {
+    label: 'Duomenų CSV (Pašto archyvas)'
+  },
+  timeSelection: {
+    header: 'Laikas klasės',
+    presetsHeader: 'presents',
+    presets: {
+      lastHour: 'Paskutinė valanda',
+      today: 'šiandien',
+      yesterday: 'vakar',
+      todayYesterday: 'šiandien ir vakar',
+      thisWeek: 'Šią savaitę',
+      lastWeek: 'praėjusią savaitę',
+      thisMonth: 'šį mėnesį',
+      lastMonth: 'praėjusį mėnesį',
+      thisYear: 'šiemet',
+      lastYear: 'pernai'
+    },
+    custom: {
+      header: 'paprotys',
+      start: 'Pradžios data',
+      end: 'Pabaigos data'
+    },
+    warning: {
+      startBeforeEnd: 'Pradžios data negali būti didesnis tada pabaigos datą',
+      maxTimeRange: 'Laiko intervalas gali būti ne didesnis tada vienerius metus'
+    }
+  },
+  styleChange: {
+    header: 'Keisti stilių',
+    currentColor: 'Dabartinis spalva',
+    selectColor: 'Pasirinkite naują spalvą',
+    selectBarInterval: 'Pasirinkite baras intervalą',
+    barChartInterval: {
+      hour: 'Valanda',
+      day: 'Diena',
+      week: 'Savaitė',
+      month: 'Mėnuo'
+    },
+    zeroScaled: 'nulis pailgintus Y ašis',
+    groupedAxis: 'sugrupuoti ašis'
+  },
+  settings: {
+    header: 'Nustatymai',
+    chooseLanguage: 'Perjungti kalba',
+    requiresRestart: 'Reikia naujo paleiskite!',
+    permalink: {
+      create: 'Sukurti Permalink kaip',
+      inWindow: 'nuorodą naujame lange',
+      inMail: 'nuorodą elektroniniu paštu',
+      inClipboard: 'Nuoroda į iškarpinę',
+      clipboardInfo: 'Kopijuoti į iškarpinę:',
+      inQrCode: 'kaip QR kodą',
+      favorite: 'Išsaugoti darbo aplinką kaip mėgstamą įrašą'
+    },
+    clusterMarker: 'klasteris žymeklis',
+    markerWithLastInfo: {
+      header: 'žymeklis su praėjusiais vertės informaciją',
+      label: 'dėmesio - kai duomenų teikėjas yra labai lėtas'
+    },
+    saveStatus: {
+      header: 'Išsaugoti aplinka',
+      label: 'Visi timeseries, pasirinkta atkarpa ir parametrai išsaugomi nuolat.'
+    },
+    resetStatus: 'Atstatyti aplinka',
+    generalizeData: 'apibendrinti duomenys',
+    imprint: {
+      header: 'Atspaudas',
+      github: 'Surasti šį projektas <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° šiaurės GmbH</a> yra atsakingas už šioje svetainėje. </p><p> 52 ° šiaurės iniciatyva Geospatial Open Source Software GmbH <br> Martin-Luther-King Weg 24 <br> 48155 Miunsteris, Vokietija </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Nėra atitinkančių timeseries nerasta.'
+  },
+  guide: {
+    start: {
+      request: 'Paleidus šį vadovą, dabartinė bus atstatytas.'
+    },
+    step1: {
+      header: 'JavaScript Klientas - Ekskursija',
+      text: 'Ši kelionė suteikia per keletą žingsnių apžvalga, kaip naudotis šia klientui. Pirmiausia mes pridėti timeseries iš žemėlapio.'
+    },
+    step2: {
+      header: 'Eiti į žemėlapį',
+      text: 'Čia mes pereiti nuomonės gauti žemėlapį.'
+    },
+    step3: {
+      header: 'Žemėlapis vaizdas',
+      text: 'Tai žemėlapio vaizdas. Be žemėlapyje galite matyti žymekliai ar markergroups.'
+    },
+    step4: {
+      header: 'Pakeisti teikėjas',
+      text: 'Čia galite pasirinkti kitą timeseries teikėją.'
+    },
+    step5: {
+      header: 'Rodyti vietą',
+      text: 'Ir čia jūs galite rasti savo prietaisą žemėlapyje.'
+    },
+    step6: {
+      header: 'Sąrašas pasirinkimas',
+      text: 'Čia galite pasirinkti timeseries iš užsakomų sąrašus.'
+    },
+    step7: {
+      header: 'Pasirinkite stotį',
+      text: 'Prašome pasirinkti dabar žemėlapyje stotį.'
+    },
+    step8: {
+      header: 'Pasirinkite timeseries',
+      text: 'Pasirinkite šį langelį. Jei yra tik vienas timeseries dėl šios stoties, langelis jau patikrintas. Dabar galite eiti su &quot;OK&quot; mygtuką, norėdami įkelti timeseries.'
+    },
+    step9: {
+      header: 'Legenda įrašas',
+      text: 'Čia jūs matote pridėtinę laiko eilutes. Jūs galite ištrinti arba suraskite laiko eilučių, arba pakeisti spalvą.'
+    },
+    step10: {
+      header: 'Diagrama',
+      text: 'Tai pasirinkto laiko eilučių lentelė.'
+    },
+    step11: {
+      header: 'Pakeisti laikas',
+      text: 'Čia galite pakeisti laiko, kiek Pasirinkto laiko eilučių.'
+    },
+    step12: {
+      header: 'Stalo Peržiūrėti',
+      text: 'Čia galite gauti žaliavų duomenų verčių lentelę į pasirinktą laiko eilučių.'
+    },
+    step13: {
+      header: 'Mėgstamiausia valdymas',
+      text: 'Legendos įrašai / timeseries gali būti išsaugotas kaip pasirinkimą. Šiuo požiūriu visi pasirinkimą, yra išvardytos ir gali būti pratęstas.'
+    },
+    step14: {
+      header: 'Baigta',
+      text: 'Well done! <br> Šis klientas yra produktas <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Jūs galite rasti išeities kodą <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Pirma vertė',
+    lastValueAt: 'Paskutinis vertė',
+    label: 'mėgstamas',
+    edit: {
+      header: 'Redaguoti mėgstamiausia'
+    },
+    group: {
+      add: 'Statusas &quot;{0}&quot; yra įtraukta į mėgstamiausių sąrašą.',
+      exists: 'Šis būsenos vis dar egzistuoja.',
+      noTimeseries: 'Šiuo metu nėra jokių timeseries yra pasirinktas.',
+      notSupported: 'Be to, kuriant statuso įrašą teikėjas &quot;{0}&quot; nepalaiko ir negali būti įkeltas.'
+    },
+    single: {
+      add: 'Nauja mėgstamiausia &quot;{0}&quot; yra įtraukta į sąrašą.',
+      remove: 'Mėgstamiausia &quot;{0}&quot; yra pašalinamas.',
+      exists: 'Tai mėgstamiausia vis dar egzistuoja.',
+      notSupported: 'Iš mėgstamiausių teikėjas &quot;{0}&quot; nepalaiko ir negali būti įkeltas.'
+    },
+    import: {
+      override: 'Ar norite perrašyti esamus favoritus?',
+      wrongFile: 'Nepavyko perskaityti failo',
+      noValidJson: 'JSON failas yra negalioja!',
+      header: 'Importo pasirinkimą',
+      text: 'Čia galite importuoti savo eksportuotų pasirinkimą. Tiesiog įklijuokite šioje teksto lauke JSON:'
+    },
+    export: {
+      header: 'Eksporto pasirinkimą',
+      text: 'Čia galite eksportuoti savo pasirinkimą. Tiesiog nukopijuokite JSON iš šio laukelį ir įrašykite jį į failą importuoti jį vėliau:'
+    },
+    error: {
+      fileApiNotSupported: 'Failas API nėra pilnai palaikoma šioje naršyklėje.'
+    }
+  },
+  inform: {
+    error: 'Error occured:',
+    warn: 'Atminkite, kad:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.lv = {
+  fullName: 'Latvijas',
+  ok: 'Labi',
+  main: {
+    legend: 'Leģenda',
+    diagram: 'Diagramma',
+    mapView: 'Kartes skats',
+    favoriteView: 'Favorīti',
+    settings: 'Settings',
+    stationSelection: 'Izvēlieties staciju',
+    chartView: 'View Chart',
+    allPhenomena: 'Visas parādības',
+    phenomenon: 'Parādība',
+    favoritesList: 'Favorīti',
+    importFavorites: 'Imports',
+    exportFavorites: 'Eksports',
+    importExportHelp: 'Importēt failu, lūdzu, izvēlieties failu eksportēto pirms tam.',
+    noFileSelected: 'Izvēlēts neviens fails'
+  },
+  chart: {
+    noTimeseriesSelected: 'Jūs esat izvēlējies neviens timeseries, izvēlētie timeseries nav vērtības, kas dotajā laika intervālā vai timeseries ir slēpta.',
+    outsideOfDataRange: 'Ārpus datu klāsts!',
+    annotation: 'Datu bez garantijas!',
+    monthNames: [ 'Jan', 'Februāris', 'Sagandēt', 'Aprīlis', 'Maijs', 'Jūnijs', 'Jūlijs', 'Augusts', 'Septembris', 'Oktobris', 'Novembris', 'Decembris' ]
+  },
+  table: {
+    time: 'Laiks'
+  },
+  map: {
+    userLocation: 'Šeit ir jūsu pašreizējā atrašanās vieta',
+    stationSelection: {
+      station: 'Stacija',
+      selectAllTimeseries: 'izvēlētos visus timeseries'
+    },
+    stationLocation: {
+      station: 'Stacija',
+      timeseries: 'Timeseries',
+      provider: 'Sniedzējs',
+      jumpBackToChart: 'atpakaļ uz diagrammas'
+    },
+    providerList: {
+      provider: 'Sniedzējs',
+      stations: 'Stacijas',
+      timeseries: 'Timeseries',
+      phenomena: 'Parādības'
+    },
+    search: {
+      label: 'meklēt adresi ...',
+      noResult: 'Žēl, ka adrese nav atrodama.'
+    }
+  },
+  listSelection: {
+    header: 'Izvēlieties timeseries ar sarakstu',
+    headers: {
+      category: 'Kategorija',
+      station: 'Stacija',
+      phenomenon: 'Parādība',
+      procedure: 'Devējs'
+    },
+    warning: {
+      moreThanOneTimeseries: 'atrada vairāk nekā vienu timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'nav pieejami dati',
+      jumpToLastValue: 'lēkt uz pēdējo vērtību',
+      firstValueAt: 'Pirmā vērtība',
+      lastValueAt: 'Pēdējā vērtība'
+    }
+  },
+  export: {
+    label: 'Dati uz CSV (Zip arhīva)'
+  },
+  timeSelection: {
+    header: 'Time Range',
+    presetsHeader: 'presets',
+    presets: {
+      lastHour: 'pēdējā stunda',
+      today: 'šodien',
+      yesterday: 'vakar',
+      todayYesterday: 'šodien &amp; vakar',
+      thisWeek: 'šonedēļ',
+      lastWeek: 'pagājušajā nedēļā',
+      thisMonth: 'šajā mēnesī',
+      lastMonth: 'pagājušajā mēnesī',
+      thisYear: 'šogad',
+      lastYear: 'pagājušajā gadā'
+    },
+    custom: {
+      header: 'paraža',
+      start: 'Sākuma datums',
+      end: 'Beigu datums'
+    },
+    warning: {
+      startBeforeEnd: 'Sākuma datums nevar būt lielāks, tad beigu datuma',
+      maxTimeRange: 'Laika diapazons nevar būt lielāks, tad vienu gadu'
+    }
+  },
+  styleChange: {
+    header: 'Mainīt stilu',
+    currentColor: 'Pašreizējā krāsa',
+    selectColor: 'Izvēlieties jaunu krāsu',
+    selectBarInterval: 'Izvēlieties bar intervālu',
+    barChartInterval: {
+      hour: 'Stunda',
+      day: 'Diena',
+      week: 'Nedēļa',
+      month: 'Mēnesis'
+    },
+    zeroScaled: 'nulles samazināti Y-asi',
+    groupedAxis: 'grupēt ass'
+  },
+  settings: {
+    header: 'Settings',
+    chooseLanguage: 'Slēdzis valoda',
+    requiresRestart: 'Needs Restart!',
+    permalink: {
+      create: 'Izveidot Permalink kā',
+      inWindow: 'saiti jaunā logā',
+      inMail: 'saite e-pastu',
+      inClipboard: 'Saite uz starpliktuvi',
+      clipboardInfo: 'Kopēt uz starpliktuvi:',
+      inQrCode: 'kā QR-Code',
+      favorite: 'Saglabājiet darba vidi, kā iecienītāko ierakstu'
+    },
+    clusterMarker: 'klastera marķieris',
+    markerWithLastInfo: {
+      header: 'marķieris informāciju pēdējo vērtību',
+      label: 'uzmanību - daži datu sniedzējs ir ļoti lēns'
+    },
+    saveStatus: {
+      header: 'Saglabāt vidi',
+      label: 'Visiem timeseries, izvēlētais pētīt un uzstādījumi tiek saglabāti nepārtraukti.'
+    },
+    resetStatus: 'Reset vide',
+    generalizeData: 'vispārināt datus',
+    imprint: {
+      header: 'Nospiedums',
+      github: 'Atrast šo projektu <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> ir atbildīga par šo vietni. </p><p> 52 ° North iniciatīva Ģeotelpiskās Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Muenster, Vācija </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Nē atbilst timeseries ir atrasts.'
+  },
+  guide: {
+    start: {
+      request: 'Kad jūs sākat šo rokasgrāmatu, pašreizējais stāvoklis būs reset.'
+    },
+    step1: {
+      header: 'JavaScript Client - ekskursija',
+      text: 'Šis ceļojums dod dažos soļos pārskatu, kā izmantot šo klientu. Vispirms mēs pievienojam timeseries no pasaules kartes.'
+    },
+    step2: {
+      header: 'Iet uz karti',
+      text: 'Šeit mēs pārslēgtos uz iegūt karti.'
+    },
+    step3: {
+      header: 'Kartes skats',
+      text: 'Tas ir kartes skatu. Kartē var redzēt marķieri vai markergroups.'
+    },
+    step4: {
+      header: 'Mainīt sniedzējs',
+      text: 'Šeit jūs varat izvēlēties citu timeseries sniedzēju.'
+    },
+    step5: {
+      header: 'Rādīt atrašanās vietu',
+      text: 'Un šeit jūs varat atrast savu ierīci kartē.'
+    },
+    step6: {
+      header: 'Latviešu atlase',
+      text: 'Šeit jūs varat izvēlēties timeseries no pasūtītajām sarakstus.'
+    },
+    step7: {
+      header: 'Izvēlieties staciju',
+      text: 'Lūdzu, izvēlieties tagad radiostaciju kartē.'
+    },
+    step8: {
+      header: 'Izvēlieties timeseries',
+      text: 'Izvēlieties šo rūtiņu. Ja ir tikai viens timeseries par šīs stacijas, rūtiņa jau ir pārbaudīts. Tagad jūs varat doties ar &quot;OK&quot; pogu, lai ielādētu timeseries.'
+    },
+    step9: {
+      header: 'Legend ieraksts',
+      text: 'Šeit Jūs redzat pievienoto laikrindas. Jūs varat dzēst vai atrast šīs rindas vai mainīt krāsu.'
+    },
+    step10: {
+      header: 'Diagramma',
+      text: 'Tas ir shēma izvēlētā laikrindas.'
+    },
+    step11: {
+      header: 'Mainīt laiku',
+      text: 'Šeit jūs varat mainīt laika apjomu par jūsu izvēlēto laika rindās.'
+    },
+    step12: {
+      header: 'Galds View',
+      text: 'Šeit jums tabulu ar pamatdatiem vērtībām jūsu izvēlēto laika rindām.'
+    },
+    step13: {
+      header: 'Mīļākā vadība',
+      text: 'Leģenda ieraksti / timeseries varētu tikt saglabāts kā favorītiem. Šajā skatā visi favorīti ir uzskaitīti, un var saglabāt.'
+    },
+    step14: {
+      header: 'Pabeigts',
+      text: 'Labi darīts! <br> Šis klients ir produkts <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Jūs varat atrast pirmkodu par <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Pirmā vērtība',
+    lastValueAt: 'Pēdējā vērtība',
+    label: 'favorīts',
+    edit: {
+      header: 'Rediģēt favorīts'
+    },
+    group: {
+      add: 'Statuss &#39;{0}&#39; tiek pievienots favorītu sarakstā.',
+      exists: 'Šis statuss joprojām pastāv.',
+      noTimeseries: 'Pagaidām nav timeseries tiek atlasīti.',
+      notSupported: 'Ierakstam statusa sniedzējs &quot;{0} &#39;nav atbalstīts, un to nevar ielādēt.'
+    },
+    single: {
+      add: 'Jaunais mīļākie &#39;{0}&#39; tiek pievienots sarakstam.',
+      remove: 'Mīļākie &#39;{0}&#39; tiek noņemts.',
+      exists: 'Tas favorīts joprojām pastāv.',
+      notSupported: 'No mīļākie sniedzējs &quot;{0} &#39;nav atbalstīts, un to nevar ielādēt.'
+    },
+    import: {
+      override: 'Vai jūs vēlaties, lai ignorēt savu pašreizējo izlasi?',
+      wrongFile: 'Neizdevās nolasīt failu',
+      noValidJson: 'JSON fails nav derīgs!',
+      header: 'Importa favorīti',
+      text: 'Šeit Jūs varat importēt eksportēti izlasi. Vienkārši ielīmējiet JSON šajā teksta laukā:'
+    },
+    export: {
+      header: 'Eksporta favorīti',
+      text: 'Šeit jūs varat eksportēt savu izlasi. Vienkārši nokopējiet JSON no šajā lauciņā, un saglabājiet to failu importēt to vēlāk:'
+    },
+    error: {
+      fileApiNotSupported: 'Fails API nav pilnībā atbalstīta šajā pārlūkprogrammā.'
+    }
+  },
+  inform: {
+    error: 'Kļūda:',
+    warn: 'Lūdzu, atcerieties, ka:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.mt = {
+  fullName: 'Malti',
+  ok: 'OK',
+  main: {
+    legend: 'Leġġenda',
+    diagram: 'Dijagramma',
+    mapView: 'Fehma Map',
+    favoriteView: 'Favorites',
+    settings: 'Settings',
+    stationSelection: 'Agħżel stazzjon',
+    chartView: 'Fehma Chart',
+    allPhenomena: 'Kollha fenomeni',
+    phenomenon: 'Phenomenon',
+    favoritesList: 'Favorites',
+    importFavorites: 'Importazzjoni',
+    exportFavorites: 'Esportazzjoni',
+    importExportHelp: 'Għall-importazzjoni fajl, jekk jogħġbok agħżel fajl inti esportata qabel.',
+    noFileSelected: 'Nru fajl magħżul'
+  },
+  chart: {
+    noTimeseriesSelected: 'Inti għazilt ebda timeseries, il timeseries magħżula jkollhom l-ebda valuri fil-firxa ta &#39;żmien partikolari jew il-timeseries huma moħbija.',
+    outsideOfDataRange: 'Barra mill-firxa data!',
+    annotation: 'Data mingħajr garanzija!',
+    monthNames: [ 'Jan', 'Frar', 'Mar', 'April', 'Mejju', 'Ġunju', 'Lulju', 'Awissu', 'Settembru', 'Ottubru', 'Novembru', 'Diċembru' ]
+  },
+  table: {
+    time: 'Ħin'
+  },
+  map: {
+    userLocation: 'Hawnhekk huwa post attwali tiegħek',
+    stationSelection: {
+      station: 'Station',
+      selectAllTimeseries: 'tagħżel timeseries kollha'
+    },
+    stationLocation: {
+      station: 'Station',
+      timeseries: 'Timeseries',
+      provider: 'Provider',
+      jumpBackToChart: 'lura għall chart'
+    },
+    providerList: {
+      provider: 'Provider',
+      stations: 'Stazzjonijiet',
+      timeseries: 'Timeseries',
+      phenomena: 'Fenomeni'
+    },
+    search: {
+      label: 'tfittxija għal indirizz ...',
+      noResult: 'Jiddispjacini, dak l-indirizz ma setgħux jiġu misjuba.'
+    }
+  },
+  listSelection: {
+    header: 'Timeseries Agħżel minn lista',
+    headers: {
+      category: 'Kategorija',
+      station: 'Station',
+      phenomenon: 'Phenomenon',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'misjuba timeseries aktar minn wieħed'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'ebda dejta disponibbli',
+      jumpToLastValue: 'jaqbżu l-valur l-aħħar',
+      firstValueAt: 'Ewwel valur fi',
+      lastValueAt: 'Aħħar valur fil'
+    }
+  },
+  export: {
+    label: 'Data kif CSV (Zip Archive)'
+  },
+  timeSelection: {
+    header: 'Ħin Medda',
+    presetsHeader: 'presets',
+    presets: {
+      lastHour: 'aħħar siegħa',
+      today: 'illum',
+      yesterday: 'bieraħ',
+      todayYesterday: 'illum &amp; bieraħ',
+      thisWeek: 'din il-ġimgħa',
+      lastWeek: 'ġimgħa li għaddiet',
+      thisMonth: 'dan ix-xahar',
+      lastMonth: 'aħħar xahar',
+      thisYear: 'din is-sena',
+      lastYear: 'sena li għaddiet'
+    },
+    custom: {
+      header: 'custom',
+      start: 'Data Ibda',
+      end: 'Data tat-tmiem'
+    },
+    warning: {
+      startBeforeEnd: 'Id-data tal-bidu ma tistax tkun akbar allura l-data tat-tmiem',
+      maxTimeRange: 'Il-firxa ta &#39;żmien ma tistax tkun akbar imbagħad sena'
+    }
+  },
+  styleChange: {
+    header: 'Stil Bidla',
+    currentColor: 'Kulur Kurrenti',
+    selectColor: 'Agħżel kulur ġdid',
+    selectBarInterval: 'Agħżel il-intervall bar',
+    barChartInterval: {
+      hour: 'Hour',
+      day: 'Jum',
+      week: 'Ġimgħa',
+      month: 'Xahar'
+    },
+    zeroScaled: 'żero Y-assi skalat',
+    groupedAxis: 'assi miġbura'
+  },
+  settings: {
+    header: 'Settings',
+    chooseLanguage: 'Lingwa Switch',
+    requiresRestart: 'Bżonnijiet Nerġgħu!',
+    permalink: {
+      create: 'Oħloq Permalink bħala',
+      inWindow: 'link fil-tieqa ġdida',
+      inMail: 'link fl-email',
+      inClipboard: 'Link għall clipboard',
+      clipboardInfo: 'Kopja għall clipboard:',
+      inQrCode: 'kif QR-Kodiċi',
+      favorite: 'Save ambjent tax-xogħol bħala dħul favoriti'
+    },
+    clusterMarker: 'markatur cluster',
+    markerWithLastInfo: {
+      header: 'markatur bl-aħħar informazzjoni valur',
+      label: 'Attenzjoni - uħud provveditur tad-dejta huma bil-mod ħafna'
+    },
+    saveStatus: {
+      header: 'Save ambjent',
+      label: 'Timeseries kollha, il-timespan magħżula u l-settings huma salvati kontinwu.'
+    },
+    resetStatus: 'Ambjent Irrisettja',
+    generalizeData: 'jiġġeneralizza Data',
+    imprint: {
+      header: 'Imprint',
+      github: 'Sib dan il-proġett fuq <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° Tramuntana GmbH</a> hija responsabbli għal din il-websajt. </p><p> 52 ° Inizjattiva North għat ġeospazjali Open Source Software GmbH <br> Martin Luther King-Weg 24 <br> 48155 Muenster, il-Ġermanja </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Ebda timeseries tqabbil jinstab.'
+  },
+  guide: {
+    start: {
+      request: 'Meta inti tibda din il-gwida, il--istat attwali se tkun reset.'
+    },
+    step1: {
+      header: 'JavaScript Klijent - Iggwidata Tour',
+      text: 'Dan tour jagħti fi ftit passi ħarsa ġenerali kif tuża dan il-klijent. L-ewwel għandna żid timeseries mill-mappa.'
+    },
+    step2: {
+      header: 'Mur fil-mappa',
+      text: 'Hawnhekk aħna jaqilbu l-ħsieb li tikseb mappa.'
+    },
+    step3: {
+      header: 'Fehma Map',
+      text: 'Dan huwa l-fehma mappa. Fil-mappa tista &#39;tara għodod li jimmarkaw jew markergroups.'
+    },
+    step4: {
+      header: 'Bidla Provider',
+      text: 'Hawnhekk inti tista &#39;tagħżel fornitur ieħor timeseries.'
+    },
+    step5: {
+      header: 'Lokazzjoni Show',
+      text: 'U hawn inti tista &#39;lokalizzar tagħmir tiegħek fuq il-mappa.'
+    },
+    step6: {
+      header: 'Għażla Lista',
+      text: 'Hawnhekk inti tista &#39;tagħżel timeseries out ta&#39; listi ordnati.'
+    },
+    step7: {
+      header: 'Agħżel stazzjon',
+      text: 'Jekk jogħġbok agħżel issa stazzjon fuq il-mappa.'
+    },
+    step8: {
+      header: 'Timeseries Agħżel',
+      text: 'Agħżel dan Checkbox. Jekk ikun hemm wieħed biss timeseries għal dan l-istazzjon, il-Checkbox hija diġà ċċekkjati. Issa inti tista &#39;tmur fuq ma&#39; l- &quot;OK&quot; buttuna biex jgħabbi l-timeseries.'
+    },
+    step9: {
+      header: 'Dħul Legend',
+      text: 'Hawnhekk inti tara l-serje tal-ħin miżjud. Inti tista &#39;tħassar jew jillokalizza l-serje tal-ħin jew jibdlu l-kulur.'
+    },
+    step10: {
+      header: 'Ċart',
+      text: 'Dan huwa l-chart tal-serje tal-ħin magħżul.'
+    },
+    step11: {
+      header: 'Time Bidla',
+      text: 'Hawnhekk inti tista &#39;tibdel l-estent ħin għas-serje tiegħek ħin magħżul.'
+    },
+    step12: {
+      header: 'Tabella View',
+      text: 'Hawnhekk ikollok tabella tal-valuri tad-data prima lejn serje tiegħek ħin magħżul.'
+    },
+    step13: {
+      header: 'Ġestjoni Favorite',
+      text: 'L-entrati leġġenda / timeseries jistgħu jiġu ffrankati bħala Favourites. F&#39;din il-fehma Favourites kollha huma elenkati u tista &#39;tinżamm.'
+    },
+    step14: {
+      header: 'Lest',
+      text: 'Prosit! <br> Dan klijent huwa prodott ta &#39; <a href="http://52north.org" target="_blank">52 ° Tramuntana GmbH</a> . Tista &#39;ssib l-kodiċi sors fuq <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Ewwel valur fi',
+    lastValueAt: 'Aħħar valur fil',
+    label: 'favoriti',
+    edit: {
+      header: 'Favorit Edit'
+    },
+    group: {
+      add: 'L-istatus &quot;{0}&quot; hija miżjuda mal-lista favoriti.',
+      exists: 'Dan l-istatus għadha teżisti.',
+      noTimeseries: 'Bħalissa l-ebda timeseries huma magħżula.',
+      notSupported: 'Il-fornitur ta &#39;dħul fl-istatus &quot;{0}&quot; mhijiex appoġġjata u li ma jistgħux jiġu mgħobbija.'
+    },
+    single: {
+      add: 'A favoriti ġdida &quot;{0}&quot; hija miżjuda mal-lista.',
+      remove: 'Il-favoriti &quot;{0}&quot; jitneħħa.',
+      exists: 'Dan favoriti għadha teżisti.',
+      notSupported: 'Il-fornitur tas-favoriti &quot;{0}&quot; mhijiex appoġġjata u li ma jistgħux jiġu mgħobbija.'
+    },
+    import: {
+      override: 'Do inti tixtieq li jiskarta Favourites attwali tiegħek?',
+      wrongFile: 'Ma kellekx jaqra l-fajl',
+      noValidJson: 'Il-fajl JSON mhuwiex validu!',
+      header: 'Favourites Importazzjoni',
+      text: 'Hawnhekk inti tista &#39;importazzjoni Favourites esportati tiegħek. Just paste tal-JSON f&#39;dan il-qasam test:'
+    },
+    export: {
+      header: 'Favourites Esportazzjoni',
+      text: 'Hawnhekk inti tista &#39;esportazzjoni Favourites tieghek. Just kopja l-JSON minn dan kaxxa u ħlief fil-fajl li jimportah aktar tard:'
+    },
+    error: {
+      fileApiNotSupported: 'Il APIs File mhumiex appoġġjati bis-sħiħ dan il-browser.'
+    }
+  },
+  inform: {
+    error: 'Ġara żball:',
+    warn: 'Jekk jogħġbok ftakar li:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.nl = {
+  fullName: 'Nederlands',
+  ok: 'OK',
+  main: {
+    legend: 'Legende',
+    diagram: 'Diagram',
+    mapView: 'Kaartweergave',
+    favoriteView: 'Favorieten',
+    settings: 'Instellingen',
+    stationSelection: 'Selecteer een zender',
+    chartView: 'Kaartweergave',
+    allPhenomena: 'Alle Phenomena',
+    phenomenon: 'Fenomeen',
+    favoritesList: 'Favorieten',
+    importFavorites: 'Import',
+    exportFavorites: 'Export',
+    importExportHelp: 'Om een ​​bestand te importeren, kies dan een bestand dat u eerder geëxporteerd.',
+    noFileSelected: 'Geen bestand geselecteerd'
+  },
+  chart: {
+    noTimeseriesSelected: 'Je hebt geen tijdreeks geselecteerd, worden de geselecteerde tijdreeksen hebben geen waarden in de gegeven tijd bereik of de tijdreeksen zijn verborgen.',
+    outsideOfDataRange: 'Buitenkant van data range!',
+    annotation: 'Niet gevalideerde gegevens!',
+    monthNames: [ 'Jan', 'Februari', 'Ontsieren', 'April', 'Mei', 'Juni', 'Juli', 'Augustus', 'September', 'Oktober', 'November', 'December' ]
+  },
+  table: {
+    time: 'Tijd'
+  },
+  map: {
+    userLocation: 'Hier is uw huidige locatie',
+    stationSelection: {
+      station: 'Station',
+      selectAllTimeseries: 'Alles selecteren tijdreeks'
+    },
+    stationLocation: {
+      station: 'Station',
+      timeseries: 'Tijdreeks',
+      provider: 'Leverancier',
+      jumpBackToChart: 'terug naar overzicht'
+    },
+    providerList: {
+      provider: 'Leverancier',
+      stations: 'Stations',
+      timeseries: 'Tijdreeks',
+      phenomena: 'Fenomenen'
+    },
+    search: {
+      label: 'zoeken naar het adres ...',
+      noResult: 'Sorry, dat adres kon niet worden gevonden.'
+    }
+  },
+  listSelection: {
+    header: 'Kies een tijdreeks door lijst',
+    headers: {
+      category: 'Categorie',
+      station: 'Station',
+      phenomenon: 'Fenomeen',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'Er voldeden meer dan één tijdreeks'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'geen gegevens beschikbaar',
+      jumpToLastValue: 'Ga naar de laatste waarde',
+      firstValueAt: 'Eerste waarde',
+      lastValueAt: 'Laatste waarde bij'
+    }
+  },
+  export: {
+    label: 'Gegevens als CSV (zip-archief)'
+  },
+  timeSelection: {
+    header: 'Time Range',
+    presetsHeader: 'presets',
+    presets: {
+      lastHour: 'afgelopen uur',
+      today: 'vandaag',
+      yesterday: 'gisteren',
+      todayYesterday: 'vandaag en gisteren',
+      thisWeek: 'deze week',
+      lastWeek: 'vorige week',
+      thisMonth: 'deze maand',
+      lastMonth: 'vorige maand',
+      thisYear: 'dit jaar',
+      lastYear: 'vorig jaar'
+    },
+    custom: {
+      header: 'gewoonte',
+      start: 'Startdatum',
+      end: 'Einddatum'
+    },
+    warning: {
+      startBeforeEnd: 'De startdatum kan niet groter zijn dan de einddatum',
+      maxTimeRange: 'De tijd bereik kan niet groter zijn dan één jaar'
+    }
+  },
+  styleChange: {
+    header: 'Stijl wijzigen',
+    currentColor: 'Huidige kleur',
+    selectColor: 'Selecteer een nieuwe kleur',
+    selectBarInterval: 'Selecteer de bar interval',
+    barChartInterval: {
+      hour: 'Uur',
+      day: 'Dag',
+      week: 'Week',
+      month: 'Maand'
+    },
+    zeroScaled: 'zero geschaald Y-as',
+    groupedAxis: 'gegroepeerd as'
+  },
+  settings: {
+    header: 'Instellingen',
+    chooseLanguage: 'Andere talen',
+    requiresRestart: 'Moet Restart!',
+    permalink: {
+      create: 'Maak een permalink als',
+      inWindow: 'link in een nieuw venster',
+      inMail: 'link in een e-mail',
+      inClipboard: 'Link naar het klembord',
+      clipboardInfo: 'Kopiëren naar het klembord:',
+      inQrCode: 'als QR-Code',
+      favorite: 'Opslaan werkomgeving als favoriet binnenkomst'
+    },
+    clusterMarker: 'cluster marker',
+    markerWithLastInfo: {
+      header: 'marker met de laatste waarde informatie',
+      label: 'aandacht - enkele data provider zijn erg traag'
+    },
+    saveStatus: {
+      header: 'Opslaan milieu',
+      label: 'Alle tijdreeks, in de geselecteerde periode en de instellingen worden continu opgeslagen.'
+    },
+    resetStatus: 'Reset milieu',
+    generalizeData: 'generaliseren Gegevens',
+    imprint: {
+      header: 'Afdruk',
+      github: 'Vind dit project op <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° Noord GmbH</a> is verantwoordelijk voor deze website. </p><p> 52 ° Noord initiatief voor Geospatial Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Duitsland </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Geen bijpassende tijdreeksen wordt gevonden.'
+  },
+  guide: {
+    start: {
+      request: 'Wanneer je deze handleiding beginnen, zal de de huidige stand gereset.'
+    },
+    step1: {
+      header: 'JavaScript Client - Guided Tour',
+      text: 'Deze tour geeft in een paar stappen een overzicht hoe u deze client gebruiken. Eerste voegen we een tijdreeks van de kaart.'
+    },
+    step2: {
+      header: 'Ga naar de kaart',
+      text: 'Hier wisselen we het oog op een kaart te krijgen.'
+    },
+    step3: {
+      header: 'Kaartweergave',
+      text: 'Dit is de kaartweergave. In de kaart kunt u markeringen of markergroups zien.'
+    },
+    step4: {
+      header: 'Verandering Provider',
+      text: 'Hier kunt u een andere tijdreeksen provider te kiezen.'
+    },
+    step5: {
+      header: 'Toon locatie',
+      text: 'En hier kunt u uw apparaat op de kaart.'
+    },
+    step6: {
+      header: 'Lijst selectie',
+      text: 'Hier kunt u een tijdreeks kiezen uit geordende lijsten.'
+    },
+    step7: {
+      header: 'Selecteer een zender',
+      text: 'Selecteer nu een zender op de kaart.'
+    },
+    step8: {
+      header: 'Kies een tijdreeks',
+      text: 'Schakel dit vakje. Als er slechts één tijdreeks voor dit station, wordt het selectievakje is ingeschakeld. Nu kun je verder gaan met de &quot;OK&quot; knop om de tijdreeksen te laden.'
+    },
+    step9: {
+      header: 'Legende binnenkomst',
+      text: 'Hier zie je de toegevoegde tijdreeksen. U kunt verwijderen of zoek de tijdreeks of de kleur.'
+    },
+    step10: {
+      header: 'Tabel',
+      text: 'Dit is de grafiek van de geselecteerde tijdreeksen.'
+    },
+    step11: {
+      header: 'Tijd wijzigen',
+      text: 'Hier kunt u de tijd die mate veranderen voor uw geselecteerde tijdreeksen.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Hier krijg je een tabel van de ruwe data waarden aan uw geselecteerde tijdreeksen.'
+    },
+    step13: {
+      header: 'Favoriete beheer',
+      text: 'De legende inzendingen / tijdreeks kan worden opgeslagen als favorieten. In deze visie alle favorieten zijn opgenomen en kon worden gehandhaafd.'
+    },
+    step14: {
+      header: 'Afgewerkt',
+      text: 'Goed gedaan! <br> Deze opdrachtgever is een product van <a href="http://52north.org" target="_blank">52 ° Noord GmbH</a> . U kunt de broncode op zoek <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Eerste waarde',
+    lastValueAt: 'Laatste waarde bij',
+    label: 'favoriet',
+    edit: {
+      header: 'Favoriet bewerken'
+    },
+    group: {
+      add: 'De status &#39;{0}&#39; wordt toegevoegd aan de lijst met favorieten.',
+      exists: 'Deze status bestaat nog steeds.',
+      noTimeseries: 'Geen tijdreeksen worden geselecteerd.',
+      notSupported: 'De aanbieder van een vermelding van de status &#39;{0}&#39; wordt niet ondersteund en kan niet worden geladen.'
+    },
+    single: {
+      add: 'Een nieuwe favoriet &#39;{0}&#39; wordt toegevoegd aan de lijst.',
+      remove: 'De favoriete &#39;{0}&#39; is verwijderd.',
+      exists: 'Deze favoriete bestaat nog steeds.',
+      notSupported: 'De aanbieder van de favoriete &#39;{0}&#39; wordt niet ondersteund en kan niet worden geladen.'
+    },
+    import: {
+      override: 'Wilt u uw huidige favorieten overschrijven?',
+      wrongFile: 'Kon het bestand niet lezen',
+      noValidJson: 'De JSON-bestand is niet geldig!',
+      header: 'Favorieten import',
+      text: 'Hier kunt u uw geëxporteerde favorieten importeren. Net plak de JSON in dit tekstveld:'
+    },
+    export: {
+      header: 'Favorieten export',
+      text: 'Hier kunt u uw favorieten exporteren. Kopieer de JSON uit dit tekstvak en opslaan in een bestand om het later te importeren:'
+    },
+    error: {
+      fileApiNotSupported: 'De File API&#39;s worden niet volledig ondersteund in deze browser.'
+    }
+  },
+  inform: {
+    error: 'Er is een fout opgetreden:',
+    warn: 'Vergeet niet dat:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.pl = {
+  fullName: 'Polski',
+  ok: 'W porządku',
+  main: {
+    legend: 'Legenda',
+    diagram: 'Schemat',
+    mapView: 'Widok mapy',
+    favoriteView: 'Ulubione',
+    settings: 'Ustawienia',
+    stationSelection: 'Wybierz stację',
+    chartView: 'Widok Wykres',
+    allPhenomena: 'Wszystkie zjawiska',
+    phenomenon: 'Zjawisko',
+    favoritesList: 'Ulubione',
+    importFavorites: 'Import',
+    exportFavorites: 'Eksport',
+    importExportHelp: 'Aby zaimportować plik, wybierz plik wyeksportowany wcześniej.',
+    noFileSelected: 'Nie wybrano pliku'
+  },
+  chart: {
+    noTimeseriesSelected: 'Wybrałeś nie timeseries, wybrane timeseries nie mają wartości w danym przedziale czasowym lub timeseries są ukryte.',
+    outsideOfDataRange: 'Poza zakresem danych!',
+    annotation: 'Dane bez gwarancji!',
+    monthNames: [ 'Jan', 'Lutego', 'Zniszczyć', 'Kwietnia', 'Maj', 'Czerwca', 'Lipca', 'Sierpień', 'Września', 'Październik', 'Listopada', 'Grudzień' ]
+  },
+  table: {
+    time: 'Czas'
+  },
+  map: {
+    userLocation: 'Oto aktualna lokalizacja',
+    stationSelection: {
+      station: 'Stacja',
+      selectAllTimeseries: 'wybierz wszystkie timeseries'
+    },
+    stationLocation: {
+      station: 'Stacja',
+      timeseries: 'Timeseries',
+      provider: 'Dostawca',
+      jumpBackToChart: 'powrót do tabeli'
+    },
+    providerList: {
+      provider: 'Dostawca',
+      stations: 'Stacje',
+      timeseries: 'Timeseries',
+      phenomena: 'Zjawiska'
+    },
+    search: {
+      label: 'szukaj adresu ...',
+      noResult: 'Przykro nam, że adres nie został znaleziony.'
+    }
+  },
+  listSelection: {
+    header: 'Wybierz timeseries według listy',
+    headers: {
+      category: 'Kategoria',
+      station: 'Stacja',
+      phenomenon: 'Zjawisko',
+      procedure: 'Czujnik'
+    },
+    warning: {
+      moreThanOneTimeseries: 'Znaleziono więcej niż jedną timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Brak danych',
+      jumpToLastValue: 'przejść do ostatniej wartości',
+      firstValueAt: 'Pierwsza wartość w',
+      lastValueAt: 'Ostatnia wartość w'
+    }
+  },
+  export: {
+    label: 'Dane w formacie CSV (Kod Archiwum)'
+  },
+  timeSelection: {
+    header: 'Zakres czasu',
+    presetsHeader: 'presetów',
+    presets: {
+      lastHour: 'ostatnia godzina',
+      today: 'dzisiaj',
+      yesterday: 'wczoraj',
+      todayYesterday: 'Wczoraj i dziś',
+      thisWeek: 'w tym tygodniu',
+      lastWeek: 'w zeszłym tygodniu',
+      thisMonth: 'w tym miesiącu',
+      lastMonth: 'w zeszłym miesiącu',
+      thisYear: 'w tym roku',
+      lastYear: 'w ubiegłym roku'
+    },
+    custom: {
+      header: 'zwyczaj',
+      start: 'Data rozpoczęcia',
+      end: 'Data zakończenia'
+    },
+    warning: {
+      startBeforeEnd: 'Data rozpoczęcia nie może być większa niż daty zakończenia',
+      maxTimeRange: 'Zakres czasu nie może być większa niż jeden rok'
+    }
+  },
+  styleChange: {
+    header: 'Zmień styl',
+    currentColor: 'Obecny kolor',
+    selectColor: 'Wybierz nowy kolor',
+    selectBarInterval: 'Wybierz przedział bar',
+    barChartInterval: {
+      hour: 'Godzina',
+      day: 'Dzień',
+      week: 'Tydzień',
+      month: 'Miesiąc'
+    },
+    zeroScaled: 'zerowe skalowane osi Y',
+    groupedAxis: 'Oś zgrupowane'
+  },
+  settings: {
+    header: 'Ustawienia',
+    chooseLanguage: 'Przełącznik języka',
+    requiresRestart: 'Wymaga ponownego uruchomienia!',
+    permalink: {
+      create: 'Tworzenie odnośnika jako',
+      inWindow: 'Link w nowym oknie',
+      inMail: 'Link w e-mailu',
+      inClipboard: 'Link do schowka',
+      clipboardInfo: 'Skopiuj do schowka:',
+      inQrCode: 'QR-Code, jak',
+      favorite: 'Zapisz środowiska pracy jako ulubionej pozycji'
+    },
+    clusterMarker: 'Znacznik klaster',
+    markerWithLastInfo: {
+      header: 'Marker z ostatniej informacji wartości',
+      label: 'uwaga - niektóre dostawca danych jest bardzo powolny'
+    },
+    saveStatus: {
+      header: 'Zapisz środowiska',
+      label: 'Wszystkie timeseries, skumulowanie i wybrane ustawienia są zapisywane w sposób ciągły.'
+    },
+    resetStatus: 'Resetowanie środowiska',
+    generalizeData: 'uogólnienie danych',
+    imprint: {
+      header: 'Odcisk',
+      github: 'Znajdź projekt na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° Północna GmbH</a> jest odpowiedzialny za tę stronę. </p><p> 52 ° Północna Inicjatywa na rzecz Open Source Geospatial Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Muenster, Niemcy </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Brak dopasowania timeseries znajduje.'
+  },
+  guide: {
+    start: {
+      request: 'Po uruchomieniu tej instrukcji, obecny stan zostanie zresetowany.'
+    },
+    step1: {
+      header: 'JavaScript Klient - wycieczka z przewodnikiem',
+      text: 'Ta wycieczka daje w kilku krokach przegląd jak używać tego klienta. Najpierw musimy dodać timeseries z mapy.'
+    },
+    step2: {
+      header: 'Przejdź do mapy',
+      text: 'Tutaj możemy przełączyć widok, aby uzyskać mapę.'
+    },
+    step3: {
+      header: 'Widok mapy',
+      text: 'To jest mapa. Na mapie widać markery lub markergroups.'
+    },
+    step4: {
+      header: 'Zmiana dostawcy',
+      text: 'Tutaj można wybrać innego usługodawcy timeseries.'
+    },
+    step5: {
+      header: 'Pokaż lokalizację',
+      text: 'I tu można zlokalizować urządzenie na mapie.'
+    },
+    step6: {
+      header: 'Wybór listy',
+      text: 'Tutaj możesz wybrać timeseries z zamówionych list.'
+    },
+    step7: {
+      header: 'Wybierz stację',
+      text: 'Wybierz teraz stację na mapie.'
+    },
+    step8: {
+      header: 'Wybierz timeseries',
+      text: 'Zaznacz to pole wyboru. Jeśli jest tylko jeden timeseries dla tej stacji, pole wyboru jest już zaznaczone. Teraz można przejść za pomocą przycisku &quot;OK&quot;, aby załadować timeseries.'
+    },
+    step9: {
+      header: 'Wpis Legenda',
+      text: 'Tu zobaczysz dodatkową szeregów czasowych. Możesz usunąć lub zlokalizować szereg czasowy lub zmienić kolor.'
+    },
+    step10: {
+      header: 'Wykres',
+      text: 'Jest to wykres wybranego cyklu czasowego.'
+    },
+    step11: {
+      header: 'Zmiana czasu',
+      text: 'Tutaj możesz zmienić zakres czasowy dla wybranego szeregu czasowego.'
+    },
+    step12: {
+      header: 'Tabela Zobacz',
+      text: 'Tutaj masz stolik surowych wartości danych do wybranego szeregu czasowego.'
+    },
+    step13: {
+      header: 'Ulubiona zarządzanie',
+      text: 'Wpisy legendy / timeseries można zapisać jako ulubione. Z tego punktu widzenia wszystkie ulubione są wymienione i mogą być utrzymane.'
+    },
+    step14: {
+      header: 'Ukończony',
+      text: 'Well done! <br> Ten klient jest produktem <a href="http://52north.org" target="_blank">52 ° Północnej GmbH</a> . Można znaleźć kod źródłowy na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Pierwsza wartość w',
+    lastValueAt: 'Ostatnia wartość w',
+    label: 'ulubiony',
+    edit: {
+      header: 'Edycja ulubiona'
+    },
+    group: {
+      add: 'Stan &#39;{0}&#39; jest dodawany do listy ulubionych.',
+      exists: 'Status ten nadal istnieje.',
+      noTimeseries: 'Obecnie nie ma timeseries wybiera.',
+      notSupported: 'Dostawcą wpisu statusu &#39;{0}&#39; nie jest obsługiwany i nie może być załadowany.'
+    },
+    single: {
+      add: 'Nowy ulubiony &#39;{0}&#39; jest dodawane do listy.',
+      remove: 'Ulubiona &#39;{0}&#39; jest usuwana.',
+      exists: 'To ulubiona nadal istnieje.',
+      notSupported: 'Udzielający ulubionych &#39;{0}&#39; nie jest obsługiwany i nie może być załadowany.'
+    },
+    import: {
+      override: 'Czy chcesz zastąpić bieżące ulubione?',
+      wrongFile: 'Nie można odczytać pliku',
+      noValidJson: 'Plik JSON nie jest ważny!',
+      header: 'Importowanie ulubionych',
+      text: 'Tutaj można importować wyeksportowane ulubionych. Wystarczy wkleić JSON w polu tekstowym:'
+    },
+    export: {
+      header: 'Eksport ulubionych',
+      text: 'Tutaj można eksportować swoje ulubione. Wystarczy skopiować JSON z tego pola tekstowego i zapisać go w pliku, aby go importować później:'
+    },
+    error: {
+      fileApiNotSupported: 'API plików nie są w pełni obsługiwane w tej przeglądarce.'
+    }
+  },
+  inform: {
+    error: 'Wystąpił błąd:',
+    warn: 'Proszę pamiętać, że:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.pt = {
+  fullName: 'Português',
+  ok: 'ESTÁ BEM',
+  main: {
+    legend: 'Lenda',
+    diagram: 'Diagrama',
+    mapView: 'Ver o mapa',
+    favoriteView: 'Favoritos',
+    settings: 'Definições',
+    stationSelection: 'Selecione uma estação',
+    chartView: 'Vista Gráfico',
+    allPhenomena: 'Todos os Fenômenos',
+    phenomenon: 'Fenómeno',
+    favoritesList: 'Favoritos',
+    importFavorites: 'Importação',
+    exportFavorites: 'Exportação',
+    importExportHelp: 'Para importar um arquivo, por favor, escolha um arquivo exportado antes.',
+    noFileSelected: 'No arquivo selecionado'
+  },
+  chart: {
+    noTimeseriesSelected: 'Você selecionou nenhum timeseries, os timeseries selecionados têm nenhum valor no intervalo de tempo determinado ou os timeseries estão ocultas.',
+    outsideOfDataRange: 'Fora do intervalo de dados!',
+    annotation: 'Dados sem garantia!',
+    monthNames: [ 'Jan', 'Fevereiro', 'Estragar', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro' ]
+  },
+  table: {
+    time: 'Tempo'
+  },
+  map: {
+    userLocation: 'Aqui está a sua localização actual',
+    stationSelection: {
+      station: 'Estação',
+      selectAllTimeseries: 'selecionar todos os timeseries'
+    },
+    stationLocation: {
+      station: 'Estação',
+      timeseries: 'Timeseries',
+      provider: 'Provedor',
+      jumpBackToChart: 'de volta ao gráfico'
+    },
+    providerList: {
+      provider: 'Provedor',
+      stations: 'Estações',
+      timeseries: 'Timeseries',
+      phenomena: 'Fenómenos'
+    },
+    search: {
+      label: 'procurar endereço ...',
+      noResult: 'Desculpe, o endereço não pôde ser encontrado.'
+    }
+  },
+  listSelection: {
+    header: 'Selecione timeseries por lista',
+    headers: {
+      category: 'Categoria',
+      station: 'Estação',
+      phenomenon: 'Fenómeno',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'encontrado mais de um timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Não há dados disponíveis',
+      jumpToLastValue: 'Ir para o último valor',
+      firstValueAt: 'Primeiro valor em',
+      lastValueAt: 'Última valor em'
+    }
+  },
+  export: {
+    label: 'Dados como CSV (arquivo ZIP)'
+  },
+  timeSelection: {
+    header: 'Intervalo de tempo',
+    presetsHeader: 'presets',
+    presets: {
+      lastHour: 'última hora',
+      today: 'hoje',
+      yesterday: 'ontem',
+      todayYesterday: 'hoje e ontem',
+      thisWeek: 'esta semana',
+      lastWeek: 'semana passada',
+      thisMonth: 'este mês',
+      lastMonth: 'mês passado',
+      thisYear: 'este ano',
+      lastYear: 'ano passado'
+    },
+    custom: {
+      header: 'personalizado',
+      start: 'Data de início',
+      end: 'A data de término'
+    },
+    warning: {
+      startBeforeEnd: 'A data de início não pode ser maior que a data final',
+      maxTimeRange: 'O intervalo de tempo não pode ser maior que um ano'
+    }
+  },
+  styleChange: {
+    header: 'Mude o estilo',
+    currentColor: 'Cor atual',
+    selectColor: 'Selecione uma nova cor',
+    selectBarInterval: 'Selecione o intervalo de bar',
+    barChartInterval: {
+      hour: 'Hora',
+      day: 'Dia',
+      week: 'Semana',
+      month: 'Mês'
+    },
+    zeroScaled: 'eixo Y em escala de zero',
+    groupedAxis: 'eixo agrupados'
+  },
+  settings: {
+    header: 'Definições',
+    chooseLanguage: 'Switch language',
+    requiresRestart: 'Necessidades Restart!',
+    permalink: {
+      create: 'Criar um permalink como',
+      inWindow: 'link em uma nova janela',
+      inMail: 'link em um e-mail',
+      inClipboard: 'Link para a área de transferência',
+      clipboardInfo: 'Copiar para a área de transferência:',
+      inQrCode: 'como QR-Code',
+      favorite: 'Salve ambiente de trabalho como entrada favorito'
+    },
+    clusterMarker: 'marcador de cluster',
+    markerWithLastInfo: {
+      header: 'marcador com informações último valor',
+      label: 'atenção - alguns provedor de dados são muito lentos'
+    },
+    saveStatus: {
+      header: 'Salvar ambiente',
+      label: 'Todos os timeseries, o período de tempo selecionado e as configurações são salvas contínua.'
+    },
+    resetStatus: 'Ambiente de redefinição',
+    generalizeData: 'generalizar dados',
+    imprint: {
+      header: 'Cunho',
+      github: 'Encontre este projeto no <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° Norte GmbH</a> é responsável por este site. </p><p> 52 ° Iniciativa do Norte para a Open Source Geospatial Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Muenster, Alemanha </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Nenhum timeseries correspondente for encontrado.'
+  },
+  guide: {
+    start: {
+      request: 'Quando você iniciar este guia, o estado atual será reiniciado.'
+    },
+    step1: {
+      header: 'JavaScript Cliente - Visita Guiada',
+      text: 'Esse passeio dá em poucos passos uma visão geral como usar este cliente. Primeiro vamos adicionar timeseries do mapa.'
+    },
+    step2: {
+      header: 'Ir para o mapa',
+      text: 'Aqui vamos alterar a vista para obter um mapa.'
+    },
+    step3: {
+      header: 'Ver o mapa',
+      text: 'Esta é a visualização do mapa. No mapa você pode ver marcadores ou markergroups.'
+    },
+    step4: {
+      header: 'Mudança Provider',
+      text: 'Aqui você pode selecionar outro provedor timeseries.'
+    },
+    step5: {
+      header: 'Mostrar localização',
+      text: 'E aqui você pode localizar o seu dispositivo no mapa.'
+    },
+    step6: {
+      header: 'Lista seleção',
+      text: 'Aqui você pode selecionar um timeseries fora de listas ordenadas.'
+    },
+    step7: {
+      header: 'Selecione uma estação',
+      text: 'Por favor, selecione agora uma estação no mapa.'
+    },
+    step8: {
+      header: 'Select timeseries',
+      text: 'Selecione esta caixa de seleção. Se houver apenas um timeseries para esta estação, a caixa de seleção já está marcada. Agora você pode ir em frente com o botão &quot;OK&quot; para carregar os timeseries.'
+    },
+    step9: {
+      header: 'Entrada Legend',
+      text: 'Aqui você vê a série temporal acrescentou. Você pode excluir ou localizar a série de tempo ou mudar a cor.'
+    },
+    step10: {
+      header: 'Gráfico',
+      text: 'Este é o gráfico da série de tempo selecionado.'
+    },
+    step11: {
+      header: 'Alterar o tempo',
+      text: 'Aqui você pode alterar a extensão do tempo para a sua série de tempo selecionado.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Aqui você tem uma tabela com os valores de dados brutos para sua série de tempo selecionado.'
+    },
+    step13: {
+      header: 'Gestão Favorita',
+      text: 'As entradas de legenda / timeseries poderiam ser salvos como favoritos. Neste ponto de vista todos os favoritos são listados e poderia ser mantida.'
+    },
+    step14: {
+      header: 'Terminado',
+      text: 'Bem feito! <br> Este cliente é um produto de <a href="http://52north.org" target="_blank">52 ° Norte GmbH</a> . Você pode encontrar o código fonte no <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Primeiro valor em',
+    lastValueAt: 'Última valor em',
+    label: 'favorito',
+    edit: {
+      header: 'Editar favorito'
+    },
+    group: {
+      add: 'O status &#39;{0}&#39; é adicionado à lista de favoritos.',
+      exists: 'Esse status ainda existe.',
+      noTimeseries: 'Atualmente não há timeseries são selecionados.',
+      notSupported: 'O provedor de uma entrada do status &#39;{0}&#39; não é suportada e não pode ser carregado.'
+    },
+    single: {
+      add: 'Um novo favorito &#39;{0}&#39; é adicionado à lista.',
+      remove: 'O favorito &#39;{0}&#39; é removido.',
+      exists: 'Este favorito ainda existe.',
+      notSupported: 'O provedor do favorito &#39;{0}&#39; não é suportado e não pode ser carregado.'
+    },
+    import: {
+      override: 'Você quer substituir seus favoritos atuais?',
+      wrongFile: 'Não foi possível ler o arquivo',
+      noValidJson: 'O arquivo JSON não é válido!',
+      header: 'Importar favoritos',
+      text: 'Aqui você pode importar seus favoritos exportados. Basta colar o JSON neste campo de texto:'
+    },
+    export: {
+      header: 'Exportar favoritos',
+      text: 'Aqui você pode exportar seus favoritos. Basta copiar o JSON fora desta caixa de texto e salvá-lo em um arquivo para importá-lo mais tarde:'
+    },
+    error: {
+      fileApiNotSupported: 'As APIs de arquivos não são totalmente suportados neste browser.'
+    }
+  },
+  inform: {
+    error: 'Ocorreu um erro:',
+    warn: 'Lembre-se que:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.ro = {
+  fullName: 'Român',
+  ok: 'BINE',
+  main: {
+    legend: 'Legendă',
+    diagram: 'Diagramă',
+    mapView: 'Vizualizare hartă',
+    favoriteView: 'Favorite',
+    settings: 'Setări',
+    stationSelection: 'Selectați o stație',
+    chartView: 'Vizualizare Grafic',
+    allPhenomena: 'Toate fenomenele',
+    phenomenon: 'Fenomen',
+    favoritesList: 'Favorite',
+    importFavorites: 'Import',
+    exportFavorites: 'Export',
+    importExportHelp: 'Pentru a importa un fișier, vă rugăm să alegeți un fișier exportat înainte.',
+    noFileSelected: 'Nici un fișier selectat'
+  },
+  chart: {
+    noTimeseriesSelected: 'Ați selectat nici timeseries, de timeseries selectate nu au valori în intervalul de timp dat sau timeseries sunt ascunse.',
+    outsideOfDataRange: 'În afara din gama de date!',
+    annotation: 'Datele fără garanție!',
+    monthNames: [ 'Jan', 'Februarie', 'Strica', 'Aprilie', 'Mai', 'Iunie', 'Iulie', 'August', 'Septembrie', 'Octombrie', 'Noiembrie', 'Decembrie' ]
+  },
+  table: {
+    time: 'Timp'
+  },
+  map: {
+    userLocation: 'Iată locația curentă',
+    stationSelection: {
+      station: 'Stație',
+      selectAllTimeseries: 'selecteaza toate timeseries'
+    },
+    stationLocation: {
+      station: 'Stație',
+      timeseries: 'Timeseries',
+      provider: 'Furnizor',
+      jumpBackToChart: 'înapoi la diagramă'
+    },
+    providerList: {
+      provider: 'Furnizor',
+      stations: 'Stații',
+      timeseries: 'Timeseries',
+      phenomena: 'Fenomene'
+    },
+    search: {
+      label: 'caută adresa ...',
+      noResult: 'Ne pare rău, că adresa nu a putut fi găsit.'
+    }
+  },
+  listSelection: {
+    header: 'Selectați timeseries de listă',
+    headers: {
+      category: 'Categorie',
+      station: 'Stație',
+      phenomenon: 'Fenomen',
+      procedure: 'Senzor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'a găsit mai mult de un timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'Nu sunt date disponibile',
+      jumpToLastValue: 'sări la ultima valoare',
+      firstValueAt: 'Primul valoare la',
+      lastValueAt: 'Ultima valoare la'
+    }
+  },
+  export: {
+    label: 'Datele în format CSV (arhivă)'
+  },
+  timeSelection: {
+    header: 'Intervalul de timp',
+    presetsHeader: 'presetări',
+    presets: {
+      lastHour: 'Ultima oră',
+      today: 'astăzi',
+      yesterday: 'ieri',
+      todayYesterday: 'azi &amp; ieri',
+      thisWeek: 'în această săptămână',
+      lastWeek: 'săptămâna trecută',
+      thisMonth: 'în această lună',
+      lastMonth: 'în ultima lună',
+      thisYear: 'anul acesta',
+      lastYear: 'anul trecut'
+    },
+    custom: {
+      header: 'obicei',
+      start: 'Data de început',
+      end: 'Data de încheiere'
+    },
+    warning: {
+      startBeforeEnd: 'Data de începere nu poate fi mai mare decât data de sfârșit',
+      maxTimeRange: 'Intervalul de timp nu poate fi mai mare decât o ani'
+    }
+  },
+  styleChange: {
+    header: 'Schimbarea de stil',
+    currentColor: 'Culoare actual',
+    selectColor: 'Selectați o culoare nouă',
+    selectBarInterval: 'Selectați intervalul de bare',
+    barChartInterval: {
+      hour: 'Oră',
+      day: 'Zi',
+      week: 'Săptămână',
+      month: 'Lună'
+    },
+    zeroScaled: 'scalate axa Y la zero',
+    groupedAxis: 'Axa grupate'
+  },
+  settings: {
+    header: 'Setări',
+    chooseLanguage: 'Schimbă limba',
+    requiresRestart: 'Are nevoie de Restart!',
+    permalink: {
+      create: 'Creați un permalink ca',
+      inWindow: 'legătură într-o fereastră nouă',
+      inMail: 'link dintr-un e-mail',
+      inClipboard: 'Link la clipboard',
+      clipboardInfo: 'Copiere în clipboard:',
+      inQrCode: 'ca QR-Code',
+      favorite: 'Salvați mediul de lucru ca intrare favorit'
+    },
+    clusterMarker: 'îi trimită grup',
+    markerWithLastInfo: {
+      header: 'îi trimită cu ultimul informații valoare',
+      label: 'atenție - unii furnizor de date sunt foarte lente'
+    },
+    saveStatus: {
+      header: 'Salvați mediu',
+      label: 'Toate timeseries, durata de timp selectată și setările sunt salvate continuu.'
+    },
+    resetStatus: 'Mediu Reset',
+    generalizeData: 'generală de date',
+    imprint: {
+      header: 'Imprima',
+      github: 'Găsiți acest proiect la <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° nord GmbH</a> este responsabil pentru acest site. </p><p> 52 ° Inițiativa nord de geospațiale Open Source Software GmbH <br> Martin Luther--King-Weg 24 <br> 48155 Muenster, Germania </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Nu timeseries potrivite este găsit.'
+  },
+  guide: {
+    start: {
+      request: 'Când porniți acest ghid, starea actuală va fi resetat.'
+    },
+    step1: {
+      header: 'JavaScript client - Tur',
+      text: 'Acest turneu oferă în câțiva pași o imagine de ansamblu modul de utilizare a acestui client. În primul rând vom adăuga o timeseries de pe harta.'
+    },
+    step2: {
+      header: 'Du-te la harta',
+      text: 'Aici vom trece vizualizarea pentru a obține o hartă.'
+    },
+    step3: {
+      header: 'Vizualizare hartă',
+      text: 'Acesta este punctul de vedere hartă. In harta puteti vedea markere sau markergroups.'
+    },
+    step4: {
+      header: 'Schimbarea Furnizor',
+      text: 'Aici puteți selecta un alt furnizor timeseries.'
+    },
+    step5: {
+      header: 'Afișare locație',
+      text: 'Și aici puteți localiza dispozitivul pe hartă.'
+    },
+    step6: {
+      header: 'Selecție Listă',
+      text: 'Aici puteți selecta un timeseries din liste ordonate.'
+    },
+    step7: {
+      header: 'Selectați o stație',
+      text: 'Vă rugăm să selectați acum o stație de pe hartă.'
+    },
+    step8: {
+      header: 'Selectați timeseries',
+      text: 'Selectați această casetă. Dacă există un singur timeseries pentru acest post, pe caseta este deja bifată. Acum poti merge mai departe cu butonul &quot;OK&quot; pentru a încărca timeseries.'
+    },
+    step9: {
+      header: 'Intrare Legenda',
+      text: 'Aici veți vedea seriile de timp adăugat. Puteți șterge sau localiza seriile de timp sau schimba culoarea.'
+    },
+    step10: {
+      header: 'Diagramă',
+      text: 'Aceasta este graficul de seriilor de timp selectat.'
+    },
+    step11: {
+      header: 'Schimbarea timp',
+      text: 'Aici puteți schimba măsura de timp pentru seriile de timp selectat.'
+    },
+    step12: {
+      header: 'Tabelul Vezi',
+      text: 'Aici veti gasi un tabel de valori de date brute pentru seriile de timp selectat.'
+    },
+    step13: {
+      header: 'Management preferate',
+      text: 'Intrările Legenda / timeseries ar putea fi salvate ca favorite. În acest punct de vedere toate favorite sunt listate și ar putea fi menținute.'
+    },
+    step14: {
+      header: 'A terminat pe locul',
+      text: 'Bine făcut! <br> Acest client este un produs de <a href="http://52north.org" target="_blank">52 ° nord GmbH</a> . Puteți găsi codul sursă pe <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Primul valoare la',
+    lastValueAt: 'Ultima valoare la',
+    label: 'favorit',
+    edit: {
+      header: 'Editați favorit'
+    },
+    group: {
+      add: 'Statutul &quot;{0}&quot; se adaugă la lista de favorite.',
+      exists: 'Acest statut încă mai există.',
+      noTimeseries: 'În prezent, nu sunt selectate timeseries.',
+      notSupported: 'Furnizorul de o intrare a statutului &quot;{0}&quot; nu este acceptată și nu poate fi încărcat.'
+    },
+    single: {
+      add: 'Un nou favorit &quot;{0}&quot; se adaugă la lista.',
+      remove: 'Favoritul &quot;{0}&quot; este eliminat.',
+      exists: 'Acest favorit încă mai există.',
+      notSupported: 'Furnizorul de favorit &quot;{0}&quot; nu este acceptată și nu poate fi încărcat.'
+    },
+    import: {
+      override: 'Vrei să suprascrie favorite curente?',
+      wrongFile: 'Nu se poate citi fișierul',
+      noValidJson: 'Fișierul JSON nu este valid!',
+      header: 'Import favorite',
+      text: 'Aici puteți importa favorite exportate. Doar paste JSON în acest domeniu de text:'
+    },
+    export: {
+      header: 'Export favorite',
+      text: 'Aici puteți exporta favorite. Doar copiați JSON din aceasta casuta și salvați-o într-un fișier pentru al importa mai târziu:'
+    },
+    error: {
+      fileApiNotSupported: 'API-urile de fișiere nu sunt pe deplin susținute în acest browser.'
+    }
+  },
+  inform: {
+    error: 'A apărut o eroare:',
+    warn: 'Vă rugăm să rețineți că:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.sk = {
+  fullName: 'Slovenčina',
+  ok: 'OK',
+  main: {
+    legend: 'Legenda',
+    diagram: 'Diagram',
+    mapView: 'Zobrazenie mapy',
+    favoriteView: 'Obľúbené',
+    settings: 'Nastavenie',
+    stationSelection: 'Vyberte stanicu',
+    chartView: 'Pohľad Chart',
+    allPhenomena: 'Všetky javy',
+    phenomenon: 'Jav',
+    favoritesList: 'Obľúbené',
+    importFavorites: 'Import',
+    exportFavorites: 'Export',
+    importExportHelp: 'Ak chcete importovať súbor, vyberte súbor, ktorý ste exportovali skôr.',
+    noFileSelected: 'Nebol vybraný žiadny súbor'
+  },
+  chart: {
+    noTimeseriesSelected: 'Vybrali ste žiadne TimeSeries, vybrané TimeSeries nemajú hodnoty v danom časovom rozmedzí alebo TimeSeries sú skryté.',
+    outsideOfDataRange: 'Mimo oblasť dát!',
+    annotation: 'Údaje bez záruky!',
+    monthNames: [ 'Január', 'Február', 'Kaziť', 'Apríla', 'Máj', 'Júna', 'Júla', 'Augusta', 'Septembra', 'Október', 'November', 'Decembra' ]
+  },
+  table: {
+    time: 'Čas'
+  },
+  map: {
+    userLocation: 'Tu je vaša aktuálna poloha',
+    stationSelection: {
+      station: 'Stanice',
+      selectAllTimeseries: 'vybrať všetky TimeSeries'
+    },
+    stationLocation: {
+      station: 'Stanice',
+      timeseries: 'TimeSeries',
+      provider: 'Poskytovateľ',
+      jumpBackToChart: 'späť do grafu'
+    },
+    providerList: {
+      provider: 'Poskytovateľ',
+      stations: 'Stanice',
+      timeseries: 'TimeSeries',
+      phenomena: 'Javy'
+    },
+    search: {
+      label: 'hľadať adresu ...',
+      noResult: 'Je nám ľúto, že adresa nebola nájdená.'
+    }
+  },
+  listSelection: {
+    header: 'Vyberte TimeSeries podľa zoznamu',
+    headers: {
+      category: 'Kategórie',
+      station: 'Stanice',
+      phenomenon: 'Jav',
+      procedure: 'Senzor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'nájdených viac ako jeden TimeSeries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'k dispozícii žiadne údaje',
+      jumpToLastValue: 'skok na poslednej hodnote',
+      firstValueAt: 'Prvá hodnota v',
+      lastValueAt: 'Posledná hodnota pri'
+    }
+  },
+  export: {
+    label: 'Dáta vo formáte CSV (Zip archív)'
+  },
+  timeSelection: {
+    header: 'Časový rozsah',
+    presetsHeader: 'Predvoľby',
+    presets: {
+      lastHour: 'Posledná hodina',
+      today: 'dnes',
+      yesterday: 'včera',
+      todayYesterday: 'dnes a včera',
+      thisWeek: 'tento týždeň',
+      lastWeek: 'minulý týždeň',
+      thisMonth: 'tento mesiac',
+      lastMonth: 'minulý mesiac',
+      thisYear: 'tento rok',
+      lastYear: 'vlani'
+    },
+    custom: {
+      header: 'zvyk',
+      start: 'Dátum začatia',
+      end: 'Dátum ukončenia'
+    },
+    warning: {
+      startBeforeEnd: 'Dátum začatia nemôže byť väčšia, ako je dátum ukončenia',
+      maxTimeRange: 'Časový rozsah nemôže byť väčšia ako jeden rok'
+    }
+  },
+  styleChange: {
+    header: 'Zmeniť štýl',
+    currentColor: 'Aktuálna farba',
+    selectColor: 'Vyberte nové farby',
+    selectBarInterval: 'Vyberte bar interval',
+    barChartInterval: {
+      hour: 'Hodina',
+      day: 'Deň',
+      week: 'Týždeň',
+      month: 'Mesiac'
+    },
+    zeroScaled: 'nula šupinatý os y',
+    groupedAxis: 'zoskupené os'
+  },
+  settings: {
+    header: 'Nastavenie',
+    chooseLanguage: 'Prepnúť jazyk',
+    requiresRestart: 'Potrebuje Restart!',
+    permalink: {
+      create: 'Vytvoriť Permalink ako',
+      inWindow: 'odkaz v novom okne',
+      inMail: 'odkaz v e-maile',
+      inClipboard: 'Odkaz do schránky',
+      clipboardInfo: 'Kopírovať do schránky:',
+      inQrCode: 'as QR-Code',
+      favorite: 'Uložiť pracovné prostredie ako obľúbené položky'
+    },
+    clusterMarker: 'klaster značka',
+    markerWithLastInfo: {
+      header: 'značkovač s informáciami poslednú hodnotu',
+      label: 'pozor - niektoré poskytovateľa dát je veľmi pomalé'
+    },
+    saveStatus: {
+      header: 'Save prostredie',
+      label: 'Všetky TimeSeries, vybraný OBDOBIE a nastavenia sú uložené kontinuálne.'
+    },
+    resetStatus: 'Obnoviť prostredie',
+    generalizeData: 'zovšeobecniť dát',
+    imprint: {
+      header: 'Odtlačok',
+      github: 'Nájsť tento projekt na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° severnej GmbH</a> je zodpovedný za túto webovú stránku. </p><p> 52 ° severnej Initiative for Geospatial Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Nemecko </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Bez zodpovedajúcej TimeSeries je nájdený.'
+  },
+  guide: {
+    start: {
+      request: 'Pri spustení tohto sprievodcu, bude súčasný stav obnoviť.'
+    },
+    step1: {
+      header: 'JavaScript Client - Komentovaná prehliadka',
+      text: 'Táto prehliadka poskytuje v niekoľkých krokoch prehľad, ako používať túto klienta. Najprv pridáme TimeSeries z mapy.'
+    },
+    step2: {
+      header: 'Prejsť na mapu',
+      text: 'Tu sa prepnúť zobrazenie získať mapy.'
+    },
+    step3: {
+      header: 'Zobrazenie mapy',
+      text: 'To je zobrazenie mapy. V mape si môžete prezrieť značky alebo markergroups.'
+    },
+    step4: {
+      header: 'Zmena dodávateľa',
+      text: 'Tu si môžete vybrať iný TimeSeries prevádzkovateľa.'
+    },
+    step5: {
+      header: 'Show umiestnenie',
+      text: 'A tu si môžete nájsť svoj prístroj na mape.'
+    },
+    step6: {
+      header: 'Výber Zoznam',
+      text: 'Tu si môžete vybrať TimeSeries z objednaných zoznamov.'
+    },
+    step7: {
+      header: 'Vyberte stanicu',
+      text: 'Vyberte teraz stanicu na mape.'
+    },
+    step8: {
+      header: 'Vybrať TimeSeries',
+      text: 'Začiarknite toto políčko. Ak je len jeden TimeSeries na tejto stanici, políčko je už kontrolovaná. Teraz môžete ísť na tlačidlom &quot;OK&quot; načítať TimeSeries.'
+    },
+    step9: {
+      header: 'Vstup Legend',
+      text: 'Tu vidíte pridanej časové rady. Môžete odstrániť alebo nájsť časový rad, alebo zmeniť farbu.'
+    },
+    step10: {
+      header: 'Graf',
+      text: 'To je schéma vybranej časové rady.'
+    },
+    step11: {
+      header: 'Zmeniť čas',
+      text: 'Tu si môžete zmeniť rozsah času pre zvolené časové rady.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Tu máte tabuľku surových dátových hodnôt k vybranému časové rady.'
+    },
+    step13: {
+      header: 'Obľúbený riadenie',
+      text: 'Položky Legenda / TimeSeries môžu byť uložené ako obľúbené. V tomto pohľade sú všetky obľúbené uvedené a môže byť zachovaná.'
+    },
+    step14: {
+      header: 'Dokončené',
+      text: 'Výborne! <br> Tento klient je produkt <a href="http://52north.org" target="_blank">52 ° severnej GmbH</a> . Tu môžete nájsť zdrojový kód na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Prvá hodnota v',
+    lastValueAt: 'Posledná hodnota pri',
+    label: 'obľúbený',
+    edit: {
+      header: 'Upraviť obľúbené'
+    },
+    group: {
+      add: 'Stav &#39;{0}&#39; je pridaný do zoznamu obľúbených.',
+      exists: 'Tento stav stále existuje.',
+      noTimeseries: 'V súčasnej dobe sú vybrané žiadne TimeSeries.',
+      notSupported: 'Poskytovateľ zápisu stavu &#39;{0}&#39; nie je podporované a nemožno načítať.'
+    },
+    single: {
+      add: 'Nový obľúbený &#39;{0}&#39; je pridaný do zoznamu.',
+      remove: 'Obľúbené &#39;{0}&#39; sa odstráni.',
+      exists: 'Tento obľúbený stále existuje.',
+      notSupported: 'Poskytovateľ favorita &#39;{0}&#39; nie je podporované a nemožno načítať.'
+    },
+    import: {
+      override: 'Chcete prepísať aktuálne obľúbené?',
+      wrongFile: 'Nemožno prečítať súbor',
+      noValidJson: 'Súbor JSON nie je platný!',
+      header: 'Importovať obľúbené',
+      text: 'Tu si môžete importovať exportované obľúbené. Stačí vložiť JSON v tomto textovom poli:'
+    },
+    export: {
+      header: 'Export obľúbené',
+      text: 'Tu si môžete exportovať svoje obľúbené. Stačí len skopírovať JSON z tohto textového poľa a uložiť do súboru, aby ju neskôr importovať:'
+    },
+    error: {
+      fileApiNotSupported: 'API súborov nie sú plne podporované v tomto prehliadači.'
+    }
+  },
+  inform: {
+    error: 'Došlo k chybe:',
+    warn: 'Majte prosím na pamäti, že:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.si = {
+  fullName: 'Slovenščina',
+  ok: 'OK',
+  main: {
+    legend: 'Legend',
+    diagram: 'Diagram',
+    mapView: 'Pogled na zemljevidu',
+    favoriteView: 'Priljubljene',
+    settings: 'Nastavitve',
+    stationSelection: 'Izberite postajo',
+    chartView: 'Pogled na grafikon',
+    allPhenomena: 'Vse Phenomena',
+    phenomenon: 'Fenomen',
+    favoritesList: 'Priljubljene',
+    importFavorites: 'Uvoz',
+    exportFavorites: 'Izvoz',
+    importExportHelp: 'Če želite uvoziti datoteko, izberite datoteko, ki jo izvozili prej.',
+    noFileSelected: 'Nobena datoteka ni izbrana'
+  },
+  chart: {
+    noTimeseriesSelected: 'Ki ste jo izbrali nobenega timeseries, izbrane timeseries nimajo vrednosti v določenem časovnem obdobju ali timeseries so skrite.',
+    outsideOfDataRange: 'Zunaj obsega podatkov!',
+    annotation: 'Podatki brez garancije!',
+    monthNames: [ 'Jan', 'Februar', 'Mar', 'April', 'Maj', 'Junij', 'Julij', 'Avgust', 'September', 'Oktober', 'November', 'December' ]
+  },
+  table: {
+    time: 'Čas'
+  },
+  map: {
+    userLocation: 'Tukaj je vaša trenutna lokacija',
+    stationSelection: {
+      station: 'Station',
+      selectAllTimeseries: 'izberite vse timeseries'
+    },
+    stationLocation: {
+      station: 'Station',
+      timeseries: 'Timeseries',
+      provider: 'Ponudnik',
+      jumpBackToChart: 'nazaj na grafikonu'
+    },
+    providerList: {
+      provider: 'Ponudnik',
+      stations: 'Postaje',
+      timeseries: 'Timeseries',
+      phenomena: 'Phenomena'
+    },
+    search: {
+      label: 'iskanje za naslov ...',
+      noResult: 'Žal mi je, da naslov ni bilo mogoče najti.'
+    }
+  },
+  listSelection: {
+    header: 'Izberite timeseries s seznama',
+    headers: {
+      category: 'Kategorija',
+      station: 'Station',
+      phenomenon: 'Fenomen',
+      procedure: 'Senzor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'je našel več kot eno timeseries'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'ni razpoložljivih podatkov',
+      jumpToLastValue: 'skočiti na zadnji vrednosti',
+      firstValueAt: 'Prva vrednost na',
+      lastValueAt: 'Zadnja vrednost na'
+    }
+  },
+  export: {
+    label: 'Podatkov, kot CSV (Zip arhiv)'
+  },
+  timeSelection: {
+    header: 'Časovni razpon',
+    presetsHeader: 'prednastavitve',
+    presets: {
+      lastHour: 'zadnja ura',
+      today: 'danes',
+      yesterday: 'včeraj',
+      todayYesterday: 'Danes in včeraj',
+      thisWeek: 'ta teden',
+      lastWeek: 'zadnji teden',
+      thisMonth: 'ta mesec',
+      lastMonth: 'Prejšnji mesec',
+      thisYear: 'letos',
+      lastYear: 'lani'
+    },
+    custom: {
+      header: 'po meri',
+      start: 'Datum začetka',
+      end: 'Končni datum'
+    },
+    warning: {
+      startBeforeEnd: 'Začetni datum ne more biti večji od končnega datuma',
+      maxTimeRange: 'Časovno obdobje ne more biti več kot eno leto'
+    }
+  },
+  styleChange: {
+    header: 'Spremeni slog',
+    currentColor: 'Trenutna barva',
+    selectColor: 'Izberite novo barvo',
+    selectBarInterval: 'Izberite interval bar',
+    barChartInterval: {
+      hour: 'Ura',
+      day: 'Dan',
+      week: 'Teden',
+      month: 'Mesec'
+    },
+    zeroScaled: 'nič raztegljive Y-os',
+    groupedAxis: 'združene os'
+  },
+  settings: {
+    header: 'Nastavitve',
+    chooseLanguage: 'Stikalo jezik',
+    requiresRestart: 'Potrebuje Restart!',
+    permalink: {
+      create: 'Ustvarite permalink kot',
+      inWindow: 'povezavo v novem oknu',
+      inMail: 'povezava v e-pošti',
+      inClipboard: 'Povezava na odložišče',
+      clipboardInfo: 'Kopiraj v odložišče:',
+      inQrCode: 'kot QR-Code',
+      favorite: 'Shranite delovno okolje kot priljubljeno vstopu'
+    },
+    clusterMarker: 'cluster marker',
+    markerWithLastInfo: {
+      header: 'dvojno podajo z zadnje informacije vrednosti',
+      label: 'pozornost - nekateri ponudnik podatkov zelo počasen'
+    },
+    saveStatus: {
+      header: 'Shrani okolje',
+      label: 'Vse timeseries, v izbranem obdobju in nastavitve so shranjene neprekinjeno.'
+    },
+    resetStatus: 'Reset okolje',
+    generalizeData: 'posploševati podatkov',
+    imprint: {
+      header: 'Imprint',
+      github: 'Išči projekta na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> je odgovoren za to spletno stran. </p><p> 52 ° North Pobuda za GEOPROSTORSKEGA Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Nemčija </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Se ni bilo mogoče najti timeseries.'
+  },
+  guide: {
+    start: {
+      request: 'Ko začnete ta navodila, se bo sedanje stanje resetirati.'
+    },
+    step1: {
+      header: 'JavaScript Client - Vodstvo',
+      text: 'Ta turneja daje v nekaj korakih pregled, kako uporabljati to stranko. Najprej moramo dodati timeseries iz zemljevida.'
+    },
+    step2: {
+      header: 'Pojdi na zemljevidu',
+      text: 'Tukaj smo preklopite pogled, da bi dobili zemljevid.'
+    },
+    step3: {
+      header: 'Pogled na zemljevidu',
+      text: 'To je pogled zemljevida. Na zemljevidu lahko vidite označevalci ali markergroups.'
+    },
+    step4: {
+      header: 'Spremeni ponudnika',
+      text: 'Tu lahko izberete drugega ponudnika timeseries.'
+    },
+    step5: {
+      header: 'Prikaži lokacijo',
+      text: 'In tu lahko poiščete svojo napravo na zemljevidu.'
+    },
+    step6: {
+      header: 'Izbira seznam',
+      text: 'Tu lahko izberete timeseries od naročenih seznamov.'
+    },
+    step7: {
+      header: 'Izberite postajo',
+      text: 'Prosimo, izberite zdaj postajo na zemljevidu.'
+    },
+    step8: {
+      header: 'Izberite timeseries',
+      text: 'Izberite to potrditveno polje. Če obstaja samo ena timeseries za to postajo, je polje že preverili. Sedaj lahko greš naprej z &quot;OK&quot; gumb za nalaganje timeseries.'
+    },
+    step9: {
+      header: 'Vnos Legend',
+      text: 'Tukaj lahko vidite dodano časovne vrste. Lahko izbrišete ali poiskati časovno vrsto ali spremenite barvo.'
+    },
+    step10: {
+      header: 'Graf',
+      text: 'To je shema izbranem časovnem nizu.'
+    },
+    step11: {
+      header: 'Spremeni čas',
+      text: 'Tukaj lahko spremenite časovni obseg za izbrano časovno vrsto.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Tukaj dobiš tabelo surovin podatkovnih vrednosti za izbrano časovno vrsto.'
+    },
+    step13: {
+      header: 'Priljubljeno upravljanje',
+      text: 'Vpisi legenda / timeseries se lahko shranijo kot priljubljene. V tem pogledu so vsi favoriti na seznamu in bi bilo treba ohraniti.'
+    },
+    step14: {
+      header: 'Končano',
+      text: 'Dobro opravljeno! <br> Ta stranka je produkt <a href="http://52north.org" target="_blank">52 ° severne GmbH</a> . Najdete izvorno kodo na <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Prva vrednost na',
+    lastValueAt: 'Zadnja vrednost na',
+    label: 'najljubši',
+    edit: {
+      header: 'Uredi najljubši'
+    },
+    group: {
+      add: 'Status &quot;{0}&quot; se doda na seznam priljubljenih.',
+      exists: 'To stanje še vedno obstaja.',
+      noTimeseries: 'Trenutno so izbrali nobenega timeseries.',
+      notSupported: 'Ponudnik vpis statusa &#39;{0}&#39; ni podprt in ga ni mogoče naložiti.'
+    },
+    single: {
+      add: 'Nov izbira &quot;{0}&quot; se doda na seznam.',
+      remove: 'Najljubši &#39;{0}&#39; je odstranjena.',
+      exists: 'To priljubljeno še vedno obstaja.',
+      notSupported: 'Ponudnik favorita &#39;{0}&#39; ni podprt in ga ni mogoče naložiti.'
+    },
+    import: {
+      override: 'Ali želite, da povozi vaše trenutne priljubljene?',
+      wrongFile: 'Ne morem prebrati datoteke',
+      noValidJson: 'Datoteka JSON ni veljavna!',
+      header: 'Uvozna priljubljene',
+      text: 'Tukaj lahko uvozite izvoženi priljubljene. Samo prilepite JSON v tem besedilnem polju:'
+    },
+    export: {
+      header: 'Izvozna priljubljene',
+      text: 'Tukaj lahko izvozite svoje favorite. Samo kopiranje JSON iz tega učbenik in ga shranite v datoteko uvoziti pozneje:'
+    },
+    error: {
+      fileApiNotSupported: 'API datotek niso v celoti podprt v tem brskalniku.'
+    }
+  },
+  inform: {
+    error: 'Prišlo je do napake:',
+    warn: 'Prosimo, upoštevajte, da:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+i18n.se = {
+  fullName: 'Svenska',
+  ok: 'OK',
+  main: {
+    legend: 'Legend',
+    diagram: 'Diagram',
+    mapView: 'Kart vy',
+    favoriteView: 'Favoriter',
+    settings: 'Inställningar',
+    stationSelection: 'Välj en station',
+    chartView: 'Diagram vy',
+    allPhenomena: 'Alla Phenomena',
+    phenomenon: 'Fenomen',
+    favoritesList: 'Favoriter',
+    importFavorites: 'Import',
+    exportFavorites: 'Export',
+    importExportHelp: 'Om du vill importera en fil, välj en fil du exporterade tidigare.',
+    noFileSelected: 'Ingen fil valts'
+  },
+  chart: {
+    noTimeseriesSelected: 'Du har valt några Visa, de utvalda Visa har inga värden i given tidsintervall eller Visa är dolda.',
+    outsideOfDataRange: 'Utanför dataområdet!',
+    annotation: 'Data utan garanti!',
+    monthNames: [ 'Jan', 'Februari', 'Mar', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December' ]
+  },
+  table: {
+    time: 'Tid'
+  },
+  map: {
+    userLocation: 'Här är din aktuella position',
+    stationSelection: {
+      station: 'Station',
+      selectAllTimeseries: 'markera alla Visa'
+    },
+    stationLocation: {
+      station: 'Station',
+      timeseries: 'Visa',
+      provider: 'Provider',
+      jumpBackToChart: 'tillbaka till diagrammet'
+    },
+    providerList: {
+      provider: 'Provider',
+      stations: 'Stationer',
+      timeseries: 'Visa',
+      phenomena: 'Fenomen'
+    },
+    search: {
+      label: 'Sök efter adress ...',
+      noResult: 'Tyvärr, kunde den adressen inte hittas.'
+    }
+  },
+  listSelection: {
+    header: 'Välj Visa från listan',
+    headers: {
+      category: 'Kategori',
+      station: 'Station',
+      phenomenon: 'Fenomen',
+      procedure: 'Sensor'
+    },
+    warning: {
+      moreThanOneTimeseries: 'hittade mer än en Visa'
+    }
+  },
+  legend: {
+    entry: {
+      noData: 'inga tillgängliga data',
+      jumpToLastValue: 'hoppa till sista värdet',
+      firstValueAt: 'Första värde vid',
+      lastValueAt: 'Senaste värde vid'
+    }
+  },
+  export: {
+    label: 'Data som CSV (Zip Arkiv)'
+  },
+  timeSelection: {
+    header: 'Tidsintervall',
+    presetsHeader: 'förinställningar',
+    presets: {
+      lastHour: 'senaste timmen',
+      today: 'i dag',
+      yesterday: 'i går',
+      todayYesterday: 'idag &amp; igår',
+      thisWeek: 'den här veckan',
+      lastWeek: 'förra veckan',
+      thisMonth: 'denna månad',
+      lastMonth: 'förra månaden',
+      thisYear: 'i år',
+      lastYear: 'förra året'
+    },
+    custom: {
+      header: 'beställnings',
+      start: 'Startdatum',
+      end: 'Slutdatum'
+    },
+    warning: {
+      startBeforeEnd: 'Startdatumet kan inte vara större då slutdatum',
+      maxTimeRange: 'Tidsintervallet kan inte vara större än ett år'
+    }
+  },
+  styleChange: {
+    header: 'Ändra stil',
+    currentColor: 'Nuvarande färg',
+    selectColor: 'Välj en ny färg',
+    selectBarInterval: 'Välj baren intervallet',
+    barChartInterval: {
+      hour: 'Timme',
+      day: 'Dag',
+      week: 'Vecka',
+      month: 'Månad'
+    },
+    zeroScaled: 'noll skalade Y-axeln',
+    groupedAxis: 'grupperade axel'
+  },
+  settings: {
+    header: 'Inställningar',
+    chooseLanguage: 'Byt språk',
+    requiresRestart: 'Behöver omstart!',
+    permalink: {
+      create: 'Skapa en permalänk som',
+      inWindow: 'länken i ett nytt fönster',
+      inMail: 'länken i ett e-postmeddelande',
+      inClipboard: 'Länk till Windows urklipp',
+      clipboardInfo: 'Kopiera till urklipp:',
+      inQrCode: 'som QR-kod',
+      favorite: 'Spara arbetsmiljö som favorit posten'
+    },
+    clusterMarker: 'kluster markör',
+    markerWithLastInfo: {
+      header: 'markör med sista värdet Information',
+      label: 'uppmärksamhet - vissa dataleverantör är mycket långsam'
+    },
+    saveStatus: {
+      header: 'Spara miljö',
+      label: 'Alla Visa, vald tidsperiod och inställningarna sparas kontinuerligt.'
+    },
+    resetStatus: 'Återställ miljö',
+    generalizeData: 'generalisera Data',
+    imprint: {
+      header: 'Imprint',
+      github: 'Hitta det här projektet på <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a>',
+      text: '<p> <a href="http://52north.org" target="_blank">52 ° North GmbH</a> ansvarar för denna webbplats. </p><p> 52 ° North initiativet för Geospatial Open Source Software GmbH <br> Martin-Luther-King-Weg 24 <br> 48155 Münster, Tyskland </p>'
+    }
+  },
+  permalink: {
+    noMatchingTimeseriesFound: 'Inga matchande Visa hittas.'
+  },
+  guide: {
+    start: {
+      request: 'När du startar den här guiden kommer det aktuella tillståndet återställas.'
+    },
+    step1: {
+      header: 'JavaScript Client - guidad tur',
+      text: 'Denna tur ger i några få steg en överblick hur man använder denna klient. Först lägger vi en Visa från kartan.'
+    },
+    step2: {
+      header: 'Gå till kartan',
+      text: 'Här byter vi utsikten att få en karta.'
+    },
+    step3: {
+      header: 'Kart vy',
+      text: 'Detta är kartvyn. I kartan kan du se markörer eller markergroups.'
+    },
+    step4: {
+      header: 'Ändra Provider',
+      text: 'Här kan du välja en annan Visa leverantör.'
+    },
+    step5: {
+      header: 'Visa plats',
+      text: 'Och här kan du hitta din enhet på kartan.'
+    },
+    step6: {
+      header: 'Lista val',
+      text: 'Här kan du välja en Visa ur beställda listor.'
+    },
+    step7: {
+      header: 'Välj en station',
+      text: 'Välj nu en station på kartan.'
+    },
+    step8: {
+      header: 'Välj Visa',
+      text: 'Markera den här kryssrutan. Om det bara finns en Visa för denna station, är kryssrutan redan är markerad. Nu kan du gå vidare med &quot;OK&quot; för att ladda Visa.'
+    },
+    step9: {
+      header: 'Legend inträde',
+      text: 'Här ser du den extra tidsserien. Du kan ta bort eller lokalisera tidsserier eller ändra färg.'
+    },
+    step10: {
+      header: 'Diagram',
+      text: 'Detta är ett schema över den valda tidsserie.'
+    },
+    step11: {
+      header: 'Ändra tid',
+      text: 'Här kan du ändra tids utsträckning för din valda tidsserier.'
+    },
+    step12: {
+      header: 'Table View',
+      text: 'Här får du en tabell över de råa datavärden till din valda tidsserier.'
+    },
+    step13: {
+      header: 'Favorit förvaltning',
+      text: 'De legend poster / Visa kunde sparas som favoriter. I den här vyn alla favoriter är listade och kunde bibehållas.'
+    },
+    step14: {
+      header: 'Färdiga',
+      text: 'Bra gjort! <br> Denna klient är en produkt av <a href="http://52north.org" target="_blank">52 ° North GmbH</a> . Du kan hitta källkoden på <a href="https://github.com/52North/js-sensorweb-client" target="_blank">GitHub</a> .'
+    }
+  },
+  favorite: {
+    firstValueAt: 'Första värde vid',
+    lastValueAt: 'Senaste värde vid',
+    label: 'favorit',
+    edit: {
+      header: 'Redigera favorit'
+    },
+    group: {
+      add: 'Statusen &quot;{0}&quot; läggs till i favoritlistan.',
+      exists: 'Denna status fortfarande existerar.',
+      noTimeseries: 'För tillfället finns inga Visa väljs.',
+      notSupported: 'Leverantören av en post av statusen &quot;{0}&quot; stöds inte och kan inte laddas.'
+    },
+    single: {
+      add: 'En ny favorit &quot;{0}&quot; läggs till i listan.',
+      remove: 'Favoriten &quot;{0}&quot; har tagits bort.',
+      exists: 'Denna favorit fortfarande existerar.',
+      notSupported: 'Leverantören av favoriten &quot;{0}&quot; stöds inte och kan inte laddas.'
+    },
+    import: {
+      override: 'Vill du åsidosätta dina nuvarande favoriter?',
+      wrongFile: 'Kunde inte läsa filen',
+      noValidJson: 'JSON-filen är inte giltigt!',
+      header: 'Importera favoriter',
+      text: 'Här kan du importera dina exporterade favoriter. Bara klistra in JSON i det här textfältet:'
+    },
+    export: {
+      header: 'Export favoriter',
+      text: 'Här kan du exportera dina favoriter. Bara kopiera JSON ur denna textruta och spara den i en fil för att importera den senare:'
+    },
+    error: {
+      fileApiNotSupported: 'Filen API är inte fullt stöd i den här webbläsaren.'
+    }
+  },
+  inform: {
+    error: 'Ett fel inträffade:',
+    warn: 'Kom ihåg att:'
+  }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+function TimeSeries(tsId, meta, apiUrl) {
+
+    var internalId = tsHelper.createInternalId(tsId, apiUrl);
+    var values = [];
+    var refValues = {};
+    var synced = false;
+    var hidden = false;
+    var selected = false;
+    var timeBuffer = Settings.timeseriesDataBuffer || moment.duration(2, 'h');
+    $.each(meta.referenceValues, $.proxy(function(index, elem) {
+        refValues[elem.referenceValueId] = new ReferenceValue(elem.referenceValueId, elem.label);
+    }, this));
+    var style = {};
+    if (meta.hasOwnProperty('renderingHints')) {
+        var chartType = meta.renderingHints.chartType;
+        var width = meta.renderingHints.properties.width;
+        var color = meta.renderingHints.properties.color;
+        var interval = meta.renderingHints.properties.interval;
+        var lineType = meta.renderingHints.properties.type;
+        style = new TimeseriesStyle(chartType, width, color, interval, lineType);
+    } else {
+        style = TimeseriesStyle.createDefault(tsId);
+    }
+
+    this.getTsId = function() {
+        return tsId;
+    };
+
+    this.getInternalId = function() {
+        return internalId;
+    };
+
+    this.getApiUrl = function() {
+        return apiUrl;
+    };
+
+    this.getStyle = function() {
+        return style;
+    };
+
+    this.setStyle = function(newStyle) {
+        style = newStyle;
+    };
+
+    this.isHidden = function() {
+        return hidden;
+    };
+
+    this.setHidden = function(bool) {
+        hidden = bool;
+    };
+
+    this.isSelected = function() {
+        return selected;
+    };
+
+    this.setSelected = function(bool) {
+        selected = bool;
+    };
+
+    this.isSynced = function() {
+        return synced;
+    };
+
+    this.getUom = function() {
+        return meta.uom;
+    };
+
+    this.getLabel = function() {
+        return meta.label;
+    };
+
+    this.unSynced = function() {
+        synced = false;
+    };
+
+    this.getValues = function() {
+        return values;
+    };
+
+    this.getLastValue = function() {
+        if (meta && meta.lastValue) {
+            return meta.lastValue;
+        }
+        return null;
+    };
+
+    this.isCurrent = function() {
+        return this.getLastValue() !== null && moment().subtract(Settings.ignoreAfterDuration).isBefore(moment(this.getLastValue().timestamp));
+    };
+
+    this.getLastValueFormatted = function() {
+        if (meta && meta.lastValue) {
+            return meta.lastValue.value + " " + meta.uom + " (" + moment(meta.lastValue.timestamp).format(Settings.dateformat) + ")";
+        }
+        return null;
+    };
+
+    this.getFirstValue = function() {
+        if (meta && meta.firstValue) {
+            return meta.firstValue;
+        }
+        return null;
+    };
+
+    this.getFirstValueFormatted = function() {
+        if (meta && meta.firstValue) {
+            return meta.firstValue.value + " " + meta.uom + " (" + moment(meta.firstValue.timestamp).format(Settings.dateformat) + ")";
+        }
+        return null;
+    };
+
+    this.getCoordinates = function() {
+        return meta.station.geometry.coordinates;
+    };
+
+    this.getStationId = function() {
+        return meta.station.properties.id;
+    };
+
+    this.getStationLabel = function() {
+        return meta.station.properties.label;
+    };
+
+    this.getServiceLabel = function() {
+        return meta.parameters.service.label;
+    };
+
+    this.getPhenomenonLabel = function() {
+        return meta.parameters.phenomenon.label;
+    };
+
+    this.getProcedureLabel = function() {
+        return meta.parameters.procedure.label;
+    };
+
+    this.getCategoryLabel = function() {
+        if (meta.parameters.category && (meta.parameters.phenomenon.label !== meta.parameters.category.label)) {
+            return meta.parameters.category.label;
+        }
+        return "";
+    };
+
+    this.getStatusIntervals = function() {
+        return meta.statusIntervals;
+    };
+
+    this.hasData = function() {
+        return values.length !== 0;
+    };
+
+    this.getRefValuesForId = function(id) {
+        if (refValues.hasOwnProperty(id)) {
+            return refValues[id];
+        }
+        return [];
+    };
+
+    this.getRefValues = function() {
+        return refValues;
+    };
+
+    this.toJSON = function() {
+        return {
+            style: style,
+            apiUrl: apiUrl,
+            tsId: tsId
+        }
+    };
+
+    this.fetchData = function(timespan, complete) {
+        var from = moment(timespan.from).subtract(timeBuffer);
+        var till = moment(timespan.till).add(timeBuffer);
+        timespan = Time.getRequestTimespan(from, till);
+        this.promise = Rest.tsData(tsId, apiUrl, timespan, internalId);
+        this.promise.done($.proxy(this.fetchedDataFinished, {context: this, complete: complete}));
+        this.promise.fail($.proxy(this.fetchedDataError, {context: this, complete: complete}));
+        return this.promise;
+    };
+
+    this.fetchedDataFinished = function(data, refdata) {
+        this.context.createTimeBuffer(data);
+        values = data;
+        $.each(refdata, function(id, elem) {
+            if (refValues[id]) {
+                refValues[id].setValues(elem);
+            }
+        });
+        synced = true;
+        this.complete(this.context);
+    };
+
+    this.fetchedDataError = function(data, bla) {
+        synced = true;
+        this.complete(this.context);
+    };
+
+    this.createTimeBuffer = function(data) {
+        if (data.length >= 2) {
+            timeBuffer = moment.duration(data[1][0] - data[0][0]);
+        }
+    };
+
+    this.clone = function() {
+        var clone = new TimeSeries(tsId, meta, apiUrl);
+        clone.setStyle(this.getStyle().clone());
+        return clone;
+    };
+
+    this.destroy = function() {
+        this.promise.reject(internalId);
+    };
+}
+;/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+function ReferenceValue(id, label) {
+
+    var color = Color.stringToColor(id);
+    var values = [];
+    var selected = false;
+
+    this.getId = function() {
+        return id;
+    };
+
+    this.getLabel = function() {
+        return label;
+    };
+
+    this.getColor = function() {
+        return color;
+    };
+
+    this.getValues = function() {
+        return values;
+    };
+
+    this.setValues = function(v) {
+        values = v;
+    };
+
+    this.isSelected = function() {
+        return selected;
+    };
+
+    this.setSelected = function(s) {
+        selected = s;
+    };
+}/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+function TimeseriesStyle(chartType, width, color, intervalString, lineType) {
+    this.chartType = chartType || "line";
+    this.width = width || Settings.commonLineWidth;
+    this.color = color || "#000000";
+    this.lineType = lineType || "solid";
+
+    this.zeroScaled = Settings.defaultZeroScale;
+    this.groupedAxis = Settings.defaultGroupedAxis;
+
+    createInterval = function (interval) {
+        switch (interval) {
+            case "byHour":
+                return 1;
+            case "byDay":
+                return 24;
+            case "byWeek":
+                return 7 * 24;
+            case "byMonth":
+                return 30 * 24;
+            default:
+                return 1;
+        }
+    };
+
+    this.interval = createInterval(intervalString);
+
+    this.getColor = function () {
+        return this.color;
+    };
+
+    this.setColor = function (setcolor) {
+        this.color = setcolor;
+    };
+
+    this.getChartType = function () {
+        return this.chartType;
+    };
+
+    this.setChartType = function (ct) {
+        this.chartType = ct;
+    };
+
+    this.isBarChart = function () {
+        return this.chartType === "bar";
+    };
+
+    this.isLineChart = function () {
+        return this.chartType === "line";
+    };
+
+    this.getIntervalByHours = function () {
+        return this.interval;
+    };
+
+    this.getLineType = function () {
+        return this.lineType;
+    };
+
+    this.getWidth = function () {
+        return this.width;
+    };
+
+    this.isZeroScaled = function() {
+        return this.zeroScaled;
+    };
+
+    this.setZeroScaled = function(bool) {
+        this.zeroScaled = bool;
+    };
+
+    this.isGroupedAxis = function(){
+        return this.groupedAxis;
+    };
+
+    this.setGroupedAxis = function(bool) {
+        this.groupedAxis = bool;
+    };
+
+    this.toJSON = function(){
+        return {
+            width: this.width,
+            chartType: this.chartType,
+            color: this.color,
+            lineType: this.lineType,
+            zeroScaled: this.zeroScaled,
+            groupedAxis: this.groupedAxis,
+            interval: this.interval
+        };
+    };
+
+    this.setIntervalByHours = function (inter) {
+        this.interval = inter;
+    };
+
+    this.clone = function () {
+        return $.extend(new TimeseriesStyle(), this);
+    };
+}
+;
+/* create a default timeseries style constructor */
+TimeseriesStyle.createDefault = function (id) {
+    var chartType = "line";
+    var width = Settings.commonLineWidth;
+    var color = Color.stringToColor(id);
+    var interval = "byHour";
+    var lineType = "solid";
+    return new TimeseriesStyle(chartType, width, color, interval, lineType);
+};
+
+TimeseriesStyle.createStyleOfPersisted = function (style) {
+    var tsStyle = $.extend(new TimeseriesStyle(),style);
+    return tsStyle;
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Settings = {
+    // For more informations about the settings options, please check: http://52north.github.io/js-sensorweb-client
+    // The entries in this list will be removed from the provider list offered to the user
+    providerBlackList: [
+        {
+            serviceID: 'srv_6d9ccea8d609ecb74d4a512922bb7cee', // ircel
+            apiUrl: 'http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/'
+        },
+        {
+            serviceID: 'srv_7cabc8c30a85fab035c95882df6db343', // BfG sos
+            apiUrl: 'http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/'
+        },
+        {
+            serviceID: 'srv_7cabc8c30a85fab035c95882df6db343', // Wupperverbands-SOS
+            apiUrl: 'http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/'
+        }
+    ],
+    // A list of timeseries-API urls and an appropriate identifier to create internal timeseries ids
+    restApiUrls: {
+//		'http://192.168.1.135:8080/sensorwebclient-webapp/api/v1/' : 'localhost'
+//		'http://localhost:8090/sensorwebclient-webapp-3.3.0-SNAPSHOT/api/v1/' : 'localhost'
+        'http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/': '52nSensorweb',
+        'http://sosrest.irceline.be/api/v1/': 'irceline',
+        'http://www.fluggs.de/sos2/api/v1/': 'fluggs',
+        'http://sensors.geonovum.nl/sos/api/v1/': 'geonovum'
+    },
+    // default selected provider
+    defaultProvider: {
+        serviceID: 'srv_738111ed219f738cfc85be0c8d87843c',
+        apiUrl: 'http://sensorweb.demo.52north.org/sensorwebclient-webapp-stable/api/v1/'
+    },
+    // default setting for clustering stations
+    clusterStations: true,
+    // default setting for generalization of the data
+    generalizeData: true,
+    // default setting for save status
+    saveStatus: false,
+    // default setting for concentration marker
+    concentrationMarker: false,
+    // map options of leaflet
+    mapOptions: {},
+    // zoom level in the map, used for user location and station position
+    zoom: 13,
+    // how long a station popup to visualize the location should be visible on the map (in msec)
+    stationPopupDuration: 10000,
+    // date/time format which is used on several places
+    dateformat: 'DD.MM.YY HH:mm [h]',
+    shortDateformat: 'DD.MM.YY',
+    // duration after which latest values shall be ignored when rendering marker in the map
+    ignoreAfterDuration: moment.duration(1, 'y'),
+    // default color for circled marker, when last value is older than 'ignoreAfterDuration' or the timeseries has no last value
+    defaultMarkerColor: '#123456',
+    // duration buffer for time series request
+    timeseriesDataBuffer: moment.duration(2, 'h'),
+    // default scaling of loaded diagram
+    defaultZeroScale: false,
+    // default grouping timeseries with same uom
+    defaultGroupedAxis: true,
+    // additional parameters which are append to the request urls
+    additionalParameters: {
+        locale: 'de'
+    },
+    // default language for i18n
+    defaultLanguage: 'en',
+    // should saving the status be possible,
+    saveStatusPossible: true,
+    // entries on a page for the values table
+    pagesize: 20,
+    // line width for selected timeseries
+    selectedLineWidth: 5,
+    // common line width for unselected timeseries
+    commonLineWidth: 2,
+    // chart styling options see for more details: https://github.com/flot/flot/blob/master/API.md
+    chartOptions: {},
+    // colorlist to select for a different timeseries color
+    colorList: ['#1abc9c', '#27ae60', '#2980b9', '#8e44ad', '#2c3e50', '#f1c40f',
+        '#d35400', '#c0392b', '#7f8c8d'],
+    // interval to display the timeseries in a bar diagram with label and value in hours
+    intervalList: [
+        {label: _('styleChange.barChartInterval.hour'), value: 1},
+        {label: _('styleChange.barChartInterval.day'), value: 24},
+        {label: _('styleChange.barChartInterval.week'), value: 7 * 24},
+        {label: _('styleChange.barChartInterval.month'), value: 30 * 24}
+    ],
+    timeRangeData: {
+        presets: [
+            {
+                name: 'lastHour',
+                label: _('timeSelection.presets.lastHour'),
+                interval: {
+                    from: moment().subtract(1, 'hours'),
+                    till: moment(),
+                    mode: 'minutes'
+                }
+            },
+            {
+                name: 'today',
+                label: _('timeSelection.presets.today'),
+                interval: {
+                    from: moment().startOf('day'),
+                    till: moment().endOf('day'),
+                    mode: 'day'
+                }
+            },
+            {
+                name: 'yesterday',
+                label: _('timeSelection.presets.yesterday'),
+                interval: {
+                    from: moment().subtract(1, 'days').startOf('day'),
+                    till: moment().subtract(1, 'days').endOf('day'),
+                    mode: 'day'
+                }
+            },
+            {
+                name: 'todayYesterday',
+                label: _('timeSelection.presets.todayYesterday'),
+                interval: {
+                    from: moment().subtract(1, 'days').startOf('day'),
+                    //till: moment(),
+                    mode: 'day'
+                }
+            },
+            {
+                name: 'thisWeek',
+                label: _('timeSelection.presets.thisWeek'),
+                interval: {
+                    from: moment().startOf('week'),
+                    //till: moment(),
+                    mode: 'week'
+                }
+            },
+            {
+                name: 'lastWeek',
+                label: _('timeSelection.presets.lastWeek'),
+                interval: {
+                    from: moment().subtract(1, 'weeks').startOf('week'),
+                    till: moment().subtract(1, 'weeks').endOf('week'),
+                    mode: 'week'
+                }
+            },
+            {
+                name: 'thisMonth',
+                label: _('timeSelection.presets.thisMonth'),
+                interval: {
+                    from: moment().startOf('month'),
+                    //till: moment(),
+                    mode: 'month'
+                }
+            },
+            {
+                name: 'lastMonth',
+                label: _('timeSelection.presets.lastMonth'),
+                interval: {
+                    from: moment().subtract(1, 'months').startOf('month'),
+                    till: moment().subtract(1, 'months').endOf('month'),
+                    mode: 'month'
+                }
+            },
+            {
+                name: 'thisYear',
+                label: _('timeSelection.presets.thisYear'),
+                interval: {
+                    from: moment().startOf('year'),
+                    //till: moment(),
+                    mode: 'year'
+                }
+            },
+            {
+                name: 'lastYear',
+                label: _('timeSelection.presets.lastYear'),
+                interval: {
+                    from: moment().subtract(1, 'years').startOf('year'),
+                    till: moment().subtract(1, 'years').endOf('year'),
+                    mode: 'year'
+                }
+            }
+        ]
+    },
+    notifyOptions: {
+        position: 'bottom-left',
+        fade_in_speed: 1000,
+        fade_out_speed: 1000,
+        time: 2000
+    },
+    wmsLayer: [],
+    // configuration for the tile layer in the leaflet map (see for more information: http://leafletjs.com/reference.html#tilelayer )
+    tileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+    tileLayerOptions: {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        pane: 'mapPane',
+        zIndex: -9999
+    },
+    enableGeoSearch: true
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Template = {
+    getTemplate: function(name) {
+        var template = "";
+        $.ajax({
+            url: 'templates/' + name + '.html',
+            success: function(data) {
+                template = data;
+            },
+            dataType: "text",
+            async: false
+        });
+        return template;
+    },
+    createHtml: function(templateID, data) {
+        var template = Template.getTemplate(templateID);
+        return Mustache.to_html(template, data);
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Storage = {
+    generateKey: function(postfix) {
+        var loc = window.location;
+        if (!loc.origin) {
+            loc.origin = loc.protocol + "//" + loc.hostname
+                    + (loc.port ? ':' + loc.port : '');
+        }
+        return loc.origin + loc.pathname + postfix;
+    },
+    saveObject: function(key, object) {
+        if (Settings.saveStatusPossible) {
+            try {
+                $.totalStorage(key, object);
+            } catch (e) {
+                Settings.saveStatusPossible = false;
+                // safari mobile in private mode???
+                // http://davidwalsh.name/quota_exceeded_err
+                // alert("No Status saving possible.");
+            }
+        }
+    },
+    load: function(key) {
+        return $.totalStorage(key);
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Inform = {
+    error: function(message) {
+        Inform._createMessage(_('inform.error'), message);
+    },
+    warn: function(message) {
+        Inform._createMessage(_('inform.warn'), message);
+    },
+    _createMessage: function(level, message) {
+        alert(level + "\n" + message);
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Time = {
+    isoTimespan: function(interval) {
+        /*
+         * a) Start and end, such as "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
+         * b) Start and duration, such as "2007-03-01T13:00:00Z/P1Y2M10DT2H30M"
+         * c) Duration and end, such as "P1Y2M10DT2H30M/2008-05-11T15:30:00Z"
+         */
+        // return obj: {from, till, mode}
+        var from = (interval && interval.from) || moment().startOf('day');
+        var till = (interval && interval.till) || moment().endOf('day');
+        var mode = (interval && interval.mode) || 'day';
+
+        return {
+            'from': from,
+            'till': till,
+            'mode': mode
+        };
+    },
+    getRequestTimespan: function(from, till) {
+        return moment(from).format() + '/' + moment(till).format();
+    },
+    createTimespan: function(interval) {
+        var timespan = interval.split('/');
+        if (timespan.length === 2) {
+            var start = moment(timespan[0]);
+            var end = moment(timespan[1]);
+            if (start.isValid() && end.isValid()) {
+                return {
+                    from: start,
+                    till: end,
+                    mode: 'day'
+                };
+            }
+        }
+        return this.isoTimespan(interval);
+    },
+    getFormatedTime: function(timestamp) {
+        return moment(timestamp).format(Settings.dateformat);
+    },
+    removeOverlappingValues: function(values) {
+        // remove values before start
+        var start = TimeController.getCurrentStartAsMillis();
+        var count = 0;
+        while (values[count][0] < start) count++;
+        values.splice(0, count);
+        // remove values after the end
+        var idx = values.length-1;
+        var end = TimeController.getCurrentEndAsMillis();
+        count = 0;
+        while (values[idx][0] > end) {
+            count++;
+            idx--;
+        }
+        values.splice(++idx, count);
+        return values;
+    }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Color = (function() {
+    return  {
+        stringToColor: function(string) {
+            if (!string) return "#000000";
+            return "#" + this.intToColorHex(this.hashCode(string));
+        },
+        //M. Jessup, http://stackoverflow.com/questions/2464745/compute-hex-color-code-for-an-arbitrary-string
+        hashCode: function(str) {
+            var hash = 0;
+            for (var i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            return hash;
+        },
+        intToColorHex: function(i) {
+            var rgb = ((i >> 16) & 0xFF).toString(16) +
+                    ((i >> 8) & 0xFF).toString(16) +
+                    (i & 0xFF).toString(16);
+            rgb = rgb.toString();
+            while (rgb.length < 6) {
+                rgb = "0" + rgb;
+            }
+            return rgb;
+        }
+    };
+})();/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Rest = {
+    request: function(url, data, success, fail) {
+        var promise = $.Deferred();
+        if (Settings.additionalParameters) {
+            if (!data) {
+                data = {};
+            }
+            $.each(Settings.additionalParameters, function(key, value) {
+                data[key] = value;
+            });
+        }
+        $.ajax({
+            url: url,
+            data: data,
+            type: "GET",
+            dataType: "json",
+            success: function(result) {
+                success(promise, result);
+            },
+            error: function(error) {
+                Rest.requestFailed(error);
+                if (fail) {
+                    fail(promise, error);
+                }
+            }
+        });
+        return promise;
+    },
+    requestFailed: function(error) {
+        if (error.responseJSON && error.responseJSON.userMessage) {
+            Inform.error(error.responseJSON.userMessage);
+        }
+    },
+    tsData: function(id, apiUrl, timespan, internalId, extendedData) {
+        var data = {
+            timespan: timespan,
+            generalize: Status.get('generalizeData'),
+            expanded: true,
+            format: 'flot'
+        };
+        if (extendedData) {
+            data = $.extend(data, extendedData);
+        }
+        return this.request(apiUrl + "timeseries/" + id
+                + "/getData", data, function(promise, result) {
+                    var values = tsHelper.createDataOfResult(result, id);
+                    var refValues = tsHelper.createRefDataOfResult(result, id);
+                    promise.resolve(values, refValues);
+                }, function(promise, error) {
+            promise.reject(internalId);
+        });
+    },
+    stations: function(id, apiUrl, data) {
+        return Rest.request(apiUrl + "stations/"
+                + this._createIdString(id), data, function(promise, result) {
+            promise.resolve(result);
+        });
+    },
+    features: function(id, apiUrl, data) {
+        return Rest.request(apiUrl + "features/"
+                + Rest._createIdString(id), data, function(promise, result) {
+            promise.resolve(result);
+        });
+    },
+    timeseries: function(id, apiUrl, data) {
+        if ($.isEmptyObject(data)) {
+            data = {};
+        }
+        data.expanded = true;
+        data.force_latest_values = true;
+        data.status_intervals = true;
+        data.rendering_hints = true;
+        return Rest.request(apiUrl + "timeseries/"
+                + this._createIdString(id), data, function (promise, result) {
+            if ($.isArray(result)) {
+                var timeseriesList = $.map(result, function (elem) {
+                    return new TimeSeries(elem.id, elem, apiUrl);
+                });
+                promise.resolve(timeseriesList);
+            } else {
+                promise.resolve(new TimeSeries(result.id, result, apiUrl));
+            }
+        }, function (promise, error) {
+            promise.reject();
+        });
+    },
+    categories: function(id, apiUrl, data) {
+        return Rest.request(apiUrl + "categories/"
+                + Rest._createIdString(id), data, function(promise, result) {
+            promise.resolve(result);
+        });
+    },
+    phenomena: function(id, apiUrl, data) {
+        return Rest.request(apiUrl + "phenomena/"
+                + Rest._createIdString(id), data, function(promise, result) {
+            promise.resolve(result);
+        });
+    },
+    procedures: function(id, apiUrl, data) {
+        return Rest.request(apiUrl + "procedures/"
+                + Rest._createIdString(id), data, function(promise, result) {
+            promise.resolve(result);
+        });
+    },
+    services: function(apiUrl) {
+        return Rest.request(apiUrl + "services", {
+            expanded: true
+        }, function(promise, result) {
+            promise.resolve(result);
+        });
+    },
+    search: function(apiUrl, params) {
+        return Rest.request(apiUrl + "search", {
+            q: params
+        }, function(promise, result) {
+            promise.resolve(result);
+        });
+    },
+    abortRequest: function(promise) {
+        if (promise && promise.state() === "pending") {
+            promise.reject();
+        }
+    },
+    _createIdString: function(id) {
+        return (id === null ? "" : id);
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Pages = {
+    current: function() {
+        return $(".swc-page-current").attr("id");
+    },
+    navigateToPage: function(toPage) {
+        $(".swc-page-current").removeClass('swc-page-current');
+        $(toPage).addClass('swc-page-current');
+    },
+    navigateToMap: function() {
+        ChartController.visible = false;
+        Pages.navigateToPage("#map-page");
+        location.href = "#map";
+        Pages.toggleLegend(false);
+    },
+    navigateToChart: function() {
+        ChartController.showChart();
+        TableController.closeTable();
+        Pages.navigateToPage("#chart-page");
+        location.href = "#chart";
+        Pages.togglePhenomenon(false);
+    },
+    navigateToFavoritesView: function() {
+        ChartController.visible = false;
+        Pages.navigateToPage('#favorites-page');
+        location.href = "#favorites";
+        Pages.toggleLegend(false);
+        Pages.togglePhenomenon(false);
+    },
+    toggleLegend: function(active) {
+        if (active) {
+            $('.legend').toggleClass('active');
+            if ($('.legend').hasClass('active')) {
+                $('[data-toggle="legend"]').text("X");
+                $('[data-toggle="legend"]').show();
+            } else {
+                $('[data-toggle="legend"]').text(_('main.legend'));
+            }
+        } else {
+            $('.legend').removeClass('active');
+            $('[data-toggle="legend"]').text(_('main.legend'));
+        }
+    },
+    togglePhenomenon: function(active, label) {
+        var name = !label ? _('main.allPhenomena') : label;
+        if (active) {
+            $('.phenomena').toggleClass('active');
+            if ($('.phenomena').hasClass('active')) {
+                $('[data-toggle="phenomena"]').text("X");
+            } else {
+                $('[data-toggle="phenomena"]').text(name);
+            }
+        } else {
+            $('.phenomena').removeClass('active');
+            $('[data-toggle="phenomena"]').text(name);
+        }
+    },
+    activateNavButtonsHandler: function() {
+        $('[data-target="#map"]').click(function() {
+            Pages.navigateToMap();
+        });
+        $('[data-target="#chart"]').click(function() {
+            Pages.navigateToChart();
+        });
+    },
+    activateToggleButtonsHandler: function() {
+        $('[data-toggle=legend]').click(function() {
+            Pages.toggleLegend(true);
+        });
+        $('[data-toggle=phenomena]').click(function() {
+            var label = $('.phenomena-entry').find('.selected').text();
+            Pages.togglePhenomenon(true, label);
+        });
+    },
+    init: function() {
+        $(document).ready($.proxy(function() {
+            this.activateNavButtonsHandler();
+            this.activateToggleButtonsHandler();
+        }, this));
+        // navigation
+        Pages.routeToPage();
+    },
+    routeToPage: function() {
+        var hash = window.location.hash;
+        if (hash.indexOf('?') !== -1) {
+            hash = hash.substring(hash.indexOf('#'), hash.indexOf('?'));
+        }
+
+        Pages._routeToPage(hash);
+    },
+    _routeToPage: function(hash) {
+        switch (hash) {
+            case "#map":
+                Pages.navigateToMap();
+                break;
+            case "#chart":
+                Pages.navigateToChart();
+                break;
+            case "#favorites":
+                Pages.navigateToFavoritesView();
+                break;
+            default:
+                if (Status.hasTimeseries()) {
+                    $('.swc-main div.swc-page:first').addClass('swc-page-current');
+                } else {
+                    Pages.navigateToMap();
+                }
+                break;
+        }
+    }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Modal = {
+    show: function(template, data) {
+        $('#modalWindow').html(Template.createHtml(template, data));
+        $('#modalWindow').modal('show');
+    },
+    hide: function() {
+        $('#modalWindow').modal('hide');
+    },
+    append: function(template, data) {
+        $('.modal-body').append(Template.createHtml(template, data));
+    }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var EventManager = {
+    subscribe: function(event, fn) {
+        DEBUG && console.log("Subscribe " + event);
+        $(this).bind(event, fn);
+    },
+    unsubscribe: function(event, fn) {
+        DEBUG && console.log("Unsubscribe " + event);
+        $(this).unbind(event, fn);
+    },
+    publish: function(event, data) {
+        DEBUG && console.log("Publish " + event);
+        $(this).trigger(event, data);
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Status = (function() {
+    var status = {
+        createDefaultValues: function() {
+            this.defaultValues = {
+                'provider': Settings.defaultProvider,
+                'clusterStations': Settings.clusterStations,
+                'generalizeData': Settings.generalizeData,
+                'timeseries': {},
+                'timespan': Time.isoTimespan(),
+                'saveStatus': Settings.saveStatus,
+                'concentrationMarker': Settings.concentrationMarker
+            };
+        },
+        init: function() {
+            this.createDefaultValues();
+            this.key = Storage.generateKey('settings');
+            this.load();
+            if (!this.get('saveStatus')) {
+                this.reset();
+            }
+        },
+        load: function() {
+            var load = Storage.load(this.key);
+            if (load) {
+                this.current = load;
+            } else {
+                this.current = this.defaultValues;
+                this.save();
+            }
+        },
+        save: function() {
+            Storage.saveObject(this.key, this.current);
+        },
+        reset: function() {
+            this.current = this.defaultValues;
+            this.save();
+            EventManager.publish("resetStatus");
+        },
+        set: function(key, value) {
+            this.current[key] = value;
+            this.save();
+        },
+        get: function(key) {
+            if (this.current[key] === undefined) {
+                return this.defaultValues[key];
+            }
+            return this.current[key];
+        },
+        addTimeseries: function(ts) {
+            this.current.timeseries[ts.getInternalId()] = ts.toJSON();
+            this.save();
+        },
+        addTimeseriesById: function(id) {
+            var ids = id.split("__");
+            var apiUrl = null;
+            $.each(Settings.restApiUrls, function(url, id) {
+                if (id === ids[1]) {
+                    apiUrl = url;
+                    return;
+                }
+            });
+            if (apiUrl) {
+                this.current.timeseries[id] = {
+                    apiUrl: apiUrl,
+                    tsId: ids[0]
+                };
+                this.save();
+            }
+        },
+        clearTimeseries: function() {
+            this.current.timeseries = {};
+            this.save();
+        },
+        removeTimeseries: function(ts) {
+            delete this.current.timeseries[ts.getInternalId()];
+            this.save();
+        },
+        hasTimeseriesWithId: function(id) {
+            return !!this.current.timeseries[id];
+        },
+        getTimeseriesWithId: function(id) {
+            return this.current.timeseries[id];
+        },
+        getTimeseries: function() {
+            return this.current.timeseries;
+        },
+        hasTimeseries: function() {
+            return $.isEmptyObject(this.current.timeseries) ? false : true;
+        }
+    };
+    return status;
+})();/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Button = {
+    switchToggleButton: function(target) {
+        var button = $(target);
+        button.toggleClass('btn-primary');
+        if (!button.hasClass('btn-primary')) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+    setToggleButton: function(target, value) {
+        var button = $(target);
+        if (value) {
+            button.addClass('btn-primary');
+        } else {
+            button.removeClass('btn-primary');
+        }
+    },
+    setLoadingButton: function(button, loading) {
+        var icon = button.find('span');
+        if (loading) {
+            icon.hide();
+            button.append('<span class="glyphicon glyphicon-refresh icon-spin"></span>');
+        } else {
+            icon.show();
+            button.find('.glyphicon.glyphicon-refresh').remove();
+        }
+    },
+    setNewIcon: function(button, className) {
+        button.find('span').hide();
+        button.append('<span class="glyphicon ' + className + '"></span>');
+    },
+    removeNewIcon: function(button, className) {
+        button.find('span.' + className).remove();
+        button.find('span').show();
+    }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+/* fix to support windows phone 8 */
+if (navigator.userAgent.match(/IEMobile\/10\.0/)) {
+    var msViewportStyle = document.createElement('style');
+    msViewportStyle.appendChild(document
+            .createTextNode('@-ms-viewport{width:auto!important}'));
+    document.querySelector('head').appendChild(msViewportStyle);
+}
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var tsHelper = {
+    createInternalId: function(tsId, apiUrl) {
+        return tsId + "__" + Settings.restApiUrls[apiUrl];
+    },
+    createDataOfResult: function(result, tsId) {
+        // kvp format of the timeseries-api
+        if (result[tsId] && result[tsId].values) {
+            return this._createValues(result[tsId].values);
+        }
+        // highchart format of the timeseries-api
+        var values = [];
+        if (result instanceof Array) {
+            var that = this;
+            $.each(result, function(idx, elem) {
+                if (elem.name == tsId) {
+                    values = that._createValues(elem.data);
+                }
+            });
+        }
+        return values;
+    },
+    createRefDataOfResult: function(result, id) {
+        var refs = {};
+        var that = this;
+        // kvp format of the timeseries-api
+        if (result[id] && result[id].extra && result[id].extra.referenceValues) {
+            $.each(result[id].extra.referenceValues, function(id, elem) {
+                refs[id] = that._createValues(elem.values);
+            });
+        }
+        // flot format of the timeseries-api
+        if (result[id] && result[id].referenceValues) {
+            $.each(result[id].referenceValues, function(id, values) {
+                refs[id] = that._createValues(values);
+            });
+        }
+        // highchart format of the timeseries-api
+        if (result instanceof Array){
+            $.each(result, function(idx, elem) {
+                if (elem.name.indexOf('ref_') == 0) {
+                    refs[elem.name] = that._createValues(elem.data);
+                }
+            });
+        }
+        return refs;
+    },
+    _createValues: function(array) {
+        var values = [];
+        if (array[0] instanceof Array) {
+            return array;
+        } else {
+            $.each(array, function(index, elem) {
+                values.push([elem.timestamp, elem.value]);
+            });
+        }
+        return values;
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var StartController = {
+    init: function(settings) {
+        jQuery.support.cors = true;
+        this.loadMainPage();
+        // merge settings
+        $.extend(Settings, settings);
+        Settings.additionalParameters.locale = currentLanguage();
+
+        NotifyController.init();
+        Status.init();
+        // Call all controller
+        PermalinkController.init();
+        Pages.init();
+        Map.init();
+        ListSelectionController.init();
+        LegendController.init();
+        TableController.init();
+        TimeController.init();
+        ChartController.init();
+        TimeSeriesController.init();
+        GuidedTourController.init();
+        ExportController.init();
+        StyleChangeController.init();
+        FavoriteController.init();
+        SettingsController.init();
+    },
+    loadMainPage: function(){
+        var main = Template.createHtml("main");
+        $('.jsc-main').append(main);
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var PermalinkController = {
+    timespanParam: 'span',
+    timeseriesParam: 'ts',
+    servicesParam: 'services',
+    featuresParam: 'features',
+    offeringsParam: 'offerings',
+    proceduresParam: 'procedures',
+    phenomenaParam: 'phenomena',
+    init: function() {
+        this.checkTimespan();
+        this.checkTimeseries();
+        this.checkConstellation();
+    },
+    evaluateParameter: function(parameterName, evaluateParameter) {
+        var value = this.getParameter(parameterName);
+        if (!$.isEmptyObject(value)) {
+            evaluateParameter(value);
+        }
+    },
+    getParameter: function(parameterName) {
+        var value = Permalink.getUrlParameter(parameterName);
+        return value;
+    },
+    checkTimespan: function() {
+        var setTimespan =  function(timespan) {
+            Status.set('timespan', Time.createTimespan(timespan));
+        };
+        this.evaluateParameter('timespan', setTimespan); // for backward compatibility
+        this.evaluateParameter(this.timespanParam, setTimespan);
+    },
+    checkTimeseries: function() {
+        var addTimeseries = function(timeseries) {
+            Status.clearTimeseries();
+            $.each(timeseries.split(','), function(idx, id) {
+                Status.addTimeseriesById(id);
+            });
+        };
+        this.evaluateParameter('timeseries', addTimeseries); // for backward compatibility
+        this.evaluateParameter(this.timeseriesParam, addTimeseries);
+    },
+    checkConstellation: function() {
+        var constellations = this.createConstellationParameterArray();
+        if (constellations.length > 0) {
+            Pages.navigateToChart();
+            Status.clearTimeseries();
+            var requestLength = 0;
+            var foundTimeseriesId;
+            var foundService;
+            $.each(Settings.restApiUrls, function(url, serviceId) {
+                $.each(constellations, function(idx, constellation) {
+                    requestLength++;
+                    Rest.search(url, constellation.join(',')).done($.proxy(function(result) {
+                        if (result.length > 0) {
+                            var timeseries = $.grep(result, function(n, i) {
+                                return n.type === "timeseries" ? true : false;
+                            });
+                            if (!$.isEmptyObject(timeseries[0])) {
+                                foundTimeseriesId = timeseries[0].id;
+                                foundService = url;
+                                TimeSeriesController.addTSbyId(foundTimeseriesId, foundService);
+                            }
+                        }
+                        requestLength--;
+                        if (requestLength === 0) {
+                            if ($.isEmptyObject(foundTimeseriesId)) {
+                                Inform.warn(_('permalink.noMatchingTimeseriesFound'));
+                            }
+                        }
+                    }, this));
+                });
+            });
+        }
+    },
+    createConstellationParameterArray: function() {
+        var constellations = [];
+        var services = this.getParameterArray(this.servicesParam);
+        var features = this.getParameterArray(this.featuresParam);
+        var offerings = this.getParameterArray(this.offeringsParam);
+        var procedures = this.getParameterArray(this.proceduresParam);
+        var phenomena = this.getParameterArray(this.phenomenaParam);
+        if (services && features && offerings && procedures && phenomena) {
+            if ((services.length === features.length) &&
+                    (services.length === offerings.length) &&
+                    (services.length === procedures.length) &&
+                    (services.length === phenomena.length)) {
+                for (i = 0; i < services.length; i++) {
+                    var constellation = [];
+                    constellation.push(services[i]);
+                    constellation.push(features[i]);
+                    constellation.push(offerings[i]);
+                    constellation.push(procedures[i]);
+                    constellation.push(phenomena[i]);
+                    constellations.push(constellation);
+                }
+            } else {
+                Inform.warn(_('permalink.wrongCombinationSize'));
+            }
+        }
+        return constellations;
+    },
+    getParameterArray: function(param) {
+        var array = this.getParameter(param);
+        if (!$.isEmptyObject(array)) {
+            return array.split(',');
+        }
+    },
+    createTimespanParam: function() {
+        var timespan = TimeController.currentTimespan;
+        return this.timespanParam + "=" + Time.getRequestTimespan(timespan.from, timespan.till);
+    },
+    createTimeseriesParam: function() {
+        var tsList = $.map(TimeSeriesController.getTimeseriesCollection(), function(ts, id) {
+            return id;
+        });
+        if (tsList.length > 0) {
+            var timeseries = tsList.join(",");
+            return this.timeseriesParam + "=" + timeseries;
+        }
+        return "";
+    },
+    createPermalink: function() {
+        var loc = window.location;
+        if (!loc.origin) {
+            loc.origin = loc.protocol + "//" + loc.hostname
+                    + (loc.port ? ':' + loc.port : '');
+        }
+        var url = loc.origin + loc.pathname + "?";
+        url = url + this.createTimeseriesParam();
+        url = url + "&" + this.createTimespanParam();
+        return url;
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var SettingsController = {
+    init: function() {
+        $(document).ready(function() {
+            $('[data-target="#settings"]').click(function() {
+                Modal.show('settings');
+                createLanguageChooser();
+                if (Settings.saveStatusPossible) {
+                    // reset status
+                    $('.resetStatus').on('click', function() {
+                        Status.reset();
+                    });
+                    // save status
+                    Button.setToggleButton('.saveStatus', Status.get('saveStatus'));
+                    $('.saveStatus').on('click', function(e) {
+                        var save = Button.switchToggleButton(e.currentTarget);
+                        Status.set('saveStatus', save);
+                    });
+                } else {
+                    $('.resetStatus').remove();
+                    $('.saveStatus').remove();
+                }
+                // cluster station option
+                Button.setToggleButton('.clusteringStations', Status.get('clusterStations'));
+                $('.clusteringStations').on('click', function(e) {
+                    var clustering = Button.switchToggleButton(e.currentTarget);
+                    Status.set('clusterStations', clustering);
+                    EventManager.publish('clusterStations', clustering);
+                });
+                // generalize data
+                Button.setToggleButton('.generalizeData', Status.get('generalizeData'));
+                $('.generalizeData').on('click', function(e) {
+                    var generalize = Button.switchToggleButton(e.currentTarget);
+                    Status.set('generalizeData', generalize);
+                    EventManager.publish('timeseries:update:complete');
+                });
+                // show concentration marker
+                Button.setToggleButton('.concentrationMarker', Status.get('concentrationMarker'));
+                $('.concentrationMarker').on('click', function(e) {
+                    var concentMarker = Button.switchToggleButton(e.currentTarget);
+                    Status.set('concentrationMarker', concentMarker);
+                    EventManager.publish('triggerConcentrationMarker');
+                });
+                // permalink
+                $('.permalink .link').on('click', function() {
+                    window.open(PermalinkController.createPermalink(), '_blank');
+                }).show();
+                $('.permalink .mail').on('click', function() {
+                    window.location.href = "mailto:?body=" + encodeURIComponent(PermalinkController.createPermalink());
+                }).show();
+                $('.permalink .clipboard').on('click', function() {
+                    window.prompt(_('settings.permalink.clipboardInfo'), PermalinkController.createPermalink());
+                }).show();
+                $('.permalink .qr').on('click', function() {
+                    var img = qr.image({
+                        value: PermalinkController.createPermalink(),
+                        size: 5
+                    });
+                    $('.qr-code').find('img').remove();
+                    $('.qr-code').append($(img));
+                }).show();
+                // imprint
+                EventManager.publish('settings:opened');
+            });
+        });
+    }
+
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var TimeSeriesController = {
+    timeseries: {},
+    init: function() {
+        EventManager.subscribe("resetStatus", $.proxy(this.removeAllTS, this));
+        EventManager.subscribe("timeextent:change", $.proxy(this.changeTimeExtent, this));
+        EventManager.subscribe("timeseries:changeStyle", $.proxy(this.updateTS, this));
+        EventManager.subscribe("timeseries:zeroScaled", $.proxy(this.updateTS, this));
+        this.loadSavedTimeseries();
+    },
+    loadSavedTimeseries: function() {
+        $.each(Status.getTimeseries(), $.proxy(function(internalId, elem) {
+            var promise = Rest.timeseries(elem.tsId, elem.apiUrl);
+            var that = this;
+            promise.done(function(ts) {
+                if (elem.style !== undefined) {
+                    ts.setStyle(TimeseriesStyle.createStyleOfPersisted(elem.style));
+                }
+                that.addTS(ts);
+            });
+        }, this));
+    },
+    addTSbyId: function(tsId, apiUrl) {
+        var promise = Rest.timeseries(tsId, apiUrl);
+        var that = this;
+        promise.done(function(ts) {
+            that.addTS(ts);
+        });
+    },
+    /*----- add timeseries -----*/
+    addTS: function(ts) {
+        Status.addTimeseries(ts);
+        EventManager.publish("timeseries:add", [ts]);
+        this.timeseries[ts.getInternalId()] = ts;
+        // request data
+        var from = TimeController.currentTimespan.from;
+        var till = TimeController.currentTimespan.till;
+        this.loadTsData(ts, {
+            from: from,
+            till: till
+        });
+    },
+    updateTS: function(evt, ts) {
+        Status.addTimeseries(ts);
+    },
+    loadTsData: function(ts, timespan) {
+        EventManager.publish("timeseries:data:load", [ts]);
+        ts.fetchData(timespan, $.proxy(this.finishedGetData, this));
+    },
+    finishedGetData: function(ts) {
+        EventManager.publish("timeseries:data:loadfinished", [ts]);
+        this.checkSyncedStatus();
+    },
+    checkSyncedStatus: function() {
+        var syncedComplete = true;
+        $.each(this.timeseries, function(index, elem) {
+            if (!elem.isSynced()) {
+                syncedComplete = false;
+                return;
+            }
+        });
+        if (syncedComplete) {
+            EventManager.publish("timeseries:synced", [this.timeseries]);
+        }
+    },
+    /*----- update timeextent -----*/
+    changeTimeExtent: function(event, timeExtent) {
+        this.unsyncTimeseries();
+        $.each(this.timeseries, $.proxy(function(index, elem) {
+            this.loadTsData(elem, timeExtent);
+        }, this));
+    },
+    unsyncTimeseries: function() {
+        $.each(this.timeseries, function(index, elem) {
+            elem.unSynced();
+        });
+    },
+    /*----- remove timeseries -----*/
+    removeTS: function(ts) {
+        ts.destroy();
+        Status.removeTimeseries(ts);
+        delete this.timeseries[ts.getInternalId()];
+        EventManager.publish("timeseries:remove", [ts]);
+    },
+    /*----- remove all timeseries -----*/
+    removeAllTS: function() {
+        this.timeseries = {};
+        EventManager.publish("timeseries:removeAll");
+    },
+    getTimeseriesCollection: function() {
+        return this.timeseries;
+    },
+    getTimeseries: function(id) {
+        return this.timeseries[id];
+    },
+    hasTimeseries: function() {
+        return Object.keys(TimeSeriesController.getTimeseriesCollection()).length > 0;
+    },
+    deselectAllTs: function() {
+        $.each(this.getTimeseriesCollection(), $.proxy(function(idx, elem){
+            elem.setSelected(false);
+        }, this));
+    },
+    getMaxTimeExtent: function() {
+        var earliestStart;
+        var latestEnd;
+        $.each(this.timeseries, $.proxy(function(index,elem) {
+            if (elem.getFirstValue()) {
+                var start = moment(elem.getFirstValue().timestamp);
+                if ( !earliestStart || start.isBefore(earliestStart)) {
+                    earliestStart = start;
+                }
+            }
+            if (elem.getLastValue()) {
+                var end = moment(elem.getLastValue().timestamp);
+                if ( !latestEnd || end.isAfter(latestEnd)) {
+                    latestEnd = end;
+                }
+            }
+        }));
+        return {
+            from : earliestStart,
+            till: latestEnd
+        };
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var TimeController = {
+    currentTimespan: {},
+    momentFormat: 'YYYY-MM-DD HH:mm',
+    internalFormat: 'yyyy-mm-dd hh:ii',
+    init: function () {
+        // get last save timespan
+        this.currentTimespan = Status.get('timespan');
+        this.updateTimeExtent();
+        $(document).ready($.proxy(function () {
+            $('[data-action=before]').click($.proxy(this.prevPeriode, this));
+            $('[data-action=after]').click($.proxy(this.nextPeriode, this));
+            $('[data-action=timeextent]').click($.proxy(this.openTimeSettings, this));
+        }, this));
+        this.setLabel();
+        EventManager.subscribe("timeseries:data:load", $.proxy(this.disableButtons, this));
+        EventManager.subscribe("timeseries:synced", $.proxy(this.enableButtons, this));
+        EventManager.subscribe("time:start:change", $.proxy(this.startChanged, this));
+        EventManager.subscribe("time:end:change", $.proxy(this.endChanged, this));
+        EventManager.subscribe("timeseries:update:complete", $.proxy(this.updateTimeExtent, this));
+    },
+    openTimeSettings: function () {
+        this.timeRangeData = Settings.timeRangeData;
+        Modal.show("time-range-settings", this.timeRangeData);
+        var from = moment(this.currentTimespan.from);
+        var till = moment(this.currentTimespan.till);
+        $('#startPicker').text(from.format(Settings.dateformat));
+        $('#endPicker').text(till.format(Settings.dateformat));
+        $('#startPicker').data('date', from.format(this.momentFormat));
+        $('#endPicker').data('date', till.format(this.momentFormat));
+        $('#alertTimeExtent').hide();
+        var options = {
+            pickerPosition: 'top-right',
+            autoclose: true,
+            format: this.internalFormat,
+            weekStart: 1,
+            language: currentLanguage()
+        };
+        $('#startPicker').datetimepicker(options).on('changeDate', this.evaluateDate);
+        $('#endPicker').datetimepicker(options).on('changeDate', this.evaluateDate);
+        $('#confirmTimeExtent').click($.proxy(function (event) {
+            var from = moment($('#startPicker').data('date'));
+            var till = moment($('#endPicker').data('date'));
+            this.currentTimespan = {
+                from: from,
+                till: till,
+                mode: "range"
+            };
+            this.updateTimeExtent();
+            this.closeTimeSettings();
+        }, this));
+        $('.preset-btn').click($.proxy(function (event) {
+            var btn = $(event.currentTarget);
+            this.setPreset(btn.data('preset-value'));
+            this.closeTimeSettings();
+        }, this));
+    },
+    closeTimeSettings: function () {
+        $('#startPicker').datetimepicker('remove');
+        $('#endPicker').datetimepicker('remove');
+    },
+    startChanged: function (event, start) {
+        var diff = this.getCurrentDiff();
+        this.currentTimespan.from = moment(start).startOf('day');
+        this.currentTimespan.till = moment(start).add(diff).add(1, 's').startOf('day').subtract(1, 'ms');
+        this.updateTimeExtent();
+    },
+    endChanged: function (event, end) {
+        var diff = this.getCurrentDiff();
+        this.currentTimespan.from = moment(end).subtract(diff).endOf('day').add(1, 'ms');
+        this.currentTimespan.till = moment(end).endOf('day');
+        this.updateTimeExtent();
+    },
+    getCurrentDiff: function () {
+        var from = moment(this.currentTimespan.from);
+        var till = moment(this.currentTimespan.till);
+        return till.diff(from);
+    },
+    getCurrentStartAsMillis: function () {
+        return moment(this.currentTimespan.from).unix() * 1000;
+    },
+    getCurrentEndAsMillis: function () {
+        return moment(this.currentTimespan.till).unix() * 1000;
+    },
+    updateTimeExtent: function () {
+        var maxExtent = TimeSeriesController.getMaxTimeExtent();
+
+        var insideDataInterval = true;
+        if (maxExtent.from && maxExtent.till) {
+            var earliestStart = moment(maxExtent.from);
+            var latestEnd = moment(maxExtent.till);
+            var startBetweenMax = moment(this.currentTimespan.from).isBetween(earliestStart, latestEnd);
+            var endBetweenMax = moment(this.currentTimespan.till).isBetween(earliestStart, latestEnd);
+            insideDataInterval = (startBetweenMax || endBetweenMax);
+        }
+
+        if (!insideDataInterval) {
+            // reset current timespan
+            NotifyController.notify(_('chart.outsideOfDataRange'));
+            this.currentTimespan = Status.get('timespan');
+        }
+        EventManager.publish("timeextent:change", {
+            from: this.currentTimespan.from,
+            till: this.currentTimespan.till
+        });
+        Status.set('timespan', this.currentTimespan);
+        this.setLabel();
+    },
+    disableButtons: function () {
+        $('[data-action="before"]').addClass('disabled');
+        $('[data-action="after"]').addClass('disabled');
+        $('[data-action="timeextent"]').addClass('disabled');
+    },
+    enableButtons: function () {
+        $('[data-action="before"]').removeClass('disabled');
+        $('[data-action="after"]').removeClass('disabled');
+        $('[data-action="timeextent"]').removeClass('disabled');
+    },
+    setLabel: function () {
+        var label = moment(this.currentTimespan.from).format(Settings.shortDateformat) + " - " + moment(this.currentTimespan.till).format(Settings.shortDateformat);
+        $('[data-action=timeextent]').text(label);
+    },
+    prevPeriode: function () {
+        this.getNearbyPeriode('subtract');
+        this.updateTimeExtent();
+    },
+    nextPeriode: function () {
+        this.getNearbyPeriode('add');
+        this.updateTimeExtent();
+    },
+    setPreset: function (name) {
+        var interval;
+        $.each(this.timeRangeData.presets, function (idx, elem) {
+            if (elem.name === name) {
+                interval = this.interval;
+                return false;
+            }
+        });
+        this.currentTimespan = Time.isoTimespan(interval);
+        this.updateTimeExtent();
+        Modal.hide();
+    },
+    setFlexibleTimeExtent: function (from, till) {
+        this.currentTimespan = {
+            'from': from,
+            'till': till,
+            'mode': 'range'
+        };
+        this.updateTimeExtent();
+    },
+    evaluateDate: function (ev) {
+        var id = "#" + ev.currentTarget.id;
+        if (moment($('#startPicker').data('date')).isAfter($('#endPicker').data('date'))) {
+            $('#alertTimeExtent').show();
+            $('#confirmTimeExtent').addClass('disabled');
+            $('#alertTimeExtent').text(_('timeSelection.warning.startBeforeEnd'));
+        } else if (Math.abs(moment($('#startPicker').data('date')).diff($('#endPicker').data('date'), 'years', true)) > 1) {
+            $('#alertTimeExtent').show();
+            $('#confirmTimeExtent').addClass('disabled');
+            $('#alertTimeExtent').text(_('timeSelection.warning.maxTimeRange'));
+        } else {
+            $('#alertTimeExtent').hide();
+            $('#confirmTimeExtent').removeClass('disabled');
+            startDate = new Date(ev.date);
+        }
+        $(id).text(moment($(id).data('date')).format(Settings.dateformat));
+        $(id).datetimepicker('hide');
+    },
+    getNearbyPeriode: function (method) {
+        var mode = this.currentTimespan.mode;
+        var from = moment(this.currentTimespan.from);
+        var till = moment(this.currentTimespan.till);
+
+        var newFrom, newTill;
+
+        switch (mode) {
+            case 'range':
+                var diff = till.diff(from);
+                newFrom = from[method](diff);
+                newTill = till[method](diff);
+                break;
+            case 'day':
+                newFrom = from[method]('days', 1).startOf('day');
+                newTill = till[method]('days', 1).endOf('day');
+                break;
+            case 'month':
+                newFrom = from[method]('months', 1).startOf('month');
+                newTill = till[method]('months', 1).endOf('month');
+                break;
+            case 'week':
+                newFrom = from[method]('weeks', 1).startOf('week');
+                newTill = till[method]('weeks', 1).endOf('week');
+                break;
+            case 'year':
+                newFrom = from[method]('years', 1).startOf('year');
+                newTill = till[method]('years', 1).endOf('year');
+                break;
+            default:
+                newFrom = from;
+                newTill = till;
+                break;
+        }
+        this.currentTimespan = {
+            'from': newFrom,
+            'till': newTill,
+            'mode': mode
+        };
+    }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var Map = {
+    defaultTileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+    defaultTileLayerOptions: {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+        pane: 'mapPane',
+        zIndex: -9999
+    },
+    timeseriesCache: [],
+    init: function() {
+        this.tileLayerUrl = Settings.tileLayerUrl || this.defaultTileLayerUrl;
+        this.tileLayerOptions = Settings.tileLayerOptions || this.defaultTileLayerOptions;
+        $(document).ready(function() {
+            $('[data-action="provider"]').click(function() {
+                Map.openProviderList();
+            });
+            $('[data-action="locate"]').click(function() {
+                Map.locateUser();
+            });
+        });
+        this.createMap();
+        this.loadStations();
+        EventManager.subscribe("resetStatus", $.proxy(this.loadStations, this));
+        EventManager.subscribe("clusterStations", $.proxy(this.loadStations, this));
+        EventManager.subscribe("timeseries:showInMap", $.proxy(this.showTsInMap, this));
+        EventManager.subscribe("triggerConcentrationMarker", $.proxy(this.triggerPhenomenaEntry, this));
+    },
+    createMap: function() {
+        if ($("#map").length > 0) {
+            this.map = L.map('map',Settings.mapOptions);
+            L.tileLayer(this.tileLayerUrl, this.tileLayerOptions).addTo(this.map);
+            var overlayMaps = {};
+            $.each(Settings.wmsLayer, $.proxy(function(idx, layer) {
+                try {
+                    var wms = L.tileLayer.wms(layer.url, layer.options).addTo(this.map);
+                    overlayMaps[layer.name] = wms;
+                } catch (e) {
+                    console.error('Could not add wms.');
+                };
+            }, this));
+            if (!$.isEmptyObject(overlayMaps)) {
+                L.control.layers(null, overlayMaps, {
+                    position: 'topleft'
+                }).addTo(this.map);
+            }
+            L.Icon.Default.imagePath = 'images';
+            this.map.whenReady(function(map) {
+                // locate user methods
+                this.map.on('locationfound', this.onLocationFound);
+                this.map.on('locationerror', this.onLocationError);
+            }, this);
+
+            L.control.scale().addTo(this.map);
+            if (Settings.enableGeoSearch) {
+                new L.Control.GeoSearch({
+                    url: 'http://nominatim.openstreetmap.org/search?format=json&q={s}',
+                    jsonpParam: 'json_callback',
+                    propertyName: 'display_name',
+                    searchLabel: _('map.search.label'),
+                    notFoundMessage: _('map.search.noResult'),
+                    propertyLoc: ['lat', 'lon'],
+                    position: 'topcenter',
+                    minLength: 2,
+                    showMarker: false,
+                    provider: new L.GeoSearch.Provider.OpenStreetMap(),
+                    zoomLevel: 13
+                }).addTo(this.map);
+            }
+            this.map.fitBounds([
+            [-80, -170],
+            [80, 170]]);
+        }
+    },
+    /*----- stations -----*/
+    loadStations: function() {
+        this.loading(true);
+        var provider = Status.get('provider');
+        Rest.stations(null, provider.apiUrl, {
+            service: provider.serviceID
+        }).done($.proxy(function(result) {
+            this.createStationMarker(result, Status.get('clusterStations'));
+            this.loading(false);
+        }, this));
+        Rest.phenomena(null, provider.apiUrl, {
+            service: provider.serviceID
+        }).done($.proxy(this.fillPhenomenaList, this));
+    },
+    createStationMarker: function(results, clustering) {
+        if (!this.map) {
+            this.createMap();
+        }
+        if (this.stationMarkers) {
+            this.map.removeLayer(this.stationMarkers);
+        }
+
+		var boundingbox = []
+        if (results.length > 0) {
+            var firstElemCoord = results[0].geometry.coordinates;
+            var topmost = firstElemCoord[1];
+            var bottommost = firstElemCoord[1];
+            var leftmost = firstElemCoord[0];
+            var rightmost = firstElemCoord[0];
+            this.stationMarkers = clustering ? new L.MarkerClusterGroup() : new L.LayerGroup();
+            that = this;
+            $.each(results, $.proxy(function(n, elem) {
+
+                var geom = elem.geometry.coordinates;
+                if (!isNaN(geom[0]) || !isNaN(geom[1])) {
+                    if (geom[0] > rightmost) {
+                        rightmost = geom[0];
+                    }
+                    if (geom[0] < leftmost) {
+                        leftmost = geom[0];
+                    }
+                    if (geom[1] > topmost) {
+                        topmost = geom[1];
+                    }
+                    if (geom[1] < bottommost) {
+                        bottommost = geom[1];
+                    }
+                    /* customIRCELINE */
+                    var LeafIcon = L.Icon.extend({
+                    		options: {
+                    				iconSize:     [24, 24]
+                    		}
+                    });
+                    var ircelineIcon = new LeafIcon({iconUrl: 'images/irceline-marker-icon.png'});
+                    var marker = new L.Marker([geom[1], geom[0]], {
+                        id: elem.properties.id,
+                        icon: ircelineIcon
+                    });
+                    marker.on('click', $.proxy(that.markerClicked, that));
+                    this.stationMarkers.addLayer(marker);
+                }
+            }, this));
+            this.map.addLayer(this.stationMarkers);
+			boundingbox = [
+                [parseFloat(bottommost), parseFloat(leftmost)],
+                [parseFloat(topmost), parseFloat(rightmost)]];
+            /*this.map.fitBounds([
+                [parseFloat(bottommost), parseFloat(leftmost)],
+                [parseFloat(topmost), parseFloat(rightmost)]]);*/
+        }
+		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
+    },
+    createColoredMarkers: function(results) {
+		var boundingbox = []
+        if (this.stationMarkers) {
+            this.map.removeLayer(this.stationMarkers);
+        }
+        if (results.length > 0) {
+            var firstElemCoord = results[0].getCoordinates();
+            var topmost = firstElemCoord[1];
+            var bottommost = firstElemCoord[1];
+            var leftmost = firstElemCoord[0];
+            var rightmost = firstElemCoord[0];
+            this.stationMarkers = new L.LayerGroup();
+            that = this;
+            $.each(results, $.proxy(function(n, elem) {
+                var geom = elem.getCoordinates();
+				console.log('elemento')
+				console.log(elem)
+                if (!isNaN(geom[0]) || !isNaN(geom[1])) {
+                    if (geom[0] > rightmost) {
+                        rightmost = geom[0];
+                    }
+                    if (geom[0] < leftmost) {
+                        leftmost = geom[0];
+                    }
+                    if (geom[1] > topmost) {
+                        topmost = geom[1];
+                    }
+                    if (geom[1] < bottommost) {
+                        bottommost = geom[1];
+                    }
+                    var marker;
+                    if (elem.isCurrent()) {
+                        var interval = this.getMatchingInterval(elem);
+                        var fillcolor = interval && interval.color ? interval.color : Settings.defaultMarkerColor;
+                        marker = new L.circleMarker([geom[1], geom[0]], {
+                            id: elem.getStationId(),
+                            fillColor: fillcolor,
+                            color: "#000",
+                            opacity: 1,
+                            weight: 2,
+                            fillOpacity: 0.8
+                        });
+                    } else {
+                        marker = new L.circleMarker([geom[1], geom[0]], {
+                            id: elem.getStationId(),
+                            fillColor: Settings.defaultMarkerColor,
+                            color: "#000",
+                            opacity: 1,
+                            weight: 2,
+                            fillOpacity: 0.2
+                        });
+                    }
+                    marker.on('click', $.proxy(that.markerClicked, that));
+                    this.stationMarkers.addLayer(marker);
+                }
+            }, this));
+            this.map.addLayer(this.stationMarkers);
+          boundingbox = [
+                [parseFloat(bottommost), parseFloat(leftmost)],
+                [parseFloat(topmost), parseFloat(rightmost)]];
+            /*this.map.fitBounds([
+                [parseFloat(bottommost), parseFloat(leftmost)],
+                [parseFloat(topmost), parseFloat(rightmost)]]);*/
+        }
+		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
+    },
+    getMatchingInterval: function(elem) {
+        var matchedInterval = null;
+        if (elem.getLastValue() && elem.getStatusIntervals()) {
+            var lastValue = elem.getLastValue().value;
+            $.each(elem.getStatusIntervals(), function(idx, interval) {
+                if (interval.upper === null) {
+                    interval.upper = Number.MAX_VALUE;
+                }
+                if (interval.lower === null) {
+                    interval.lower = Number.MIN_VALUE;
+                }
+                if (!isNaN(interval.upper) && !isNaN(interval.lower) && parseFloat(interval.lower) < lastValue && lastValue < parseFloat(interval.upper)) {
+                    matchedInterval = interval;
+                    return false;
+                }
+            });
+        }
+        return matchedInterval;
+    },
+    loading: function(loading) {
+        Button.setLoadingButton($('[data-action="provider"]'), loading);
+    },
+    markerClicked: function(marker) {
+        this.loading(true);
+        var apiUrl = Status.get('provider').apiUrl;
+        this.openStationWindow(marker.target.options.id, apiUrl);
+    },
+    openStationWindow: function(id, url) {
+        Rest.stations(id, url).done($.proxy(function(results) {
+            var phenomena = {};
+            $.each(results.properties.timeseries, function(id, elem) {
+                var phenomID = elem.phenomenon.id;
+                if (Map.selectedPhenomenon === null || Map.selectedPhenomenon === phenomID) {
+                    if (!phenomena.hasOwnProperty(phenomID)) {
+                        phenomena[phenomID] = {};
+                        phenomena[phenomID].timeseries = [];
+                        phenomena[phenomID].label = elem.phenomenon.label;
+                        phenomena[phenomID].category = elem.category && elem.category.label ? elem.category.label : "";
+                    }
+                    phenomena[phenomID].timeseries.push({
+                        id: id,
+                        internalId: tsHelper.createInternalId(id, url),
+                        selected: Status.hasTimeseriesWithId(id),
+                        procedure: elem.procedure.label,
+                        category: elem.category && elem.category.label ? elem.category.label : ""
+                    });
+                }
+            });
+            this.loading(false);
+            Modal.show("station", {
+                "name": results.properties.label,
+                "phenomena": $.map(phenomena, function(elem) {
+                    return elem;
+                })
+            });
+            $('#confirmTimeseriesSelection').on('click', function() {
+                $.each($('.tsItem').has(':checked'), function(id, elem) {
+                    Map.addTimeseries(Map.timeseriesCache[$(this).data('internalid')]);
+                });
+            });
+            if ($('.tsItem').length > 1) {
+                $('.selectAllOption').show();
+                $('.selectAllOption .checkbox').on('click', function(event) {
+                    var checked = $(event.currentTarget).find(':checkbox').is(':checked');
+                    $.each($('.tsItem'), function(idx, elem) {
+                        $(elem).find(':checkbox').prop('checked', checked);
+                    });
+                });
+            } else {
+                $('.tsItem').find(':checkbox').prop('checked', true);
+            }
+            $('.tsItem :checkbox').on('click', function(evt) {
+                if(!$(evt.target).is(':checked')) {
+                    $('.selectAllOption').find(':checkbox').prop('checked',false);
+                }
+            });
+            $.each(phenomena, function(id, elem) {
+                $.each(elem.timeseries, function(id, elem) {
+                    if (Map.timeseriesCache[elem.internalId] === undefined) {
+                        Rest.timeseries(elem.id, url).done(function(timeseries) {
+                            Map.updateTsEntry(timeseries);
+                        }).fail(function(){
+                            Map.removeTsEntry(elem.id);
+                        });
+                    } else {
+                        Map.updateTsEntry(Map.timeseriesCache[elem.internalId]);
+                    }
+                });
+            });
+            EventManager.publish("map:stationLoaded");
+        }, this));
+    },
+    updateTsEntry: function(timeseries) {
+        $('[data-id=' + timeseries.getTsId() + ']').addClass('loaded').find(':input').prop('disabled', false);
+        var lastValue = timeseries.getLastValueFormatted();
+        if (lastValue) {
+            $('[data-id=' + timeseries.getTsId() + ']').find('.additionalInfo').text(lastValue).show();
+        }
+        Map.timeseriesCache[timeseries.getInternalId()] = timeseries;
+    },
+    removeTsEntry: function(id) {
+        $('[data-id=' + id + ']').remove();
+    },
+    addTimeseries: function(timeseries) {
+        Pages.navigateToChart();
+        Modal.hide();
+        TimeSeriesController.addTS(timeseries);
+    },
+    /*----- stations -----*/
+    fillPhenomenaList: function(results) {
+        Pages.togglePhenomenon(false);
+        $('.phenomena-entry').empty();
+        this.createDefaultPhenomenaEntry();
+        $.each(results, $.proxy(function(index, elem) {
+            var html = this.createPhenomenaEntry(elem);
+            $('.phenomena-entry').append(html);
+            $('[data-id=' + elem.id + ']').click($.proxy(function(event) {
+                $('.phenomena-entry').find('.selected').removeClass('selected');
+                $('[data-id=' + elem.id + ']').find('.item').addClass('selected').addClass('loadPhen');
+                this.selectedPhenomenon = elem.id;
+                var coloredMarkers = Status.get('concentrationMarker');
+                var provider = Status.get('provider');
+                Rest.abortRequest(this.phenomenonPromise);
+                if (coloredMarkers) {
+                    this.phenomenonPromise = Rest.timeseries(null, provider.apiUrl, {
+                        service: provider.serviceID,
+                        phenomenon: elem.id,
+                        expanded: true,
+                        force_latest_values: true,
+                        status_intervals: true
+                    }).done($.proxy(function(result) {
+                        $.each(result, function(idx, elem) {
+                            Map.timeseriesCache[elem.getInternalId()] = elem;
+                        });
+                        Pages.togglePhenomenon(false, elem.label);
+                        this.createColoredMarkers(result);
+                    }, this)).always($.proxy(function() {
+                        $('[data-id=' + elem.id + ']').find('.item').removeClass('loadPhen');
+                    }));
+                } else {
+                    this.phenomenonPromise = Rest.stations(null, provider.apiUrl, {
+                        service: provider.serviceID,
+                        phenomenon: elem.id
+                    }).done($.proxy(function(result) {
+                        Pages.togglePhenomenon(false, elem.label);
+                        this.createStationMarker(result, Status.get('clusterStations'));
+                    }, this)).always($.proxy(function() {
+                        $('[data-id=' + elem.id + ']').find('.item').removeClass('loadPhen');
+                    }));
+                }
+            }, this));
+        }, this));
+    },
+    createPhenomenaEntry: function(phenomenon) {
+        this.selectedPhenomenon = null;
+        var html = Template.createHtml("phenomenon-entry", {
+            id: phenomenon.id,
+            label: phenomenon.label
+        });
+        return html;
+    },
+    createDefaultPhenomenaEntry: function() {
+        $('.phenomena-entry').append(this.createPhenomenaEntry({
+            id: "all",
+            label: _('main.allPhenomena')
+        }));
+        $('[data-id=all]').click($.proxy(function(event, bla) {
+            $('.phenomena-entry').find('.selected').removeClass('selected');
+            $('[data-id=all]').find('.item').addClass('selected');
+            Pages.togglePhenomenon(false);
+            Map.loadStations();
+        }));
+        $('[data-id=all]').append("<hr />");
+        $('[data-id=all]').find('.item').addClass('selected');
+    },
+    triggerPhenomenaEntry: function () {
+        $('.phenomena-entry [data-id=' + this.selectedPhenomenon + ']').click();
+    },
+    /*----- provider list -----*/
+    openProviderList: function() {
+        this.loading(true);
+        this.apiConnectCounter = Object.keys(Settings.restApiUrls).length;
+        this.providerList = [];
+        $.each(Settings.restApiUrls, $.proxy(function(url, elem) {
+            Rest.services(url).done($.proxy(this.createProviderList, this, url));
+        }, this));
+    },
+    createProviderList: function(apiUrl, results) {
+        this.apiConnectCounter--;
+        var currProv = Status.get('provider');
+        $.each(results, $.proxy(function(idx, elem) {
+            var blacklisted = false;
+            $.each(Settings.providerBlackList, $.proxy(function(idx, black) {
+                if (black.serviceID === elem.id && black.apiUrl === apiUrl) {
+                    blacklisted = true;
+                    return;
+                }
+            }, this));
+            if (!blacklisted) {
+                this.providerList.push({
+                    "name": elem.label,
+                    "version": elem.version,
+                    "stations": elem.quantities.stations,
+                    "timeseries": elem.quantities.timeseries,
+                    "phenomena": elem.quantities.phenomena,
+                    "url": elem.serviceUrl,
+                    "apiUrl": apiUrl,
+                    "id": elem.id,
+                    "selected": currProv.serviceID === elem.id && currProv.apiUrl === apiUrl,
+                    "type": elem.type
+                });
+            }
+        }, this));
+        if (this.apiConnectCounter === 0) {
+            var data = {
+                "providers": this.providerList
+            };
+            this.loading(false);
+            Modal.show('providers', data);
+            $('.providerItem').on('click', function() {
+                var id = $(this).data('id');
+                var apiUrl = $(this).data('api');
+                Status.set('provider', {
+                    serviceID: id,
+                    apiUrl: apiUrl
+                });
+                Map.loadStations();
+                Modal.hide();
+            });
+        }
+    },
+    /*----- locate user -----*/
+    locateUser: function() {
+        Button.setLoadingButton($('[data-action="locate"]'), true);
+        this.map.locate({
+            setView: true,
+            maxZoom: Settings.zoom
+        });
+    },
+    onLocationFound: function(e) {
+        Button.setLoadingButton($('[data-action="locate"]'), false);
+        var popup = L.popup().setLatLng(e.latlng).setContent('<p>' + _('map.userLocation') + '</p>');
+        Map.map.openPopup(popup);
+    },
+    onLocationError: function(e) {
+        Button.setLoadingButton($('[data-action="locate"]'), false);
+        Inform.error(e.message);
+    },
+    showTsInMap: function(event, ts) {
+        Pages.navigateToMap();
+        var coords = ts.getCoordinates(), pos = L.latLng(coords[1], coords[0]);
+        Map.map.setView(pos, Settings.zoom);
+        var station = null;
+        $.each(this.stationMarkers.getLayers(), function(idx, marker) {
+            if (marker.options.id === ts.getStationId()) {
+                station = marker;
+            }
+        });
+        var popup = L.popup({
+            autoPan: false
+        });
+        popup.setContent(Template.createHtml("station-popup", {
+            station: ts.getStationLabel(),
+            timeseries: ts.getLabel(),
+            service: ts.getServiceLabel()
+        }));
+        popup.setLatLng(pos);
+        Map.map.openPopup(popup);
+        popup.on('close', function () {
+            if (station) {
+                station.unbindPopup();
+            }
+        });
+        $('.backToChart').on('click', function(){
+            Pages.navigateToChart();
+        });
+        setTimeout($.proxy(function(){
+            Map.map.closePopup(popup);
+        }, this), Settings.stationPopupDuration);
+    }
+};
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var ListSelectionController = {
+    category: {
+        type: "category",
+        heading: _('listSelection.headers.category'),
+        call: Rest.categories
+    },
+    station: {
+        type: "feature",
+        heading: _('listSelection.headers.station'),
+        call: Rest.features
+    },
+    phenomenon: {
+        type: "phenomenon",
+        heading: _('listSelection.headers.phenomenon'),
+        call: Rest.phenomena
+    },
+    procedure: {
+        type: "procedure",
+        heading: _('listSelection.headers.procedure'),
+        call: Rest.procedures
+    },
+    init: function() {
+        this.entries = {
+            category: [this.category, this.station, this.phenomenon, this.procedure],
+            sensor: [this.procedure, this.station, this.category, this.phenomenon],
+            station: [this.station, this.category, this.phenomenon, this.procedure],
+            phenomenon: [this.phenomenon, this.category, this.station, this.procedure]
+        };
+        // show button to start list selection
+        $('[data-action="listSelection"]').show();
+        $('[data-action="listSelection"]').click(function() {
+            ListSelectionController.open();
+        });
+    },
+    open: function() {
+        Modal.show("list-selection");
+        $('a[data-toggle="tab"]').on('shown.bs.tab', $.proxy(function(e) {
+            var tab = $(e.target).data('tab');
+            var accordionId = $('#' + tab + ' .panel-group')[0].id;
+            $('#' + tab + ' .panel-group').empty();
+            // send request
+            this.startRequest(tab, 0, {
+                service: Status.get('provider').serviceID
+            });
+            // build html elements
+            $.each(this.entries[tab], function(idx, elem) {
+                elem.accordion = accordionId;
+                elem.collapse = accordionId + elem.type;
+                $('#' + tab + ' .panel-group').append(Template.createHtml("list-selection-skeleton", elem));
+            });
+        }, this));
+        $('#selectionList a:first').tab('show');
+    },
+    startRequest: function(tab, index, data) {
+        this.loading(tab, index, true);
+        var entry = this.entries[tab][index];
+        var apiUrl = Status.get('provider').apiUrl;
+        if (entry) {
+            var promise = entry.call(null, apiUrl, data);
+            promise.done($.proxy(function(result) {
+                $('#' + tab + ' #' + entry.collapse + ' .panel-body').empty();
+                $.each(result, function(idx, e) {
+                    var elem = e.id ? e : e.properties;
+                    var html = Template.createHtml("list-selection-entry", {
+                        id: elem.id,
+                        label: elem.label
+                    });
+                    $('#' + tab + ' #' + entry.collapse + ' .panel-body').append(html);
+                });
+                // open collapse
+                $('#' + tab + ' #' + entry.collapse).collapse('show');
+                // onclick
+                $('#' + tab + ' #' + entry.collapse + ' .panel-body div').on('click', $.proxy(function(e) {
+                    var label = $.trim(e.target.innerHTML);
+                    $('#' + tab + ' [href=#' + entry.collapse + ']').text(entry.heading + ' - ' + label);
+                    $('#' + tab + ' #' + entry.collapse).collapse('hide');
+                    data = this.tidyData(data, tab, index);
+                    data[entry.type] = $(e.target).data('id');
+                    this.startRequest(tab, index + 1, data);
+                }, this));
+                this.loading(tab, index, false);
+            }, this));
+        } else {
+            // load ts
+            Rest.timeseries(null, apiUrl, data).done(function(result) {
+                if (result.length === 1) {
+                    TimeSeriesController.addTS(result[0]);
+                    Modal.hide();
+                    Pages.navigateToChart();
+                } else {
+                    Inform.warn(_('listSelection.warning.moreThanOneTimeseries'));
+                }
+            });
+        }
+    },
+    loading: function(tab, idx, loading) {
+        var entry = this.entries[tab][idx];
+        if (entry) {
+            var elem = $('#' + tab + ' .panel-heading').has(' [href=#' + entry.collapse + ']').find('.loading');
+            if (loading) {
+                elem.removeClass('loaded');
+            } else {
+                elem.addClass('loaded');
+            }
+        }
+    },
+    tidyData: function(data, tab, index){
+        var tabEntries = this.entries[tab];
+        for (i = 3; i > index; i--) {
+            $('#' + tab + ' [href=#' + tabEntries[i].collapse + ']').text(tabEntries[i].heading);
+            $('#' + tab + ' #' + tabEntries[i].collapse + ' .in').collapse('hide');
+            $('#' + tab + ' #' + tabEntries[i].collapse + ' .panel-body').empty();
+            delete data[tabEntries[i].type];
+        }
+        return data;
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var ChartController = {
+    defaultOptions: {
+        series: {
+            lines: {
+                show: true,
+                fill: false
+            },
+//            points : {
+//                show: true
+//            },
+            shadowSize: 1
+        },
+        selection: {
+            mode: "xy"
+        },
+        xaxis: {
+            mode: "time",
+            timezone: "browser",
+            monthNames: _("chart.monthNames")
+//            timeformat: "%Y/%m/%d",
+                    //use these the following two lines to have small ticks at the bottom ob the diagram
+//            tickLength: 5,
+//            tickColor: "#000"
+        },
+        yaxis: {
+            show: true,
+            additionalWidth: 17,
+            panRange: false,
+            min: null
+//			tickFormatter : function(val, axis) {
+//				var factor = axis.tickDecimals ? Math.pow(10, axis.tickDecimals) : 1;
+//				var formatted = "" + Math.round(val * factor) / factor;
+//				return formatted + "<br>" + this.uom;
+//			}
+        },
+        legend: {
+            // show: false
+        },
+        pan: {
+            interactive: true,
+            frameRate: 10
+        }
+    },
+    visible: true,
+    data: [],
+    init: function() {
+        this.selectedLineWidth = Settings.selectedLineWidth;
+        this.commonLineWidth = Settings.commonLineWidth;
+        this.options = $.extend(true, this.defaultOptions, Settings.chartOptions);
+        EventManager.subscribe("timeseries:data:load", $.proxy(this.loadDataForChart, this));
+        EventManager.subscribe("timeseries:data:loadfinished", $.proxy(this.loadDataFinished, this));
+        EventManager.subscribe("timeseries:synced", $.proxy(this.plotChart, this));
+        EventManager.subscribe("timeseries:add:referenceValue", $.proxy(this.showReferenceValue, this));
+        EventManager.subscribe("timeseries:remove:referenceValue", $.proxy(this.removeReferenceValue, this));
+        EventManager.subscribe("timeseries:remove", $.proxy(this.removeTS, this));
+        EventManager.subscribe("timeseries:removeAll", $.proxy(this.clearChart, this));
+        EventManager.subscribe("timeseries:selectionChanged", $.proxy(this.selectionChanged, this));
+        EventManager.subscribe("timeseries:hide", $.proxy(this.hideData, this));
+        EventManager.subscribe("timeseries:show", $.proxy(this.showData, this));
+        EventManager.subscribe("table:open", $.proxy(this.hideChart, this));
+        EventManager.subscribe("table:close", $.proxy(this.showChart, this));
+        EventManager.subscribe("timeseries:changeStyle", $.proxy(this.changeStyle, this));
+        EventManager.subscribe("timeseries:zeroScaled", $.proxy(this.zeroScaled, this));
+
+        $(window).resize($.proxy(function() {
+            var newRatio = $(document).width() / $(document).height();
+            if (newRatio !== window.ratio) {
+                window.ratio = newRatio;
+                this.plotChart();
+            }
+        }, this));
+        $('[data-action=selection]').hide();
+        $('[data-action=selection]').on('click', $.proxy(function() {
+            EventManager.publish("timeseries:unselectAll");
+            this.renderChart();
+            $('[data-action=selection]').hide();
+        }, this));
+        this.plotChart();
+
+        $('#placeholder').bind('plotpanEnd', function(event, plot) {
+            var xaxis = plot.getXAxes()[0];
+            var from = moment(xaxis.min);
+            var till = moment(xaxis.max);
+            TimeController.setFlexibleTimeExtent(from, till);
+        });
+    },
+    hideChart: function(event, view) {
+        this.visible = false;
+        $('#placeholder').hide();
+    },
+    showChart: function(event, view) {
+        this.visible = true;
+        $('#placeholder').show();
+        this.plotChart();
+    },
+    hideData: function(event, id) {
+        var ts = TimeSeriesController.getTimeseriesCollection()[id];
+        $.each(ts.getRefValues(), $.proxy(function(idx, refValue) {
+            if(refValue.isSelected()) {
+                this.removeData(idx);
+            }
+        }, this));
+        this.removeData(id);
+        this.plotChart();
+    },
+    showData: function(event, id) {
+        var ts = TimeSeriesController.getTimeseriesCollection()[id];
+        $.each(ts.getRefValues(), $.proxy(function(idx, refValue) {
+            if(refValue.isSelected()) {
+                this.showReferenceValue(null, {
+                    "tsId": ts.getInternalId(),
+                    "refId": idx
+                });
+            }
+        }, this));
+        this.loadDataFinished(null, ts);
+        this.plotChart();
+        this.selectionChanged();
+    },
+    selectTs: function(id, selected) {
+        if (this.plot) {
+            $.each(this.plot.getData(), function(idx, ts) {
+                if (ts.id === id) {
+                    ts.selected = selected;
+                    if(selected) {
+                        ts.lines.lineWidth = ChartController.selectedLineWidth;
+                        ts.bars.lineWidth = ChartController.selectedLineWidth;
+                        $.each($('.axisTarget'), function(idx, axis) {
+                            if (ts.yaxis.n === $(axis).data('axis.n')) {
+                                $(axis).addClass('selected');
+                            }
+                        });
+                    } else {
+                        ts.lines.lineWidth = ChartController.commonLineWidth;
+                        ts.bars.lineWidth = ChartController.commonLineWidth;
+                    }
+                }
+            });
+            $.each(this.data, function(index, elem) {
+                if (elem.id === id) {
+                    elem.selected = selected;
+                }
+            });
+        }
+    },
+    selectionChanged: function() {
+        $('.axisTarget').removeClass('selected');
+        $.each(TimeSeriesController.getTimeseriesCollection(), $.proxy(function(idx, ts) {
+            this.selectTs(ts.getInternalId(), ts.isSelected());
+        }, this));
+        this.plot.draw();
+    },
+    unselectAll: function(event) {
+        if (this.plot) {
+            $.each(this.plot.getData(), function(index, elem) {
+                elem.lines.lineWidth = ChartController.commonLineWidth;
+                elem.bars.lineWidth = ChartController.commonLineWidth;
+                elem.selected = false;
+            });
+            $.each(this.data, function(index, elem) {
+                elem.selected = false;
+            });
+            this.plot.draw();
+        }
+    },
+    loadDataForChart: function(event, ts) {
+        if (this.plot) this.plot.unbindPanZoomEvents();
+        if (this.visible) {
+            var label = ts.getLabel();
+            var html = Template.createHtml("data-loading-entry", {
+                id: ts.getInternalId(),
+                color: ts.getStyle().getColor(),
+                label: label
+            });
+            $('#loadingDiagram').append(html);
+        }
+    },
+    zeroScaled: function(event, ts) {
+        // get regarding yaxis
+        var yaxis;
+        $.each(this.data, function(idx, elem) {
+            if(elem.id === ts.getInternalId()){
+                yaxis = elem.yaxis;
+            }
+        });
+        // update data of timeseries
+        $.each(this.data, function(idx, elem) {
+            if (elem.yaxis === yaxis) {
+                elem.zeroScaled = ts.getStyle().isZeroScaled();
+                TimeSeriesController.getTimeseries(elem.id).getStyle().setZeroScaled(ts.getStyle().isZeroScaled());
+            }
+        });
+        this.changeStyle(null, ts);
+    },
+    changeStyle: function(event, ts) {
+        this.loadDataFinished(null, ts);
+        this.plotChart();
+    },
+    loadDataFinished: function(event, ts) {
+        $('#loadingDiagram').find('[data-id=' + ts.getInternalId() + ']').remove();
+        $.each(ts.getRefValues(), $.proxy(function(id, elem) {
+            var refVal = this.dataAlreadyIn(elem.getId());
+            if (refVal) {
+                refVal.data = elem.getValues();
+            }
+        }, this));
+        if (ts.hasData() && !ts.isHidden()) {
+            var temp = this.dataAlreadyIn(ts.getInternalId());
+            if (temp) {
+                this.updateData(temp, ts);
+            } else {
+                this.data.push(this.createData(ts));
+            }
+        } else {
+            this.removeData(ts.getInternalId());
+        }
+    },
+    updateData: function(data, ts) {
+        this.addStyleAndValues(data, ts);
+    },
+    createData: function(ts) {
+        var data = {
+            id: ts.getInternalId(),
+            uom: ts.getUom(),
+            phenomenon: ts.getPhenomenonLabel()
+        };
+        this.addStyleAndValues(data, ts);
+        return data;
+    },
+    addStyleAndValues: function(data, ts) {
+        var style = ts.getStyle();
+        data.color = style.getColor();
+        data.zeroScaled = style.isZeroScaled();
+        data.groupedAxis = style.isGroupedAxis();
+        data.stationLabel = ts.getStationLabel();
+        if (style.isBarChart()) {
+            data.bars = {
+                show: true,
+                barWidth: style.getIntervalByHours() * 60 * 60 * 1000
+            };
+            data.lines = {
+                show: false
+            };
+            var sumvalues = [];
+            var idx = 0;
+            var values = ts.getValues();
+            var entry = values[idx];
+            while (entry) {
+                var startInterval = entry[0];
+                var endInterval = moment(entry[0]).add(style.getIntervalByHours(), 'hours');
+                var sum = 0;
+                while (entry && moment(entry[0]).isBefore(endInterval)) {
+                    idx++;
+                    sum = sum + entry[1];
+                    entry = values[idx];
+                }
+                sumvalues.push([startInterval, sum]);
+            }
+            data.data = sumvalues;
+        } else {
+            if (style.getLineType().indexOf("dotted") >= 0) {
+                data.points = {
+                    show: true,
+                    fill: true,
+                    fillColor: style.getColor(),
+                    radius: style.getWidth()
+                };
+            }
+            if (style.getLineType().indexOf("solid") >= 0) {
+                data.lines = {
+                    show: true,
+                    lineWidth: style.getWidth()
+                };
+            } else {
+                data.lines = {
+                    show: false
+                };
+            }
+            data.data = ts.getValues();
+        }
+    },
+    removeTS: function(event, ts) {
+        $('#loadingDiagram').find('[data-id=' + ts.getInternalId() + ']').remove();
+        this.removeData(ts.getInternalId());
+        // remove ref values
+        $.each(ts.getRefValues(), $.proxy(function(index, elem) {
+            this.removeData(elem.getId());
+        }, this));
+        this.plotChart();
+    },
+    showReferenceValue: function(event, data) {
+        var ts = TimeSeriesController.getTimeseriesCollection()[data.tsId];
+        var refVal = ts.getRefValuesForId(data.refId);
+        this.data.push({
+            data: refVal.getValues(),
+            id: refVal.getId(),
+            color: refVal.getColor(),
+            uom: ts.getUom(),
+            lines: {
+                lineWidth: Settings.commonLineWidth
+            }
+        });
+        this.plotChart();
+    },
+    removeReferenceValue: function(event, data) {
+        this.removeData(data.refId);
+        this.plotChart();
+    },
+    clearChart: function() {
+        this.data = [];
+        this.plotChart();
+    },
+    plotChart: function() {
+        if (this.visible) {
+            var placeholder = $('#placeholder');
+            //placeholder.show();
+            if (this.data.length === 0) {
+                placeholder.empty();
+                placeholder.append(Template.createHtml('chart-empty'));
+                return;
+            }
+            this.updateXAxis();
+            this.options.yaxes = this.createYAxis();
+            this.plot = $.plot('#placeholder', this.data, this.options);
+            placeholder.append("<div class='chart-annotation'>" + _('chart.annotation') +  "</div>");
+            $.each(this.plot.getAxes(), $.proxy(function(i, axis) {
+                if (!axis.show)
+                    return;
+                var box = axis.box;
+                if (axis.direction === "y") {
+                    $("<div class='axisTarget' style='position:absolute; left:" + box.left + "px; top:" + box.top + "px; width:" + box.width + "px; height:" + box.height + "px'></div>")
+                            .data("axis.n", axis.n)
+                            .appendTo(this.plot.getPlaceholder())
+                            .click($.proxy(function (event) {
+                                var target = $(event.currentTarget);
+                                var selected = false;
+                                $.each($('.axisTarget'), function (index, elem) {
+                                    elem = $(elem);
+                                    if (target.data('axis.n') === elem.data('axis.n')) {
+                                        selected = elem.hasClass("selected");
+                                        return false; // break loop
+                                    }
+                                });
+                                $.each(this.plot.getData(), function (index, elem) {
+                                    if (target.data('axis.n') === elem.yaxis.n) {
+                                        TimeSeriesController.getTimeseries(elem.id).setSelected(!selected);
+                                    } else {
+                                        TimeSeriesController.getTimeseries(elem.id).setSelected(false);
+                                    }
+                                });
+                                EventManager.publish("timeseries:selectionChanged");
+                                if (!selected) {
+                                    target.addClass("selected");
+                                }
+                            }, this));
+                    var yaxisLabel = $("<div class='axisLabel yaxisLabel' style=left:" + box.left + "px;></div>").text(axis.options.uom).appendTo('#placeholder');
+                    $.each(axis.options.tsColors, function (idx, color) {
+                        $('<span>').html('&nbsp;&#x25CF;').css('color', color).addClass('labelColorMarker').appendTo(yaxisLabel);
+                    });
+                    yaxisLabel.css("margin-left", -(yaxisLabel.width() - yaxisLabel.height()) / 2 - 3);
+                }
+            }, this));
+            var drawNew = false;
+            $.each(this.plot.getData(), function(index, elem) {
+                if (elem.selected) {
+                    elem.lines.lineWidth = ChartController.selectedLineWidth;
+                    elem.bars.lineWidth = ChartController.selectedLineWidth;
+                    drawNew = true;
+
+                    $.each($('.axisTarget'), function() {
+                        if ($(this).data('axis.n') === elem.yaxis.n) {
+                            if (!$(this).hasClass('selected')) {
+                                $(this).addClass('selected');
+                                return false;
+                            }
+                        }
+                    });
+                }
+            });
+            if (drawNew) {
+                this.plot.draw();
+            }
+        }
+    },
+    updateXAxis: function() {
+        this.options.xaxis.min = TimeController.getCurrentStartAsMillis();
+        this.options.xaxis.max = TimeController.getCurrentEndAsMillis();
+    },
+    createYAxis: function() {
+        var axesList = {};
+        $.each(this.data, function(index, elem) {
+            if (elem.groupedAxis === undefined || elem.groupedAxis) {
+                if (!axesList.hasOwnProperty(elem.uom)) {
+                    axesList[elem.uom] = {
+                        id: ++Object.keys(axesList).length,
+                        uom: elem.uom,
+                        tsColors: [elem.color],
+                        zeroScaled: elem.zeroScaled
+                    };
+                    elem.yaxis = axesList[elem.uom].id;
+                } else {
+                    axesList[elem.uom].tsColors.push(elem.color);
+                    elem.yaxis = axesList[elem.uom].id;
+                }
+            } else {
+                axesList[elem.id] = {
+                    id: ++Object.keys(axesList).length,
+                    uom: elem.uom + " @ " + elem.stationLabel,
+                    tsColors: [elem.color],
+                    zeroScaled: elem.zeroScaled
+                };
+                elem.yaxis = axesList[elem.id].id;
+            }
+        });
+        var axes = [];
+        $.each(axesList, $.proxy(function(idx, elem) {
+            axes.splice(elem.id - 1, 0, {
+                uom: elem.uom,
+                tsColors: elem.tsColors,
+                min: elem.zeroScaled ? 0 : this.options.yaxis.min
+            });
+        },this));
+        return axes;
+    },
+    dataAlreadyIn: function(id) {
+        var elem = null;
+        elem = $.map(this.data, function(elem) {
+            if (id === elem.id) {
+                return elem;
+            }
+        });
+        return elem[0];
+    },
+    removeData: function(id) {
+        var idx = -1;
+        $.each(this.data, function(i, elem) {
+            if (id === elem.id) {
+                idx = i;
+                return;
+            }
+        });
+        if (idx >= 0) {
+            this.data.splice(idx, 1);
+        }
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var LegendController = {
+    init: function() {
+        EventManager.subscribe("timeseries:add", $.proxy(this.addTS, this));
+        EventManager.subscribe("timeseries:remove", $.proxy(this.removeTS, this));
+        EventManager.subscribe("timeseries:removeAll", $.proxy(this.removeAll, this));
+        EventManager.subscribe("timeseries:selectionChanged", $.proxy(this.selectionChanged, this));
+        EventManager.subscribe("timeseries:data:loadfinished", $.proxy(this.checkNoData, this));
+        EventManager.subscribe("timeseries:changeStyle", $.proxy(this.changeStyle, this));
+        EventManager.subscribe("timeseries:synced", $.proxy(this.syncedTS, this));
+    },
+    addTS: function(event, ts) {
+        var html = this.createEntry(ts);
+        this.removeEntry(ts.getInternalId());
+        $('.legend-entry').append(html);
+        this.addClickEvents(ts);
+    },
+    addClickEvents: function(ts) {
+        $('[data-id=' + ts.getInternalId() + '] .firstLastEntry').on('click', function(event) {
+            event.stopPropagation();
+            var time = $(event.currentTarget).data('firsttime');
+            if (time) {
+                EventManager.publish("time:start:change", time);
+            }
+            time = $(event.currentTarget).data('lasttime');
+            if (time) {
+                EventManager.publish("time:end:change", time);
+            }
+        });
+        $('[data-id=' + ts.getInternalId() + '] .legendItemheader').click($.proxy(function(event) {
+            if (!$('[data-id=' + ts.getInternalId() + ']').hasClass('selected')) {
+                TimeSeriesController.deselectAllTs();
+                ts.setSelected(true);
+            } else {
+                ts.setSelected(false);
+            }
+            EventManager.publish("timeseries:selectionChanged");
+        }, this));
+        $('[data-id=' + ts.getInternalId() + '] .hideDiagram').click($.proxy(function(event) {
+            target = $(event.currentTarget);
+            if (target.hasClass('glyphicon-eye-close')) {
+                ts.setHidden(true);
+                EventManager.publish("timeseries:hide", ts.getInternalId());
+            } else {
+                ts.setHidden(false);
+                EventManager.publish("timeseries:show", ts.getInternalId());
+            }
+            target.toggleClass('glyphicon-eye-close');
+            target.toggleClass('glyphicon-eye-open');
+        }, this));
+        $('[data-id=' + ts.getInternalId() + '] .delete').click($.proxy(function(event) {
+            TimeSeriesController.removeTS(ts);
+        }, this));
+        $('[data-id=' + ts.getInternalId() + '] .inMap').click($.proxy(function(event) {
+            EventManager.publish("timeseries:showInMap", ts);
+        }, this));
+        $('[data-id=' + ts.getInternalId() + '] .changeStyle').click($.proxy(function(event) {
+            StyleChangeController.open(ts);
+        }, this));
+        $('[data-id=' + ts.getInternalId() + '] .showInfo').click($.proxy(function(event) {
+            $('[data-id=' + ts.getInternalId() + ']').find('.collapseLegendEntry').toggle();
+        }, this));
+        $('[data-id=' + ts.getInternalId() + '] .refEntry').on('click', function(event) {
+            var target = $(event.currentTarget);
+            var refId = target.attr('refid');
+            target.toggleClass('selected');
+            var ev;
+            if (target.hasClass('selected')) {
+                ev = "timeseries:add:referenceValue";
+                ts.getRefValuesForId(refId).setSelected(true);
+            } else {
+                ev = "timeseries:remove:referenceValue";
+                ts.getRefValuesForId(refId).setSelected(false);
+            }
+            if (!ts.isHidden()) {
+                EventManager.publish(ev, {
+                    "tsId": ts.getInternalId(),
+                    "refId": refId
+                });
+            }
+        });
+    },
+    checkNoData: function(event, ts) {
+        var warn = $('.legend-entry').find('[data-id=' + ts.getInternalId() + '] .noDataWarning');
+        if (!ts.hasData()) {
+            warn.show();
+        } else {
+            warn.hide();
+        }
+    },
+    selectionChanged: function() {
+        $.each(TimeSeriesController.getTimeseriesCollection(), $.proxy(function(idx, ts) {
+            this.selectTS(ts.getInternalId(), ts.isSelected());
+        }, this));
+    },
+    selectTS: function(id, selected) {
+        var target = $('.legend-entry').find('[data-id=' + id + ']');
+        if (selected) {
+            target.addClass('selected');
+        } else {
+            target.removeClass('selected');
+        }
+    },
+    changeStyle: function(event, ts) {
+        this.updateEntry(ts);
+    },
+    deselectAllTS: function(event) {
+        $('.legend-entry').find('.legendItem.selected').removeClass('selected');
+    },
+    removeTS: function(event, ts) {
+        this.removeEntry(ts.getInternalId());
+    },
+    removeAll: function(event) {
+        $('.legend-entry').empty();
+    },
+    removeEntry: function(id) {
+        $('.legend-entry').find('[data-id=' + id + ']').remove();
+    },
+    updateEntry: function(ts) {
+        var html = this.createEntry(ts);
+        $(html).replaceAll('.legend-entry [data-id=' + ts.getInternalId() + ']');
+        this.addClickEvents(ts);
+    },
+    syncedTS: function() {
+        var noData = true;
+        $.each(TimeSeriesController.timeseries, function(idx, elem){
+            if (elem.hasData()) {
+                noData = false;
+            }
+        });
+        if (noData && ChartController.visible) {
+            Pages.toggleLegend(true);
+        }
+    },
+    createEntry: function(ts) {
+        var firstValue = ts.getFirstValue();
+        var lastValue = ts.getLastValue();
+        var refValues = $.map(ts.getRefValues(), function(elem, id) {
+            return {
+                id: elem.getId(),
+                label: elem.getLabel(),
+                color: elem.getColor()
+            };
+        });
+        var html = Template.createHtml("legend-entry", {
+            id: ts.getInternalId(),
+            color: ts.getStyle().getColor(),
+            synced: ts.isSynced(),
+            uom: this.createText(ts.getUom),
+            phenomenon: this.createText(ts.getPhenomenonLabel()),
+            procedure: this.createText(ts.getProcedureLabel()),
+            station: this.createText(ts.getStationLabel()),
+            category: this.createText(ts.getCategoryLabel()),
+            firstValueTime: firstValue ? firstValue.timestamp : "",
+            firstValueTimeFormatted: firstValue ? moment(firstValue.timestamp).format(Settings.dateformat) : "",
+            firstValue: firstValue ? firstValue.value : "",
+            lastValueTime: lastValue ? lastValue.timestamp : "",
+            lastValueTimeFormatted: lastValue ? moment(lastValue.timestamp).format(Settings.dateformat) : "",
+            lastValue: lastValue ? lastValue.value : "",
+            referenceValues: refValues
+        });
+        return html;
+    },
+    createText: function(text) {
+        return text ? text : "";
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var StyleChangeController = {
+    defaultColorList: ['#1abc9c', '#27ae60', '#2980b9', '#8e44ad', '#2c3e50', '#f1c40f',
+        '#d35400', '#c0392b', '#7f8c8d'],
+    defaultIntervalList: [
+        {label: _('styleChange.barChartInterval.hour'), value: 1},
+        {label: _('styleChange.barChartInterval.day'), value: 24},
+        {label: _('styleChange.barChartInterval.week'), value: 7 * 24},
+        {label: _('styleChange.barChartInterval.month'), value: 30 * 24}
+    ],
+    init: function() {
+        this.colorList = Settings.colorList || this.defaultColorList;
+        this.intervalList = Settings.intervalList || this.defaultIntervalList;
+    },
+    open: function(ts) {
+        var style = ts.getStyle();
+        var data = {
+            currentColor: style.getColor(),
+            colorList: this.colorList,
+            zeroScaled: style.isZeroScaled(),
+            groupedAxis: style.isGroupedAxis()
+        };
+        if (style.isBarChart()) {
+            data.bar = true;
+            data.interval = this.intervalList;
+        }
+        ;
+        Modal.show("style-change", data);
+        $('.colorButton').on('click', function(e) {
+            var color = $(e.target).data('color');
+            if (style.getColor() !== color) {
+                style.setColor(color);
+                EventManager.publish("timeseries:changeStyle", ts);
+            }
+        });
+        $('.intervalButton').on('click', function(e) {
+            var interval = $(e.target).data('interval');
+            if (style.getIntervalByHours() !== interval) {
+                style.setIntervalByHours(interval);
+                EventManager.publish("timeseries:changeStyle", ts);
+            };
+        });
+        $('.zeroScaled').on('click', function(e) {
+            var zeroScaled = Button.switchToggleButton(e.target);
+            ts.getStyle().setZeroScaled(zeroScaled);
+            EventManager.publish("timeseries:zeroScaled", ts);
+        });
+        $('.groupedAxis').on('click', function(e) {
+            var groupedAxis = Button.switchToggleButton(e.target);
+            ts.getStyle().setGroupedAxis(groupedAxis);
+            EventManager.publish("timeseries:changeStyle", ts);
+        });
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var TableController = {
+    isVisible: false,
+    pageStart: 0,
+    pageSize: Settings.pagesize || 10,
+    init: function () {
+        this.tableButton = $('[data-action="dataTable"]');
+        this.legendButton = $('[data-toggle="legend"]');
+        this.tableView = $('#tableView');
+        this.tableButton.show();
+        this.tableButton.on('click', $.proxy(function (event) {
+            if (this.isVisible === false) {
+                this.openTable();
+            } else {
+                this.closeTable();
+            }
+        }, this));
+        EventManager.subscribe("table:open", $.proxy(this.createTable, this));
+        EventManager.subscribe("timeseries:synced", $.proxy(this.createTable, this));
+        EventManager.subscribe("timeseries:remove", $.proxy(this.createTable, this));
+        EventManager.subscribe("timeseries:changeStyle", $.proxy(this.updateTable, this));
+    },
+    openTable: function () {
+        if (!this.isVisible) {
+            this.isVisible = true;
+            this.tableView.show();
+            Button.setNewIcon(this.tableButton, 'glyphicon-stats');
+            this.legendButton.hide();
+            EventManager.publish("table:open", "table");
+        }
+    },
+    closeTable: function () {
+        if (this.isVisible) {
+            this.isVisible = false;
+            this.tableView.hide();
+            this.legendButton.show();
+            Button.removeNewIcon(this.tableButton, 'glyphicon-stats');
+            EventManager.publish("table:close", "table");
+        }
+    },
+    createTable: function () {
+        if (this.isVisible) {
+            this.tableView.empty();
+            if (TimeSeriesController.hasTimeseries()) {
+                this.sortingFunc = null;
+                this.pageStart = 0;
+                this.createHtmlTableHeader();
+                this.tableView.append(this.htmltable);
+                this.updateTable();
+                this.createHeaderClickHandler();
+            } else {
+                this.tableView.append(Template.createHtml('chart-empty'));
+            }
+        }
+    },
+    updateTable: function () {
+        if (this.isVisible) {
+            var array = this.createValueArray();
+            if (!this.sortingFunc) {
+                this.sortingFunc = this.upsort(0);
+                var firstTh = $('.table th:first');
+                firstTh.addClass('sortedUp');
+                this.changeSortLabel(firstTh, true);
+            }
+            array.sort(this.sortingFunc);
+            if (array.length > 0) {
+                var colorArray = this.createColorArray();
+                this.createHtmlTable(array, colorArray);
+            }
+            this.createPaging(array.length, this.pageSize, this.pageStart);
+        }
+    },
+    createHeaderClickHandler: function () {
+        $('.table th').on('click', $.proxy(function (event) {
+            var target = $(event.currentTarget);
+            var index = target.data('index');
+            if (target.hasClass('sortedUp')) {
+                target.removeClass('sortedUp').addClass('sortedDown');
+                this.changeSortLabel(target, false);
+                this.sortingFunc = this.downsort(index);
+            } else if (target.hasClass('sortedDown')) {
+                target.removeClass('sortedDown').addClass('sortedUp');
+                this.changeSortLabel(target, true);
+                this.sortingFunc = this.upsort(index);
+            } else {
+                $('.table th').removeClass('sortedUp').removeClass('sortedDown');
+                target.addClass('sortedUp');
+                this.changeSortLabel(target, true);
+                this.sortingFunc = this.upsort(index);
+            }
+            this.updateTable();
+        }, this));
+    },
+    changeSortLabel: function (target, up) {
+        $('#sorting').remove();
+        var span = $('<span>').attr('id', 'sorting');
+        if (up) {
+            span.html('&nbsp;&#x25BE;');
+        } else {
+            span.html('&nbsp;&#x25B4;');
+        }
+        target.append(span);
+    },
+    createPagingClickHandler: function (length) {
+        $('.pagination li a').on('click', $.proxy(function (event) {
+            var start = $(event.target).data('start');
+            if (typeof (start) !== "undefined" && start >= 0 && start <= length) {
+                this.pageStart = start;
+                this.updateTable();
+            }
+        }, this));
+    },
+    createPaging: function (arraylength, pagesize, pagestart) {
+        if (arraylength > pagesize) {
+            this.tableView.find('div.paging').remove();
+            var div = $('<div class="paging"></div>'),
+                    paging = $('<ul class="pagination"></ul>');
+            paging.append(this.pageButton('&laquo;', 0));
+            paging.append(this.pageButton('&lsaquo;', pagestart - pagesize));
+            paging.append(this.pageButton(Math.ceil((pagestart + 1) / pagesize) + '/' + Math.ceil(arraylength / pagesize)));
+            paging.append(this.pageButton('&rsaquo;', pagestart + pagesize));
+            paging.append(this.pageButton('&raquo;', Math.floor(arraylength / pagesize) * pagesize));
+            div.append(paging);
+            this.tableView.append(div);
+            this.createPagingClickHandler(arraylength);
+        }
+    },
+    pageButton: function (label, start) {
+        var elem = $('<li></li>'),
+                a = $('<a>' + label + '</a>');
+        a.data('start', start);
+        elem.append(a);
+        return elem;
+    },
+    createColorArray: function () {
+        var array = [];
+        $.each(TimeSeriesController.getTimeseriesCollection(), function (index, ts) {
+            array.push(ts.getStyle().getColor());
+        });
+        return array;
+    },
+    createValueArray: function () {
+        var array = [];
+        var map = {};
+        var tscount = Object.keys(TimeSeriesController.getTimeseriesCollection()).length;
+        var count = 0;
+        $.each(TimeSeriesController.getTimeseriesCollection(), $.proxy(function (index, ts) {
+            if (ts.getValues().length > 0) {
+                var values = Time.removeOverlappingValues(ts.getValues());
+                $.each(values, $.proxy(function (valueIdx, pair) {
+                    var time = pair[0];
+                    var value = pair[1];
+                    if (!map[time]) {
+                        map[time] = new Array(tscount);
+                    }
+                    map[time][count] = value;
+                }, this));
+            }
+            count++;
+        }, this));
+        var i = 0;
+        Object.keys(map).map(function (value) {
+            var temp = [];
+            temp[0] = parseInt(value);
+            $.each(map[value], $.proxy(function (idx, value) {
+                temp[idx + 1] = value;
+            }, this));
+            array[i++] = temp;
+        });
+        return array;
+    },
+    upsort: function (id) {
+        return function (a, b) {
+            if (isNaN(a[id]) && isNaN(b[id]))
+                return 0;
+            if (isNaN(a[id]))
+                return -1;
+            if (isNaN(b[id]))
+                return 1;
+            return a[id] - b[id];
+        };
+    },
+    downsort: function (id) {
+        return function (a, b) {
+            if (isNaN(a[id]) && isNaN(b[id]))
+                return 0;
+            if (isNaN(a[id]))
+                return 1;
+            if (isNaN(b[id]))
+                return -1;
+            return b[id] - a[id];
+        };
+    },
+    createHtmlTableHeader: function () {
+        this.htmltable = $('<table></table>').addClass('table').addClass('table-condensed');
+        var header = $('<thead></thead>');
+        var headerrow = $('<tr></tr>');
+        headerrow.append($('<th></th>').data('index', 0).text(_('table.time')));
+        var index = 1;
+        $.each(TimeSeriesController.getTimeseriesCollection(), function (id, elem) {
+            var title = $('<div></div>').text(elem.getStationLabel());
+            var phenomenonLabel = $('<span></span>').text(elem.getPhenomenonLabel() + " (" + elem.getUom() + ")");
+            var categoryLabel = $('<div></div>').text(elem.getCategoryLabel());
+            headerrow.append($('<th></th>').data('index', index++).append(title).append(phenomenonLabel).append(categoryLabel));
+        });
+        this.htmltable.append(header.append(headerrow));
+    },
+    createHtmlTable: function (array, colorArray) {
+        this.htmltable.find('tbody tr').remove();
+        var cArray = colorArray;
+        $.each(array, $.proxy(function (tsIndex, elem) {
+            if (tsIndex < this.pageStart || tsIndex >= (this.pageStart + this.pageSize)) {
+                return;
+            }
+            var row = $('<tr></tr>');
+            $.each(elem, function (index, value) {
+                if (index === 0) {
+                    row.append($('<td></td>').text(
+                            moment(value).format(Settings.dateformat)));
+                } else {
+                    row.append($('<td></td>').css('color', cArray[index - 1])
+                            .append($('<b></b>').text(value)));
+                }
+            });
+            this.htmltable.append(row);
+        }, this));
+        return this.htmltable;
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var ExportController = {
+    init: function() {
+        EventManager.subscribe('timeseries:add', $.proxy(this.loadTimeseries, this));
+    },
+    loadTimeseries: function(event, ts) {
+        tsId = ts.getInternalId();
+        var button = $('<div class="additionalLegendEntry"><span class="glyphicon glyphicon-download"></span><span> ' + _('export.label') + '</span></div>');
+        $('.legendItem[data-id="' + tsId + '"]').find('.collapseLegendEntry').append(button);
+        button.on('click', $.proxy(function() {
+            window.open(this.createCsvDownloadLink(ts));
+        }, this));
+    },
+    createCsvDownloadLink: function(ts) {
+        var from = TimeController.currentTimespan.from;
+        var till = TimeController.currentTimespan.till;
+        var timespan = moment(from).format() + "/" + moment(till).format();
+
+        var kvp = "?generalize=" + Settings.generalizeData;
+        kvp = kvp + "&timespan=" + encodeURIComponent(timespan);
+        kvp = kvp + "&locale=" + currentLanguage();
+        kvp = kvp + "&zip=true";
+        kvp = kvp + "&bom=true";
+
+        var tsId = ts.getTsId();
+        var apiUrl = ts.getApiUrl();
+        return apiUrl + "/timeseries/" + tsId + "/getData.zip" + kvp;
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var GuidedTourController = (function() {
+
+    var timeseriesAdd = function(evt, ts) {
+        if (!ts.hasData() && ts.getLastValue().timestamp) {
+            EventManager.publish("time:end:change", ts.getLastValue().timestamp);
+            return;
+        }
+        EventManager.unsubscribe("timeseries:data:loadfinished", timeseriesAdd);
+        this.showNext();
+    };
+
+    var stationLoaded = function() {
+        EventManager.unsubscribe("map:stationLoaded", stationLoaded);
+        setTimeout($.proxy(function() {
+            this.showNext();
+        }, this), 500);
+    };
+
+    /*
+     * every step has the following options:
+     *
+     * mandatory:
+     * 		"anchor" : existing anchor in the document to connect the popup window
+     */
+    var steps = [
+        {
+            anchor: '.navbar-header.chart',
+            title: _('guide.step1.header'),
+            text: _('guide.step1.text'),
+            previous: false,
+            initStep: function() {
+                Pages.navigateToChart();
+            }
+        }, {
+            anchor: '.swc-page-current [data-target="#map"]',
+            title: _('guide.step2.header'),
+            text: _('guide.step2.text'),
+            previous: false,
+            arrow: true,
+            initStep: function() {
+                Pages.navigateToChart();
+            }
+        }, {
+            anchor: '.navbar-header.map',
+            title: _('guide.step3.header'),
+            text: _('guide.step3.text'),
+            previous: false,
+            initStep: function() {
+                Pages.navigateToMap();
+            }
+        }, {
+            anchor: '[data-action="provider"]',
+            title: _('guide.step4.header'),
+            text: _('guide.step4.text'),
+            previous: false,
+            arrow: true,
+            initStep: function() {
+                Pages.navigateToMap();
+            }
+        }, {
+            anchor: '[data-action="locate"]',
+            title: _('guide.step5.header'),
+            text: _('guide.step5.text'),
+            previous: false,
+            arrow: true,
+            initStep: function() {
+                Pages.navigateToMap();
+            }
+        }, {
+            anchor: '[data-action="listSelection"]',
+            title: _('guide.step6.header'),
+            text: _('guide.step6.text'),
+            previous: false,
+            arrow: true,
+            initStep: function() {
+                Pages.navigateToMap();
+            }
+        }, {
+            anchor: '.navbar-header.map',
+            title: _('guide.step7.header'),
+            text: _('guide.step7.text'),
+            previous: false,
+            next: false,
+            initStep: function(context) {
+                EventManager.subscribe("map:stationLoaded", $.proxy(stationLoaded, context));
+            }
+        }, {
+            anchor: '.tsItem',
+            title: _('guide.step8.header'),
+            text: _('guide.step8.text'),
+            previous: false,
+            next: false,
+            arrow: true,
+            initStep: function(context) {
+                EventManager.subscribe("timeseries:data:loadfinished", $.proxy(timeseriesAdd, context));
+                    }
+        }, {
+            anchor: '.legend-entry',
+            title: _('guide.step9.header'),
+            text: _('guide.step9.text'),
+            arrow: true,
+            previous: false,
+            initStep: function() {
+                Pages.toggleLegend(true);
+            }
+        }, {
+            anchor: '.navbar-header.chart',
+            title: _('guide.step10.header'),
+            text: _('guide.step10.text'),
+            previous: false,
+            initStep: function() {
+                Pages.toggleLegend(false);
+            }
+        }, {
+            anchor: '.btn-group.timeSelection',
+            title: _('guide.step11.header'),
+            text: _('guide.step11.text'),
+            previous: false,
+            arrow: true,
+            initStep: function() {
+            }
+        }, {
+            anchor: '[data-action="dataTable"]',
+            title: _('guide.step12.header'),
+            text: _('guide.step12.text'),
+            previous: false,
+            arrow: true,
+            initStep: function() {
+            }
+        }, {
+            anchor: '.swc-page-current [data-target="#favorites"]',
+            title: _('guide.step13.header'),
+            text: _('guide.step13.text'),
+            previous: false,
+            arrow: true,
+            initStep: function() {
+            }
+        }, {
+            anchor: '.navbar-header.chart',
+            title: _('guide.step14.header'),
+            text: _('guide.step14.text'),
+            previous: false,
+            initStep: function() {
+            }
+        }];
+
+    var template = '<div class="popover guidedtour"><div class="popover-content"></div></div>';
+    var arrowtemplate = '<div class="popover guidedtour"><div class="arrow"></div><div class="popover-content"></div></div>';
+
+    return {
+        init: function() {
+            // initialize button
+            $(document).ready(function() {
+                $('[data-target="#tour"]').click(function() {
+                    GuidedTourController.start();
+                });
+            });
+            // start by permalink
+            if (Permalink.getUrlParameter('tour') === "true") {
+                GuidedTourController.start();
+            }
+            // TODO check if the client is loaded the first time, then start the
+            // guidedtour
+        },
+        start: function() {
+            if (confirm(_('guide.start.request'))) {
+                this.closeLast();
+                this.show(1);
+                Status.reset();
+            }
+        },
+        showNext: function() {
+            this.closeLast();
+            this.show(this.idx + 1);
+        },
+        closeLast: function() {
+            if (this.gtWindow) {
+                this.gtWindow.popover('destroy');
+            }
+        },
+        show: function(idx) {
+            this.idx = idx;
+            var step = steps[idx - 1];
+            step.initStep(this);
+            this.gtWindow = $(step.anchor + ':first').popover({
+                html: true,
+                template: step.arrow ? arrowtemplate : template,
+                trigger: 'manual',
+                content: Template.createHtml('guidedtour', {
+                    title: step.title,
+                    text: step.text,
+                    previous: idx - 1 >= 1 && step.previous !== false ? idx - 1 : null,
+                    step: idx,
+                    next: idx + 1 <= steps.length && step.next !== false ? idx + 1 : null,
+                    steps: steps.length
+                }),
+                placement: 'auto'
+            });
+            $(step.anchor).popover('show');
+            $('.paging.guidedtour li a').on('click', $.proxy(function(target) {
+                var idx = parseInt($(target.currentTarget).data('step'));
+                if (!isNaN(idx)) {
+                    this.closeLast();
+                    this.show(idx);
+                }
+            }, this));
+            $('.guidedtour .close').on('click', $.proxy(function() {
+                EventManager.unsubscribe("timeseries:data:loadfinished", timeseriesAdd);
+                EventManager.unsubscribe("map:stationLoaded", stationLoaded);
+                this.closeLast();
+            }, this));
+        }
+    };
+})();
+/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.sta
+ */
+var FavoriteController = {
+    favorites: {},
+    groupIdx: 0,
+    favoriteGroups: {},
+    init: function() {
+        this.key = Storage.generateKey('favorites');
+        this.favoriteButton = $('.favoriteButton');
+        this.favoriteButton.show();
+        this.favoriteButton.on('click', $.proxy(function(event) {
+//            /*
+//             * This is a bit hacky, as the page navigation
+//             * should be refactored to have a cleaner way
+//             * in extending it
+//             */
+//            var backLink = Pages.current();
+            this.showFavoritesView();
+//            var favoritePageButton = $('#favoriteButton');
+//            favoritePageButton.on('click', $.proxy(function(event) {
+//                Pages.navigateToPage("#" + backLink);
+//
+//            }));
+        }, this));
+//        this.createFavoritesListView();
+        this.activateImportExportHandlers();
+        EventManager.subscribe('timeseries:add', $.proxy(this.addLegendStar, this));
+        EventManager.subscribe('timeseries:changeStyle', $.proxy(this.addLegendStar, this));
+        EventManager.subscribe('map:stationLoaded', $.proxy(this.addStationStar, this));
+        EventManager.subscribe('settings:opened', $.proxy(function() {
+            var permFavButton = $(Template.createHtml('favorite-settings-button'));
+            $('#accordionSettings .permalink .panel-body').append(permFavButton);
+            permFavButton.on('click', $.proxy(function() {
+                if (Object.keys(TimeSeriesController.timeseries).length > 0) {
+                    if (!this.isInFavoriteGroup(TimeSeriesController.timeseries)) {
+                        var label = this.addFavoriteGroup(TimeSeriesController.timeseries);
+                        this.saveFavorites();
+                        NotifyController.notify(_('favorite.group.add').replace('{0}', label));
+                    } else {
+                        NotifyController.notify(_('favorite.group.exists'));
+                    }
+                } else {
+                    NotifyController.notify(_('favorite.group.noTimeseries'));
+                }
+            }, this));
+        }, this));
+        this.loadFavorites();
+    },
+    clearFavoritesView: function() {
+        $('#favorites-list').empty();
+    },
+    updateFavoritesView: function() {
+        this.clearFavoritesView();
+        $.each(this.favorites, $.proxy(function(idx, item) {
+            this.drawFavorite(item);
+        }, this));
+        $.each(this.favoriteGroups, $.proxy(function(idx, item) {
+            this.drawFavoriteGroup(item, idx);
+        }, this));
+    },
+    drawFavorite: function(favorite) {
+        var ts = favorite.timeseries;
+        var lastValue = ts.getLastValue();
+        var elem = Template.createHtml('favorite-entry', {
+            id: ts.getInternalId(),
+            label: favorite.label,
+            provider: ts.getServiceLabel(),
+            lastValueTimeFormatted: lastValue ? moment(lastValue.timestamp).format(Settings.dateformat) : '',
+            lastValue: lastValue.value || '',
+            uom: ts.getUom() || ''
+        });
+        $('#favorites-list').append(elem);
+        this.addFavoriteClickEvent(ts.getInternalId());
+    },
+    drawFavoriteGroup: function(favGroup, idx) {
+        var elem = Template.createHtml('favorite-group-entry', {
+            id: idx,
+            label: favGroup.label,
+            collection: $.map(favGroup.collection, function(ts) {
+                var lastValue = ts.getLastValue();
+                return {
+                    label: ts.getLabel(),
+                    lastValueTimeFormatted: lastValue ? moment(lastValue.timestamp).format(Settings.dateformat) : '',
+                    lastValue: lastValue.value || '',
+                    uom: ts.getUom() || ''
+                };
+            })
+        });
+        $('#favorites-list').append(elem);
+        this.addGroupClickEvents(idx);
+    },
+    showFavoritesView: function() {
+        Pages.navigateToFavoritesView();
+    },
+    addFavoriteClickEvent: function(id) {
+        // delete
+        this.addClickEvents(id, 'single-id', 'delete', $.proxy(function(evt) {
+            this.removeFavorite(id);
+            this.saveFavorites();
+        }, this));
+        // edit
+        this.addClickEvents(id, 'single-id', 'edit', $.proxy(function(evt) {
+            this.openEditWindow(this.favorites[id]);
+        }, this));
+        // add to diagram
+        this.addClickEvents(id, 'single-id', 'addToDiagram', $.proxy(function(evt) {
+            TimeSeriesController.removeAllTS();
+            var ts = this.favorites[id];
+            Pages.navigateToChart();
+            TimeSeriesController.addTS(ts.timeseries.clone());
+        }, this));
+    },
+    addGroupClickEvents: function(id) {
+        // delete
+        this.addClickEvents(id, 'group-id', 'delete', $.proxy(function(evt) {
+            delete this.favoriteGroups[id];
+            $('[data-group-id=' + id + ']').remove();
+            this.saveFavorites();
+        }, this));
+        // edit
+        this.addClickEvents(id, 'group-id', 'edit', $.proxy(function(evt) {
+            this.openEditWindow(this.favoriteGroups[id]);
+        }, this));
+        // add to diagram
+        this.addClickEvents(id, 'group-id', 'addToDiagram', $.proxy(function(evt) {
+            TimeSeriesController.removeAllTS();
+            var group = this.favoriteGroups[id];
+            Pages.navigateToChart();
+            $.each(group.collection, function(idx, elem) {
+                TimeSeriesController.addTS(elem);
+            });
+        }, this));
+    },
+    addClickEvents: function(id, typeId, action, cb) {
+        $('[data-' + typeId + '=' + id + '] .' + action).on('click', cb);
+    },
+    openEditWindow: function(entry) {
+        Modal.show("favorite-edit", {
+            label: entry.label
+        });
+        // add click event for button...
+        $('#confirmFavoritEdit').on('click', $.proxy(function(e) {
+            entry.label = $('#favoriteLabel')[0].value;
+            this.saveFavorites();
+            this.updateFavoritesView();
+        }, this));
+    },
+    createFavoritesListView: function() {
+        var list = Template.createHtml('favorites-main');
+        $('.swc-main').append(list);
+        Pages.activateNavButtonsHandler();
+    },
+    createEmptyStar: function() {
+        return $('<span class="glyphicon glyphicon-star-empty star"></span>');
+    },
+    createFilledStar: function() {
+        return $('<span class="glyphicon glyphicon-star star"></span>');
+    },
+    addLegendStar: function(evt, ts) {
+        var tsId = ts.getInternalId();
+        $('.legendItem[data-id="' + tsId + '"]').find('.legendItemLabel .star').remove();
+        var star;
+        var onClick;
+        if (this.favorites.hasOwnProperty(tsId)) {
+            star = this.createFilledStar();
+            onClick = $.proxy(function(event) {
+                event.stopPropagation();
+                var label = this.removeFavorite(ts);
+                NotifyController.notify(_('favorite.single.remove').replace('{0}', label));
+            }, this);
+        } else {
+            star = this.createEmptyStar();
+            onClick = $.proxy(function(event) {
+                event.stopPropagation();
+                var label = this.addFavorite(ts);
+                NotifyController.notify(_('favorite.single.add').replace('{0}', label));
+            }, this);
+        }
+        $('.legendItem[data-id="' + tsId + '"]').find('.legendItemLabel').append(star);
+        star.on('click', onClick);
+    },
+    addStationStar: function() {
+        $.each($('.stationContent .tsItem'), $.proxy(function(idx, item) {
+            var star;
+            var onClick;
+            var internalID = $(item).data('internalid');
+            $(item).find('.checkbox .star').remove();
+            if (this.favorites.hasOwnProperty(internalID)) {
+                star = this.createFilledStar();
+                onClick = $.proxy(function(event) {
+                    event.stopPropagation();
+                    var label = this.removeFavorite(internalID);
+                    NotifyController.notify(_('favorite.single.remove').replace('{0}', label));
+                    this.addStationStar();
+                }, this);
+            } else {
+                star = this.createEmptyStar();
+                onClick = $.proxy(function(event) {
+                    star.off('click', onClick);
+                    event.stopPropagation();
+                    var promise = Rest.timeseries($(item).data('id'), Status.get('provider').apiUrl);
+                    promise.done($.proxy(function(ts) {
+                        var label = this.addFavorite(ts);
+                        NotifyController.notify(_('favorite.single.add').replace('{0}', label));
+                        this.addStationStar();
+                    }, this));
+                }, this);
+            }
+            $(item).find('.checkbox label').after(star);
+            star.on('click', onClick);
+        }, this));
+    },
+    addFavorite: function(ts, label) {
+        label = this.addFavoriteToList(ts.clone(), label);
+        this.addLegendStar(null, ts);
+        return label;
+    },
+    removeFavorite: function(ts) {
+        if (!(ts instanceof TimeSeries)) {
+            ts = this.favorites[ts].timeseries;
+        }
+        var id = ts.getInternalId();
+        var label = this.favorites[id].label;
+        delete this.favorites[id];
+        $('[data-single-id=' + id + ']').remove();
+        this.addLegendStar(null, ts);
+        return label;
+    },
+    addFavoriteToList: function(ts, label) {
+        label = label || ts.getLabel();
+        this.favorites[ts.getInternalId()] = {
+            label: label,
+            timeseries: ts
+        };
+        this.saveFavorites();
+        this.drawFavorite(this.favorites[ts.getInternalId()]);
+        return label;
+    },
+    hasFavorites: function() {
+        return Object.getOwnPropertyNames(this.favorites).length !== 0;
+    },
+    addFavoriteGroup: function(tsColl, label) {
+        label = label || _('favorite.label') + ' ' + this.groupIdx;
+        this.favoriteGroups[this.groupIdx] = {
+            label: label,
+            collection: $.map(tsColl, function(elem, idx) {
+                return elem;
+            })
+        };
+        this.saveFavorites();
+        this.drawFavoriteGroup(this.favoriteGroups[this.groupIdx], this.groupIdx);
+        this.groupIdx++;
+        return label;
+    },
+    isInFavoriteGroup: function(tsColl) {
+        var isInside = false;
+        $.each(this.favoriteGroups, function(idx, elem) {
+            var equivalent = true;
+            if (elem.collection.length === Object.keys(tsColl).length) {
+                $.each(elem.collection, function(idx, elem) {
+                    var bool = false;
+                    $.each(tsColl, function(idx) {
+                        if (idx === elem.getInternalId()) {
+                            bool = true;
+                        }
+                    });
+                    if (!bool)
+                        equivalent = false;
+                });
+            } else {
+                equivalent = false;
+            }
+            if (equivalent)
+                isInside = true;
+        });
+        return isInside;
+    },
+    saveFavorites: function() {
+        var favorites = this.serializeFavorites();
+        Storage.saveObject(this.key, favorites);
+    },
+    loadFavorites: function() {
+        var values = Storage.load(this.key);
+        this.unserializeFavorites(values);
+    },
+    unserializeFavorites: function(values) {
+        if (values) {
+            $.each(values.single, $.proxy(function(idx, elem) {
+                var ts = elem.timeseries;
+                if (this.isSupported(ts)) {
+                    this.drawLoadingSpinner(ts.tsId, elem.label);
+                    var promise = Rest.timeseries(ts.tsId, ts.apiUrl);
+                    promise.done($.proxy(function (loadedTs) {
+                        loadedTs.setStyle(TimeseriesStyle.createStyleOfPersisted(ts.style));
+                        this.addFavorite(loadedTs, elem.label);
+                    }, this));
+                    promise.always($.proxy(function () {
+                        this.removeLoadingSpinner(ts.tsId);
+                    }, this));
+                } else {
+                    NotifyController.notify(_('favorite.single.notSupported').replace('{0}', elem.label));
+                }
+            }, this));
+            $.each(values.groups, $.proxy(function(idx, group) {
+                var label = group.label;
+                this.drawLoadingSpinner("grp" + idx, label);
+                var deferreds = $.map(group.collection, $.proxy(function(ts) {
+                    if (this.isSupported(ts)) {
+                        var promise = Rest.timeseries(ts.tsId, ts.apiUrl);
+                        promise.done(function (loadedTs) {
+                            loadedTs.setStyle(TimeseriesStyle.createStyleOfPersisted(ts.style));
+                        });
+                        return promise;
+                    } else {
+                        NotifyController.notify(_('favorite.group.notSupported').replace('{0}', label));
+                    }
+                }, this));
+                $.when.apply(null, deferreds).done($.proxy(function() {
+                    this.removeLoadingSpinner("grp" + idx);
+                    this.addFavoriteGroup(arguments, label);
+                }, this));
+            }, this));
+        }
+    },
+    drawLoadingSpinner: function(id, label) {
+        var elem = Template.createHtml("data-loading-entry", {
+                id: id,
+                label: label
+            });
+        $('#favorites-list').append(elem);
+    },
+    removeLoadingSpinner: function(id) {
+        $('#favorites-list').find('[data-id=' + id + ']').remove();
+    },
+    // checks if the provider of the timeseries is configured in the client
+    isSupported: function(ts) {
+        var supported = false;
+        $.each(Settings.restApiUrls, function(idx,elem) {
+            if (ts.apiUrl === idx) supported = true;
+        });
+        return supported;
+    },
+    serializeFavorites: function() {
+        var favorites = {
+            single: $.map(this.favorites, function(elem, idx) {
+                return {
+                    label: elem.label,
+                    timeseries: elem.timeseries.toJSON()
+                };
+            }),
+            groups: $.map(this.favoriteGroups, function(group, idx) {
+                return {
+                    label: group.label,
+                    collection: $.map(group.collection, function(ts, idx) {
+                        return ts.toJSON();
+                    })
+                };
+            })
+        };
+        return favorites;
+    },
+    activateImportExportHandlers: function() {
+        var fileImport = $('#favorites-file-import');
+        var fileExport = $('#favorites-file-export');
+        if(this.isFileAPISupported()){
+            fileImport.change($.proxy(this.importFavorites, this));
+        } else {
+            fileImport.parent().on('click', ($.proxy(this.importByText, this)));
+            fileImport.remove();
+        }
+        fileExport.click($.proxy(this.exportFavorites, this));
+    },
+    exportFavorites: function() {
+        if (this.isFileAPISupported()) {
+            var filename = 'favorites.json';
+            var content = JSON.stringify(this.serializeFavorites());
+            if (window.navigator.msSaveBlob) {
+                // IE version >= 10
+                var blob = new Blob([content], {
+                    type: 'application/json;charset=utf-8;'
+                });
+                window.navigator.msSaveBlob(blob, filename);
+            } else {
+                // FF, Chrome ...
+                var a = document.createElement('a');
+                a.href = 'data:application/json,' + encodeURIComponent(content);
+                a.target = '_blank';
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+            }
+        } else {
+            this.exportByText();
+        }
+    },
+    importFavorites: function(event) {
+        if (this.isFileAPISupported()) {
+            var override = true;
+            if (this.hasFavorites()) {
+                override = confirm(_('favorite.import.override'));
+            }
+            if (override) {
+                this.favorites = {};
+                this.favoriteGroups = {};
+                this.clearFavoritesView();
+                var files = event.target.files;
+                if (files && files.length > 0) {
+                    var reader = new FileReader();
+                    reader.readAsText(files[0]);
+                    reader.onerror = function() {
+                        Inform.error(_('favorite.import.wrongFile'));
+                    };
+                    reader.onload = $.proxy(function(e) {
+                        this.importJson(e.target.result);
+                    }, this);
+                }
+            }
+        } else {
+            this.importByText();
+        }
+    },
+    importJson: function(json) {
+        try {
+            var content = JSON.parse(json);
+            this.unserializeFavorites(content);
+            this.saveFavorites();
+        } catch (exception) {
+            Inform.error(_('favorite.import.noValidJson'));
+        }
+    },
+    isFileAPISupported: function() {
+        var isIOS = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) !== null;
+        return (window.File && window.FileReader && window.Blob) && !isIOS;
+    },
+    exportByText: function(){
+        var data = {
+            header: _('favorite.export.header'),
+            text: _('favorite.export.text'),
+            content: JSON.stringify(this.serializeFavorites(), undefined, 1)
+        };
+        Modal.show("import-export", data);
+        $('#confirmImportExport').off('click');
+    },
+    importByText: function(){
+        var override = true;
+        if (this.hasFavorites()) {
+            override = confirm(_('favorite.import.override'));
+        }
+        if (override) {
+            this.favorites = {};
+            this.favoriteGroups = {};
+            this.clearFavoritesView();
+            var data = {
+                header: _('favorite.import.header'),
+                text: _('favorite.import.text'),
+                content: ""
+            };
+            Modal.show("import-export", data);
+            $('#confirmImportExport').on('click', $.proxy(function () {
+                $('#confirmImportExport').off('click');
+                var json = $('#importContent').val();
+                this.importJson(json);
+            }, this));
+        }
+    }
+};/*
+ * Copyright (C) 2014-2014 52°North Initiative for Geospatial Open Source
+ * Software GmbH
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+var NotifyController = {
+    init: function() {
+        $.extend($.gritter.options, Settings.notifyOptions);
+    },
+    notify: function(text) {
+        $.gritter.add({
+            text: text
+        });
+    }
+};
