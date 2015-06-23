@@ -7071,7 +7071,6 @@ var Settings = {
     tileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     tileLayerOptions: {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        pane: 'mapPane',
         zIndex: -9999
     },
     enableGeoSearch: true
@@ -8667,7 +8666,7 @@ var Map = {
                 [parseFloat(bottommost), parseFloat(leftmost)],
                 [parseFloat(topmost), parseFloat(rightmost)]]);*/
         }
-		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
+		 changeWMS(this.selectedPhenomenon,timestring,timestring_day,boundingbox);
     },
     createColoredMarkers: function(results) {
 		var boundingbox = []
@@ -8733,7 +8732,7 @@ var Map = {
                 [parseFloat(bottommost), parseFloat(leftmost)],
                 [parseFloat(topmost), parseFloat(rightmost)]]);*/
         }
-		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
+		 changeWMS(this.selectedPhenomenon,timestring,timestring_day,boundingbox);
     },
     getMatchingInterval: function(elem) {
         var matchedInterval = null;

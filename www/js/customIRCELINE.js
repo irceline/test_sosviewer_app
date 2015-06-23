@@ -19,8 +19,8 @@
 	pm10_current24.addTo(Map.map)
 }*/
 var lastChildPhenomenonId;//= {};
-function changeWMS1(phenomenonId, hourComputed, dayComputed){}
-function changeWMS(phenomenonId, hourComputed, dayComputed, boundingbox){
+function changeWMS1(phenomenonId,hourComputed,dayComputed){}
+function changeWMS(phenomenonId,hourComputed,dayComputed,boundingbox){
 	if ( (lastChildPhenomenonId == phenomenonId && boundingbox != [])||(typeof initialPhenomenon === 'undefined'&& boundingbox != [])){
 		Map.map.fitBounds(boundingbox)
 		initialPhenomenon = -1;
@@ -177,7 +177,7 @@ if (phenomenonId == 8){
           visibility: true,
           units: 'm'
         });
-        Map.map.addLayer(no2_current)
+        Map.map.addLayer(this.no2_current);
 }
 if (phenomenonId != 8 && Map.map.hasLayer(this.no2_current)){
   Map.map.removeLayer(this.no2_current);
@@ -210,5 +210,5 @@ if (phenomenonId == 6001){
 if (phenomenonId != 6001 && Map.map.hasLayer(this.pm25_current)){
   Map.map.removeLayer(this.pm25_current);
 }
-lastChildPhenomenonId = phenomenonId ;
+lastChildPhenomenonId = phenomenonId;
 }
