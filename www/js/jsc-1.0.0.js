@@ -8643,16 +8643,16 @@ var Map = {
                     if (geom[1] < bottommost) {
                         bottommost = geom[1];
                     }
-                    /* customIRCELINE */
+                    /* customIRCELINE
                     var LeafIcon = L.Icon.extend({
                     		options: {
                     				iconSize:     [24, 24]
                     		}
                     });
-                    var ircelineIcon = new LeafIcon({iconUrl: 'images/irceline-marker-icon.png'});
+                    var ircelineIcon = new LeafIcon({iconUrl: 'images/irceline-marker-icon.png'}); */
                     var marker = new L.Marker([geom[1], geom[0]], {
-                        id: elem.properties.id,
-                        icon: ircelineIcon
+                        id: elem.properties.id /*,
+                        icon: ircelineIcon*/
                     });
                     marker.on('click', $.proxy(that.markerClicked, that));
                     this.stationMarkers.addLayer(marker);
