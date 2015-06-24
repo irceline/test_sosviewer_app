@@ -22,7 +22,7 @@
     "pagesize": 30,
     "enableGeoSearch": true,
     "mapOptions": {
-        "minZoom": 6,
-        "maxZoom": 19
+        "minZoom": 4,
+        "maxZoom": 20
     }
 }
