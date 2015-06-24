@@ -19,7 +19,6 @@
 	pm10_current24.addTo(Map.map)
 }*/
 var lastChildPhenomenonId;//= {};
-function changeWMS1(phenomenonId,hourComputed,dayComputed){}
 function changeWMS(phenomenonId,hourComputed,dayComputed,boundingbox){
 	if ( (lastChildPhenomenonId == phenomenonId && boundingbox != [])||(typeof initialPhenomenon === 'undefined'&& boundingbox != [])){
 		Map.map.fitBounds(boundingbox)
@@ -38,8 +37,8 @@ if (phenomenonId == 5){
           cql_filter: timestring,
           opacity: 0.7,
 					projection: 'EPSG:4326',
-					pane: 'mapPane',
-					zIndex: 1,
+					pane: 'tilePane',
+					zIndex: -9998,
           units: 'm'
         }).addTo(Map.map);
         this.pm10_current = L.tileLayer.wms("http://geo.irceline.be/wms", {
@@ -49,8 +48,8 @@ if (phenomenonId == 5){
           cql_filter: timestring,
           opacity: 0.7,
           visibility: true,
-					pane: 'mapPane',
-					zIndex: 1,
+					pane: 'tilePane',
+					zIndex: -9998,
 					projection: 'EPSG:4326',
           units: 'm'
         });//.addTo(Map.map);
@@ -61,8 +60,8 @@ if (phenomenonId == 5){
           cql_filter: timestring_day,
           opacity: 0.7,
           visibility: true,
-					pane: 'mapPane',
-					zIndex: 1,
+					pane: 'tilePane',
+					zIndex: -9998,
 					projection: 'EPSG:4326',
           units: 'm'
         });//.addTo(Map.map);
@@ -71,9 +70,9 @@ if (phenomenonId == 5){
 				this.imageUrlPM10day1 = 'http://www.irceline.be/air/forecast/map/air_quality_PM10ovl_day1.png';
 				this.imageUrlPM10day2 = 'http://www.irceline.be/air/forecast/map/air_quality_PM10ovl_day2.png';
 				this.imageBounds = [[49.42970232967725, 2.2959900496768988], [51.54563342675961, 7.546266537830604]];
-				this.day0 = L.imageOverlay(imageUrlPM10day0, imageBounds, {transparent: true, opacity: 0.7, projection: 'EPSG:4326', units: 'm'});
-				this.day1 = L.imageOverlay(imageUrlPM10day1, imageBounds, {transparent: true, opacity: 0.7, projection: 'EPSG:4326', units: 'm'});
-				this.day2 = L.imageOverlay(imageUrlPM10day2, imageBounds, {transparent: true, opacity: 0.7, projection: 'EPSG:4326', units: 'm'});
+				this.day0 = L.imageOverlay(imageUrlPM10day0, imageBounds, {transparent: true, opacity: 0.7, pane: 'tilePane', zIndex: -9998, projection: 'EPSG:4326', units: 'm'});
+				this.day1 = L.imageOverlay(imageUrlPM10day1, imageBounds, {transparent: true, opacity: 0.7, pane: 'tilePane', zIndex: -9998, projection: 'EPSG:4326', units: 'm'});
+				this.day2 = L.imageOverlay(imageUrlPM10day2, imageBounds, {transparent: true, opacity: 0.7, pane: 'tilePane', zIndex: -9998, projection: 'EPSG:4326', units: 'm'});
         this.baseLayers = {
           "current running 24 hour mean PM10": this.pm10_current24,
           "current hourly mean PM10": this.pm10_current,
