@@ -7071,7 +7071,7 @@ var Settings = {
     tileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     tileLayerOptions: {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        pane: pane: 'mapPane',
+        pane: 'mapPane',
         zIndex: -9999
     },
     enableGeoSearch: true
