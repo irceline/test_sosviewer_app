@@ -7071,7 +7071,7 @@ var Settings = {
     tileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     tileLayerOptions: {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        pane: 'mapPane',
+        pane: 'tilePane',
         zIndex: -9999
     },
     enableGeoSearch: true
@@ -8529,7 +8529,7 @@ var Map = {
     defaultTileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     defaultTileLayerOptions: {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        pane: 'mapPane',
+        pane: 'tilePane',
         zIndex: -9999
     },
     timeseriesCache: [],

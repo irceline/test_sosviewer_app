@@ -1,23 +1,3 @@
-/*function uploadWMS(){
-	console.log(L.version);
-	//map = L.map('map',Settings.mapOptions);
-	//my_ice_map = document.getElementById('map');//((get('map');
-
-	console.log(Map);
-	console.log("selected phenomenon: " + this.selectedPhenomenon);
-
-	var pm10_current24 = L.tileLayer.wms("http://wms.irceline.be", {
-                layers: 'rio:pm10_actueel24',
-                transparent: true,
-                format: 'image/png',
-                cql_filter: timestring,
-                opacity: 0.5,
-                visibility: true,
-                   units: 'm'
-                })//
-	console.log(pm10_current24);
-	pm10_current24.addTo(Map.map)
-}*/
 var lastChildPhenomenonId;//= {};
 function changeWMS(phenomenonId,hourComputed,dayComputed,boundingbox){
 	if ( (lastChildPhenomenonId == phenomenonId && boundingbox != [])||(typeof initialPhenomenon === 'undefined'&& boundingbox != [])){
@@ -52,7 +32,7 @@ if (phenomenonId == 5){
 					zIndex: -9998,
 					projection: 'EPSG:4326',
           units: 'm'
-        });//.addTo(Map.map);
+        });
         this.pm10_daily_mean = L.tileLayer.wms("http://geo.irceline.be/wms", {
           layers: 'rio:pm10_daggemiddelde',
           transparent: true,
@@ -64,7 +44,7 @@ if (phenomenonId == 5){
 					zIndex: -9998,
 					projection: 'EPSG:4326',
           units: 'm'
-        });//.addTo(Map.map);
+        });
 				// the forecast layers
 				this.imageUrlPM10day0 = 'http://www.irceline.be/air/forecast/map/air_quality_PM10ovl_day0.png';
 				this.imageUrlPM10day1 = 'http://www.irceline.be/air/forecast/map/air_quality_PM10ovl_day1.png';
@@ -87,8 +67,7 @@ if (phenomenonId == 5){
         }).addTo(Map.map);
 }
 if (phenomenonId != 5){
-	console.log("remove ");
-		//Map.map.removeLayer(this.pm10_current24)		//Map.map.removeLayer( this.baseLayers)
+	console.log("remove layers");
 		if (Map.map.hasLayer(this.pm10_current24)){
 			  Map.map.removeLayer(this.pm10_current24)
 			  this.pm10ControlLayer.removeLayer(this.pm10_current24);
