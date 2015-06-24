@@ -8528,7 +8528,6 @@ var Map = {
     defaultTileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     defaultTileLayerOptions: {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-        pane: 'mapPane',
         zIndex: -9999
     },
     timeseriesCache: [],

@@ -37,8 +37,6 @@ if (phenomenonId == 5){
           format: 'image/png',
           cql_filter: timestring,
           opacity: 0.7,
-          visibility: true,
-					pane: 'mapPane',
 					projection: 'EPSG:4326',
 					zIndex: 1,
           units: 'm'

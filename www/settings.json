@@ -16,8 +16,8 @@
     },
     "clusterStations": false,
     "generalizeData": true,
-    "saveStatus": true,
-    "saveStatusPossible": true,
+    "saveStatus": false,
+    "saveStatusPossible": false,
     "concentrationMarker": true,
     "pagesize": 30,
     "enableGeoSearch": true
