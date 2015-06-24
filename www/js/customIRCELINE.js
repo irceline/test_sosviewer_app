@@ -38,6 +38,7 @@ if (phenomenonId == 5){
           cql_filter: timestring,
           opacity: 0.7,
 					projection: 'EPSG:4326',
+					pane: 'mapPane',
 					zIndex: 1,
           units: 'm'
         }).addTo(Map.map);
@@ -60,7 +61,7 @@ if (phenomenonId == 5){
           cql_filter: timestring_day,
           opacity: 0.7,
           visibility: true,
-					pane: 'tilePane',
+					pane: 'mapPane',
 					zIndex: 1,
 					projection: 'EPSG:4326',
           units: 'm'
