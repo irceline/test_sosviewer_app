@@ -20,5 +20,9 @@
     "saveStatusPossible": false,
     "concentrationMarker": true,
     "pagesize": 30,
-    "enableGeoSearch": true
+    "enableGeoSearch": true,
+    "mapOptions": {
+        "minZoom": 7,
+        "maxZoom": 19                  
+    }
 }
