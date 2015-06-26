@@ -8526,7 +8526,7 @@ var TimeController = {
  * limitations under the License.
  */
 var Map = {
-    defaultTileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+    defaultTileLayerUrl: '',
     defaultTileLayerOptions: {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         pane: 'tilePane',
