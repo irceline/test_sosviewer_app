@@ -131,10 +131,10 @@ if (phenomenonId != 5){
 }
 if (phenomenonId == 7){
         this.o3_current = L.tileLayer.wms("http://geo.irceline.be/wms", {
-          layers: 'rio:o3_actueel',
+          layers: 'rioifdm:anmean_2013_O3',
           transparent: true,
-          format: 'image/png',
-          cql_filter: timestring,
+          format: 'image/png8',
+          // cql_filter: timestring,
           opacity: 0.7,
           visibility: true,
           units: 'm'
