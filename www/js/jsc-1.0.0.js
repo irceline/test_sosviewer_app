@@ -7603,15 +7603,15 @@ var Modal = {
  */
 var EventManager = {
     subscribe: function(event, fn) {
-        DEBUG && console.log("Subscribe " + event);
+        console.log("Subscribe " + event);
         $(this).bind(event, fn);
     },
     unsubscribe: function(event, fn) {
-        DEBUG && console.log("Unsubscribe " + event);
+        console.log("Unsubscribe " + event);
         $(this).unbind(event, fn);
     },
     publish: function(event, data) {
-        DEBUG && console.log("Publish " + event);
+        console.log("Publish " + event);
         $(this).trigger(event, data);
     }
 };/*
@@ -8685,8 +8685,6 @@ var Map = {
             that = this;
             $.each(results, $.proxy(function(n, elem) {
                 var geom = elem.getCoordinates();
-				console.log('elemento')
-				console.log(elem)
                 if (!isNaN(geom[0]) || !isNaN(geom[1])) {
                     if (geom[0] > rightmost) {
                         rightmost = geom[0];
