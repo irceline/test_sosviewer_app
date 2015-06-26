@@ -2,6 +2,7 @@ var lastChildPhenomenonId;//= {};
 function changeWMS(phenomenonId,hourComputed,dayComputed,boundingbox){
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 	pane: 'tilePane',
+	type: 'xyz',
 	zIndex: -9999
 }).addTo(Map.map);
 	if ( (lastChildPhenomenonId == phenomenonId && boundingbox != [])||(typeof initialPhenomenon === 'undefined'&& boundingbox != [])){
@@ -17,7 +18,7 @@ if (phenomenonId == 5){
         this.pm10_current24 = L.tileLayer.wms("http://geo.irceline.be/wms", {
 			layers: 'rio:pm10_actueel24',
 			transparent: true,
-			format: 'image/jpeg',
+			format: 'image/png',
 			cql_filter: timestring,
 			opacity: 0.7,
 			projection: 'EPSG:4326',
@@ -135,10 +136,10 @@ if (phenomenonId != 5){
 }
 if (phenomenonId == 7){
         this.o3_current = L.tileLayer.wms("http://geo.irceline.be/wms", {
-          layers: 'rioifdm:anmean_2013_O3',
+          layers: 'rio:o3_actueel',
           transparent: true,
-          format: 'image/png8',
-          // cql_filter: timestring,
+          format: 'image/png',
+          cql_filter: timestring,
           opacity: 0.7,
           visibility: true,
           units: 'm'
@@ -152,7 +153,7 @@ if (phenomenonId == 8){
         this.no2_current = L.tileLayer.wms("http://geo.irceline.be/wms", {
           layers: 'rio:no2_actueel',
           transparent: true,
-          format: 'image/tiff',
+          format: 'image/png',
           cql_filter: timestring,
           opacity: 0.7,
           visibility: true,
