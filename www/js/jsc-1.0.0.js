@@ -8555,6 +8555,7 @@ var Map = {
         if ($("#map").length > 0) {
             this.map = L.map('map',Settings.mapOptions);
             L.tileLayer(this.tileLayerUrl, this.tileLayerOptions).addTo(this.map);
+            this.map.invalidateSize();
             var overlayMaps = {};
             $.each(Settings.wmsLayer, $.proxy(function(idx, layer) {
                 try {
