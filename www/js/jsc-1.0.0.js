@@ -8596,6 +8596,7 @@ var Map = {
             this.map.fitBounds([
             [-80, -170],
             [80, 170]]);
+            this.map.invalidateSize();
         }
     },
     /*----- stations -----*/
@@ -8611,6 +8612,7 @@ var Map = {
         Rest.phenomena(null, provider.apiUrl, {
             service: provider.serviceID
         }).done($.proxy(this.fillPhenomenaList, this));
+        this.map.invalidateSize();
     },
     createStationMarker: function(results, clustering) {
         if (!this.map) {
