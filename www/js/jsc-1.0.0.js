@@ -8555,7 +8555,6 @@ var Map = {
         if ($("#map").length > 0) {
             this.map = L.map('map',Settings.mapOptions);
             L.tileLayer(this.tileLayerUrl, this.tileLayerOptions).addTo(this.map);
-            this.map.invalidateSize();
             var overlayMaps = {};
             $.each(Settings.wmsLayer, $.proxy(function(idx, layer) {
                 try {
@@ -8596,7 +8595,6 @@ var Map = {
             this.map.fitBounds([
             [-80, -170],
             [80, 170]]);
-            this.map.invalidateSize();
         }
     },
     /*----- stations -----*/
@@ -8612,7 +8610,6 @@ var Map = {
         Rest.phenomena(null, provider.apiUrl, {
             service: provider.serviceID
         }).done($.proxy(this.fillPhenomenaList, this));
-        this.map.invalidateSize();
     },
     createStationMarker: function(results, clustering) {
         if (!this.map) {
@@ -8622,7 +8619,7 @@ var Map = {
             this.map.removeLayer(this.stationMarkers);
         }
 
-		var boundingbox = []
+		// var boundingbox = []
         if (results.length > 0) {
             var firstElemCoord = results[0].geometry.coordinates;
             var topmost = firstElemCoord[1];
@@ -8664,17 +8661,17 @@ var Map = {
                 }
             }, this));
             this.map.addLayer(this.stationMarkers);
-			boundingbox = [
+			// boundingbox = [
+   //              [parseFloat(bottommost), parseFloat(leftmost)],
+   //              [parseFloat(topmost), parseFloat(rightmost)]];
+            this.map.fitBounds([
                 [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]];
-            /*this.map.fitBounds([
-                [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]]);*/
+                [parseFloat(topmost), parseFloat(rightmost)]]);
         }
 		 changeWMS(this.selectedPhenomenon,timestring,timestring_day,boundingbox);
     },
     createColoredMarkers: function(results) {
-		var boundingbox = []
+		// var boundingbox = []
         if (this.stationMarkers) {
             this.map.removeLayer(this.stationMarkers);
         }
@@ -8728,12 +8725,12 @@ var Map = {
                 }
             }, this));
             this.map.addLayer(this.stationMarkers);
-          boundingbox = [
+          // boundingbox = [
+          //       [parseFloat(bottommost), parseFloat(leftmost)],
+          //       [parseFloat(topmost), parseFloat(rightmost)]];
+            this.map.fitBounds([
                 [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]];
-            /*this.map.fitBounds([
-                [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]]);*/
+                [parseFloat(topmost), parseFloat(rightmost)]]);
         }
 		 changeWMS(this.selectedPhenomenon,timestring,timestring_day,boundingbox);
     },

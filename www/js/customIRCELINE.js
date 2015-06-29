@@ -1,10 +1,5 @@
 var lastChildPhenomenonId;//= {};
 function changeWMS(phenomenonId,hourComputed,dayComputed,boundingbox){
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-	pane: 'tilePane',
-	type: 'xyz',
-	zIndex: -9999
-}).addTo(Map.map);
 	if ( (lastChildPhenomenonId == phenomenonId && boundingbox != [])||(typeof initialPhenomenon === 'undefined'&& boundingbox != [])){
 		Map.map.fitBounds(boundingbox)
 		initialPhenomenon = -1;
