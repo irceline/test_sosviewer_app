@@ -2,7 +2,7 @@ var lastChildPhenomenonId;//= {};
 function changeWMS(phenomenonId, hourComputed, dayComputed, boundingbox){
 // fix 
 // add to css: .leaflet-tile {-webkit-backface-visibility: visible !important;}
-//L.Browser.webkit3d = false;
+L.Browser.webkit3d = false;
 // cumstom behaviour double-click for zoom to phenomenon extend
 if ((lastChildPhenomenonId == phenomenonId && boundingbox != [])||(typeof initialPhenomenon === 'undefined'&& boundingbox != [])){
 	Map.map.fitBounds(boundingbox)
@@ -153,7 +153,7 @@ if (phenomenonId == 8){
         this.no2_current = L.tileLayer.wms("http://geo.irceline.be/wms", {
           layers: 'rio:no2_actueel',
           transparent: true,
-          format: 'image/tiff',
+          format: 'image/png',
           cql_filter: timestring,
           opacity: 0.7,
           visibility: true,
