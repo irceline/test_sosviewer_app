@@ -1,0 +1,10 @@
+.leaflet-tile {
+	-webkit-backface-visibility: visible !important;
+}
+.btn-xs{
+	height: 36px;
+}
+.leftPanelButton{
+	top:10px;
+	right:10px;
+}

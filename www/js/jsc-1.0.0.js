@@ -8661,14 +8661,14 @@ var Map = {
                 }
             }, this));
             this.map.addLayer(this.stationMarkers);
-			// boundingbox = [
-   //              [parseFloat(bottommost), parseFloat(leftmost)],
-   //              [parseFloat(topmost), parseFloat(rightmost)]];
-            this.map.fitBounds([
+			boundingbox = [
                 [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]]);
+                [parseFloat(topmost), parseFloat(rightmost)]];
+            // this.map.fitBounds([
+            //     [parseFloat(bottommost), parseFloat(leftmost)],
+            //     [parseFloat(topmost), parseFloat(rightmost)]]);
         }
-		 changeWMS(this.selectedPhenomenon,timestring,timestring_day,boundingbox);
+		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
     },
     createColoredMarkers: function(results) {
 		// var boundingbox = []
@@ -8725,14 +8725,14 @@ var Map = {
                 }
             }, this));
             this.map.addLayer(this.stationMarkers);
-          // boundingbox = [
-          //       [parseFloat(bottommost), parseFloat(leftmost)],
-          //       [parseFloat(topmost), parseFloat(rightmost)]];
-            this.map.fitBounds([
-                [parseFloat(bottommost), parseFloat(leftmost)],
-                [parseFloat(topmost), parseFloat(rightmost)]]);
-        }
-		 changeWMS(this.selectedPhenomenon,timestring,timestring_day,boundingbox);
+        boundingbox = [
+            [parseFloat(bottommost), parseFloat(leftmost)],
+            [parseFloat(topmost), parseFloat(rightmost)]];
+        //     this.map.fitBounds([
+        //         [parseFloat(bottommost), parseFloat(leftmost)],
+        //         [parseFloat(topmost), parseFloat(rightmost)]]);
+        // }
+		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
     },
     getMatchingInterval: function(elem) {
         var matchedInterval = null;
