@@ -8618,8 +8618,8 @@ var Map = {
         if (this.stationMarkers) {
             this.map.removeLayer(this.stationMarkers);
         }
-
-		// var boundingbox = []
+        // custom behaviour double click to zoom to extend phenomenon
+		var boundingbox = []
         if (results.length > 0) {
             var firstElemCoord = results[0].geometry.coordinates;
             var topmost = firstElemCoord[1];
@@ -8671,7 +8671,8 @@ var Map = {
 		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
     },
     createColoredMarkers: function(results) {
-		// var boundingbox = []
+		// custom behaviour double click to zoom to extend phenomenon
+        var boundingbox = []
         if (this.stationMarkers) {
             this.map.removeLayer(this.stationMarkers);
         }
