@@ -8526,7 +8526,7 @@ var TimeController = {
  * limitations under the License.
  */
 var Map = {
-    defaultTileLayerUrl: '',
+    defaultTileLayerUrl: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
     defaultTileLayerOptions: {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
         pane: 'tilePane',
@@ -8709,6 +8709,7 @@ var Map = {
                             color: "#000",
                             opacity: 1,
                             weight: 2,
+                            zIndex: -1,
                             fillOpacity: 0.8
                         });
                     } else {
@@ -8718,6 +8719,7 @@ var Map = {
                             color: "#000",
                             opacity: 1,
                             weight: 2,
+                            zIndex: -1,
                             fillOpacity: 0.2
                         });
                     }
