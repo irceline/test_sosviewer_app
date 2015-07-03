@@ -8668,7 +8668,7 @@ var Map = {
             //     [parseFloat(bottommost), parseFloat(leftmost)],
             //     [parseFloat(topmost), parseFloat(rightmost)]]);
         }
-		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
+		changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
     },
     createColoredMarkers: function(results) {
 		// custom behaviour double click to zoom to extend phenomenon
@@ -8732,8 +8732,8 @@ var Map = {
         //     this.map.fitBounds([
         //         [parseFloat(bottommost), parseFloat(leftmost)],
         //         [parseFloat(topmost), parseFloat(rightmost)]]);
-        // }
-		 changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
+        }
+		changeWMS(this.selectedPhenomenon, timestring, timestring_day, boundingbox);
     },
     getMatchingInterval: function(elem) {
         var matchedInterval = null;
